@@ -70,7 +70,7 @@ wget https://az764295.vo.msecnd.net/stable/da76f93349a72022ca4670c1b84860304616a
 * Enter Address : **localhost:5901**
 * Name : || whatever you want ||
 * Enter password when you install [Ubuntu](https://github.com/ElaXan/GCAndroid#setup)
-1. Click on Application on Top Left\
+1. Click on Application on Top Left
 2. Open Visual Studio Code\
 <img src="img/step_1.jpg" width="350"/><br />
 3. Go to extension and search `mongodb`\
@@ -83,3 +83,15 @@ wget https://az764295.vo.msecnd.net/stable/da76f93349a72022ca4670c1b84860304616a
 7. Just click it and Done now you can edit Database `mongodb`\
 <img src="img/step_5.jpg" width="350"/><br />
 [YOU NEED TO TURN ON OR RUN `MONGODB` FOR CONNECT TO VISUAL STUDIO CODE]
+
+## Play
+### YuukiProxy
+Enter address : `https://127.0.0.1:54321` like this picture\
+<img src="img/yuukiproxy.jpg" width="350"/><br />
+Then click `Custom Server`
+
+### Termux/mitmproxy
+You can using [my script] for change it enter number `3`\
+<img src="img/termuxsss.png" width="350"/><br />
+Or you can manual edit with\
+`nano proxy_config.py`
