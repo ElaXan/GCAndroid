@@ -10,11 +10,11 @@ yellowColor="$(printf '\033[0;33m')"
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 
-credit_hah()
+credit_hah() {
     clear
-    echo "===================="
+    echo "=============================="
     echo "${greenColorBold}Script made by ElaXan${whiteColor}"
-    echo "===================="
+    echo "=============================="
 }
 
 
@@ -29,6 +29,7 @@ GoToTouchGrass() {
         main_menu
         return
     else
+        cd $HOME/Grasscutter
         java -jar $HOME/Grasscutter/grasscutter.jar
     fi
 }
@@ -44,7 +45,7 @@ EditGrass() {
 
 main_menu() {
     credit_hah
-    echo "${cyanColorBold}1. Run Grasscutter
+    echo "${cyanColorBold}1. Run Grasscutter"
     echo "2. Edit config.json"
     echo "3. ${redColorBold}Exit${whiteColor}"
     echo -n "Enter input : "
