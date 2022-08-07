@@ -22,3 +22,12 @@ clear
 echo "Compile jar (Please Wait)"
 sleep 1s
 ./gradlew jar
+mv grasscutter-1.2.3-dev.jar grasscutter.jar
+timeout --foreground 3s java -jar grasscutter.jar
+clear
+echo "Edit Port..."
+sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
+clear
+echo "Done Set All"
+echo "Address : 127.0.0.1"
+echo "Port : 54321"
