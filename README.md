@@ -59,10 +59,9 @@ bash gcandroid.sh
 ## Edit Mongodb Database
 A. How to edit mongodb database??\
 Q. You can using Visual Studio Code for edit database\
-Please download same as your arch\
-eg. Android much using arm64\
-So download for arm64
-
-* If you already download, then install it with `sudo dpkg -i <path-vscode.deb>`
+Copy this and paste to Termux
+```bash
+wget https://az764295.vo.msecnd.net/stable/da76f93349a72022ca4670c1b84860304616aaa2/code_1.70.0-1659587966_arm64.deb && dpkg -i code_1.70.0-1659587966_arm64.deb
+```
 
 * This need VNCServer for run or open VSCode so download it on Play Store
