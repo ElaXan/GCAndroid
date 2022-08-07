@@ -91,7 +91,7 @@ Enter address : `https://127.0.0.1:54321` like this picture\
 Then click `Custom Server`
 
 ### Termux/mitmproxy
-You can using [my script] for change it enter number `3`\
+You can using [my script](https://github.com/ElaXan/AnimeGamePatch) for change it enter number `3`\
 <img src="img/termuxsss.png" width="350"/><br />
 Or you can manual edit with\
 `nano proxy_config.py`\
