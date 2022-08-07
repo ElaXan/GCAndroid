@@ -4,7 +4,8 @@ What can do if Localhost?
 * Can edit the Code (Banner, Event, Abyss, and etc)
 * Much you can do
 ## Note
-This need [Ubuntu](https://ubuntu.com) and [Termux](https://termux.dev/en/). And this burdens your phone, so it's not recommended for low specs
+This need [Ubuntu](https://ubuntu.com) and [Termux](https://termux.dev/en/). And this burdens your phone, so it's not recommended for low specs\
+But, why not to try it... May i wrong XD
 
 ## Download
 Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk)\
