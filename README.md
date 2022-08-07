@@ -21,15 +21,23 @@ And paste on Termux then Enter on your Keyboard
 If you already [setup](https://github.com/ElaXan/GCAndroid#setup) then now install mongodb
 Copy this and paste to Termux
 ```bash
-sudo apt-get update -y && sudo apt-get install mongodb
+sudo apt-get update -y && sudo apt-get install mongodb curl -y
 ```
 After success install mongodb and run it using this command
 ```bash
 sudo service mongodb start
 ```
+If want stop copy this and paste to Termux
+```bash
+pkill mongo && sudo service mongodb stop
+```
 
 ### Grasscutter
-
+For install Grasscutter\
+Copy this and paste to Termux
+```bash
+sudo apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/Code/grasscutter_compile.sh?token=GHSAT0AAAAAABXMJEUC44ZDGK3RP52EJ2Y6YXPGKUA)
+```
 
 ## Edit Mongodb Database
 A. How to edit mongodb database??\
@@ -39,3 +47,5 @@ eg. Android much using arm64\
 So download for arm64
 
 * If you already download, then install it with `sudo dpkg -i <path-vscode.deb>`
+
+* This need VNCServer for run or open VSCode so download it on Play Store
