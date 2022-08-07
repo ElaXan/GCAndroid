@@ -94,4 +94,6 @@ Then click `Custom Server`
 You can using [my script] for change it enter number `3`\
 <img src="img/termuxsss.png" width="350"/><br />
 Or you can manual edit with\
-`nano proxy_config.py`
+`nano proxy_config.py`\
+Change in `REMOTE_HOST` to **127.0.0.1**\
+Change in `REMOTE_PORT` to **54321**
