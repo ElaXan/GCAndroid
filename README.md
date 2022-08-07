@@ -70,15 +70,16 @@ wget https://az764295.vo.msecnd.net/stable/da76f93349a72022ca4670c1b84860304616a
 * Enter Address : **localhost:5901**
 * Name : || whatever you want ||
 * Enter password when you install [Ubuntu](https://github.com/ElaXan/GCAndroid#setup)
-1. Open Visual Studio Code\
+1. Click on Application on Top Left\
+2. Open Visual Studio Code\
 <img src="img/step_1.jpg" width="350"/><br />
-2. Go to extension and search `mongodb`\
+3. Go to extension and search `mongodb`\
 <img src="img/step_2.jpg" width="350"/><br />
-3. `install` mongodb\
+4. `install` mongodb\
 <img src="img/step_3.jpg" width="350"/><br />
-4. Close `Visual Studio Code` and open it again same like number 1<br />
-5. Click `mongodb icon` on bottom extension\
+5. Close `Visual Studio Code` and open it again same like number 1<br />
+6. Click `mongodb icon` on bottom extension\
 <img src="img/step_4.jpg" width="350"/><br />
-6. Just click it and Done now you can edit Database `mongodb`\
+7. Just click it and Done now you can edit Database `mongodb`\
 <img src="img/step_5.jpg" width="350"/><br />
 [YOU NEED TO TURN ON OR RUN `MONGODB` FOR CONNECT TO VISUAL STUDIO CODE]
