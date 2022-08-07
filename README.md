@@ -11,9 +11,15 @@ Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk)\
 Download [Andronix](https://play.google.com/store/apps/details?id=studio.com.techriz.andronix)
 
 ## Setup
-Open [Andronix](https://play.google.com/store/apps/details?id=studio.com.techriz.andronix)\
-Select Ubuntu -> Click on "Proceed" -> Select "20.04" -> Select "Install" -> Select "Desktop Environment" -> Select "XFCE" -> Click "Open Termux"\
-And paste on Termux then Enter on your Keyboard
+Open [Andronix](https://play.google.com/store/apps/details?id=studio.com.techriz.andronix)
+1. Select Ubuntu
+2. Click on "Proceed"
+3. Select "20.04"
+4. Select "Install"
+5. Select "Desktop Environment"
+6. Select "XFCE"
+7. Click "Open Termux"
+8. And paste on Termux then Enter on your Keyboard
 * This need long time to install depends with your Internet
 
 ## Install
@@ -37,6 +43,17 @@ For install Grasscutter\
 Copy this and paste to Termux
 ```bash
 sudo apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/Code/grasscutter_compile.sh?token=GHSAT0AAAAAABXMJEUC44ZDGK3RP52EJ2Y6YXPGKUA)
+```
+
+### Script
+Copy this and paste to Termux
+[ONLY ONE TIME]
+```bash
+wget https://raw.githubusercontent.com/ElaXan/GCAndroid/main/Code/gcandroid.sh?token=GHSAT0AAAAAABXMJEUCYL7STPKVYOFYLJYAYXPHLIA && bash gcandroid.sh
+```
+* If you want use that again just entet this command
+```bash
+bash gcandroid.sh
 ```
 
 ## Edit Mongodb Database
