@@ -60,8 +60,8 @@ bash gcandroid.sh
 ```
 
 ## Edit Mongodb Database
-A. How to edit mongodb database??\
-Q. You can using Visual Studio Code for edit database\
+Q. How to edit mongodb database??\
+A. You can using Visual Studio Code for edit database\
 Copy this and paste to Termux
 ```bash
 wget https://az764295.vo.msecnd.net/stable/da76f93349a72022ca4670c1b84860304616aaa2/code_1.70.0-1659587966_arm64.deb && sudo apt install libsecret-1-0 && dpkg -i code_1.70.0-1659587966_arm64.deb && sudo sed -i "s/code --unity-launch %F/code --no-sandbox --unity-launch %F/g" /usr/share/applications/code.desktop
