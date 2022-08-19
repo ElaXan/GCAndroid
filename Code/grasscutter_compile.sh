@@ -1,6 +1,12 @@
 #!/bin/bash
 
 # Simple script no Main Menu :D
+redColorBold="$(printf '\033[1;31m')"
+isThisLinux=$(uname -o)
+if [ $isThisLinux = Android ]; then
+    echo "${redColorBold}Please run on Ubuntu/Linux not Termux!${whiteColor}"
+    exit 2
+fi
 clear
 echo "Install Java JDK 17"
 sleep 1s
