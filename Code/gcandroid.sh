@@ -9,6 +9,11 @@ yellowColor="$(printf '\033[0;33m')"
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
+isThisLinux=$(uname -o)
+if [ $isThisLinux = Android ]; then
+    echo "${redColorBold}Please run on Ubuntu not Termux!${whiteColor}"
+    exit 2
+fi
 
 credit_hah() {
     clear
@@ -17,9 +22,45 @@ credit_hah() {
     echo "=============================="
 }
 
+changePort() {
+    credit_hah
+    if [ ! -f $configpath ]; then
+        echo "${redColorBold}Error : config.json not found!${whiteColor}"
+        echo -n "Press enter for back to Menu!"
+        read
+        main_menu
+        return
+    fi
+    checkPort=$(cat $configpath | grep "\"bindPort\":" | head -n 1 | sed -e "s/.*\": //g" -e "s/,//g")
+    echo "${cyanColorBold}Current Port : ${checkPort}${whiteColor}"
+    echo "=============================="
+    echo "Enter b/B for back or cancel"
+    echo -n "Enter port : "
+    read -r PortChange
+    if [ $PortChange = "b" ] || [ $PortChange = "B" ]; then
+        main_menu
+        return
+    fi
+    if [ $PortChange = "22102" ]; then
+        echo "${redColorBold}Please don't use port 22102${whiteColor}"
+        echo "Press enter for try again!"
+        read
+        changePort
+        return
+    fi
+    sed -i "s/\"bindPort\": $checkPort/\"bindPort\": $PortChange/g" $configpath
+    echo "${greenColorBold}Port changed to $PortChange${whiteColor}"
+    echo -n "Press enter for back to Menu!"
+    read
+    main_menu
+}
+
 
 GoToTouchGrass() {
     credit_hah
+    if ! command -v mongo &> /dev/null; then
+        echo "${redColorBold}Please install mongodb First!"
+    fi
     pkill mongo
     sudo service mongodb start
     if [[ ! -f $wherethegrassss ]]; then
@@ -43,17 +84,39 @@ EditGrass() {
     return
 }
 
+installMongodb() {
+    credit_hah
+    if command -v mongo &> /dev/null; then
+        echo "${yellowColorBold}Mongodb already installed"
+        echo "Do you want reinstall?${whiteColor}"
+        echo -n "Enter input (y/N) : "
+        read mongodbAsk
+        case $mongodbAsk in
+            "y" | "Y" ) sudo apt reinstall mongodb; main_menu;;
+            "n" | "N" ) main_menu;;
+            "" ) sudo apt reinstall mongodb; main_menu;;
+            * ) echo "Wrong Input!"; installMongodb;;
+        esac
+    else
+        sudo apt install mongodb
+    fi
+}
+
 main_menu() {
     credit_hah
     echo "${cyanColorBold}1. Run Grasscutter"
     echo "2. Edit config.json"
-    echo "3. ${redColorBold}Exit${whiteColor}"
+    echo "3. Change Port"
+    echo "4. Install Mongodb"
+    echo "0. ${redColorBold}Exit${whiteColor}"
     echo -n "Enter input : "
     read -r inputmain
     case $inputmain in
         "1" ) GoToTouchGrass;;
         "2" ) EditGrass;;
-        "3" ) exit 0;;
+        "3" ) changePort;;
+        "4" ) installMongodb;;
+        "0" ) exit 0;;
         * ) echo "${redColorBold}Wrong Input!${whiteColor}"; sleep 1s; main_menu;;
     esac
 }
