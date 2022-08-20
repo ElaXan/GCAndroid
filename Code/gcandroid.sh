@@ -355,7 +355,7 @@ main_menu() {
     esac
 }
 
-source $HOME/updateinfo
+source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
 versionScript="1"
 if [[ $newVersionScript = "" ]]; then
     clear
