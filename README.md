@@ -52,11 +52,11 @@ sudo apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/Ela
 Copy this and paste to Termux
 [ONLY ONE TIME]
 ```bash
-wget https://raw.githubusercontent.com/ElaXan/GCAndroid/main/Code/gcandroid.sh && bash gcandroid.sh
+bash <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/install.sh)
 ```
 * If you want use that again just enter this command
 ```bash
-bash gcandroid.sh
+gcandroid
 ```
 
 ## Edit Mongodb Database
