@@ -367,9 +367,9 @@ if [[ $newVersionScript = "" ]]; then
     return
 elif [[ $versionScript < $newVersionScript ]]; then
     clear
-    echo "There is update to $newVersionScript"
+    echo "There is update to Version : $newVersionScript"
     echo "New Update : "
-    echo $noteLatestVersion
+    echo "$noteUpdate"
     echo -n "Enter input (y/N) : "
     read -r update_input
     case $update_input in
