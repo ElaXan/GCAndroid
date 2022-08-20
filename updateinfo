@@ -1,0 +1,6 @@
+newVersionScript="1"
+noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
+noteUpdate=""
+update() {
+    echo "New Version"
+}
