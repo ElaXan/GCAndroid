@@ -369,7 +369,7 @@ elif [[ $versionScript < $newVersionScript ]]; then
     clear
     echo "There is update to Version : $newVersionScript"
     echo "New Update : "
-    echo "$noteUpdate"
+    echo -e "$noteUpdate"
     echo -n "Enter input (y/N) : "
     read -r update_input
     case $update_input in
