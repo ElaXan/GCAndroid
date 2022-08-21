@@ -42,11 +42,7 @@ pkill mongo && sudo service mongodb stop
 ```
 
 ### Grasscutter
-For install Grasscutter\
-Copy this and paste to Termux
-```bash
-sudo apt install curl -y && bash <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/Code/grasscutter_compile.sh)
-```
+Install Grasscutter already moved to [Script](https://github.com/ElaXan/GCAndroid#script)
 
 ### Script
 Copy this and paste to Termux
