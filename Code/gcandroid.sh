@@ -20,6 +20,7 @@ if ! command -v perl &> /dev/null; then
     sudo apt install perl
 fi
 
+
 credit_hah() {
     clear
     echo "====================================="
@@ -70,6 +71,8 @@ menu_detect_false_true() {
         autoCreate=$(cat "$configpath" | grep "\"autoCreate\":" | sed -e "s/.*\"autoCreate\": //g" -e "s/,//g")
         EXPERIMENTAL_RealPassword=$(cat "$configpath" | grep "\"EXPERIMENTAL_RealPassword\":" | sed -e "s/.*\"EXPERIMENTAL_RealPassword\": //g" -e "s/,//g")
         maxPlayer=$(cat "$configpath" | grep "\"maxPlayer\":" | sed "s/.*\"maxPlayer\": //g")
+        defaultPermissions_list=$(cat $HOME/Grasscutter/src/main/java/emu/grasscutter/command/commands/* | grep "permission = \"" | sed -e "s/.*= \"//g" -e "s/\",//g" -e "s/\")//g" -e "s/ =.*//g")
+        defaultPermissions=$(cat "$configpath" | grep "\"defaultPermissions\":" | sed -e "s/.*\": \[//g" -e "s/\],//g")
     fi
 
     if [ $1 = "joinOptions" ]; then
@@ -475,6 +478,10 @@ menu_config_game_joinOptions_welcomeMail() {
     esac
 }
 
+menu_config_account_defaultPermissions() {
+    credit_hah
+}
+
 menu_config_account() {
     menu_config_back="account"
     credit_hah
@@ -482,11 +489,13 @@ menu_config_account() {
     echo "1. [${TRautoCreate}] autoCreate"
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
     echo "3. [${TRmaxPlayer}] maxPlayer"
-    echo "0. Back"
+    echo "4. ${CCB}defaultPermissions${WC}"
+    echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
         "1" | "2" | "3" ) editCfgFunc "account";;
+        "4" ) echo "${YC}Still development...${WC}"; sleep 1s; menu_config_account;;
         "0" ) menu_config;;
         * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config_account;;
     esac
@@ -548,13 +557,6 @@ changePort() {
         main_menu
         return
     fi
-    if [[ $PortChange = "22102" ]] || [[ $PortChange = "443" ]]; then
-        echo "${RC}Please don't use port $PortChange${WC}"
-        echo -n "Press enter for try again!"
-        read
-        changePort
-        return
-    fi
     if [[ $PortChange = "" ]]; then
         echo "${RC}Please enter Port!${WC}"
         echo
@@ -563,11 +565,22 @@ changePort() {
         changePort
         return
     fi
-    sed -i "s/\"bindPort\": $checkPort/\"bindPort\": $PortChange/g" $configpath
-    echo "${GC}Port changed to $PortChange${WC}"
-    echo -n "Press enter for back to Menu!"
-    read
-    main_menu
+    if [[ $PortChange -lt 1025 ]]; then
+        echo -e "${RC}Port $PortChange not allowed for Android\n${YC}Try Higher than 1024\n${WC}"
+        echo -n "Press enter for try again!"
+        read
+        changePort
+        return
+    elif [[ $PortChange = "22102" ]]; then
+        echo -e "${RC}Port ${PortChange} not allowed\n${YC}Reason ${WC}: ${CCB}Already used by Grasscutter Port${WC}"
+        echo
+        echo -n "Press enter for try again!"
+        read
+        changePort
+        return
+    fi
+    sed -i "s/\"bindPort\": $checkPort,/\"bindPort\": $PortChange,/g" $configpath
+    changePort
 }
 
 installMongodb() {
