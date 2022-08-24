@@ -1,6 +1,6 @@
-newVersionScript="2"
+newVersionScript="2.1"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-noteUpdate="1. Add edit config.json on Account\n2. Add edit config.json on Game\n3. Add edit manual in Edit config.json\n4. Add Install Grasscutter"
+noteUpdate="1. Add choose download version Resources"
 update() {
     sudo apt update
     isThisAndroid=$(uname -o)
