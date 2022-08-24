@@ -603,8 +603,12 @@ installMongodb() {
 
 Install_Grasscutter_process() {
     if ! command -v unzip &> /dev/null; then
-        echo "${GC}Installing Unzip...${WC}"
+        echo "${GC}Installing unzip command...${WC}"
         sudo apt install unzip -y &> /dev/null
+    fi
+    if ! command -v git &> /dev/null; then
+        echo "${GC}Installing git command...${WC}"
+        sudo apt install git -y &> /dev/null
     fi
     credit_hah
     cd $HOME || exit 1
@@ -653,10 +657,6 @@ Install_Grasscutter_process() {
     fi
     sleep 1s
     cd $HOME || exit 1
-    if ! command -v git &> /dev/null; then
-        echo "${GC}Install unzip...${WC}"
-        sudo apt install unzip -y &> /dev/null
-    fi
     echo "${GC}Download Grasscutter and Resources${WC}"
     git clone https://github.com/Grasscutters/Grasscutter.git
     echo "${GC}Download Resources...${WC}"
@@ -755,7 +755,7 @@ Install_Grasscutter() {
             * ) echo "${RC}Wrong Input!${WC}"; sleep 0.5s; Install_Grasscutter;;
         esac
     else
-        Install_Grasscutter_process
+        Install_Grasscutter_yes
     fi
 }
 
@@ -782,7 +782,7 @@ main_menu() {
 
 newVersionScript=""
 source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
-versionScript="2.1"
+versionScript="2.1.1"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"
