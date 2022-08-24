@@ -1,6 +1,6 @@
-newVersionScript="2.1"
+newVersionScript="2.1.1"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-noteUpdate="1. Add choose download version Resources"
+noteUpdate="1. Fix Code on Install Grasscutter"
 update() {
     sudo apt update
     isThisAndroid=$(uname -o)
