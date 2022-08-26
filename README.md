@@ -60,7 +60,7 @@ Q. How to edit mongodb database??\
 A. You can using Visual Studio Code for edit database\
 Copy this and paste to Termux
 ```bash
-wget https://az764295.vo.msecnd.net/stable/e4503b30fc78200f846c62cf8091b76ff5547662/code_1.70.2-1660628199_arm64.deb && sudo apt install libsecret-1-0 && sudo dpkg -i code_1.70.0-1659587966_arm64.deb && sudo sed -i "s/code --unity-launch %F/code --no-sandbox --unity-launch %F/g" /usr/share/applications/code.desktop
+wget https://az764295.vo.msecnd.net/stable/e4503b30fc78200f846c62cf8091b76ff5547662/code_1.70.2-1660628199_arm64.deb && sudo apt install libsecret-1-0 && sudo dpkg -i code_1.70.2-1660628199_arm64.deb && sudo sed -i "s/code --unity-launch %F/code --no-sandbox --unity-launch %F/g" /usr/share/applications/code.desktop
 ```
 * Enter command `vncserver` on Termux then open [VNCViewer](https://play.google.com/store/apps/details?id=com.realvnc.viewer.android)
 * Click on "+" bottom right
