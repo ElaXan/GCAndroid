@@ -8,22 +8,24 @@ This need [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Sk
 But, why not to try it... May i wrong XD
 
 ## Download
-Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk)\
-Download [Andronix](https://play.google.com/store/apps/details?id=studio.com.techriz.andronix)
+Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]
 
 ## Setup
-Open [Andronix](https://play.google.com/store/apps/details?id=studio.com.techriz.andronix)
-1. Select Ubuntu Icon
-2. Click on "Proceed"
-3. Select "20.04"
-4. Select "Install"
-5. Select "Desktop Environment"
-6. Select "XFCE"
-7. Click "Open Termux"
-8. And paste on Termux then Enter on your Keyboard
-* This need long time to install depends with your Internet
-* Don't close or kill Termux, if you do that then some program/package not install
-* If in Termux became like this `root@localhost:~#` then do [next step](https://github.com/ElaXan/GCAndroid#install)
+1. Enter this command (install proot-distro/ubuntu)
+```bash
+pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu -y
+```
+2. Login or enter mode Ubuntu with command
+```bash
+proot-distro login ubuntu
+```
+3. Now enter this command for can install Mongodb or with next Step
+```bash
+apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal universe" > /etc/apt/sources.list && apt update && apt install sudo
+```
+4. Now next step to [install](https://github.com/ElaXan/GCAndroid#install)
+
+
 
 ## Install
 ### Mongodb
