@@ -13,7 +13,7 @@ Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEN
 ## Setup
 1. Enter this command (install proot-distro/ubuntu)
 ```bash
-pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu
+pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu -y
 ```
 2. Login or enter mode Ubuntu with command
 ```bash
@@ -57,6 +57,32 @@ bash <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/install.s
 gcandroid
 ```
 
+## Edit Mongodb Database
+Q. How to edit mongodb database??\
+A. You can using Visual Studio Code for edit database\
+Copy this and paste to Termux
+```bash
+wget https://az764295.vo.msecnd.net/stable/e4503b30fc78200f846c62cf8091b76ff5547662/code_1.70.2-1660628199_arm64.deb && sudo apt install libsecret-1-0 && sudo dpkg -i code_1.70.2-1660628199_arm64.deb && sudo sed -i "s/code --unity-launch %F/code --no-sandbox --unity-launch %F/g" /usr/share/applications/code.desktop
+```
+* Enter command `vncserver` on Termux then open [VNCViewer](https://play.google.com/store/apps/details?id=com.realvnc.viewer.android)
+* Click on "+" bottom right
+* Enter Address : **localhost:5901**
+* Name : || whatever you want ||
+* Enter password when you install [Ubuntu](https://github.com/ElaXan/GCAndroid#setup)
+1. Click on Application on Top Left
+2. Open Visual Studio Code\
+<img src="img/step_1.jpg" width="350"/><br />
+3. Go to extension and search `mongodb`\
+<img src="img/step_2.jpg" width="350"/><br />
+4. `install` mongodb\
+<img src="img/step_3.jpg" width="350"/><br />
+5. Close `Visual Studio Code` and open it again same like number 1<br />
+6. Click `mongodb icon` on bottom extension\
+<img src="img/step_4.jpg" width="350"/><br />
+7. Just click it and Done now you can edit Database `mongodb`\
+<img src="img/step_5.jpg" width="350"/><br />
+[YOU NEED TO TURN ON OR RUN `MONGODB` FOR CONNECT TO VISUAL STUDIO CODE]
+
 ## Play
 ### YuukiProxy
 Enter address : `https://127.0.0.1:54321` like this picture\
@@ -70,3 +96,21 @@ Or you can manual edit with\
 `nano proxy_config.py`\
 Change in `REMOTE_HOST` to **127.0.0.1**\
 Change in `REMOTE_PORT` to **54321**
+
+## Edit Mongodb Database
+If you want edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
+If you don't have money to buy for the app, you can search for other apk or search for crack App that exist in Internet...
+
+Make sure mongodb is running with this command
+```bash
+sudo service mongodb start
+```
+1. Open the App
+2. And press/click on "New Connection"\
+<img src="img/databaseEdit1.png" width="350"/><br />
+3. You can enter/put name "Grasscutter" like this photo\
+<img src="img/databaseEdit2.png" width="350"/><br />\
+Don't change anything unless you change for the Port Mongodb. and then save it
+4. Click on "Grasscutter"\
+<img src="img/databaseEdit3.png" width="350"/><br />
+5. Done, now you can edit Database
