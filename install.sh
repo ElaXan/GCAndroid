@@ -9,26 +9,38 @@ if [[ $isThisAndroid = "Android" ]]; then
 fi
 
 if [ -f "/bin/gcandroid" ]; then
-    rm /bin/gcandroid
+    sudo rm /bin/gcandroid
 fi
 
-folderName="zexInstall"
-mkdir $HOME/$folderName
-cd $HOME/$folderName
-if ! command -v wget &> /dev/null; then
-    sudo apt install wget
+if [ -d "/usr/share/gcandroid" ]; then
+    sudo rm -rf "/usr/share/gcandroid"
 fi
+
+folderName="GCAndroid"
+if ! command -v git &> /dev/null; then
+    sudo apt install git -y
+fi
+clear
 echo "Download Script..."
 sleep 1s
-wget https://raw.githubusercontent.com/ElaXan/GCAndroid/main/Code/gcandroid.sh &> /dev/null
-if [[ ! -f "gcandroid.sh" ]]; then
+if [ -d "$folderName" ]; then
+    rm -rf "$folderName"
+fi
+git clone https://github.com/ElaXan/GCAndroid.git
+if [[ ! -d "$folderName" ]]; then
     echo "Install Failed!"
     exit 1
 fi
-mv gcandroid.sh /bin/gcandroid
-chmod +x /bin/gcandroid
+cd $folderName
+sudo mv Code/gcandroid.sh /bin/gcandroid
+sudo chmod +x /bin/gcandroid
+if [ -d "/usr/share/gcandroid" ]; then
+    sudo rm -rf "/usr/share/gcandroid"
+fi
+sudo mv gcandroid /usr/share
+sudo chmod +x /usr/share/gcandroid/*
 rm -rf $HOME/$folderName
-if [ -f "/bin/gcandroid" ]; then
+if [ -f "/bin/gcandroid" ] || [ -d "/usr/share/gcandroid" ]; then
     clear
     echo "Install Success!!"
     echo "now enter command : gcandroid"
