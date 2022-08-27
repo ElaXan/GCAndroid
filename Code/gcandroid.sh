@@ -7,42 +7,49 @@ CCB="$(printf '\033[1;36m')"
 CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
 
+isThisLinux=$(uname -o)
+if [ $isThisLinux = Android ]; then
+    echo "${RC}Please run on Ubuntu not Termux!${WC}"
+    exit 2
+fi
+
 GCAndroid=/usr/share/gcandroid
 
 if [ -f "$GCAndroid/changePort.sh" ]; then
     source $GCAndroid/changePort.sh
 else
     echo "${RC}Error${WC} : $GCAndroid/changePort.sh not found"
+    exit 1
 fi
 if [ -f "$GCAndroid/editConfigjson.sh" ]; then
     source $GCAndroid/editConfigjson.sh
 else
     echo "${RC}Error${WC} : $GCAndroid/editConfigjson.sh not found"
+    exit 1
 fi
 if [ -f "$GCAndroid/installGrasscutter.sh" ]; then
     source $GCAndroid/installGrasscutter.sh
 else
     echo "${RC}Error${WC} : $GCAndroid/installGrasscutter.sh not found"
+    exit 1
 fi
 if [ -f "$GCAndroid/menuFalseTrue.sh" ]; then
     source $GCAndroid/menuFalseTrue.sh
 else
     echo "${RC}Error${WC} : $GCAndroid/menuFalseTrue.sh not found"
+    exit 1
 fi
 if [ -f "$GCAndroid/runGrasscutter.sh" ]; then
     source $GCAndroid/runGrasscutter.sh
 else
     echo "${RC}Error${WC} : $GCAndroid/runGrasscutter.sh not found"
+    exit 1
 fi
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
-isThisLinux=$(uname -o)
-if [ $isThisLinux = Android ]; then
-    echo "${RC}Please run on Ubuntu not Termux!${WC}"
-    exit 2
-fi
+
 
 if ! command -v perl &> /dev/null; then
     sudo apt install perl
