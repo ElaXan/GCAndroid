@@ -13,7 +13,7 @@ Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEN
 ## Setup
 1. Enter this command (install proot-distro/ubuntu)
 ```bash
-pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu -y
+pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu
 ```
 2. Login or enter mode Ubuntu with command
 ```bash
