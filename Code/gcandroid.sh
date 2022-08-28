@@ -45,6 +45,12 @@ else
     echo "${RC}Error${WC} : $GCAndroid/runGrasscutter.sh not found"
     exit 1
 fi
+if [ -f "$GCAndroid/spin.sh" ]; then
+    source $GCAndroid/spin.sh
+else
+    echo "${RC}Error${WC} : $GCAndroid/spin.sh not found"
+    exit 1
+fi
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
@@ -203,8 +209,8 @@ menu_config() {
 installMongodb() {
     credit_hah
     if command -v mongo &> /dev/null; then
-        echo "${yellowColorBold}Mongodb already installed"
-        echo "Do you want reinstall?${WC}"
+        echo "${RC}Mongodb already installed"
+        echo "${YC}Do you want reinstall?${WC}"
         echo -n "Enter input (y/N) : "
         read mongodbAsk
         case $mongodbAsk in
@@ -218,25 +224,7 @@ installMongodb() {
     fi
 }
 
-Install_Grasscutter_yes() {
-    if [ -d "$HOME/Grasscutter-backup" ]; then
-        credit_hah
-        echo "${RC}Can't do backup${YC}"
-        echo "Because${WC} : $HOME/Grasscutter-backup exist"
-        echo "${CCB}Remove manual for backup folder${WC}"
-        echo
-        echo -n "Press enter for continue remove Grasscutter folder and Install"
-        read
-        Install_Grasscutter_option
-    else
-        credit_hah
-        echo "${GC}Backup Grasscutter...${WC}"
-        mv $HOME/Grasscutter $HOME/Grasscutter-backup
-        echo "${GC}Done...Now Install${WC}"
-        sleep 1s
-        Install_Grasscutter_option
-    fi
-}
+
 
 Install_Grasscutter_option() {
     credit_hah
@@ -247,6 +235,7 @@ Install_Grasscutter_option() {
     echo
     echo -n "Enter input : ${CCB}"
     read Install_Grasscutter_option_input
+    echo -n "${WC}"
     case $Install_Grasscutter_option_input in
         "1" ) Install_Grasscutter_Resources="Koko-Boya"; Install_Grasscutter_process;;
         "2" ) Install_Grasscutter_Resources="Yuuki"; Install_Grasscutter_process;;
@@ -261,15 +250,16 @@ Install_Grasscutter() {
         echo "${RC}Grasscutter already installed${WC}"
         echo
         echo "${YC}Do you want reinstall?${WC}"
-        echo -n "Enter input (y/N) : "
+        echo -n "Enter input (y/N) : ${CCB}"
         read Install_Grasscutter_input
+        echo -n "${WC}"
         case $Install_Grasscutter_input in
-            "y" | "Y" ) Install_Grasscutter_yes;;
+            "y" | "Y" ) Install_Grasscutter_option;;
             "n" | "N" ) main_menu;;
             * ) echo "${RC}Wrong Input!${WC}"; sleep 0.5s; Install_Grasscutter;;
         esac
     else
-        Install_Grasscutter_yes
+        Install_Grasscutter_option
     fi
 }
 
@@ -296,7 +286,7 @@ main_menu() {
 
 newVersionScript=""
 source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
-versionScript="2.1.1"
+versionScript="2.1.2"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"
@@ -323,8 +313,9 @@ fi
         
 case $inpscript in
     "1" ) GoTouchGrass;;
-    "2" ) EditGrass;;
-    "3" ) changePort;;
-    "4" ) installMongodb;;
+    "2" ) Install_Grasscutter;;
+    "3" ) EditGrass;;
+    "4" ) changePort;;
+    "5" ) installMongodb;;
     * ) main_menu
 esac
