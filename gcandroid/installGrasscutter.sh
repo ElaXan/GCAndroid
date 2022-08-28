@@ -67,7 +67,7 @@ Install_Grasscutter_process() {
     echo "====================================="
     run_Program() { sudo apt install openjdk-17-jdk -y &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
     run_Program & pid=$!
-    spin "${GC}Install Java JDK 17${WC}" "Menu" "main_menu"
+    spin "${GC}Install Java JDK 17${WC}" "0" "Menu" "main_menu"
     if [ -d "$HOME/Grasscutter" ]; then
         rm -rf $HOME/Grasscutter
     fi
@@ -75,7 +75,7 @@ Install_Grasscutter_process() {
     cd $HOME || exit 1
     run_Program() { git clone https://github.com/Grasscutters/Grasscutter.git &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
     run_Program & pid=$!
-    spin "${GC}Download Grasscutter${WC}" "Menu" "main_menu"
+    spin "${GC}Download Grasscutter${WC}" "0" "Menu" "main_menu"
     sleep 1s
     cd $HOME || exit 1
     if [[ $Install_Grasscutter_Resources = "Koko-Boya" ]]; then
@@ -96,14 +96,14 @@ Install_Grasscutter_process() {
         fi
     fi
     run_Program & pid=$!
-    spin "${GC}Download Resources${WC}" "Menu" "main_menu"
+    spin "${GC}Download Resources${WC}" "0" "Menu" "main_menu"
     run_Program() { unzip $HOME/zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
     run_Program & pid=$!
-    spin "${GC}Unzip Resources${WC}" "Menu" "main_menu"
+    spin "${GC}Unzip Resources${WC}" "0" "Menu" "main_menu"
     sleep 1s
-    run_Program() { mv $HOME/Grasscutter*Resources*/Resources $HOME/Grasscutter/resources; errCode=$?; log "$errCode"; }
+    run_Program() { mv $HOME/Grasscutter*Resources*/Resources $HOME/Grasscutter/resources &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
     run_Program & pid=$!
-    spin "${GC}Move Resources to Grasscutter${WC}" "Menu" "main_menu"
+    spin "${GC}Move Resources to Grasscutter${WC}" "0" "Menu" "main_menu"
     rm -rf $HOME/Grasscutter*Resources*
     rm $HOME/zResources.zip
     cd $HOME/Grasscutter

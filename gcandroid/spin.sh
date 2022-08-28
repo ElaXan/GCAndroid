@@ -16,7 +16,7 @@ spin() {
         if ! (ps "$pid" &> /dev/null); then
             errCode=$(cat $HOME/z.log | grep "$catLogs_code")
             errOutput=$(cat $HOME/zerr.log)
-            if [ $errCode = 0 ]; then
+            if [ $errCode = $2 ]; then
                 echo -ne "\r[${GC}✓${WC}"
                 echo
             else
@@ -29,8 +29,8 @@ spin() {
                 echo
                 rm $HOME/zerr.log
                 rm $HOME/z.log
-                read -p "Press enter for back to $2!"
-                $3
+                read -p "Press enter for back to $3!"
+                $4
             fi
             rm $HOME/z.log
             rm $HOME/zerr.log
