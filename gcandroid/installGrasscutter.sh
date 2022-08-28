@@ -13,10 +13,11 @@ Install_Grasscutter_process() {
         echo "${GC}Choose Version...${WC}"
         echo "${CCB}1. 3.0"
         echo "2. 2.8"
-        echo "0. Back/Cancel"
+        echo "0. ${RC}Back/Cancel${WC}"
         echo
         echo -n "Enter input : ${CCB}"
         read Install_Grasscutter_process_input
+        echo -n "${WC}"
         case $Install_Grasscutter_process_input in
             "1" ) Install_Grasscutter_Resources_Version="3.0";;
             "2" ) Install_Grasscutter_Resources_Version="2.8";;
@@ -46,49 +47,80 @@ Install_Grasscutter_process() {
     echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
     echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
     echo "====================================="
-    echo "${GC}Install Java JDK 17${WC}"
-    sleep 1s
-    sudo apt install openjdk-17-jdk -y &> /dev/null
+    if [ -d "$HOME/Grasscutter-backup" ]; then
+        echo "${RC}Can't do backup${YC}"
+        echo "Because${WC} : $HOME/Grasscutter-backup exist"
+        echo "${CCB}Remove manual for backup folder${WC}"
+        echo
+        echo -n "Press enter for continue remove Grasscutter folder and Install"
+        read
+    elif [ -d "$HOME/Grasscutter" ]; then
+        echo "${GC}Backup Grasscutter...${WC}"
+        mv $HOME/Grasscutter $HOME/Grasscutter-backup
+        echo "${GC}Done...Now Install${WC}"
+        sleep 1s
+    fi
+    clear
+    credit_hah
+    echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
+    echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
+    echo "====================================="
+    run_Program() { sudo apt install openjdk-17-jdk -y &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+    run_Program & pid=$!
+    spin "${GC}Install Java JDK 17${WC}" "Menu" "main_menu"
     if [ -d "$HOME/Grasscutter" ]; then
         rm -rf $HOME/Grasscutter
     fi
     sleep 1s
     cd $HOME || exit 1
-    echo "${GC}Download Grasscutter and Resources${WC}"
-    git clone https://github.com/Grasscutters/Grasscutter.git
-    echo "${GC}Download Resources...${WC}"
+    run_Program() { git clone https://github.com/Grasscutters/Grasscutter.git &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+    run_Program & pid=$!
+    spin "${GC}Download Grasscutter${WC}" "Menu" "main_menu"
     sleep 1s
     cd $HOME || exit 1
     if [[ $Install_Grasscutter_Resources = "Koko-Boya" ]]; then
         if [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
-            wget https://github.com/Koko-boya/Grasscutter_Resources/archive/refs/heads/3.0.zip -O zResources.zip -q --show-progress
+            run_Program() { wget https://github.com/Koko-boya/Grasscutter_Resources/archive/refs/heads/3.0.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
-            wget https://github.com/Koko-boya/Grasscutter_Resources/archive/refs/heads/2.8.zip -O zResources.zip -q --show-progress
+            run_Program() { wget https://github.com/Koko-boya/Grasscutter_Resources/archive/refs/heads/2.8.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         fi
     elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
         if [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
-            wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.0/GrasscutterResources-3.0.zip -O zResources.zip -q --show-progress
+            run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.0/GrasscutterResources-3.0.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
-            wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.8/GrasscutterResources-2.8.zip -O zResources.zip -q --show-progress
+            run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.8/GrasscutterResources-2.8.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         elif [[ $Install_Grasscutter_Resources_Version = "2.7" ]]; then
-            wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.7/GrasscutterResources-2.7.zip -O zResources.zip -q --show-progress
+            run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.7/GrasscutterResources-2.7.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         elif [[ $Install_Grasscutter_Resources_Version = "2.6" ]]; then
-            wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.6/GrasscutterResources-2.6.zip -O zResources.zip -q --show-progress
+            run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.6/GrasscutterResources-2.8.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         fi
     fi
-    echo -e "${GC}Unzip Resources Don't exit/kill or close termux...${WC}"
-    unzip $HOME/zResources.zip &> /dev/null
-    echo "${GC}Move Resources to Grasscutter${WC}"
+    run_Program & pid=$!
+    spin "${GC}Download Resources${WC}" "Menu" "main_menu"
+    run_Program() { unzip $HOME/zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+    run_Program & pid=$!
+    spin "${GC}Unzip Resources${WC}" "Menu" "main_menu"
     sleep 1s
-    mv $HOME/Grasscutter*Resources*/Resources $HOME/Grasscutter/resources
+    run_Program() { mv $HOME/Grasscutter*Resources*/Resources $HOME/Grasscutter/resources; errCode=$?; log "$errCode"; }
+    run_Program & pid=$!
+    spin "${GC}Move Resources to Grasscutter${WC}" "Menu" "main_menu"
     rm -rf $HOME/Grasscutter*Resources*
+    rm $HOME/zResources.zip
     cd $HOME/Grasscutter
     clear
+    credit_hah
+    echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
+    echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
+    echo "====================================="
     echo "${GC}Compile jar (Please Wait)${WC}"
     ./gradlew jar
     mv grasscutter*.jar grasscutter.jar
     timeout --foreground 5s java -jar grasscutter.jar &> /dev/null
     clear
+    credit_hah
+    echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
+    echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
+    echo "====================================="
     echo "${GC}Edit Port...${WC}"
     sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
     sleep 1s
