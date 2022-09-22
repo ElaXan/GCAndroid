@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "GitHub Dark Default",
+    "git.ignoreLimitWarning": true,
+    "workbench.activityBar.visible": true,
+    "editor.cursorStyle": "block-outline",
+    "python.analysis.logLevel": "Information",
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.fontSize": 14
+}
