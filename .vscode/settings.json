@@ -5,5 +5,5 @@
     "editor.cursorStyle": "block-outline",
     "python.analysis.logLevel": "Information",
     "editor.cursorSmoothCaretAnimation": true,
-    "editor.fontSize": 14
+    "editor.fontSize": 14,
 }

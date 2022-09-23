@@ -2,7 +2,7 @@
 
 # This only for test!, i still learning Python so there is dummy code there. but i will add code as i can
 
-import glob
+from glob import glob as goblok
 import os
 import shutil
 from time import sleep
@@ -11,27 +11,23 @@ from colorama import Fore
 import urllib.request
 import stat
 import sys
-
-PathGrasscutter = "Grasscutter"
-versionScript = "2.1.2"
-ProgressInfo = Fore.GREEN + "I: " + Fore.RESET
-ErrorInfo = Fore.RED + "E: " + Fore.RESET
-WarningInfo = Fore.YELLOW + "W: " + Fore.RESET
+import gcandroid_py.runGrasscutter as rg
+import gcandroid_py.idk as EXA
 
 def RunGrasscutter():
     print("Run Grasscutter")
     if not os.path.exists("/usr/bin/mongo"):
         print(Fore.RED + "E: " + Fore.RESET + "mongodb not installed")
         exit()
-    if not os.path.exists(f"{PathGrasscutter}"):
+    if not os.path.exists(f"{EXA.PathGrasscutter}"):
         print(Fore.RED + "E: " + Fore.RESET + "Grasscutter folder not found")
         exit()
     os.system("sudo service mongodb start")
-    if not os.path.exists(f"{PathGrasscutter}/grasscutter.jar"):
+    if not os.path.exists(f"{EXA.PathGrasscutter}/grasscutter.jar"):
         print(Fore.RED + "E: " + Fore.RESET + "grasscutter.jar not found!")
         exit()
     else:
-        os.chdir(f"{PathGrasscutter}")
+        os.chdir(f"{EXA.PathGrasscutter}")
         os.system("java -jar grasscutter.jar")
     exit()
 
@@ -39,61 +35,59 @@ def InstallGrasscutter():
     try:
         credit_hah()
         if not os.path.exists("/usr/bin/java"):
-            print(ProgressInfo + "Installing Java")
+            print(EXA.ProgressInfo + "Installing Java")
             os.system("sudo apt install openjdk-17-jdk")
             credit_hah()
-        if os.system("java --version | grep \"openjdk 18\" > /dev/null 2>&1"):
-            print(ProgressInfo + "Skip Update Java")
-        elif not os.system("java --version | grep \"openjdk 17\" > /dev/null 2>&1"):
-            print(WarningInfo + "Java version not 17, trying to update")
+        if not os.system("java --version | grep \"openjdk 17\" > /dev/null 2>&1"):
+            print(EXA.WarningInfo + "Java version not 17, trying to update")
             os.system("sudo apt install openjdk-17-jdk")
-        print(ProgressInfo + "Download Grasscutter.zip")
+        print(EXA.ProgressInfo + "Download Grasscutter.zip")
         urllib.request.urlretrieve("https://github.com/Grasscutters/Grasscutter/archive/refs/heads/development.zip", "Grasscutter.zip")
         with zipfile.ZipFile("Grasscutter.zip", "r") as unzip:
-            print(ProgressInfo + "Unzip Grasscutter.zip")
+            print(EXA.ProgressInfo + "Unzip Grasscutter.zip")
             unzip.extractall()
             unzip.close()
-        print(ProgressInfo + "Rename Grasscutter-development to Grasscutter")
+        print(EXA.ProgressInfo + "Rename Grasscutter-development to Grasscutter")
         os.rename("Grasscutter-development", "Grasscutter")
         if not os.path.exists("Grasscutter"):
-            print(ErrorInfo + "Failed, Grasscutter folder not found")
+            print(EXA.ErrorInfo + "Failed, Grasscutter folder not found")
             exit()
         else:
             os.chdir("Grasscutter")
-        print(ProgressInfo + "Download Resources")
+        print(EXA.ProgressInfo + "Download Resources")
         urllib.request.urlretrieve("https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.0.zip", "Resources.zip")
         with zipfile.ZipFile("Resources.zip", "r") as unzipResources:
-            print(ProgressInfo + "Extract Resources [PLEASE WAIT]")
+            print(EXA.ProgressInfo + "Extract Resources [PLEASE WAIT]")
             unzipResources.extractall()
             unzipResources.close()
-        print(ProgressInfo + "Move Resources")
-        for move_resources in glob.glob("Grasscutter_Resources*"):
+        print(EXA.ProgressInfo + "Move Resources")
+        for move_resources in goblok("Grasscutter_Resources*"):
             shutil.move(move_resources + "/Resources", "resources")
             shutil.rmtree(move_resources)
     except OSError as e:
-        print(ErrorInfo + "Error cant continue!")
+        print(EXA.ErrorInfo + "Error cant continue!")
         print("Error output : ")
         print(e)
         exit(1)
     except TypeError as e:
-        print(ErrorInfo + "TypeError detect")
+        print(EXA.ErrorInfo + "TypeError detect")
         print("Output Error: ")
         print(e)
         exit(1)
     except KeyboardInterrupt:
-        print(WarningInfo + "Install cancelled by User")
+        print(EXA.WarningInfo + "Install cancelled by User")
         exit(1)
     except Exception as e:
-        print(ErrorInfo + "Unknown Error")
+        print(EXA.ErrorInfo + "Unknown Error")
         print("Error output : ")
         print(e)
         exit(1)
-    print(ProgressInfo + "Compile Jar/Grasscutter!")
+    print(EXA.ProgressInfo + "Compile Jar/Grasscutter!")
     os.chmod("gradlew", stat.S_IEXEC)
     os.system("sudo ./gradlew jar")
-    os.system("clear")
-    print(ProgressInfo + "Rename grasscutter")
-    for rename_grass in glob.glob("grasscutter*.jar"):
+    credit_hah()
+    print(EXA.ProgressInfo + "Rename grasscutter")
+    for rename_grass in goblok("grasscutter*.jar"):
         os.rename(rename_grass, "grasscutter.jar")
     os.system("timeout --foreground 5s java -jar grasscutter.jar")
     credit_hah()
@@ -108,33 +102,33 @@ def InstallGrasscutter():
         replacing_file.write(replace_text)
         replacing_file.close()
     else:
-        print(ErrorInfo + "config.json not found")
+        print(EXA.ErrorInfo + "config.json not found")
         ConfigJsonNotFound = True
-    print(ProgressInfo + "Clean Up")
+    print(EXA.ProgressInfo + "Clean Up")
     os.remove("Resources.zip")
     os.chdir("..")
     os.remove("Grasscutter.zip")
     if ConfigJsonNotFound == True:
-        print(ErrorInfo + "Grasscutter already install but you need to compile it by yourself")
+        print(EXA.ErrorInfo + "Grasscutter already install but you need to compile it by yourself")
     else:
-        print(ProgressInfo + "Success Install Grasscutter")
+        print(EXA.ProgressInfo + "Success Install Grasscutter")
     input("Press enter for back to Main Menu!")
     main_menu()
         
 def InstallMongodb():
     try:
         if os.path.exists("/usr/bin/mongo"):
-            print(WarningInfo + "Mongodb already installed!")
+            print(EXA.WarningInfo + "Mongodb already installed!")
         else:
             os.system("sudo apt install mongodb")
     except OSError as e:
-        print(WarningInfo + "Failed install mongodb")
+        print(EXA.WarningInfo + "Failed install mongodb")
         print("Error Output : ")
         print(e)
         input("Press enter for back to Main Menu!")
         main_menu()
     except AttributeError as e:
-        print(ErrorInfo + "Unknown ERROR")
+        print(EXA.ErrorInfo + "Unknown ERROR")
         print(Fore.RED + "Error Output " + Fore.RESET + ": ")
         print(e)
         exit(1)
@@ -146,7 +140,9 @@ def credit_hah():
     print("=========================")
     print(Fore.CYAN + "This just for test (Python)" + Fore.RESET)
     print("=========================")
-    
+    print(Fore.GREEN + "Contact me at zero@elaxan.my.id" + Fore.RESET)
+    print("=========================")
+
 def main_menu():
     try:
         credit_hah()
@@ -156,7 +152,7 @@ def main_menu():
         print("0. " + Fore.RED + "Exit" + Fore.RESET)
         main_menu_input = input("Enter input : ")
         if main_menu_input == "1":
-            RunGrasscutter()
+            rg.Run()
         elif main_menu_input == "2":
             InstallGrasscutter()
         elif main_menu_input == "3":
@@ -164,7 +160,7 @@ def main_menu():
         elif main_menu_input == "0":
             exit()
         else:
-            print(ErrorInfo + "Wrong input!")
+            print(EXA.ErrorInfo + "Wrong input!")
             sleep(1)
             main_menu()
     except NameError as e:
@@ -173,16 +169,14 @@ def main_menu():
     except KeyboardInterrupt:
         print("\nScript exit by user")
         exit()
- 
-try:
-    if sys.argv[1] == "1":
-        RunGrasscutter()
-    elif sys.argv[1] == "2":
-        InstallGrasscutter()
-    elif sys.argv[1] == "3":
-        InstallMongodb()
-except IndexError:
-    main_menu()
 
 if __name__ == '__main__':
-    main_menu()
+    try:
+        if sys.argv[1] == "1":
+            RunGrasscutter()
+        elif sys.argv[1] == "2":
+            InstallGrasscutter()
+        elif sys.argv[1] == "3":
+            InstallMongodb()
+    except IndexError:
+        main_menu()
