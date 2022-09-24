@@ -33,7 +33,7 @@ def InstallGrasscutter():
         else:
             os.chdir("Grasscutter")
         print(EXA.ProgressInfo + "Download Resources")
-        urllib.request.urlretrieve("https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.0.zip", "Resources.zip")
+        Download.urlretrieve("https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.0.zip", "Resources.zip")
         with zipfile.ZipFile("Resources.zip", "r") as unzipResources:
             print(EXA.ProgressInfo + "Extract Resources [PLEASE WAIT]")
             unzipResources.extractall()
