@@ -71,6 +71,7 @@ credit_hah() {
     echo "${CCU}https://github.com/ElaXan/GCAndroid${WC}"
     echo "====================================="
     echo "${GC}Contact me at zero@elaxan.my.id${WC}"
+    echo "====================================="
 }
 
 menu_config_game() {
