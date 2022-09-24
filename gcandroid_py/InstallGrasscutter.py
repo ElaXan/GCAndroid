@@ -1,6 +1,7 @@
 #!/bin/python3
 
 import os
+from re import L
 import urllib
 from urllib import request as Download
 import zipfile
@@ -66,7 +67,12 @@ def InstallGrasscutter():
         MAIN.main_menu()
     print(EXA.ProgressInfo + "Compile Jar/Grasscutter!")
     os.chmod("gradlew", stat.S_IEXEC)
-    os.system("sudo ./gradlew jar")
+    compileJar = os.system("sudo ./gradlew jar")
+    if compileJar != 0:
+        MAIN.credit_hah()
+        print(EXA.ErrorInfo + "Failed to compile jar")
+        print("Press enter for back to Main Menu!")
+        MAIN.main_menu()
     MAIN.credit_hah()
     print(EXA.ProgressInfo + "Rename grasscutter")
     for rename_grass in goblok("grasscutter*.jar"):

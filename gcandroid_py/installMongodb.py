@@ -20,4 +20,5 @@ def InstallMongodb():
         print(EXA.ErrorInfo + "Unknown ERROR")
         print(Fore.RED + "Error Output " + Fore.RESET + ": ")
         print(e)
-        exit(1)
+        input("Press enter for back to Main Menu!")
+        MAIN.main_menu()
