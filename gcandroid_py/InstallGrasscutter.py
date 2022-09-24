@@ -1,25 +1,23 @@
 #!/bin/python3
 
 import os
-from re import L
-import urllib
 from urllib import request as Download
 import zipfile
 import shutil
 import stat
 from glob import glob as goblok
-import gcandroid_py.idk as EXA
+import gcandroid_py.Data as EXA
 import gcandroid as MAIN
 
 
 
 def InstallGrasscutter():
     try:
-        MAIN.credit_hah()
+        EXA.credit_hah()
         if not os.path.exists("/usr/bin/java"):
             print(EXA.ProgressInfo + "Installing Java")
             os.system("sudo apt install openjdk-17-jdk")
-            MAIN.credit_hah()
+            EXA.credit_hah()
         print(EXA.ProgressInfo + "Download Grasscutter.zip")
         Download.urlretrieve("https://github.com/Grasscutters/Grasscutter/archive/refs/heads/development.zip", "Grasscutter.zip")
         with zipfile.ZipFile("Grasscutter.zip", "r") as unzip:
@@ -69,16 +67,16 @@ def InstallGrasscutter():
     os.chmod("gradlew", stat.S_IEXEC)
     compileJar = os.system("sudo ./gradlew jar")
     if compileJar != 0:
-        MAIN.credit_hah()
+        EXA.credit_hah()
         print(EXA.ErrorInfo + "Failed to compile jar")
         print("Press enter for back to Main Menu!")
         MAIN.main_menu()
-    MAIN.credit_hah()
+    EXA.credit_hah()
     print(EXA.ProgressInfo + "Rename grasscutter")
     for rename_grass in goblok("grasscutter*.jar"):
         os.rename(rename_grass, "grasscutter.jar")
     os.system("timeout --foreground 5s java -jar grasscutter.jar")
-    MAIN.credit_hah()
+    EXA.credit_hah()
     if os.path.exists("config.json"):
         print(EXA.ProgressInfo + "Edit Port from config.json")
         config = "config.json"

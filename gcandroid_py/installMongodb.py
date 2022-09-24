@@ -1,7 +1,7 @@
 
 import os
 from colorama import Fore
-import gcandroid_py.idk as EXA
+import gcandroid_py.Data as EXA
 import gcandroid as MAIN
 
 def InstallMongodb():

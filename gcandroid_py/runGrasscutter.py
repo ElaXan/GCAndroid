@@ -2,11 +2,11 @@
 
 import os
 from colorama import Fore
-import gcandroid_py.idk as EXA
+import gcandroid_py.Data as EXA
 import gcandroid as MAIN
 
 def Run():
-    MAIN.credit_hah()
+    EXA.credit_hah()
     if not os.path.exists("/usr/bin/mongo"):
         print(Fore.RED + "E: " + Fore.RESET + "mongodb not installed")
         input("Press enter for back to Main Menu!")

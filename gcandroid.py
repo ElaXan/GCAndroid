@@ -2,30 +2,19 @@
 
 # This only for test!, i still learning Python so there is dummy code there. but i will add code as i can
 
-from glob import glob as goblok
-import os
 from time import sleep
 from colorama import Fore
 import sys
 import gcandroid_py.runGrasscutter as rg
 import gcandroid_py.InstallGrasscutter as ig
-import gcandroid_py.idk as EXA
+import gcandroid_py.Data as EXA
 import gcandroid_py.installMongodb as iM
 
 
-def credit_hah():
-    os.system("clear")
-    print("=========================")
-    print(Fore.GREEN + "Script made by ElaXan" + Fore.RESET)
-    print("=========================")
-    print(Fore.CYAN + "This just for test (Python)" + Fore.RESET)
-    print("=========================")
-    print(Fore.GREEN + "Contact me at zero@elaxan.my.id" + Fore.RESET)
-    print("=========================")
 
 def main_menu():
     try:
-        credit_hah()
+        EXA.credit_hah()
         print("1. " + Fore.CYAN + "Run Grasscutter" + Fore.RESET)
         print("2. " + Fore.CYAN + "Install Grasscutter" + Fore.RESET)
         print("3. " + Fore.CYAN + "Install Mongodb" + Fore.RESET)
