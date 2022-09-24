@@ -29,7 +29,8 @@ def InstallGrasscutter():
         os.rename("Grasscutter-development", "Grasscutter")
         if not os.path.exists("Grasscutter"):
             print(EXA.ErrorInfo + "Failed, Grasscutter folder not found")
-            exit()
+            input("Press enter for back to Main Menu")
+            MAIN.main_menu()
         else:
             os.chdir("Grasscutter")
         print(EXA.ProgressInfo + "Download Resources")
@@ -46,12 +47,14 @@ def InstallGrasscutter():
         print(EXA.ErrorInfo + "Error cant continue!")
         print("Error output : ")
         print(e)
-        exit(1)
+        input("Press enter for back to Main Menu!")
+        MAIN.main_menu()
     except TypeError as e:
         print(EXA.ErrorInfo + "TypeError detect")
         print("Output Error: ")
         print(e)
-        exit(1)
+        input("Press enter for back to Main Menu!")
+        MAIN.main_menu()
     except KeyboardInterrupt:
         print(EXA.WarningInfo + "Install cancelled by User")
         exit(1)
@@ -59,7 +62,8 @@ def InstallGrasscutter():
         print(EXA.ErrorInfo + "Unknown Error")
         print("Error output : ")
         print(e)
-        exit(1)
+        input("Press enter for back to Main Menu!")
+        MAIN.main_menu()
     print(EXA.ProgressInfo + "Compile Jar/Grasscutter!")
     os.chmod("gradlew", stat.S_IEXEC)
     os.system("sudo ./gradlew jar")
