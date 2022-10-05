@@ -8,7 +8,8 @@ This need [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Sk
 But, why not to try it... May i wrong XD
 
 ## Download
-Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]
+Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
+Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
 
 ## Setup
 1. Enter this command (install proot-distro/ubuntu)
@@ -77,10 +78,9 @@ Don't change anything unless you change for the Port Mongodb. and then save it
 
 
 ## Play
-### YuukiProxy
-Enter address : `https://127.0.0.1:54321` like this picture\
-<img src="img/yuukiproxy.jpg" width="350"/><br />
-Then click `Custom Server`
+### Chinese APK
+you need to use Termux for this or make your own Private DNS to redirect to localhost\
+and dont ask me idk
 
 ### Termux/mitmproxy
 You can using [my script](https://github.com/ElaXan/AnimeGamePatch) for change it enter number `3`\

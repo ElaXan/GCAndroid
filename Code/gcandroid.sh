@@ -70,7 +70,7 @@ credit_hah() {
     echo -e "$note_credit"
     echo "${CCU}https://github.com/ElaXan/GCAndroid${WC}"
     echo "====================================="
-    echo "${GC}Contact me at zero@elaxan.my.id${WC}"
+    echo "${GC}Contact me at chat@elaxan.com${WC}"
     echo "====================================="
 }
 
@@ -100,8 +100,8 @@ menu_config_game_joinOptions() {
     menu_config_back="joinOptions"
     credit_hah
     menu_detect_false_true "joinOptions"
-    echo "${CCB}1. welcomeMessage"
-    echo "2. welcomeMail"
+    echo "1. ${CCB}welcomeMessage${WC}"
+    echo "2. ${CCB}welcomeMail${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read -r editConfJsonInp
@@ -136,9 +136,9 @@ menu_config_game_joinOptions_welcomeMail() {
     menu_config_back="joinOptions_welcomeMail"
     credit_hah
     menu_detect_false_true "joinOptions_welcomeMail"
-    echo "${CCB}1. title"
-    echo "2. content"
-    echo "3. sender"
+    echo "1. ${CCB}title${WC}"
+    echo "2. ${CCB}content${WC}"
+    echo "3. ${CCB}sender${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter Input : "
     read -r editConfJsonInp
@@ -193,9 +193,9 @@ menu_config() {
         return
     fi
     credit_hah
-    echo "${CCB}1. Account"
-    echo "2. Game"
-    echo "3. Edit Manual"
+    echo "1. ${CCB}Account${WC}"
+    echo "2. ${CCB}Game${WC}"
+    echo "3. ${CCB}Edit Manual${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read menu_config_input
@@ -231,15 +231,15 @@ installMongodb() {
 Install_Grasscutter_option() {
     credit_hah
     echo "${GC}Please choose this for download Resources${WC}"
-    echo "${YC}1. Koko-Boya Resources"
-    echo "2. Yuuki Resources"
+    echo "1. ${YC}tamilpp25 Resources${WC}"
+    echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
     echo "0. ${RC}Back/Cancel${WC}"
     echo
     echo -n "Enter input : ${CCB}"
     read Install_Grasscutter_option_input
     echo -n "${WC}"
     case $Install_Grasscutter_option_input in
-        "1" ) Install_Grasscutter_Resources="Koko-Boya"; Install_Grasscutter_process;;
+        "1" ) Install_Grasscutter_Resources="tamilpp25"; Install_Grasscutter_process;;
         "2" ) Install_Grasscutter_Resources="Yuuki"; Install_Grasscutter_process;;
         "0" ) main_menu;;
         * ) echo "${RC}Wrong input!${WC}"; sleep 1s; Install_Grasscutter_option;;
@@ -267,11 +267,11 @@ Install_Grasscutter() {
 
 main_menu() {
     credit_hah
-    echo "${CCB}1. Run Grasscutter"
-    echo "2. Install Grasscutter"
-    echo "3. Edit config.json"
-    echo "4. Change Port"
-    echo "5. Install Mongodb"
+    echo "1. ${CCB}Run Grasscutter${WC}"
+    echo "2. ${CCB}Install Grasscutter${WC}"
+    echo "3. ${CCB}Edit config.json${WC}"
+    echo "4. ${CCB}Change Port${WC}"
+    echo "5. ${CCB}Install Mongodb${WC}"
     echo "0. ${RC}Exit${WC}"
     echo -n "Enter input : "
     read -r inputmain
@@ -288,7 +288,7 @@ main_menu() {
 
 newVersionScript=""
 source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
-versionScript="2.1.2"
+versionScript="2.2"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"
