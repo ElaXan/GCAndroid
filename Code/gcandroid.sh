@@ -232,7 +232,7 @@ Install_Grasscutter_option() {
     credit_hah
     echo "${GC}Please choose this for download Resources${WC}"
     echo "1. ${YC}tamilpp25 Resources${WC}"
-    echo "2. ${YC}Yuuki Resources${WC}"
+    echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
     echo "0. ${RC}Back/Cancel${WC}"
     echo
     echo -n "Enter input : ${CCB}"
