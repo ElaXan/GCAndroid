@@ -100,8 +100,8 @@ menu_config_game_joinOptions() {
     menu_config_back="joinOptions"
     credit_hah
     menu_detect_false_true "joinOptions"
-    echo "${CCB}1. welcomeMessage"
-    echo "2. welcomeMail"
+    echo "1. ${CCB}welcomeMessage${WC}"
+    echo "2. ${CCB}welcomeMail${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read -r editConfJsonInp
@@ -136,9 +136,9 @@ menu_config_game_joinOptions_welcomeMail() {
     menu_config_back="joinOptions_welcomeMail"
     credit_hah
     menu_detect_false_true "joinOptions_welcomeMail"
-    echo "${CCB}1. title"
-    echo "2. content"
-    echo "3. sender"
+    echo "1. ${CCB}title${WC}"
+    echo "2. ${CCB}content${WC}"
+    echo "3. ${CCB}sender${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter Input : "
     read -r editConfJsonInp
