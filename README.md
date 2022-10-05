@@ -8,7 +8,8 @@ This need [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Sk
 But, why not to try it... May i wrong XD
 
 ## Download
-Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]
+Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
+Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
 
 ## Setup
 1. Enter this command (install proot-distro/ubuntu)
