@@ -93,7 +93,7 @@ Install_Grasscutter_process() {
     elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
         if [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
             run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-        if [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
+        elif [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
             run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.0/GrasscutterResources-3.0.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
         elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
             run_Program() { wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.8/GrasscutterResources-2.8.zip -O zResources.zip &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
