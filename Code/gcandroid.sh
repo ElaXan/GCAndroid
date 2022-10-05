@@ -70,7 +70,7 @@ credit_hah() {
     echo -e "$note_credit"
     echo "${CCU}https://github.com/ElaXan/GCAndroid${WC}"
     echo "====================================="
-    echo "${GC}Contact me at zero@elaxan.my.id${WC}"
+    echo "${GC}Contact me at chat@elaxan.com${WC}"
     echo "====================================="
 }
 
