@@ -286,8 +286,8 @@ main_menu() {
         "1" ) GoTouchGrass;;
         "2" ) Install_Grasscutter;;
         "3" ) menu_config;;
-        "4" ) changePort;;
-        "5" ) installPlugin;;
+        "4" ) installPlugin;;
+        "5" ) changePort;;
         "6" ) installMongodb;;
         "0" ) clear; exit 0;;
         * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; main_menu;;
