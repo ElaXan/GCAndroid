@@ -32,20 +32,39 @@ installPlugin_from_directory() {
         sleep 1s
         installPlugin_from_directory
     else
-        echo "TODO"
+        if ! [ $(ls $installPlugin_from_directory_Input | sed "s/.*\.//g") == "jar" ]; then
+            echo "${RC}Cannot continue because $installPlugin_from_directory_Input not .jar file!${WC}"
+            echo
+            read -p "Press enter for back to Menu!"
+            main_menu
+        else
+            cp $installPlugin_from_directory_Input $HOME/Grasscutter/plugin &>/dev/null
+        fi
+
+        if [[ ! -f "$HOME/Grasscutter/plugin" ]]; then
+            echo "${RC}Failed install plugin to Grasscutter Folder!${WC}"
+            echo
+            read -p "Press enter for back to Menu!"
+            main_menu
+        else
+            echo "${GC}Plugin success installed!${WC}"
+            echo
+            read -p "Press enter for back to Menu!"
+            main_menu
+        fi
     fi
 }
 
 
 
 installPlugin() {
+    credit_hah
     if ! [ -d "$HOME/Grasscutter" ]; then
         echo "${RC}$HOME/Grasscutter is not found!${WC}"
         echo
         read -p "Press enter for back to Menu!"
         main_menu
     fi
-    credit_hah
     echo "1. ${CCB}Download from Github and Install${WC}"
     echo "2. ${CCB}Install Plugin from directory${WC}"
     echo "0. ${RC}Back${WC}"
