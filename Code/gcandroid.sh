@@ -51,6 +51,12 @@ else
     echo "${RC}Error${WC} : $GCAndroid/spin.sh not found"
     exit 1
 fi
+if [ -f "$GCAndroid/installPlugin.sh" ]; then
+    source $GCAndroid/installPlugin.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/installPlugin.sh not found!"
+    exit 1
+fi
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
@@ -270,8 +276,9 @@ main_menu() {
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Install Grasscutter${WC}"
     echo "3. ${CCB}Edit config.json${WC}"
-    echo "4. ${CCB}Change Port${WC}"
-    echo "5. ${CCB}Install Mongodb${WC}"
+    echo "4. ${CCB}Install Plugin${WC}"
+    echo "5. ${CCB}Change Port${WC}"
+    echo "6. ${CCB}Install Mongodb${WC}"
     echo "0. ${RC}Exit${WC}"
     echo -n "Enter input : "
     read -r inputmain
@@ -280,7 +287,8 @@ main_menu() {
         "2" ) Install_Grasscutter;;
         "3" ) menu_config;;
         "4" ) changePort;;
-        "5" ) installMongodb;;
+        "5" ) installPlugin;;
+        "6" ) installMongodb;;
         "0" ) clear; exit 0;;
         * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; main_menu;;
     esac

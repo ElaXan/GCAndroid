@@ -13,7 +13,7 @@ Install_Grasscutter_process() {
         echo "${GC}Choose Version...${WC}"
         echo "1. ${CCB}3.1${WC}"
         echo "2. ${CCB}3.0${WC}"
-        echo "2. ${CCB}2.8${WC}"
+        echo "3. ${CCB}2.8${WC}"
         echo "0. ${RC}Back/Cancel${WC}"
         echo
         echo -n "Enter input : ${CCB}"
