@@ -166,13 +166,11 @@ menu_config_account() {
     echo "1. [${TRautoCreate}] autoCreate"
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
     echo "3. [${TRmaxPlayer}] maxPlayer"
-    echo "4. ${CCB}defaultPermissions${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
         "1" | "2" | "3" ) editCfgFunc "account";;
-        "4" ) echo "${YC}Still development...${WC}"; sleep 1s; menu_config_account;;
         "0" ) menu_config;;
         * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config_account;;
     esac
