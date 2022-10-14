@@ -2,7 +2,7 @@ installPlugin_Download() {
     credit_hah
     echo "${YC}Enter b/B for back${WC}"
     echo
-    echo -n "${GC}Enter link Github : ${WC}"
+    echo -n "${GC}Enter link Download .jar : ${WC}"
     read -r installPlugin_Download_Link
     if [[ $installPlugin_Download_Link == "" ]]; then
         echo "${RC}Please enter link!"
