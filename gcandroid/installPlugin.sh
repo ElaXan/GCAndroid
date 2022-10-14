@@ -5,7 +5,7 @@ installPlugin_Download() {
     echo -n "${GC}Enter link Download .jar : ${WC}"
     read -r installPlugin_Download_Link
     if [[ $installPlugin_Download_Link == "" ]]; then
-        echo "${RC}Please enter link!"
+        echo "${RC}Please enter link!${WC}"
         sleep 1s
         installPlugin_Download
     elif [[ $installPlugin_Download_Link == "b" ]] || [[ $installPlugin_Download_Link == "B" ]]; then
