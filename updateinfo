@@ -1,6 +1,7 @@
 newVersionScript="2.3"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
 noteUpdate="1. Add plugin install"
+noteUpdates="1. Add Plugin install"
 update() {
     if [ -f "/bin/gcandroid" ]; then
         sudo rm /bin/gcandroid
