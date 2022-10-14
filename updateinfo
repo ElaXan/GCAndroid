@@ -1,6 +1,6 @@
 newVersionScript="2.3"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-noteUpdate="1. Add plugin install"
+noteUpdate="1. Add Resources for 3.1\n2. Fix Color"
 noteUpdates="1. Add Plugin install"
 update() {
     if [ -f "/bin/gcandroid" ]; then
