@@ -78,7 +78,7 @@ menu_detect_false_true() {
         fi
 
         TRmaxPlayer=${GC}$maxPlayer${WC}
-        
+
     fi
 
     if [ $1 = "joinOptionsl" ]; then

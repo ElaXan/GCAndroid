@@ -5,15 +5,16 @@ spin() {
     spin[2]="|"
     spin[3]="/"
     # Check for process
-    while kill -0 "$pid" 2> /dev/null; do
+    while kill -0 "$pid" 2>/dev/null; do
         for i in "${spin[@]}"; do
-            echo -ne "\r[";
-            echo -ne ${GC}"$i";
-            echo -ne ${WC}"]" "$1"; sleep 0.1;
+            echo -ne "\r["
+            echo -ne ${GC}"$i"
+            echo -ne ${WC}"]" "$1"
+            sleep 0.1
             trap '' INT
         done
         # Adding checklist or "✓" for more good by me XD
-        if ! (ps "$pid" &> /dev/null); then
+        if ! (ps "$pid" &>/dev/null); then
             errCode=$(cat $HOME/z.log | grep "$catLogs_code")
             errOutput=$(cat $HOME/zerr.log)
             if [ $errCode = $2 ]; then
@@ -41,6 +42,6 @@ spin() {
 
 # Get Error Code
 log() {
-    echo -n "$1" > $HOME/z.log
+    echo -n "$1" >$HOME/z.log
     catLogs_code=$(cat "$HOME"/z.log | grep "$1")
 }

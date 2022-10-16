@@ -58,15 +58,20 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/removePlugin.sh" ]; then
+    source $GCAndroid/removePlugin.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/removePlugin.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
 
-
-if ! command -v perl &> /dev/null; then
+if ! command -v perl &>/dev/null; then
     sudo apt install perl
 fi
-
 
 credit_hah() {
     clear
@@ -95,10 +100,14 @@ menu_config_game() {
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
-        "1" | "2" | "3" | "4" | "5" | "6" ) editCfgFunc "game";;
-        "7" ) menu_config_game_joinOptions;;
-        "0" ) menu_config;;
-        * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config_game;;
+    "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "game" ;;
+    "7") menu_config_game_joinOptions ;;
+    "0") menu_config ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        menu_config_game
+        ;;
     esac
 }
 
@@ -112,10 +121,14 @@ menu_config_game_joinOptions() {
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
-        "1" ) editCfgFunc "joinOptions";;
-        "2" ) menu_config_game_joinOptions_welcomeMail;;
-        "0" ) menu_config;;
-        * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config_game_joinOptions;;
+    "1") editCfgFunc "joinOptions" ;;
+    "2") menu_config_game_joinOptions_welcomeMail ;;
+    "0") menu_config ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        menu_config_game_joinOptions
+        ;;
     esac
 }
 
@@ -149,9 +162,13 @@ menu_config_game_joinOptions_welcomeMail() {
     echo -n "Enter Input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
-        "1" | "2" | "3" ) editCfgFunc "joinOptions_welcomeMail";;
-        "0" ) menu_config_game_joinOptions;;
-        * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config_game_joinOptions_welcomeMail;;
+    "1" | "2" | "3") editCfgFunc "joinOptions_welcomeMail" ;;
+    "0") menu_config_game_joinOptions ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        menu_config_game_joinOptions_welcomeMail
+        ;;
     esac
 }
 
@@ -170,14 +187,18 @@ menu_config_account() {
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
-        "1" | "2" | "3" ) editCfgFunc "account";;
-        "0" ) menu_config;;
-        * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config_account;;
+    "1" | "2" | "3") editCfgFunc "account" ;;
+    "0") menu_config ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        menu_config_account
+        ;;
     esac
 }
 
 menu_config_editManual() {
-    if ! command -v micro &> /dev/null; then
+    if ! command -v micro &>/dev/null; then
         sudo apt install micro -y
     fi
     echo "${GC}Press CTRL + Q on your keyboard for exit${WC}"
@@ -190,7 +211,7 @@ menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
         echo "${RC}Error${WC} : $configpath not found!"
-        echo 
+        echo
         echo -n "Press enter for back to Menu!"
         read
         main_menu
@@ -204,33 +225,55 @@ menu_config() {
     echo -n "Enter input : "
     read menu_config_input
     case $menu_config_input in
-        "1" ) menu_config_account;;
-        "2" ) menu_config_game;;
-        "3" ) menu_config_editManual;;
-        "0" ) main_menu;;
-        * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; menu_config;;
+    "1") menu_config_account ;;
+    "2") menu_config_game ;;
+    "3") menu_config_editManual ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        menu_config
+        ;;
     esac
 }
 
 installMongodb() {
     credit_hah
-    if command -v mongo &> /dev/null; then
+    if command -v mongo &>/dev/null; then
         echo "${RC}Mongodb already installed"
         echo "${YC}Do you want reinstall?${WC}"
         echo -n "Enter input (y/N) : "
         read mongodbAsk
         case $mongodbAsk in
-            "y" | "Y" ) sudo apt reinstall mongodb; main_menu;;
-            "n" | "N" ) main_menu;;
-            "" ) sudo apt reinstall mongodb; main_menu;;
-            * ) echo "Wrong Input!"; sleep 1s; installMongodb;;
+        "y" | "Y")
+            sudo apt reinstall mongodb
+            main_menu
+            ;;
+        "n" | "N") main_menu ;;
+        "")
+            sudo apt reinstall mongodb
+            main_menu
+            ;;
+        *)
+            echo "Wrong Input!"
+            sleep 1s
+            installMongodb
+            ;;
         esac
     else
         sudo apt install mongodb
+        credit_hah
+        if ! command -v mongo &>/dev/null; then
+            echo "${RC}Mongodb failed to install!${WC}"
+        else
+            echo "${GC}Mongodb success installed!${WC}"
+        fi
+        echo
+        echo -n "Press enter for back to Main Menu!"
+        read
+        main_menu
     fi
 }
-
-
 
 Install_Grasscutter_option() {
     credit_hah
@@ -243,10 +286,20 @@ Install_Grasscutter_option() {
     read Install_Grasscutter_option_input
     echo -n "${WC}"
     case $Install_Grasscutter_option_input in
-        "1" ) Install_Grasscutter_Resources="tamilpp25"; Install_Grasscutter_process;;
-        "2" ) Install_Grasscutter_Resources="Yuuki"; Install_Grasscutter_process;;
-        "0" ) main_menu;;
-        * ) echo "${RC}Wrong input!${WC}"; sleep 1s; Install_Grasscutter_option;;
+    "1")
+        Install_Grasscutter_Resources="tamilpp25"
+        Install_Grasscutter_process
+        ;;
+    "2")
+        Install_Grasscutter_Resources="Yuuki"
+        Install_Grasscutter_process
+        ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        Install_Grasscutter_option
+        ;;
     esac
 }
 
@@ -260,9 +313,13 @@ Install_Grasscutter() {
         read Install_Grasscutter_input
         echo -n "${WC}"
         case $Install_Grasscutter_input in
-            "y" | "Y" ) Install_Grasscutter_option;;
-            "n" | "N" ) main_menu;;
-            * ) echo "${RC}Wrong Input!${WC}"; sleep 0.5s; Install_Grasscutter;;
+        "y" | "Y") Install_Grasscutter_option ;;
+        "n" | "N") main_menu ;;
+        *)
+            echo "${RC}Wrong Input!${WC}"
+            sleep 0.5s
+            Install_Grasscutter
+            ;;
         esac
     else
         Install_Grasscutter_option
@@ -281,14 +338,21 @@ main_menu() {
     echo -n "Enter input : "
     read -r inputmain
     case $inputmain in
-        "1" ) GoTouchGrass;;
-        "2" ) Install_Grasscutter;;
-        "3" ) menu_config;;
-        "4" ) installPlugin;;
-        "5" ) changePort;;
-        "6" ) installMongodb;;
-        "0" ) clear; exit 0;;
-        * ) echo "${RC}Wrong Input!${WC}"; sleep 1s; main_menu;;
+    "1") GoTouchGrass ;;
+    "2") Install_Grasscutter ;;
+    "3") menu_config ;;
+    "4") installPlugin ;;
+    "5") changePort ;;
+    "6") installMongodb ;;
+    "0")
+        clear
+        exit 0
+        ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        main_menu
+        ;;
     esac
 }
 
@@ -311,19 +375,28 @@ elif [[ $versionScript < $newVersionScript ]]; then
     echo -n "Enter input (y/N) : "
     read -r update_input
     case $update_input in
-        "y" | "Y" ) update; return;;
-        "n" | "N" ) note_credit="${YC}New Version : ${GC}$newVersionScript${YC}\nCurrent Version : ${RC}$versionScript${WC}"; main_menu;;
-        * ) echo "${RC}Wrong input!${WC}"; exit 1;;
+    "y" | "Y")
+        update
+        return
+        ;;
+    "n" | "N")
+        note_credit="${YC}New Version : ${GC}$newVersionScript${YC}\nCurrent Version : ${RC}$versionScript${WC}"
+        main_menu
+        ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        exit 1
+        ;;
     esac
 elif [[ $versionScript = $newVersionScript ]]; then
     note_credit="$noteLatestVersion"
 fi
-        
+
 case $inpscript in
-    "1" ) GoTouchGrass;;
-    "2" ) Install_Grasscutter;;
-    "3" ) EditGrass;;
-    "4" ) changePort;;
-    "5" ) installMongodb;;
-    * ) main_menu
+"1") GoTouchGrass ;;
+"2") Install_Grasscutter ;;
+"3") menu_config ;;
+"4") installPlugin ;;
+"5") changePort ;;
+"6") installMongodb ;;
 esac

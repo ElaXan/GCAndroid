@@ -20,8 +20,13 @@ installPlugin_Download() {
         mkdir $folderNamePlugin
     fi
     cd $folderNamePlugin
-    run_Program() { wget $installPlugin_Download_Link &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-    run_Program & pid=$!
+    run_Program() {
+        wget $installPlugin_Download_Link &>$HOME/zerr.log
+        errCode=$?
+        log "$errCode"
+    }
+    run_Program &
+    pid=$!
     spin "${GC}Download .jar plugin${WC}" "0" "Plugins Menu" "installPlugin"
     getNamePlugin=$(ls $folderNamePlugin | sed "s/.*\///g")
     if [ ! -d "$HOME/Grasscutter/plugins" ]; then
@@ -44,8 +49,13 @@ installPlugin_Download() {
         installPlugin
         return
     fi
-    run_Program() { cp $folderNamePlugin/$getNamePlugin $HOME/Grasscutter/plugins/$getNamePlugin &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-    run_Program & pid=$!
+    run_Program() {
+        cp $folderNamePlugin/$getNamePlugin $HOME/Grasscutter/plugins/$getNamePlugin &>$HOME/zerr.log
+        errCode=$?
+        log "$errCode"
+    }
+    run_Program &
+    pid=$!
     spin "${GC}Installing .jar plugin${WC}" "0" "Plugins Menu" "installPlugin"
     if [ -f "$HOME/Grasscutter/plugins/${getNamePlugin}" ]; then
         echo "${GC}Install plugin ${getNamePlugin} success!${WC}"
@@ -75,18 +85,30 @@ installPlugin_from_directory() {
     echo -n "Enter input : "
     read -r installPlugin_from_directory_input
     case $installPlugin_from_directory_input in
-        "1" ) installPlugin_from_directory_Input="1"; installPlugin_from_directory_process;;
-        "2" ) installPlugin_from_directory_Input="2"; installPlugin_from_directory_process;;
-        "3" ) credit_hah
-                echo "${YC}1. ${CCB}Space on your keyboard for select file!${WC}"
-                echo "${YC}2. ${CCB}Use ↑, ↓, ←, → for interaction!${WC}"
-                echo "${YC}3. ${CCB}Enter on your keyboard to continue if the choice is correct${WC}"
-                echo
-                echo -n "Press enter for back!"
-                read
-                installPlugin_from_directory;;
-        "0" ) installPlugin;;
-        * ) echo "${RC}Wrong input!${WC}"; sleep 1s; installPlugin_from_directory;;
+    "1")
+        installPlugin_from_directory_Input="1"
+        installPlugin_from_directory_process
+        ;;
+    "2")
+        installPlugin_from_directory_Input="2"
+        installPlugin_from_directory_process
+        ;;
+    "3")
+        credit_hah
+        echo "${YC}1. ${CCB}Space on your keyboard for select file!${WC}"
+        echo "${YC}2. ${CCB}Use ↑, ↓, ←, → for interaction!${WC}"
+        echo "${YC}3. ${CCB}Enter on your keyboard to continue if the choice is correct${WC}"
+        echo
+        echo -n "Press enter for back!"
+        read
+        installPlugin_from_directory
+        ;;
+    "0") installPlugin ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        installPlugin_from_directory
+        ;;
     esac
 }
 
@@ -120,14 +142,14 @@ installPlugin_from_directory_process() {
         installPlugin_from_directory
         return
     fi
-    if ! [ -f "$installPlugin_from_directory_Input_File" ]; then 
+    if ! [ -f "$installPlugin_from_directory_Input_File" ]; then
         echo "${RC}.jar not found! in ${installPlugin_from_directory_Input_File}${WC}"
         sleep 1.5s
         installPlugin_from_directory
         return
     else
         if ! [ "$(ls $installPlugin_from_directory_Input_File | sed "s/.*\.//g")" == "jar" ]; then
-            echo "${RC}Cannot continue because $( echo "$installPlugin_from_directory_Input_File" | sed "s/.*\///g") not .jar file!${WC}"
+            echo "${RC}Cannot continue because $(echo "$installPlugin_from_directory_Input_File" | sed "s/.*\///g") not .jar file!${WC}"
             echo
             read -p "Press enter for back to Menu!"
             main_menu
@@ -153,16 +175,26 @@ installPlugin_from_directory_process() {
 }
 
 installPlugin_Compile() {
-    if ! command -v mvn &> /dev/null; then
+    if ! command -v mvn &>/dev/null; then
         credit_hah
-        run_Program() { sudo apt install maven &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-        run_Program & pid=$!
+        run_Program() {
+            sudo apt install maven &>$HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
         spin "${GC}Installing Maven${WC}" "0" "Menu Plugin" "installPlugin"
     fi
-    if ! command -v git &> /dev/null; then
+    if ! command -v git &>/dev/null; then
         credit_hah
-        run_Program() { sudo apt install git &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-        run_Program & pid=$!
+        run_Program() {
+            sudo apt install git &>$HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
         spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
     fi
     credit_hah
@@ -189,24 +221,39 @@ installPlugin_Compile() {
     fi
     credit_hah
     cd $folderRepo
-    run_Program() { git clone $installPlugin_Compile_Link &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-    run_Program & pid=$!
+    run_Program() {
+        git clone $installPlugin_Compile_Link &>$HOME/zerr.log
+        errCode=$?
+        log "$errCode"
+    }
+    run_Program &
+    pid=$!
     spin "${GC}Git Clone Repo${WC}" "0" "Try Again" "installPlugin_Compile"
     getRepoName=$(basename "$installPlugin_Compile_Link")
-    if echo "$getRepoName" | grep ".*.git" &> /dev/null; then
+    if echo "$getRepoName" | grep ".*.git" &>/dev/null; then
         getRepoName=$(echo "$getRepoName" | sed "s/.git//g")
     fi
     cd $getRepoName || exit 1
     echo "${YC}If first time, it will take long time. so wait!${WC}"
-    run_Program() { mvn package &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-    run_Program & pid=$!
+    run_Program() {
+        mvn package &>$HOME/zerr.log
+        errCode=$?
+        log "$errCode"
+    }
+    run_Program &
+    pid=$!
     spin "${GC}Compiling Plugin${WC}" "0" "Menu Plugin" "installPlugin"
     getNamePlugin=$(basename "$(ls "target/" | grep ".*.jar" | sed "s/original-//g" | head -1)")
     if [ -f "$HOME/Grasscutter/plugins/$getNamePlugin" ]; then
         echo "${YC}Plugin $getNamePlugin already installed!${WC}"
     else
-        run_Program() { cp "target/$getNamePlugin" "$HOME/Grasscutter/plugins" &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-        run_Program & pid=$!
+        run_Program() {
+            cp "target/$getNamePlugin" "$HOME/Grasscutter/plugins" &>$HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
         spin "${GC}Installing Plugins${WC}" "0" "Menu Plugin" "installPlugin"
     fi
     rm -rf $folderRepo
@@ -227,8 +274,6 @@ installPlugin_Compile() {
     fi
 }
 
-
-
 installPlugin() {
     credit_hah
     if ! [ -d "$HOME/Grasscutter" ]; then
@@ -244,10 +289,14 @@ installPlugin() {
     echo -n "Enter input : "
     read -r installPlugin_Input
     case $installPlugin_Input in
-        "1" ) installPlugin_Download;;
-        "2" ) installPlugin_from_directory;;
-        "3" ) installPlugin_Compile;;
-        "0" ) main_menu;;
-        * ) echo "${RC}Wrong input!${WC}"; sleep 1s; installPlugin;;
+    "1") installPlugin_Download ;;
+    "2") installPlugin_from_directory ;;
+    "3") installPlugin_Compile ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        installPlugin
+        ;;
     esac
 }

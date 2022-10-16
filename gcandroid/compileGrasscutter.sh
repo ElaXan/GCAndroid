@@ -13,8 +13,13 @@ Compile_Grasscutter() {
     if [ -f "grasscutter.jar" ]; then
         rm grasscutter.jar
     fi
-    run_Program() { ./gradlew jar &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-    run_Program & pid=$!
+    run_Program() {
+        ./gradlew jar &>$HOME/zerr.log
+        errCode=$?
+        log "$errCode"
+    }
+    run_Program &
+    pid=$!
     spin "${GC}Compiling jar${WC}" "Menu" "main_menu"
     GrasscutterJar=$(ls grasscutter*.jar)
     if [ ! $GrasscutterJar ]; then

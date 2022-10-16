@@ -1,8 +1,8 @@
 GoTouchGrass() {
     credit_hah
-    if ! command -v mongo &> /dev/null; then
+    if ! command -v mongo &>/dev/null; then
         echo "${RC}Please install mongodb First!${WC}"
-        echo 
+        echo
         echo -n "Press enter for back to Menu!"
         read
         main_menu

@@ -2,7 +2,7 @@ changePort() {
     credit_hah
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : $configpath not found!"
-        echo 
+        echo
         echo -n "Press enter for back to Menu!"
         read
         main_menu

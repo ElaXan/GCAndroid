@@ -104,10 +104,10 @@ editCfgFunc() {
             credit_hah
             echo "${GC}Current welcomeMessage :${WC}"
             echo "${CCB}$welcomeMessage${WC}"
-            echo 
+            echo
             echo "${YC}Enter a/A for Help"
             echo "Enter b/B for back or cancel${WC}"
-            echo 
+            echo
             echo "Enter custom welcomeMessage :${CCB}"
             read editCfgFunc_input
             echo -n ${WC}
@@ -133,7 +133,7 @@ editCfgFunc() {
             EDconfjsonTo="\"$editCfgFunc_input\""
         fi
     fi
-        
+
     if [ $1 = "joinOptions_welcomeMail" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions_welcomeMail"
@@ -144,7 +144,7 @@ editCfgFunc() {
             echo
             echo "${YC}Enter a/A for Help"
             echo "Enter b/B for back or cancel${WC}"
-            echo 
+            echo
             echo "Enter custom title :${CCB}"
             read editCfgFunc_input
             echo -n "${WC}"
@@ -179,7 +179,7 @@ editCfgFunc() {
             echo
             echo "${YC}Enter a/A for Help"
             echo "Enter b/B for back or cancel${WC}"
-            echo 
+            echo
             echo "Enter custom content :${CCB}"
             read -r editCfgFunc_input
             echo -n "${WC}"
@@ -213,7 +213,7 @@ editCfgFunc() {
             echo "$welcomeMail_sender"
             echo
             echo "${YC}Enter b/B for back or cancel${WC}"
-            echo 
+            echo
             echo -n "Enter custom sender :${CCB} "
             read -r editCfgFunc_input
             echo -n "${WC}"
@@ -235,8 +235,7 @@ editCfgFunc() {
             EDconfjson="\".*\""
             EDconfjsonTo="\"$editCfgFunc_input\""
         fi
-   fi
-            
+    fi
 
     sed -i "s/$EDfuncedit $EDconfjson/$EDfuncedit $EDconfjsonTo/" $configpath
     if [ $menu_config_back = "game" ]; then

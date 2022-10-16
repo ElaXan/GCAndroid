@@ -23,14 +23,23 @@ reset_configjson() {
     read -p "${WC}Enter input (y/N) : ${CCB}" reset_configjson_input
     echo -n "${WC}"
     case $reset_configjson_input in
-        "y" | "Y" ) echo -n ;;
-        "n" | "N" ) menu_config;;
-        * ) echo "${RC}Wrong input!${WC}"; sleep 1s; reset_configjson;;
+    "y" | "Y") echo -n ;;
+    "n" | "N") menu_config ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        reset_configjson
+        ;;
     esac
     clear
     credit_hah
-    run_Program() { timeout --foreground 5s java -jar grasscutter.jar &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
-    run_Program & pid=$!
+    run_Program() {
+        timeout --foreground 5s java -jar grasscutter.jar &>$HOME/zerr.log
+        errCode=$?
+        log "$errCode"
+    }
+    run_Program &
+    pid=$!
     spin "${GC}Reset config.json${WC}" "124" "Menu" "main_menu"
     echo
     read -p "Press enter for back to edit config.json"
