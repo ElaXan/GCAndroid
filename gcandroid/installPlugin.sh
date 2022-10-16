@@ -152,6 +152,78 @@ installPlugin_from_directory_process() {
     fi
 }
 
+installPlugin_Compile() {
+    if ! command -v mvn &> /dev/null; then
+        credit_hah
+        run_Program() { sudo apt install maven &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+        run_Program & pid=$!
+        spin "${GC}Installing Maven${WC}" "0" "Menu Plugin" "installPlugin"
+    fi
+    if ! command -v git &> /dev/null; then
+        credit_hah
+        run_Program() { sudo apt install git &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+        run_Program & pid=$!
+        spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
+    fi
+    credit_hah
+    echo "${YC}Enter b/B for back!${WC}"
+    echo
+    echo "${CCB}Enter link Githuh Repo for Clone!${WC}"
+    echo -n "Link : "
+    read -r installPlugin_Compile_Link
+    if [[ $installPlugin_Compile_Link == "" ]]; then
+        echo "${RC}Please enter link!${WC}"
+        sleep 1s
+        installPlugin_Compile
+    fi
+    folderRepo="$HOME/GCCloneRepo"
+    if [ ! -d "$folderRepo" ]; then
+        mkdir $folderRepo
+    fi
+    if [ -d "$folderRepo" ]; then
+        rm -rf $folderRepo
+        mkdir $folderRepo
+    fi
+    credit_hah
+    cd $folderRepo
+    run_Program() { git clone $installPlugin_Compile_Link &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+    run_Program & pid=$!
+    spin "${GC}Git Clone Repo${WC}" "0" "Try Again" "installPlugin_Compile"
+    getRepoName=$(basename "$installPlugin_Compile_Link")
+    if echo "$getRepoName" | grep ".*.git" &> /dev/null; then
+        getRepoName=$(echo "$getRepoName" | sed "s/.git//g")
+    fi
+    cd $getRepoName || exit 1
+    echo "${YC}If first time, it will take long time. so wait!${WC}"
+    run_Program() { mvn package &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+    run_Program & pid=$!
+    spin "${GC}Compiling Plugin${WC}" "0" "Menu Plugin" "installPlugin"
+    getNamePlugin=$(basename "$(ls "target/" | grep ".*.jar" | sed "s/original-//g" | head -1)")
+    if [ -f "$HOME/Grasscutter/plugins/$getNamePlugin" ]; then
+        echo "${YC}Plugin $getNamePlugin already installed!${WC}"
+    else
+        run_Program() { cp "target/$getNamePlugin" "$HOME/Grasscutter/plugins" &> $HOME/zerr.log; errCode=$?; log "$errCode"; }
+        run_Program & pid=$!
+        spin "${GC}Installing Plugins${WC}" "0" "Menu Plugin" "installPlugin"
+    fi
+    rm -rf $folderRepo
+    if [ -f "$HOME/Grasscutter/plugins/$getNamePlugin" ]; then
+        echo "${GC}Plugins $getNamePlugin success installed!${WC}"
+        echo
+        echo -n "Press enter for back to Menu Plugin"
+        read
+        installPlugin
+        return
+    else
+        echo "${RC}Plugins $getNamePlugin failed install${WC}"
+        echo
+        echo -n "Press enter for back to Menu Plugin"
+        read
+        installPlugin
+        return
+    fi
+}
+
 
 
 installPlugin() {
@@ -164,12 +236,14 @@ installPlugin() {
     fi
     echo "1. ${CCB}Download plugin and Install${WC}"
     echo "2. ${CCB}Install Plugin from local directory${WC}"
+    echo "3. ${CCB}Clone Github Repo, Compile and Install${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read -r installPlugin_Input
     case $installPlugin_Input in
         "1" ) installPlugin_Download;;
         "2" ) installPlugin_from_directory;;
+        "3" ) installPlugin_Compile;;
         "0" ) main_menu;;
         * ) echo "${RC}Wrong input!${WC}"; sleep 1s; installPlugin;;
     esac
