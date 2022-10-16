@@ -176,6 +176,9 @@ installPlugin_Compile() {
         sleep 1s
         installPlugin_Compile
     fi
+    if [[ $installPlugin_Compile_Link == "b" ]] || [[ $installPlugin_Compile_Link == "B" ]]; then
+        installPlugin
+    fi
     folderRepo="$HOME/GCCloneRepo"
     if [ ! -d "$folderRepo" ]; then
         mkdir $folderRepo
