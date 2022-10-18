@@ -29,7 +29,7 @@ removePlugin() {
     elif [ $userchoicef -le $diramount ]; then
         curfile=${dirlist[$userchoicef - 1]}
         rm -rf $curfile
-        echo "${GC}Successfully Removed plugin${WC} : ${CCB}$curfile!"
+        echo "${GC}Successfully Removed plugin${WC} : ${CCB}$curfile!${WC}"
         sleep 1s
         removePlugin
     else
