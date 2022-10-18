@@ -332,8 +332,9 @@ main_menu() {
     echo "2. ${CCB}Install Grasscutter${WC}"
     echo "3. ${CCB}Edit config.json${WC}"
     echo "4. ${CCB}Install Plugin${WC}"
-    echo "5. ${CCB}Change Port${WC}"
-    echo "6. ${CCB}Install Mongodb${WC}"
+    echo "5. ${CCB}Remove Plugin${WC}"
+    echo "6. ${CCB}Change Port${WC}"
+    echo "7. ${CCB}Install Mongodb${WC}"
     echo "0. ${RC}Exit${WC}"
     echo -n "Enter input : "
     read -r inputmain
@@ -342,8 +343,9 @@ main_menu() {
     "2") Install_Grasscutter ;;
     "3") menu_config ;;
     "4") installPlugin ;;
-    "5") changePort ;;
-    "6") installMongodb ;;
+    "5") removePlugin ;;
+    "6") changePort ;;
+    "7") installMongodb ;;
     "0")
         clear
         exit 0
@@ -397,6 +399,8 @@ case $inpscript in
 "2") Install_Grasscutter ;;
 "3") menu_config ;;
 "4") installPlugin ;;
-"5") changePort ;;
-"6") installMongodb ;;
+"5") removePlugin ;;
+"6") changePort ;;
+"7") installMongodb ;;
+*) main_menu ;;
 esac
