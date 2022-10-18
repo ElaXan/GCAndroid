@@ -360,7 +360,7 @@ main_menu() {
 
 newVersionScript=""
 source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
-versionScript="2.4"
+versionScript="2.4.5"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"
