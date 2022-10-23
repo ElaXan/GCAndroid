@@ -9,6 +9,7 @@ But, why not to try it... May i wrong XD
 
 ## Download
 Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
+OR\
 Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
 
 ## Setup
@@ -30,7 +31,7 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 ## Install
 ### Mongodb
-If you already [setup](https://github.com/ElaXan/GCAndroid#setup) then now install mongodb
+If you already [setup](https://github.com/Score-Inc/GCAndroid#setup) then now install mongodb
 Copy this and paste to Termux
 ```bash
 sudo apt-get update -y && sudo apt-get install mongodb curl -y
@@ -45,13 +46,13 @@ pkill mongo && sudo service mongodb stop
 ```
 
 ### Grasscutter
-Install Grasscutter already moved to [Script](https://github.com/ElaXan/GCAndroid#script)
+Install Grasscutter already moved to [Script](https://github.com/Score-Inc/GCAndroid#script)
 
 ### Script
 Copy this and paste to Termux
 [ONLY ONE TIME]
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/main/install.sh)
 ```
 * If you want use that again just enter this command
 ```bash
@@ -79,11 +80,14 @@ Don't change anything unless you change for the Port Mongodb. and then save it
 
 ## Play
 ### Chinese APK
-you need to use Termux for this or make your own Private DNS to redirect to localhost\
-and dont ask me idk
+You need to use Termux for this or make your own Private DNS to redirect to localhost\
+And dont ask me idk\
+You can play without Private DNS or Termux, but it need Root/SuperUser permission\
+And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
+
 
 ### Termux/mitmproxy
-You can using [my script](https://github.com/ElaXan/AnimeGamePatch) for change it enter number `3`\
+You can using [my script](https://github.com/Score-Inc/AnimeGamePatch) for change it enter number `3`\
 <img src="img/termuxsss.png" width="350"/><br />
 Or you can manual edit with\
 `nano proxy_config.py`\
