@@ -18,6 +18,7 @@ CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
 line="====================================="
 space="     "
+space2="${space}     "
 
 isThisLinux=$(uname -o)
 if [ $isThisLinux = Android ]; then
@@ -246,6 +247,7 @@ menu_config() {
     echo "3. ${CCB}Edit Manual${WC}"
     echo "4. ${CCB}Change Port${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read menu_config_input
     case $menu_config_input in
@@ -267,6 +269,7 @@ installMongodb() {
     if command -v mongo &>/dev/null; then
         echo "${RC}Mongodb already installed"
         echo "${YC}Do you want reinstall?${WC}"
+        echo
         echo -n "Enter input (y/N) : "
         read mongodbAsk
         case $mongodbAsk in
@@ -334,6 +337,7 @@ Install_Grasscutter() {
         echo "${RC}Grasscutter already installed${WC}"
         echo
         echo "${YC}Do you want reinstall?${WC}"
+        echo
         echo -n "Enter input (y/N) : ${CCB}"
         read Install_Grasscutter_input
         echo -n "${WC}"
