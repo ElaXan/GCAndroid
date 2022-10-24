@@ -1,11 +1,23 @@
 #!/bin/bash
 
+# ElaXan/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
+# Permissions of this strong copyleft license are conditioned
+# on making available complete source code of licensed works
+# and modifications, which include larger works using a licensed work,
+# under the same license.
+# Copyright and license notices must be preserved.
+# Contributors provide an express grant of patent rights.
+
 GC="$(printf '\033[1;32m')"
 RC="$(printf '\033[1;31m')"
 YC="$(printf '\033[1;33m')"
 CCB="$(printf '\033[1;36m')"
 CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
+line="====================================="
+space="     "
 
 isThisLinux=$(uname -o)
 if [ $isThisLinux = Android ]; then
@@ -65,6 +77,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/compileGrasscutter.sh" ]; then
+    source $GCAndroid/compileGrasscutter.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/compileGrasscutter.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
@@ -96,7 +115,7 @@ menu_config_game() {
     echo "5. [${TRstaminaUsage}] staminaUsage"
     echo "6. [${TRwatchGachaConfig}] watchGachaConfig"
     echo "7. ${CCB}joinOptions${WC}"
-    echo "0. Back"
+    echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -221,6 +240,7 @@ menu_config() {
     echo "1. ${CCB}Account${WC}"
     echo "2. ${CCB}Game${WC}"
     echo "3. ${CCB}Edit Manual${WC}"
+    echo "4. ${CCB}Change Port${WC}"
     echo "0. ${RC}Back${WC}"
     echo -n "Enter input : "
     read menu_config_input
@@ -228,7 +248,8 @@ menu_config() {
     "1") menu_config_account ;;
     "2") menu_config_game ;;
     "3") menu_config_editManual ;;
-    "0") main_menu ;;
+    "4") changePort ;;
+    "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong Input!${WC}"
         sleep 1s
@@ -314,7 +335,7 @@ Install_Grasscutter() {
         echo -n "${WC}"
         case $Install_Grasscutter_input in
         "y" | "Y") Install_Grasscutter_option ;;
-        "n" | "N") main_menu ;;
+        "n" | "N") Grasscutter_Menu ;;
         *)
             echo "${RC}Wrong Input!${WC}"
             sleep 0.5s
@@ -326,26 +347,88 @@ Install_Grasscutter() {
     fi
 }
 
+Grasscutter_Menu() {
+    credit_hah
+    echo "${GC}${space}Grascutter Menu${WC}"
+    echo "${WC}${line}${WC}"
+    echo "1. ${CCB}Install Grasscutter${WC}"
+    echo "2. ${CCB}Compile .jar${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r Grasscutter_Menu_Input
+    case $Grasscutter_Menu_Input in
+    "1") Install_Grasscutter ;;
+    "2") Compile_Grasscutter ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        Grasscutter_Menu
+        ;;
+    esac
+}
+
+Grasscutter_Tools() {
+    credit_hah
+    echo "${GC}${space}Grasscutter Tools${WC}"
+    echo "${WC}${line}${WC}"
+    echo "1. ${CCB}Edit config.json${WC}"
+    echo "2. ${CCB}Install Plugin${WC}"
+    echo "3. ${CCB}Remove Plugin${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r Grasscutter_Tools_Input
+    case $Grasscutter_Tools_Input in
+    "1") menu_config ;;
+    "2") installPlugin ;;
+    "3") removePlugin ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        Grasscutter_Tools
+        ;;
+    esac
+}
+
+InstallMenu() {
+    credit_hah
+    echo "${GC}${space}${space}Install Menu${WC}"
+    echo "${WC}${line}${WC}"
+    echo "1. ${CCB}Install Mongodb${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r InstallMenu_input
+    case $InstallMenu_input in
+    "1") installMongodb ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        InstallMenu
+        ;;
+    esac
+}
+
 main_menu() {
     credit_hah
+    echo "${GC}${space}${space}  Main Menu${WC}"
+    echo "${WC}${line}${WC}"
     echo "1. ${CCB}Run Grasscutter${WC}"
-    echo "2. ${CCB}Install Grasscutter${WC}"
-    echo "3. ${CCB}Edit config.json${WC}"
-    echo "4. ${CCB}Install Plugin${WC}"
-    echo "5. ${CCB}Remove Plugin${WC}"
-    echo "6. ${CCB}Change Port${WC}"
-    echo "7. ${CCB}Install Mongodb${WC}"
+    echo "2. ${CCB}Grasscutter Menu${WC}"
+    echo "3. ${CCB}Grasscutter Tools${WC}"
+    echo "4. ${CCB}Install Menu${WC}"
     echo "0. ${RC}Exit${WC}"
     echo -n "Enter input : "
     read -r inputmain
     case $inputmain in
     "1") GoTouchGrass ;;
-    "2") Install_Grasscutter ;;
-    "3") menu_config ;;
-    "4") installPlugin ;;
-    "5") removePlugin ;;
-    "6") changePort ;;
-    "7") installMongodb ;;
+    "2") Grasscutter_Menu ;;
+    "3") Grasscutter_Tools ;;
+    "4") InstallMenu ;;
     "0")
         clear
         exit 0
@@ -400,7 +483,6 @@ case $inpscript in
 "3") menu_config ;;
 "4") installPlugin ;;
 "5") removePlugin ;;
-"6") changePort ;;
-"7") installMongodb ;;
+"6") installMongodb ;;
 *) main_menu ;;
 esac

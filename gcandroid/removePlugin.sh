@@ -4,7 +4,7 @@ removePlugin() {
     if [ ! -d "$pathPlugin" ]; then
         echo "${RC}Folder $pathPlugin not found!"
         sleep 1s
-        main_menu
+        Grasscutter_Tools
     fi
     extension="jar"
     cd $pathPlugin
@@ -14,7 +14,7 @@ removePlugin() {
     if [[ $diramount = 0 ]]; then
         echo "${YC}No plugins installed!${WC}"
         sleep 1s
-        main_menu
+        Grasscutter_Tools
     fi
     for fname in "${dirlist[@]}"; do
         staticnum=$(($staticnum + 1))
@@ -25,7 +25,7 @@ removePlugin() {
     printf "Your Option : "
     read userchoicef
     if [ $userchoicef -eq 0 ]; then
-        main_menu
+        Grasscutter_Tools
     elif [ $userchoicef -le $diramount ]; then
         curfile=${dirlist[$userchoicef - 1]}
         rm -rf $curfile

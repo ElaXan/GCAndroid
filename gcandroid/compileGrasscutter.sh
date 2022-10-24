@@ -9,6 +9,8 @@ Compile_Grasscutter() {
     fi
     clear
     credit_hah
+    echo "${GC}${space}Compile .jar [PLEASE WAIT]${WC}"
+    echo "${WC}${line}${WC}"
     cd $HOME/Grasscutter || exit 1
     if [ -f "grasscutter.jar" ]; then
         rm grasscutter.jar
@@ -20,19 +22,19 @@ Compile_Grasscutter() {
     }
     run_Program &
     pid=$!
-    spin "${GC}Compiling jar${WC}" "Menu" "main_menu"
+    spin "${GC}Compiling grasscutter.jar${WC}" "0" "Menu" "main_menu"
     GrasscutterJar=$(ls grasscutter*.jar)
     if [ ! $GrasscutterJar ]; then
         echo "${RC}Error${WC} : Failed compile jar${WC}"
         echo
         read -p "Press enter for back to Menu Grasscutter!"
-        menu_Grasscutter
+        Grasscutter_Menu
     else
         mv grasscutter*.jar grasscutter.jar
         echo "${GC}Success compile jar and output to $HOME/Grasscutter folder"
         echo "With name grasscutter.jar${WC}"
         echo
         read -p "Press enter for back to Menu Graascutter!"
-        menu_Grasscutter
+        Grasscutter_Menu
     fi
 }

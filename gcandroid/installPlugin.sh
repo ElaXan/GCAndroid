@@ -117,6 +117,7 @@ installPlugin_from_directory_process() {
         FILE=$(dialog --stdout --title "Please choose a .jar plugin" --fselect /sdcard/ 14 48)
         clear
         installPlugin_from_directory_Input_File=$FILE
+        fileSearchDialog=true
         # echo "$installPlugin_from_directory_Input_File"
         # exit
         credit_hah
@@ -134,10 +135,16 @@ installPlugin_from_directory_process() {
         return
     fi
     if [[ $installPlugin_from_directory_Input_File == "" ]]; then
-        echo "${RC}Please enter path!${WC}"
-        sleep 1s
-        installPlugin_from_directory_process
-        return
+        if [[ $fileSearchDialog = true ]]; then
+            echo "${RC}Cancel by user${WC}"
+            sleep 1s
+            installPlugin_from_directory
+        else
+            echo "${RC}Please enter path!${WC}"
+            sleep 1s
+            installPlugin_from_directory_process
+            return
+        fi
     elif [[ $installPlugin_from_directory_Input_File == "b" ]] || [[ $installPlugin_from_directory_Input == "B" ]]; then
         installPlugin_from_directory
         return
@@ -292,7 +299,7 @@ installPlugin() {
     "1") installPlugin_Download ;;
     "2") installPlugin_from_directory ;;
     "3") installPlugin_Compile ;;
-    "0") main_menu ;;
+    "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong input!${WC}"
         sleep 1s

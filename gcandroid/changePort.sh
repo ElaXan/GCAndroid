@@ -5,17 +5,18 @@ changePort() {
         echo
         echo -n "Press enter for back to Menu!"
         read
-        main_menu
+        menu_config
         return
     fi
     checkPort=$(cat $configpath | grep "\"bindPort\":" | head -n 1 | sed -e "s/.*\": //g" -e "s/,//g")
     echo "${CCB}Current Port : ${checkPort}${WC}"
     echo "====================================="
-    echo "Enter b/B for back or cancel"
+    echo "${YC}Enter b/B for back or cancel${WC}"
+    echo
     echo -n "Enter port : "
     read -r PortChange
     if [[ $PortChange = "b" ]] || [[ $PortChange = "B" ]]; then
-        main_menu
+        menu_config
         return
     fi
     if [[ $PortChange = "" ]]; then
