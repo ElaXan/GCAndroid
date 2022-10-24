@@ -349,7 +349,7 @@ Install_Grasscutter() {
 
 Grasscutter_Menu() {
     credit_hah
-    echo "${GC}${space}Grascutter Menu${WC}"
+    echo "${GC}${space}     Grascutter Menu${WC}"
     echo "${WC}${line}${WC}"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
@@ -371,7 +371,7 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
-    echo "${GC}${space}Grasscutter Tools${WC}"
+    echo "${GC}${space}    Grasscutter Tools${WC}"
     echo "${WC}${line}${WC}"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
@@ -422,6 +422,7 @@ main_menu() {
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
     echo "0. ${RC}Exit${WC}"
+    echo
     echo -n "Enter input : "
     read -r inputmain
     case $inputmain in
