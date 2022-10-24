@@ -82,6 +82,7 @@ installPlugin_from_directory() {
     echo "2. ${CCB}Manual Typing${WC}"
     echo "3. ${CCB}Help for Dialog command${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r installPlugin_from_directory_input
     case $installPlugin_from_directory_input in
@@ -126,6 +127,7 @@ installPlugin_from_directory_process() {
         echo "${YC}Enter b/B for back${WC}"
         echo
         echo "${CCB}Please enter where .jar plugin${WC}"
+        echo
         echo -n "${GC}Path : ${WC}"
         read -r installPlugin_from_directory_Input_File
     else
@@ -293,6 +295,7 @@ installPlugin() {
     echo "2. ${CCB}Install Plugin from local directory${WC}"
     echo "3. ${CCB}Clone Github Repo, Compile and Install${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r installPlugin_Input
     case $installPlugin_Input in

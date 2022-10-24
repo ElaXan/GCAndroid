@@ -85,6 +85,7 @@ editCfgFunc() {
             EDfuncedit="\"maxPlayer\":"
             EDconfjson="$maxPlayer"
             echo -n "Enter amount maxPlayer : "
+            echo
             read -r editCfgFunc_input
             if [ $editCfgFunc_input = $maxPlayer ]; then
                 echo -e "${RC}Failed edit\n${YC}Reason${WC} : Same amount"
@@ -107,8 +108,8 @@ editCfgFunc() {
             echo
             echo "${YC}Enter a/A for Help"
             echo "Enter b/B for back or cancel${WC}"
-            echo
             echo "Enter custom welcomeMessage :${CCB}"
+            echo
             read editCfgFunc_input
             echo -n ${WC}
             if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then

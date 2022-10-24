@@ -116,6 +116,7 @@ menu_config_game() {
     echo "6. [${TRwatchGachaConfig}] watchGachaConfig"
     echo "7. ${CCB}joinOptions${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -137,6 +138,7 @@ menu_config_game_joinOptions() {
     echo "1. ${CCB}welcomeMessage${WC}"
     echo "2. ${CCB}welcomeMail${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -178,6 +180,7 @@ menu_config_game_joinOptions_welcomeMail() {
     echo "2. ${CCB}content${WC}"
     echo "3. ${CCB}sender${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter Input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -203,6 +206,7 @@ menu_config_account() {
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
     echo "3. [${TRmaxPlayer}] maxPlayer"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in

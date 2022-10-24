@@ -20,6 +20,7 @@ reset_configjson() {
     clear
     credit_hah
     echo "${YC}Are you sure want to reset config.json?"
+    echo
     read -p "${WC}Enter input (y/N) : ${CCB}" reset_configjson_input
     echo -n "${WC}"
     case $reset_configjson_input in
