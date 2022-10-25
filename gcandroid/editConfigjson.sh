@@ -101,15 +101,16 @@ editCfgFunc() {
     if [ $1 = "joinOptions" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions"
-            clear
             credit_hah
+            echo "${GC}${space2}WelcomeMessage Edit${WC}"
+            echo "${line}"
             echo "${GC}Current welcomeMessage :${WC}"
             echo "${CCB}$welcomeMessage${WC}"
             echo
             echo "${YC}Enter a/A for Help"
             echo "Enter b/B for back or cancel${WC}"
-            echo "Enter custom welcomeMessage :${CCB}"
             echo
+            echo "Enter custom welcomeMessage :${CCB}"
             read editCfgFunc_input
             echo -n ${WC}
             if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
@@ -138,8 +139,9 @@ editCfgFunc() {
     if [ $1 = "joinOptions_welcomeMail" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions_welcomeMail"
-            clear
             credit_hah
+            echo "${GC}${space2}welcomeMail Edit${WC}"
+            echo "${line}"
             echo "${GC}Current title :${CCB}"
             echo "$welcomeMail_title"
             echo
@@ -175,6 +177,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
+            echo "${GC}${space2}Content Edit${WC}"
+            echo "${line}"
             echo "${GC}Current content :${CCB}"
             echo "$welcomeMail_content"
             echo
@@ -210,6 +214,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
+            echo "${GC}${space2}Sender Edit${WC}"
+            echo "${line}"
             echo "${GC}Current sender :${CCB}"
             echo "$welcomeMail_sender"
             echo

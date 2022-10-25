@@ -1,5 +1,7 @@
 installPlugin_Download() {
     credit_hah
+    echo "${GC}${space}Install Plugin Download${WC}"
+    echo "${line}"
     echo "${YC}Enter b/B for back${WC}"
     echo
     echo -n "${GC}Enter link Download .jar : ${WC}"
@@ -78,6 +80,8 @@ installPlugin_Download() {
 
 installPlugin_from_directory() {
     credit_hah
+    echo "${GC}${space}Install Plugin Directory${WC}"
+    echo "${line}"
     echo "1. ${CCB}Using dialog command${WC}"
     echo "2. ${CCB}Manual Typing${WC}"
     echo "3. ${CCB}Help for Dialog command${WC}"
@@ -186,6 +190,8 @@ installPlugin_from_directory_process() {
 installPlugin_Compile() {
     if ! command -v mvn &>/dev/null; then
         credit_hah
+        echo "${GC}${space2}Installing Program maven${WC}"
+        echo "${line}"
         run_Program() {
             sudo apt install maven &>$HOME/zerr.log
             errCode=$?
@@ -197,6 +203,8 @@ installPlugin_Compile() {
     fi
     if ! command -v git &>/dev/null; then
         credit_hah
+        echo "${GC}${space2}Installing Program git${WC}"
+        echo "${line}"
         run_Program() {
             sudo apt install git &>$HOME/zerr.log
             errCode=$?
@@ -207,9 +215,11 @@ installPlugin_Compile() {
         spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
     fi
     credit_hah
+    echo "${GC}${space}Install Plugin Clone Repo${WC}"
+    echo "${line}"
     echo "${YC}Enter b/B for back!${WC}"
     echo
-    echo "${CCB}Enter link Githuh Repo for Clone!${WC}"
+    echo "${CCB}Enter link Github Repo for Clone!${WC}"
     echo -n "Link : "
     read -r installPlugin_Compile_Link
     if [[ $installPlugin_Compile_Link == "" ]]; then
@@ -229,6 +239,8 @@ installPlugin_Compile() {
         mkdir $folderRepo
     fi
     credit_hah
+    echo "${GC}${space2}Compiling${WC}"
+    echo "${line}"
     cd $folderRepo
     run_Program() {
         git clone $installPlugin_Compile_Link &>$HOME/zerr.log
@@ -285,6 +297,8 @@ installPlugin_Compile() {
 
 installPlugin() {
     credit_hah
+    echo "${GC}${space2}Install Plugin${WC}"
+    echo "${line}"
     if ! [ -d "$HOME/Grasscutter" ]; then
         echo "${RC}$HOME/Grasscutter is not found!${WC}"
         echo

@@ -16,7 +16,6 @@ YC="$(printf '\033[1;33m')"
 CCB="$(printf '\033[1;36m')"
 CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
-line="====================================="
 space="     "
 space2="${space}     "
 
@@ -82,6 +81,13 @@ if [ -f "$GCAndroid/compileGrasscutter.sh" ]; then
     source $GCAndroid/compileGrasscutter.sh
 else
     echo "${RC}Error${WC} : ${GCAndroid}/compileGrasscutter.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/descriptionMenu.sh" ]; then
+    source $GCAndroid/descriptionMenu.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/descriptionMenu.sh not found!"
     exit 1
 fi
 
@@ -242,6 +248,8 @@ menu_config() {
         return
     fi
     credit_hah
+    echo "${GC}${space2}Edit config.json${WC}"
+    echo "${WC}${line}${WC}"
     echo "1. ${CCB}Account${WC}"
     echo "2. ${CCB}Game${WC}"
     echo "3. ${CCB}Edit Manual${WC}"
@@ -379,8 +387,7 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
-    echo "${GC}${space}    Grasscutter Tools${WC}"
-    echo "${WC}${line}${WC}"
+    line9 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
@@ -403,8 +410,7 @@ Grasscutter_Tools() {
 
 InstallMenu() {
     credit_hah
-    echo "${GC}${space}${space}Install Menu${WC}"
-    echo "${WC}${line}${WC}"
+    line12 "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
     echo "0. ${RC}Back${WC}"
     echo
@@ -423,8 +429,7 @@ InstallMenu() {
 
 main_menu() {
     credit_hah
-    echo "${GC}${space}${space}  Main Menu${WC}"
-    echo "${WC}${line}${WC}"
+    line13 "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
