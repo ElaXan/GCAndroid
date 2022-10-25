@@ -1,4 +1,7 @@
 # GCAndroid
+Project is free to use, so if you buy from someone, please refund.
+
+# About
 What can do if Localhost?
 * Lowest Ping
 * Can edit the Code (Banner, Event, Abyss, and etc)
@@ -30,24 +33,6 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 
 ## Install
-### Mongodb
-If you already [setup](https://github.com/Score-Inc/GCAndroid#setup) then now install mongodb
-Copy this and paste to Termux
-```bash
-sudo apt-get update -y && sudo apt-get install mongodb curl -y
-```
-After success install mongodb and run it using this command
-```bash
-sudo service mongodb start
-```
-If want stop copy this and paste to Termux
-```bash
-pkill mongo && sudo service mongodb stop
-```
-
-### Grasscutter
-Install Grasscutter already moved to [Script](https://github.com/Score-Inc/GCAndroid#script)
-
 ### Script
 Copy this and paste to Termux
 [ONLY ONE TIME]
@@ -87,9 +72,6 @@ And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 
 ### Termux/mitmproxy
-You can using [my script](https://github.com/Score-Inc/AnimeGamePatch) for change it enter number `3`\
-<img src="img/termuxsss.png" width="350"/><br />
-Or you can manual edit with\
-`nano proxy_config.py`\
-Change in `REMOTE_HOST` to **127.0.0.1**\
-Change in `REMOTE_PORT` to **54321**
+You can using [my script](https://github.com/Score-Inc/AnimeGamePatch)\
+Select Menu when run mitmproxy by running command `zex 4`\
+<img src="img/termux.png" width="350"/><br />

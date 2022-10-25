@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ElaXan/GCAndroid is licensed under the
+# Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
 
 # Permissions of this strong copyleft license are conditioned
@@ -16,8 +16,6 @@ YC="$(printf '\033[1;33m')"
 CCB="$(printf '\033[1;36m')"
 CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
-space="     "
-space2="${space}     "
 
 isThisLinux=$(uname -o)
 if [ $isThisLinux = Android ]; then
@@ -101,7 +99,7 @@ fi
 
 credit_hah() {
     clear
-    echo "====================================="
+    echo "${WC}=====================================${WC}"
     echo "${GC}       Script made by ElaXan${WC}"
     echo "====================================="
     echo -e "$note_credit"
@@ -114,6 +112,7 @@ credit_hah() {
 menu_config_game() {
     menu_config_back="game"
     credit_hah
+    line10 "Menu Config Game"
     menu_detect_false_true "game"
     echo "1. [${TRenableShopItems}] enableShopItems"
     echo "2. [${TRenergyUsage}] energyUsage"
@@ -141,6 +140,7 @@ menu_config_game() {
 menu_config_game_joinOptions() {
     menu_config_back="joinOptions"
     credit_hah
+    line5 "Menu Config Game Join Option"
     menu_detect_false_true "joinOptions"
     echo "1. ${CCB}welcomeMessage${WC}"
     echo "2. ${CCB}welcomeMail${WC}"
@@ -208,6 +208,7 @@ menu_config_account_defaultPermissions() {
 menu_config_account() {
     menu_config_back="account"
     credit_hah
+    line8 "Menu Config Account"
     menu_detect_false_true "account"
     echo "1. [${TRautoCreate}] autoCreate"
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
@@ -248,8 +249,7 @@ menu_config() {
         return
     fi
     credit_hah
-    echo "${GC}${space2}Edit config.json${WC}"
-    echo "${WC}${line}${WC}"
+    line10 "Edit config.json"
     echo "1. ${CCB}Account${WC}"
     echo "2. ${CCB}Game${WC}"
     echo "3. ${CCB}Edit Manual${WC}"
@@ -282,6 +282,8 @@ installMongodb() {
         read mongodbAsk
         case $mongodbAsk in
         "y" | "Y")
+            credit_hah
+            line10 "Mongodb Install"
             sudo apt reinstall mongodb
             main_menu
             ;;
@@ -313,7 +315,7 @@ installMongodb() {
 
 Install_Grasscutter_option() {
     credit_hah
-    echo "${GC}Please choose this for download Resources${WC}"
+    line0 "Please choose this for download Resources"
     echo "1. ${YC}tamilpp25 Resources${WC}"
     echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
     echo "0. ${RC}Back/Cancel${WC}"
@@ -365,8 +367,7 @@ Install_Grasscutter() {
 
 Grasscutter_Menu() {
     credit_hah
-    echo "${GC}${space}     Grascutter Menu${WC}"
-    echo "${WC}${line}${WC}"
+    line10 "Grascutter Menu"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
     echo "0. ${RC}Back${WC}"

@@ -1,7 +1,16 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
+# Permissions of this strong copyleft license are conditioned
+# on making available complete source code of licensed works
+# and modifications, which include larger works using a licensed work,
+# under the same license.
+# Copyright and license notices must be preserved.
+# Contributors provide an express grant of patent rights.
+
 installPlugin_Download() {
     credit_hah
-    echo "${GC}${space}Install Plugin Download${WC}"
-    echo "${line}"
+    line5 "Install Plugin Download"
     echo "${YC}Enter b/B for back${WC}"
     echo
     echo -n "${GC}Enter link Download .jar : ${WC}"
@@ -80,8 +89,7 @@ installPlugin_Download() {
 
 installPlugin_from_directory() {
     credit_hah
-    echo "${GC}${space}Install Plugin Directory${WC}"
-    echo "${line}"
+    line5 "Install Plugin Directory"
     echo "1. ${CCB}Using dialog command${WC}"
     echo "2. ${CCB}Manual Typing${WC}"
     echo "3. ${CCB}Help for Dialog command${WC}"
@@ -126,8 +134,10 @@ installPlugin_from_directory_process() {
         # echo "$installPlugin_from_directory_Input_File"
         # exit
         credit_hah
+        line5 "Install Plugin Directory"
     elif [[ $installPlugin_from_directory_Input == "2" ]]; then
         credit_hah
+        line5 "Install Plugin Directory"
         echo "${YC}Enter b/B for back${WC}"
         echo
         echo "${CCB}Please enter where .jar plugin${WC}"
@@ -190,8 +200,7 @@ installPlugin_from_directory_process() {
 installPlugin_Compile() {
     if ! command -v mvn &>/dev/null; then
         credit_hah
-        echo "${GC}${space2}Installing Program maven${WC}"
-        echo "${line}"
+        line10 "Installing Program maven"
         run_Program() {
             sudo apt install maven &>$HOME/zerr.log
             errCode=$?
@@ -203,8 +212,7 @@ installPlugin_Compile() {
     fi
     if ! command -v git &>/dev/null; then
         credit_hah
-        echo "${GC}${space2}Installing Program git${WC}"
-        echo "${line}"
+        line10 "Installing Program git${WC}"
         run_Program() {
             sudo apt install git &>$HOME/zerr.log
             errCode=$?
@@ -215,7 +223,7 @@ installPlugin_Compile() {
         spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
     fi
     credit_hah
-    echo "${GC}${space}Install Plugin Clone Repo${WC}"
+    line5 "Install Plugin Clone Repo"
     echo "${line}"
     echo "${YC}Enter b/B for back!${WC}"
     echo
@@ -239,8 +247,7 @@ installPlugin_Compile() {
         mkdir $folderRepo
     fi
     credit_hah
-    echo "${GC}${space2}Compiling${WC}"
-    echo "${line}"
+    line10 "Compiling"
     cd $folderRepo
     run_Program() {
         git clone $installPlugin_Compile_Link &>$HOME/zerr.log
@@ -297,13 +304,12 @@ installPlugin_Compile() {
 
 installPlugin() {
     credit_hah
-    echo "${GC}${space2}Install Plugin${WC}"
-    echo "${line}"
+    line10 "Install Plugin"
     if ! [ -d "$HOME/Grasscutter" ]; then
-        echo "${RC}$HOME/Grasscutter is not found!${WC}"
+        echo "${RC}Folder Grasscutter in $HOME/Grasscutter is not found!${WC}"
         echo
-        read -p "Press enter for back to Menu!"
-        main_menu
+        read -p "Press enter for back to Menu Grasscutter Tools"
+        Grasscutter_Tools
     fi
     echo "1. ${CCB}Download plugin and Install${WC}"
     echo "2. ${CCB}Install Plugin from local directory${WC}"
