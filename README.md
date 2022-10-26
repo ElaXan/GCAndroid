@@ -87,7 +87,7 @@ And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 
 ### Termux/mitmproxy
-You can using [my script](https://github.com/Score-Inc/AnimeGamePatch) for change it enter number `3`\
+You can use [my script](https://github.com/Score-Inc/AnimeGamePatch). To change it, enter number `3`\
 <img src="img/termuxsss.png" width="350"/><br />
 Or you can manual edit with\
 `nano proxy_config.py`\
