@@ -31,12 +31,12 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 ## Install
 ### Mongodb
-Install mongodb If you're done with [setup](https://github.com/Score-Inc/GCAndroid#setup)
+Install mongodb If you're done with [setup](https://github.com/Score-Inc/GCAndroid#setup).
 Copy this and paste to Termux
 ```bash
 sudo apt-get update -y && sudo apt-get install mongodb curl -y
 ```
-After the installation of mongodb completed, run it by copy and paste it to Termux
+After mongodb done installing, run it by copy and paste it to Termux
 ```bash
 sudo service mongodb start
 ```
