@@ -1,52 +1,52 @@
 # GCAndroid
-What can do if Localhost?
-* Lowest Ping
-* Can edit the Code (Banner, Event, Abyss, and etc)
-* Much you can do
+What the benefit can i get by hosting a localhost using GCAndroid?
+* Lower ping
+* Access to edit server code (Banner, Event, Abyss, plugin, etc)
+* And much more.
 ## Note
-This need [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Skillssss`. And this burdens your phone, so it's not recommended for low specs\
-But, why not to try it... May i wrong XD
+GCAndroid will require [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Skillssss`. Running this may burdens your phone depending on the device you're using, so it's not recommended for low specs.
+But, why not to try it... I could be wrong XD
 
 ## Download
-Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
+Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMENDED]\
 OR\
-Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
+Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (REQUIRE ROOT OR ADB)
 
 ## Setup
 1. Enter this command (install proot-distro/ubuntu)
 ```bash
 pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu
 ```
-2. Login or enter mode Ubuntu with command
+2. Login or enter Ubuntu mode with command
 ```bash
 proot-distro login ubuntu
 ```
-3. Now enter this command for can install Mongodb or with next Step
+3. Now enter this command to install Mongodb
 ```bash
 apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal universe" > /etc/apt/sources.list && apt update && apt install sudo
 ```
-4. Now next step to [install](https://github.com/ElaXan/GCAndroid#install)
+4. Now for next step, follow [install](https://github.com/ElaXan/GCAndroid#install)
 
 
 
 ## Install
 ### Mongodb
-If you already [setup](https://github.com/Score-Inc/GCAndroid#setup) then now install mongodb
+Install mongodb If you're done with [setup](https://github.com/Score-Inc/GCAndroid#setup).
 Copy this and paste to Termux
 ```bash
 sudo apt-get update -y && sudo apt-get install mongodb curl -y
 ```
-After success install mongodb and run it using this command
+After mongodb done installing, run it by copy and paste it to Termux
 ```bash
 sudo service mongodb start
 ```
-If want stop copy this and paste to Termux
+To stop mongodb, copy and paste it to Termux
 ```bash
 pkill mongo && sudo service mongodb stop
 ```
 
 ### Grasscutter
-Install Grasscutter already moved to [Script](https://github.com/Score-Inc/GCAndroid#script)
+GC installation procedure has been moved to [Script](https://github.com/Score-Inc/GCAndroid#script)
 
 ### Script
 Copy this and paste to Termux
@@ -54,16 +54,16 @@ Copy this and paste to Termux
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/main/install.sh)
 ```
-* If you want use that again just enter this command
+* To run it for the second time, copy and paste this to Termux
 ```bash
 gcandroid
 ```
 
 ## Edit Mongodb Database
-If you want edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
+To edit mongodb database, use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
 If you don't have money to buy for the app, you can search for other apk or search for crack App that exist in Internet...
 
-Make sure mongodb is running with this command
+Make sure mongodb is running. To check its status copy and paste this to Termux
 ```bash
 sudo service mongodb start
 ```
@@ -87,7 +87,7 @@ And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 
 ### Termux/mitmproxy
-You can using [my script](https://github.com/Score-Inc/AnimeGamePatch) for change it enter number `3`\
+You can use [my script](https://github.com/Score-Inc/AnimeGamePatch). To change it, enter number `3`\
 <img src="img/termuxsss.png" width="350"/><br />
 Or you can manual edit with\
 `nano proxy_config.py`\
