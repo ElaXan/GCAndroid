@@ -1,13 +1,6 @@
 # Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
 
-# Permissions of this strong copyleft license are conditioned
-# on making available complete source code of licensed works
-# and modifications, which include larger works using a licensed work,
-# under the same license.
-# Copyright and license notices must be preserved.
-# Contributors provide an express grant of patent rights.
-
 editCfgFunc() {
     enterInputEditGrass=$editConfJsonInp
     if [ $1 = "game" ]; then
@@ -112,8 +105,7 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions"
             credit_hah
-            echo "${GC}${space2}WelcomeMessage Edit${WC}"
-            echo "${line}"
+            line10 "WelcomeMessage Edit"
             echo "${GC}Current welcomeMessage :${WC}"
             echo "${CCB}$welcomeMessage${WC}"
             echo
@@ -150,8 +142,7 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions_welcomeMail"
             credit_hah
-            echo "${GC}${space2}welcomeMail Edit${WC}"
-            echo "${line}"
+            line10 "welcomeMail Edit"
             echo "${GC}Current title :${CCB}"
             echo "$welcomeMail_title"
             echo

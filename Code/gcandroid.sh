@@ -3,13 +3,6 @@
 # Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
 
-# Permissions of this strong copyleft license are conditioned
-# on making available complete source code of licensed works
-# and modifications, which include larger works using a licensed work,
-# under the same license.
-# Copyright and license notices must be preserved.
-# Contributors provide an express grant of patent rights.
-
 GC="$(printf '\033[1;32m')"
 RC="$(printf '\033[1;31m')"
 YC="$(printf '\033[1;33m')"
@@ -99,14 +92,13 @@ fi
 
 credit_hah() {
     clear
-    echo "${WC}=====================================${WC}"
-    echo "${GC}       Script made by ElaXan${WC}"
-    echo "====================================="
-    echo -e "$note_credit"
-    echo "${CCU}https://github.com/ElaXan/GCAndroid${WC}"
-    echo "====================================="
+    echo $line
+    line8 "Script made by ElaXan"
+    echo "$note_credit"
+    echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
+    echo $line
     echo "${GC}Contact me at chat@elaxan.com${WC}"
-    echo "====================================="
+    echo $line
 }
 
 menu_config_game() {
@@ -367,7 +359,7 @@ Install_Grasscutter() {
 
 Grasscutter_Menu() {
     credit_hah
-    line10 "Grascutter Menu"
+    line11 "Grascutter Menu"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
     echo "0. ${RC}Back${WC}"
@@ -386,9 +378,11 @@ Grasscutter_Menu() {
     esac
 }
 
+
+
 Grasscutter_Tools() {
     credit_hah
-    line9 "Grasscutter Tools"
+    line10 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
@@ -430,7 +424,7 @@ InstallMenu() {
 
 main_menu() {
     credit_hah
-    line13 "Main Menu"
+    line14 "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
