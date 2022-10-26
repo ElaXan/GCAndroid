@@ -45,7 +45,7 @@ proot-distro login ubuntu
 apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal universe" > /etc/apt/sources.list && apt update && apt install sudo
 ```
 
-4. Now next step to [install](https://github.com/Score-Inc/GCAndroid#install)
+4. Next is [installation](https://github.com/Score-Inc/GCAndroid#install)
 
 ## Install
 
