@@ -17,7 +17,7 @@ Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (REQ
 ```bash
 pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu
 ```
-2. Login or enter mode Ubuntu with command
+2. Login or enter Ubuntu mode with command
 ```bash
 proot-distro login ubuntu
 ```
