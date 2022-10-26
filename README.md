@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="gif/20221026_150902.gif" alt="gif animated" width="200" height="50">
+    <img src="gif/20221026_150902.gif" alt="gif animated" width="450" height="100">
 </p>
 # GCAndroid
 Project is free to use, so if you buy from someone, please refund.
