@@ -10,7 +10,7 @@ Open source code will be available for [Team](https://github.com/Score-Inc)
 
 # About
 
-What the benefit can i get by hosting a localhost using GCAndroid?
+What are the benefit can i get by hosting a localhost using GCAndroid?
 * Lower ping
 * Access to edit server code (Banner, Event, Abyss, plugin, etc)
 * And much more.
