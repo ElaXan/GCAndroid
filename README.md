@@ -1,6 +1,7 @@
 <p align="center">
     <img src="gif/20221026_150902.gif" alt="gif animated" width="450" height="100">
 </p>
+
 # GCAndroid
 
 Project is free to use. If you bought it from someone, please refund\
@@ -82,7 +83,6 @@ Don't change anything unless you want to change the Mongodb port. Make sure to s
 <img src="img/databaseEdit3.png" width="350"/><br />
 5. Done, now you can edit the Database
 
-
 ## Play
 ### Chinese APK
 You need to use Termux for this or make your own Private DNS to redirect to localhost\
@@ -90,12 +90,7 @@ And dont ask me idk\
 You can play without Private DNS or Termux, but it needs Root/SuperUser permissions\
 And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
-
 ### Termux/mitmproxy
-You can use [my script](https://github.com/Score-Inc/AnimeGamePatch), to change it enter the number `3`\
-<img src="img/termuxsss.png" width="350"/><br />
-------------------------------
-Or you can manual edit in\
-`nano proxy_config.py`\
-Change `REMOTE_HOST` to **127.0.0.1**\
-Change `REMOTE_PORT` to **54321**
+You can use [my script](https://github.com/Score-Inc/AnimeGamePatch)\
+Select Menu on mitmproxy by running command `zex 4`\
+<img src="img/termux.png" width="350"/><br />
