@@ -2,7 +2,7 @@
 What can I do with a Localhost Server?
 * The lowest Ping possible.
 * The abbility to change the (Banners, Events, Abyss, and etc)
-* + Much more
+* Much more
 ## Prerequisites
 The Requirments are as follows: [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices. \
 But, why not try it? xD
@@ -31,7 +31,7 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 ## Install
 ### Mongodb
-If you already did the [setup](https://github.com/Score-Inc/GCAndroid#setup) then now it's time to install mongodb
+If you already did the [setup](https://github.com/Score-Inc/GCAndroid#setup) then now it's time to install mongodb\
 Copy this command and paste it to Termux:
 ```bash
 sudo apt-get update -y && sudo apt-get install mongodb curl -y
