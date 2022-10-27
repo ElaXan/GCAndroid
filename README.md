@@ -1,11 +1,11 @@
 # GCAndroid
-What the benefit can i get by hosting a localhost using GCAndroid?
+What benefit can i get by hosting a localhost using GCAndroid?
 * Lower ping
 * Access to edit server code (Banner, Event, Abyss, plugin, etc)
 * And much more.
 ## Note
-GCAndroid will require [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Skillssss`. Running this may burdens your phone depending on the device you're using, so it's not recommended for low specs.
-But, why not to try it... I could be wrong XD
+GCAndroid will require [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and `Skillssss`. Running this may burdens your phone depending on the device you're using, so it's not recommended to run this on low specs device.
+But, why don't you try it... I could be wrong XD
 
 ## Download
 Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMENDED]\
@@ -13,15 +13,16 @@ OR\
 Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (REQUIRE ROOT OR ADB)
 
 ## Setup
-1. Enter this command (install proot-distro/ubuntu)
+Note : All commands are executed inside Termux
+1. Run this command to install proot-distro/ubuntu
 ```bash
 pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu
 ```
-2. Login or enter Ubuntu mode with command
+2. Run this command to login or enter Ubuntu mode 
 ```bash
 proot-distro login ubuntu
 ```
-3. Now enter this command to install Mongodb
+3. Run this command to get Mongodb
 ```bash
 apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal universe" > /etc/apt/sources.list && apt update && apt install sudo
 ```
@@ -31,24 +32,27 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 ## Install
 ### Mongodb
+Note : All commands are executed inside Termux
 Install mongodb If you're done with [setup](https://github.com/Score-Inc/GCAndroid#setup).
-Copy this and paste to Termux
+Run this command to install mongodb
 ```bash
 sudo apt-get update -y && sudo apt-get install mongodb curl -y
 ```
-After mongodb done installing, run it by copy and paste it to Termux
+Run this command to start mongodb aftet the installation is complete
 ```bash
 sudo service mongodb start
 ```
-To stop mongodb, copy and paste it to Termux
+Run this command to stop mongodb 
 ```bash
-pkill mongo && sudo service mongodb stop
+pkill mongo && sudo service ```bash
+apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal universmongodb stop
 ```
 
 ### Grasscutter
 GC installation procedure has been moved to [Script](https://github.com/Score-Inc/GCAndroid#script)
 
 ### Script
+Note : All commands are executed inside Termux.
 Copy this and paste to Termux
 [ONLY ONE TIME]
 ```bash
@@ -63,7 +67,7 @@ gcandroid
 To edit mongodb database, use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
 If you don't have money to buy for the app, you can search for other apk or search for crack App that exist in Internet...
 
-Make sure mongodb is running. To check its status copy and paste this to Termux
+Start mongodb
 ```bash
 sudo service mongodb start
 ```
