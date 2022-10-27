@@ -6,7 +6,7 @@
 
 Project is free to use. If you bought it from someone, please refund\
 When I see someone selling GCAndroid, then I will close the source code\
-Open source code will be available for [Team](https://github.com/Score-Inc)
+Open source code will then only be available for whoever affiliated with [TheScore Inc](https://github.com/Score-Inc)
 
 # About
 
