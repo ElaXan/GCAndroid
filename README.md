@@ -6,7 +6,7 @@
 
 Project is free to use. If you bought it from someone, please refund\
 When I see someone selling GCAndroid, then I will close the source code\
-Open source code will then only be available for whoever affiliated with [TheScore Inc](https://github.com/Score-Inc)
+Open source code will only be available for whoever affiliated with [Score Inc](https://github.com/Score-Inc)
 
 # About
 
@@ -67,13 +67,10 @@ gcandroid
 
 ## Edit Mongodb Database
 
-
-Note : All commands are executed inside Termux
-
 To edit mongodb database, use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
 If you don't have money to buy for the app, you can search for other apk or search for crack App that exist in Internet...
 
-To edit mongodb database, make sure the service has started.
+make sure the service has started.
 To start mongodb, run this command
 
 ```bash
@@ -96,15 +93,12 @@ Don't change anything unless you change for the Port Mongodb. and then save it
 
 Termux is required for this or make your own Private DNS to redirect to localhost\
 And dont ask me, idk\
-
 You can play without Private DNS or Termux, but it need Root/SuperUser permission\
 And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
-
 
 ### Termux/mitmproxy
 
 
 You can use [my script](https://github.com/Score-Inc/AnimeGamePatch)\
 Select Menu on mitmproxy by running command `zex 4`\
-
 <img src="img/termux.png" width="350"/><br />
