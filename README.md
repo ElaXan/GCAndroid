@@ -1,4 +1,6 @@
-
+<p align="center">
+    <img src="gif/20221026_150902.gif" alt="gif animated" width="450" height="100">
+</p>
 # GCAndroid
 
 Project is free to use. If you bought it from someone, please refund\
