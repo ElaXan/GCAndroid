@@ -1,6 +1,4 @@
-<p align="center">
-    <img src="gif/20221026_150902.gif" alt="gif animated" width="450" height="100">
-</p>
+
 
 # GCAndroid
 
