@@ -98,7 +98,6 @@ And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 ### Termux/mitmproxy
 
-
 You can use [my script](https://github.com/Score-Inc/AnimeGamePatch)\
 Select Menu on mitmproxy by running command `zex 4`\
 <img src="img/termux.png" width="350"/><br />
