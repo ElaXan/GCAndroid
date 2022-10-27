@@ -1,3 +1,6 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 reset_configjson() {
     if [ ! -d "$HOME/Grasscutter" ]; then
         echo "${RC}Error${WC} : $HOME/Grasscutter not found"
@@ -20,6 +23,7 @@ reset_configjson() {
     clear
     credit_hah
     echo "${YC}Are you sure want to reset config.json?"
+    echo
     read -p "${WC}Enter input (y/N) : ${CCB}" reset_configjson_input
     echo -n "${WC}"
     case $reset_configjson_input in

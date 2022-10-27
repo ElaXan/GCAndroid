@@ -1,5 +1,9 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 installPlugin_Download() {
     credit_hah
+    line5 "Install Plugin Download"
     echo "${YC}Enter b/B for back${WC}"
     echo
     echo -n "${GC}Enter link Download .jar : ${WC}"
@@ -78,10 +82,12 @@ installPlugin_Download() {
 
 installPlugin_from_directory() {
     credit_hah
+    line5 "Install Plugin Directory"
     echo "1. ${CCB}Using dialog command${WC}"
     echo "2. ${CCB}Manual Typing${WC}"
     echo "3. ${CCB}Help for Dialog command${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r installPlugin_from_directory_input
     case $installPlugin_from_directory_input in
@@ -121,11 +127,14 @@ installPlugin_from_directory_process() {
         # echo "$installPlugin_from_directory_Input_File"
         # exit
         credit_hah
+        line5 "Install Plugin Directory"
     elif [[ $installPlugin_from_directory_Input == "2" ]]; then
         credit_hah
+        line5 "Install Plugin Directory"
         echo "${YC}Enter b/B for back${WC}"
         echo
         echo "${CCB}Please enter where .jar plugin${WC}"
+        echo
         echo -n "${GC}Path : ${WC}"
         read -r installPlugin_from_directory_Input_File
     else
@@ -184,6 +193,7 @@ installPlugin_from_directory_process() {
 installPlugin_Compile() {
     if ! command -v mvn &>/dev/null; then
         credit_hah
+        line10 "Installing Program maven"
         run_Program() {
             sudo apt install maven &>$HOME/zerr.log
             errCode=$?
@@ -195,6 +205,7 @@ installPlugin_Compile() {
     fi
     if ! command -v git &>/dev/null; then
         credit_hah
+        line10 "Installing Program git${WC}"
         run_Program() {
             sudo apt install git &>$HOME/zerr.log
             errCode=$?
@@ -205,9 +216,10 @@ installPlugin_Compile() {
         spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
     fi
     credit_hah
+    line5 "Install Plugin Clone Repo"
     echo "${YC}Enter b/B for back!${WC}"
     echo
-    echo "${CCB}Enter link Githuh Repo for Clone!${WC}"
+    echo "${CCB}Enter link Github Repo for Clone!${WC}"
     echo -n "Link : "
     read -r installPlugin_Compile_Link
     if [[ $installPlugin_Compile_Link == "" ]]; then
@@ -227,6 +239,7 @@ installPlugin_Compile() {
         mkdir $folderRepo
     fi
     credit_hah
+    line10 "Compiling"
     cd $folderRepo
     run_Program() {
         git clone $installPlugin_Compile_Link &>$HOME/zerr.log
@@ -283,16 +296,18 @@ installPlugin_Compile() {
 
 installPlugin() {
     credit_hah
+    line10 "Install Plugin"
     if ! [ -d "$HOME/Grasscutter" ]; then
-        echo "${RC}$HOME/Grasscutter is not found!${WC}"
+        echo "${RC}Folder Grasscutter in $HOME/Grasscutter is not found!${WC}"
         echo
-        read -p "Press enter for back to Menu!"
-        main_menu
+        read -p "Press enter for back to Menu Grasscutter Tools"
+        Grasscutter_Tools
     fi
     echo "1. ${CCB}Download plugin and Install${WC}"
     echo "2. ${CCB}Install Plugin from local directory${WC}"
     echo "3. ${CCB}Clone Github Repo, Compile and Install${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r installPlugin_Input
     case $installPlugin_Input in

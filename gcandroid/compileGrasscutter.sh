@@ -1,3 +1,6 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 Compile_Grasscutter() {
     Grasscutter_Folder=$HOME/Grasscutter
     if [ ! -d "$Grasscutter_Folder" ]; then
@@ -10,7 +13,7 @@ Compile_Grasscutter() {
     clear
     credit_hah
     echo "${GC}${space}Compile .jar [PLEASE WAIT]${WC}"
-    echo "${WC}${line}${WC}"
+    echo "${line}"
     cd $HOME/Grasscutter || exit 1
     if [ -f "grasscutter.jar" ]; then
         rm grasscutter.jar

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 sudo apt update
 isThisAndroid=$(uname -o)
 if [[ $isThisAndroid = "Android" ]]; then

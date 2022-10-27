@@ -1,3 +1,6 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 Install_Grasscutter_process() {
     if ! command -v unzip &>/dev/null; then
         echo "${GC}Installing unzip command...${WC}"
@@ -8,6 +11,7 @@ Install_Grasscutter_process() {
         sudo apt install git -y &>/dev/null
     fi
     credit_hah
+    line1 "Install Grasscutter Version Select"
     cd $HOME || exit 1
     if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
         echo "${GC}Choose Version...${WC}"

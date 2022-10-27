@@ -1,3 +1,6 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 GoTouchGrass() {
     credit_hah
     if ! command -v mongo &>/dev/null; then

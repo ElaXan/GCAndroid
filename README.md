@@ -11,6 +11,7 @@ Open source code will then only be available for whoever affiliated with [TheSco
 # About
 
 What are the benefit can i get by hosting a localhost using GCAndroid?
+
 * Lower ping
 * Access to edit server code (Banner, Event, Abyss, plugin, etc)
 * And much more.
@@ -21,6 +22,7 @@ GCAndroid will require [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev
 Running this may burdens your phone depending on the device you're using,\
 so it's not recommended to run this on low specs device.\
 But, why don't you try it... I could be wrong XD
+
 
 ## Download
 
@@ -41,6 +43,7 @@ pkg update -y && pkg install proot-distro -y && proot-distro install ubuntu
 proot-distro login ubuntu
 ```
 3. To install Mongodb, run this command
+
 ```bash
 apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restricted\ndeb http://ports.ubuntu.com/ubuntu-ports/ focal universe" > /etc/apt/sources.list && apt update && apt install sudo
 ```
@@ -51,16 +54,19 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 ### Script
 
+
 To download GCAndroid, run this command (One time only)
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/main/install.sh)
 ```
 * To run it for the next time, use this command instead
+
 ```bash
 gcandroid
 ```
 
 ## Edit Mongodb Database
+
 
 Note : All commands are executed inside Termux
 
@@ -69,6 +75,7 @@ If you don't have money to buy for the app, you can search for other apk or sear
 
 To edit mongodb database, make sure the service has started.
 To start mongodb, run this command
+
 ```bash
 sudo service mongodb start
 ```
@@ -89,12 +96,15 @@ Don't change anything unless you change for the Port Mongodb. and then save it
 
 Termux is required for this or make your own Private DNS to redirect to localhost\
 And dont ask me, idk\
+
 You can play without Private DNS or Termux, but it need Root/SuperUser permission\
 And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 
 ### Termux/mitmproxy
 
+
 You can use [my script](https://github.com/Score-Inc/AnimeGamePatch)\
 Select Menu on mitmproxy by running command `zex 4`\
+
 <img src="img/termux.png" width="350"/><br />
