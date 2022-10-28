@@ -54,17 +54,6 @@ bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/main/instal
 gcandroid
 ```
 
-### Script
-Copy this command and paste it into Termux:
-[ONLY ONE TIME]
-```bash
-bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/main/install.sh)
-```
-* If you want use that again just enter this command:
-```bash
-gcandroid
-```
-
 ## Edit Mongodb Database
 If you want to edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
 If you don't have money to buy the app, you can search for other apks or search for the cracked version of the app that exists in the Internet...
