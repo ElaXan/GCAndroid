@@ -34,21 +34,23 @@ Install_Grasscutter_process() {
         esac
     elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
         echo "${GC}Choose Version...${WC}"
-        echo "1. ${CCB}3.1${WC}"
-        echo "2. ${CCB}3.0${WC}"
-        echo "3. ${CCB}2.8${WC}"
-        echo "4. ${CCB}2.7${WC}"
-        echo "5. ${CCB}2.6${WC}"
+        echo "1. ${CCB}3.2${WC}"
+        echo "2. ${CCB}3.1${WC}"
+        echo "3. ${CCB}3.0${WC}"
+        echo "4. ${CCB}2.8${WC}"
+        echo "5. ${CCB}2.7${WC}"
+        echo "6. ${CCB}2.6${WC}"
         echo "0. ${RC}Back/Cancel${WC}"
         echo
         echo -n "Enter input : ${CCB}"
         read Install_Grasscutter_process_input
         case $Install_Grasscutter_process_input in
-        "1") Install_Grasscutter_Resources_Version="3.1" ;;
-        "2") Install_Grasscutter_Resources_Version="3.0" ;;
-        "3") Install_Grasscutter_Resources_Version="2.8" ;;
-        "4") Install_Grasscutter_Resources_Version="2.7" ;;
-        "5") Install_Grasscutter_Resources_Version="2.6" ;;
+        "1") Install_Grasscutter_Resources_Version="3.2" ;;
+        "2") Install_Grasscutter_Resources_Version="3.1" ;;
+        "3") Install_Grasscutter_Resources_Version="3.0" ;;
+        "4") Install_Grasscutter_Resources_Version="2.8" ;;
+        "5") Install_Grasscutter_Resources_Version="2.7" ;;
+        "6") Install_Grasscutter_Resources_Version="2.6" ;;
         "0") main_menu ;;
         *)
             echo "${RC}Wrong input!${WC}"
@@ -129,7 +131,13 @@ Install_Grasscutter_process() {
             }
         fi
     elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
-        if [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
+        if [[ $Install_Grasscutter_Resources_Version = "3.2" ]]; then
+            run_Program() {
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.2/GrasscutterResources-3.2.zip -O zResources.zip &>$HOME/zerr.log
+                errCode=$?
+                log "$errCode"
+            }
+        elif [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
             run_Program() {
                 wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip -O zResources.zip &>$HOME/zerr.log
                 errCode=$?
