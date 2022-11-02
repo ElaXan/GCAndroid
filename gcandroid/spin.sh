@@ -1,3 +1,8 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
+# Source Code from StackOverflow
+# And the code already modified by me, aka @ElaXan on GitHub
 spin() {
     # Spin var
     spin[0]="-"
@@ -13,7 +18,6 @@ spin() {
             sleep 0.1
             trap '' INT
         done
-        # Adding checklist or "✓" for more good by me XD
         if ! (ps "$pid" &>/dev/null); then
             errCode=$(cat $HOME/z.log | grep "$catLogs_code")
             errOutput=$(cat $HOME/zerr.log)

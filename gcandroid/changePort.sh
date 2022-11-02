@@ -1,5 +1,9 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 changePort() {
     credit_hah
+    line10 "Change Port"
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : $configpath not found!"
         echo

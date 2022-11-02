@@ -1,14 +1,7 @@
 #!/bin/bash
 
-# ElaXan/GCAndroid is licensed under the
+# Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
-
-# Permissions of this strong copyleft license are conditioned
-# on making available complete source code of licensed works
-# and modifications, which include larger works using a licensed work,
-# under the same license.
-# Copyright and license notices must be preserved.
-# Contributors provide an express grant of patent rights.
 
 GC="$(printf '\033[1;32m')"
 RC="$(printf '\033[1;31m')"
@@ -16,8 +9,6 @@ YC="$(printf '\033[1;33m')"
 CCB="$(printf '\033[1;36m')"
 CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
-line="====================================="
-space="     "
 
 isThisLinux=$(uname -o)
 if [ $isThisLinux = Android ]; then
@@ -84,6 +75,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/descriptionMenu.sh" ]; then
+    source $GCAndroid/descriptionMenu.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/descriptionMenu.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
@@ -94,19 +92,19 @@ fi
 
 credit_hah() {
     clear
-    echo "====================================="
-    echo "${GC}       Script made by ElaXan${WC}"
-    echo "====================================="
-    echo -e "$note_credit"
-    echo "${CCU}https://github.com/ElaXan/GCAndroid${WC}"
-    echo "====================================="
+    echo $line
+    line8 "Script made by ElaXan"
+    echo "$note_credit"
+    echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
+    echo $line
     echo "${GC}Contact me at chat@elaxan.com${WC}"
-    echo "====================================="
+    echo $line
 }
 
 menu_config_game() {
     menu_config_back="game"
     credit_hah
+    line10 "Menu Config Game"
     menu_detect_false_true "game"
     echo "1. [${TRenableShopItems}] enableShopItems"
     echo "2. [${TRenergyUsage}] energyUsage"
@@ -116,6 +114,7 @@ menu_config_game() {
     echo "6. [${TRwatchGachaConfig}] watchGachaConfig"
     echo "7. ${CCB}joinOptions${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -133,10 +132,12 @@ menu_config_game() {
 menu_config_game_joinOptions() {
     menu_config_back="joinOptions"
     credit_hah
+    line5 "Menu Config Game Join Option"
     menu_detect_false_true "joinOptions"
     echo "1. ${CCB}welcomeMessage${WC}"
     echo "2. ${CCB}welcomeMail${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -178,6 +179,7 @@ menu_config_game_joinOptions_welcomeMail() {
     echo "2. ${CCB}content${WC}"
     echo "3. ${CCB}sender${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter Input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -198,11 +200,13 @@ menu_config_account_defaultPermissions() {
 menu_config_account() {
     menu_config_back="account"
     credit_hah
+    line8 "Menu Config Account"
     menu_detect_false_true "account"
     echo "1. [${TRautoCreate}] autoCreate"
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
     echo "3. [${TRmaxPlayer}] maxPlayer"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
@@ -237,11 +241,13 @@ menu_config() {
         return
     fi
     credit_hah
+    line10 "Edit config.json"
     echo "1. ${CCB}Account${WC}"
     echo "2. ${CCB}Game${WC}"
     echo "3. ${CCB}Edit Manual${WC}"
     echo "4. ${CCB}Change Port${WC}"
     echo "0. ${RC}Back${WC}"
+    echo
     echo -n "Enter input : "
     read menu_config_input
     case $menu_config_input in
@@ -263,10 +269,13 @@ installMongodb() {
     if command -v mongo &>/dev/null; then
         echo "${RC}Mongodb already installed"
         echo "${YC}Do you want reinstall?${WC}"
+        echo
         echo -n "Enter input (y/N) : "
         read mongodbAsk
         case $mongodbAsk in
         "y" | "Y")
+            credit_hah
+            line10 "Mongodb Install"
             sudo apt reinstall mongodb
             main_menu
             ;;
@@ -298,7 +307,7 @@ installMongodb() {
 
 Install_Grasscutter_option() {
     credit_hah
-    echo "${GC}Please choose this for download Resources${WC}"
+    line0 "Please choose this for download Resources"
     echo "1. ${YC}tamilpp25 Resources${WC}"
     echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
     echo "0. ${RC}Back/Cancel${WC}"
@@ -330,6 +339,7 @@ Install_Grasscutter() {
         echo "${RC}Grasscutter already installed${WC}"
         echo
         echo "${YC}Do you want reinstall?${WC}"
+        echo
         echo -n "Enter input (y/N) : ${CCB}"
         read Install_Grasscutter_input
         echo -n "${WC}"
@@ -349,8 +359,7 @@ Install_Grasscutter() {
 
 Grasscutter_Menu() {
     credit_hah
-    echo "${GC}${space}Grascutter Menu${WC}"
-    echo "${WC}${line}${WC}"
+    line11 "Grascutter Menu"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
     echo "0. ${RC}Back${WC}"
@@ -369,10 +378,11 @@ Grasscutter_Menu() {
     esac
 }
 
+
+
 Grasscutter_Tools() {
     credit_hah
-    echo "${GC}${space}Grasscutter Tools${WC}"
-    echo "${WC}${line}${WC}"
+    line10 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
@@ -395,8 +405,7 @@ Grasscutter_Tools() {
 
 InstallMenu() {
     credit_hah
-    echo "${GC}${space}${space}Install Menu${WC}"
-    echo "${WC}${line}${WC}"
+    line12 "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
     echo "0. ${RC}Back${WC}"
     echo
@@ -415,13 +424,13 @@ InstallMenu() {
 
 main_menu() {
     credit_hah
-    echo "${GC}${space}${space}  Main Menu${WC}"
-    echo "${WC}${line}${WC}"
+    line14 "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
     echo "0. ${RC}Exit${WC}"
+    echo
     echo -n "Enter input : "
     read -r inputmain
     case $inputmain in
@@ -443,7 +452,7 @@ main_menu() {
 
 newVersionScript=""
 source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
-versionScript="2.4.5"
+versionScript="2.5"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"

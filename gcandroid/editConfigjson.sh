@@ -1,3 +1,6 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 editCfgFunc() {
     enterInputEditGrass=$editConfJsonInp
     if [ $1 = "game" ]; then
@@ -85,6 +88,7 @@ editCfgFunc() {
             EDfuncedit="\"maxPlayer\":"
             EDconfjson="$maxPlayer"
             echo -n "Enter amount maxPlayer : "
+            echo
             read -r editCfgFunc_input
             if [ $editCfgFunc_input = $maxPlayer ]; then
                 echo -e "${RC}Failed edit\n${YC}Reason${WC} : Same amount"
@@ -100,8 +104,8 @@ editCfgFunc() {
     if [ $1 = "joinOptions" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions"
-            clear
             credit_hah
+            line10 "WelcomeMessage Edit"
             echo "${GC}Current welcomeMessage :${WC}"
             echo "${CCB}$welcomeMessage${WC}"
             echo
@@ -137,8 +141,8 @@ editCfgFunc() {
     if [ $1 = "joinOptions_welcomeMail" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions_welcomeMail"
-            clear
             credit_hah
+            line10 "welcomeMail Edit"
             echo "${GC}Current title :${CCB}"
             echo "$welcomeMail_title"
             echo
@@ -174,6 +178,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
+            echo "${GC}${space2}Content Edit${WC}"
+            echo "${line}"
             echo "${GC}Current content :${CCB}"
             echo "$welcomeMail_content"
             echo
@@ -209,6 +215,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
+            echo "${GC}${space2}Sender Edit${WC}"
+            echo "${line}"
             echo "${GC}Current sender :${CCB}"
             echo "$welcomeMail_sender"
             echo

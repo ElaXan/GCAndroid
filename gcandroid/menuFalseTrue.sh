@@ -1,3 +1,6 @@
+# Score-Inc/GCAndroid is licensed under the
+# GNU General Public License v3.0
+
 menu_detect_false_true() {
     if [ $1 = "game" ]; then
         enableShopItems=$(cat "$configpath" | grep "\"enableShopItems\":" | sed -e "s/.*\"enableShopItems\": //g" -e "s/,//g")

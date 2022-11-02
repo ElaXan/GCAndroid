@@ -1,6 +1,6 @@
-newVersionScript="2.4.5"
+newVersionScript="2.5"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-noteUpdate="1. Add Remove plugins!"
+noteUpdate="1. Change UI\n2. Add download 3.2 resources (tamilpp)\n3. Add download 3.2 resources (Yuki)"
 update() {
     if [ -f "/bin/gcandroid" ]; then
         sudo rm /bin/gcandroid
