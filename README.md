@@ -79,6 +79,19 @@ And dont ask me idk\
 You can play without Private DNS or Termux, but it needs Root/SuperUser permissions\
 And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
+## YuukiPS V1
+Click on "Localhost"\
+<img src="img/YuukiPS_V1.png" width="500" alt="Click on Localhost"><br />
+If you change a port for Grasscutter, then enter the Custom Port\
+<img src="img/YuukiPS_V1_1.png" alt="U change port for Grasscutter? then change it for Custom Port!" width="500">\
+After that click on "Enter Localhost"\
+<img src="img/YuukiPS_V1_2.png" altf="Click on ENTER LOCALHOST" width="500">
+
+## YuukiPS V2
+You cant play localhost on V2.\
+Try to mod the module, and patch it.\
+Dont ask me how
+
 ### Termux/mitmproxy
 You can use [my script](https://github.com/Score-Inc/AnimeGamePatch)\
 Select Menu on mitmproxy by running command `zex 4`\

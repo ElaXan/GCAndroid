@@ -19,8 +19,8 @@ spin() {
             trap '' INT
         done
         if ! (ps "$pid" &>/dev/null); then
-            errCode=$(cat $HOME/z.log | grep "$catLogs_code")
-            errOutput=$(cat $HOME/zerr.log)
+            errCode=$(cat $HOME/z.log | grep "$catLogs_code") 2> /dev/null
+            errOutput=$(cat $HOME/zerr.log) 2> /dev/null
             if [ $errCode = $2 ]; then
                 echo -ne "\r[${GC}✓${WC}"
                 echo
