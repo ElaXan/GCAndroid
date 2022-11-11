@@ -19,21 +19,22 @@ spin() {
             trap '' INT
         done
         if ! (ps "$pid" &>/dev/null); then
-            errCode=$(cat $HOME/z.log | grep "$catLogs_code") 2> /dev/null
-            errOutput=$(cat $HOME/zerr.log) 2> /dev/null
-            if [ $errCode = $2 ]; then
+            errCode=$(cat $HOME/z.log 2>/dev/null | grep "$catLogs_code")
+            errOutput=$(cat $HOME/zerr.log 2>/dev/null)
+            if [[ $errCode == $2 ]]; then
                 echo -ne "\r[${GC}✓${WC}"
                 echo
             else
                 trap - INT
-                echo -ne "\r[${RC}X${WC}"
+                echo -ne "\r[${RC}X${WC}] $1"
                 echo -e "\n${RC}Failed output${WC}"
                 echo
                 echo "Reason :"
                 echo "$errOutput"
                 echo
-                rm $HOME/zerr.log
-                rm $HOME/z.log
+                rm $HOME/zerr.log 2>/dev/null | echo "zerr.log : Log not found/script force stopped by User!"
+                rm $HOME/z.log 2>/dev/null | echo "z.log : Log not found/script force stopped by User!"
+                echo
                 read -p "Press enter for back to $3!"
                 $4
             fi
@@ -46,6 +47,6 @@ spin() {
 
 # Get Error Code
 log() {
-    echo -n "$1" >$HOME/z.log
-    catLogs_code=$(cat "$HOME"/z.log | grep "$1")
+    echo -n "$1" >$HOME/z.log 2> /dev/null
+    catLogs_code=$(cat "$HOME"/z.log 2>/dev/null | grep "$1")
 }
