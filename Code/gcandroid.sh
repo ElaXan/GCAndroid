@@ -105,6 +105,7 @@ credit_hah() {
 menu_config_game() {
     menu_config_back="game"
     credit_hah
+    # Done Center
     line10 "Menu Config Game"
     menu_detect_false_true "game"
     echo "1. [${TRenableShopItems}] enableShopItems"
@@ -133,7 +134,8 @@ menu_config_game() {
 menu_config_game_joinOptions() {
     menu_config_back="joinOptions"
     credit_hah
-    line5 "Menu Config Game Join Option"
+    # Done Center
+    line4 "Menu Config Game Join Option"
     menu_detect_false_true "joinOptions"
     echo "1. ${CCB}welcomeMessage${WC}"
     echo "2. ${CCB}welcomeMail${WC}"
@@ -201,7 +203,8 @@ menu_config_account_defaultPermissions() {
 menu_config_account() {
     menu_config_back="account"
     credit_hah
-    line8 "Menu Config Account"
+    # Done Center
+    line9 "Menu Config Account"
     menu_detect_false_true "account"
     echo "1. [${TRautoCreate}] autoCreate"
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
@@ -383,7 +386,8 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
-    line11 "Grasscutter Tools"
+    # Done Center
+    line10 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
@@ -406,6 +410,7 @@ Grasscutter_Tools() {
 
 InstallMenu() {
     credit_hah
+    # Done Center
     line12 "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
     echo "0. ${RC}Back${WC}"
@@ -425,6 +430,7 @@ InstallMenu() {
 
 main_menu() {
     credit_hah
+    # Done Center
     line14 "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"

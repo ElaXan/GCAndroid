@@ -105,7 +105,8 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions"
             credit_hah
-            line10 "WelcomeMessage Edit"
+            # Done Center
+            line9 "WelcomeMessage Edit"
             echo "${GC}Current welcomeMessage :${WC}"
             echo "${CCB}$welcomeMessage${WC}"
             echo
@@ -142,6 +143,7 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions_welcomeMail"
             credit_hah
+            # Done Center
             line10 "welcomeMail Edit"
             echo "${GC}Current title :${CCB}"
             echo "$welcomeMail_title"
@@ -178,8 +180,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
-            echo "${GC}${space2}Content Edit${WC}"
-            echo "${line}"
+            # Done Center
+            line12 "${GC}Content Edit${GC}"
             echo "${GC}Current content :${CCB}"
             echo "$welcomeMail_content"
             echo
@@ -215,8 +217,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
-            echo "${GC}${space2}Sender Edit${WC}"
-            echo "${line}"
+            # Done Center
+            line13 "${GC}Sender Edit${WC}"
             echo "${GC}Current sender :${CCB}"
             echo "$welcomeMail_sender"
             echo
