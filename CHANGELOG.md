@@ -7,6 +7,7 @@
 3. Make it center text
 4. Made spinbar clean error if log not found
 5. Add Get GM Handbook to /sdcard
+6. Add edit nickName in Edit config.json
 
 ## 2.5
 
