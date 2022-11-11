@@ -122,6 +122,7 @@ menu_config_game() {
     echo "5. [${TRstaminaUsage}] staminaUsage"
     echo "6. [${TRwatchGachaConfig}] watchGachaConfig"
     echo "7. ${CCB}joinOptions${WC}"
+    echo "8. ${CCB}serverAccount${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -129,12 +130,32 @@ menu_config_game() {
     case $editConfJsonInp in
     "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "game" ;;
     "7") menu_config_game_joinOptions ;;
+    "8") menu_config_game_serverAccount ;;
     "0") menu_config ;;
     *)
         echo "${RC}Wrong Input!${WC}"
         sleep 1s
         menu_config_game
         ;;
+    esac
+}
+
+menu_config_game_serverAccount() {
+    menu_config_back="serverAccount"
+    credit_hah
+    line3 "Menu Config Game serverAccount"
+    echo "1. ${GC}nickName${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r editConfJsonInp
+    case $editConfJsonInp in
+    "1") editCfgFunc "serverAccount" ;;
+    "0") menu_config_game ;;
+    * )
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        menu_config_game_serverAccount
     esac
 }
 

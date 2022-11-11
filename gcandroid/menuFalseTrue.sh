@@ -9,6 +9,7 @@ menu_detect_false_true() {
         enableConsole=$(cat "$configpath" | grep "\"enableConsole\":" | sed -e "s/.*\"enableConsole\": //g" -e "s/,//g")
         staminaUsage=$(cat "$configpath" | grep "\"staminaUsage\":" | sed -e "s/.*\"staminaUsage\": //g" -e "s/,//g")
         watchGachaConfig=$(cat "$configpath" | grep "\"watchGachaConfig\":" | sed -e "s/.*\"watchGachaConfig\": //g" -e "s/,//g")
+        nickName=$(cat "$configpath" | grep "\"nickName\"" | sed -e "s/.*\"nickName\": \"//g" -e "s/\",//g")
     fi
 
     if [ $1 = "account" ]; then

@@ -101,6 +101,32 @@ editCfgFunc() {
         fi
     fi
 
+    if [ $1 = "serverAccount" ]; then
+        if [ $enterInputEditGrass = "1" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line12 "nickName Edit"
+            echo "${GC}Current nickName :${WC}"
+            echo "${CCB}$nickName${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom nickname : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $nickName ]]; then
+                echo "${RC}Error${WC} : Same nickName"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"nickName\":"
+            EDconfjson="\"$nickName\""
+            EDconfjsonTo="\"$editCfgFunc_input\""
+        fi
+    fi
+
     if [ $1 = "joinOptions" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions"
@@ -256,5 +282,7 @@ editCfgFunc() {
         editCfgFunc "joinOptions"
     elif [ $menu_config_back = "joinOptions_welcomeMail" ]; then
         editCfgFunc "joinOptions_welcomeMail"
+    elif [ $menu_config_back = "serverAccount" ]; then
+        editCfgFunc "serverAccount"
     fi
 }
