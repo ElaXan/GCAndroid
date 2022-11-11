@@ -206,8 +206,11 @@ Install_Grasscutter_process() {
     echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
     echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
     echo "====================================="
-    echo "${GC}Edit Port...${WC}"
+    echo "${GC}Editing config.json...${WC}"
     sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
+    sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json
+    sed -i "s/\"nickName\": \".*\"/\"nickName\": \"ElaXan\"/g" config.json
+    sed -i "s/\"signature\": \".*\"/\"signature\": \"Welcome to GCAndroid, run with Grasscutter!\"/g" config.json
     sleep 1s
     echo "${GC}Done Set All"
     echo "Address : 127.0.0.1"
