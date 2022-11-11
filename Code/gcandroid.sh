@@ -82,6 +82,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/generateHandbook.sh" ]; then
+    source $GCAndroid/generateHandbook.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/generateHandbook.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
@@ -391,6 +398,7 @@ Grasscutter_Tools() {
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
+    echo "4. ${CCB}Get GM Handbook${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -399,6 +407,7 @@ Grasscutter_Tools() {
     "1") menu_config ;;
     "2") installPlugin ;;
     "3") removePlugin ;;
+    "4") generateHandbook ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
