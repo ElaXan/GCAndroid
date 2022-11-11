@@ -92,6 +92,7 @@ fi
 
 credit_hah() {
     clear
+    echo -n "${WC}"
     echo $line
     line8 "Script made by ElaXan"
     echo "$note_credit"
@@ -382,7 +383,7 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
-    line10 "Grasscutter Tools"
+    line11 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
