@@ -438,17 +438,62 @@ Grasscutter_Tools() {
     esac
 }
 
+installJavaJDK17() {
+    credit_hah
+    line7 "Installing Java JDK 17"
+    if (command -v java &>/dev/null); then
+        echo "${YC}You already installed Java"
+        echo "${YC}Want to reinstall?${WC}"
+        echo
+        echo -n "Enter input (y/N) : "
+        read -r installJavaJDK17_input
+        if [[ $installJavaJDK17_input = "n" ]] || [[ $installJavaJDK17_input = "N" ]]; then
+            InstallMenu
+        elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
+            credit_hah
+            line7 "Installing Java JDK 17"
+            run_Program() {
+                sudo apt reinstall openjdk-17-jdk -y &>$HOME/zerr.log
+                errCode=$?
+                log "$errCode"
+            }
+            run_Program &
+            pid=$!
+            spin "${GC}Install Java JDK 17${WC}" "0" "Install Menu" "InstallMenu"
+        else
+            echo "${RC}Wrong Input!${WC}"
+            sleep 1s
+            installJavaJDK17
+        fi
+    else
+        run_Program() {
+            sudo apt install openjdk-17-jdk -y &>$HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
+        spin "${GC}Install Java JDK 17${WC}" "0" "Install Menu" "InstallMenu"
+    fi
+    echo
+    echo -n "Press enter for back to Install Menu!"
+    read -r
+    InstallMenu
+}
+
 InstallMenu() {
     credit_hah
     # Done Center
     line12 "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
+    echo "2. ${CCB}Install Java JDK 17${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read -r InstallMenu_input
     case $InstallMenu_input in
     "1") installMongodb ;;
+    "2") installJavaJDK17 ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong input!${WC}"
