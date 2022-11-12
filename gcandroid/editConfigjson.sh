@@ -129,7 +129,7 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "2" ]; then
             menu_detect_false_true "game"
             credit_hah
-            line12 "nameCardId"
+            line12 "nameCardId Edit"
             echo "${GC}Current nameCardId : ${WC}"
             echo "${CCB}$nameCardId${WC}"
             echo
@@ -147,6 +147,30 @@ editCfgFunc() {
             fi
             EDfuncedit="\"nameCardId\":"
             EDconfjson="$nameCardId"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "3" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line9 "adventureRank Edit"
+            echo "${GC}Current adventureRank : ${WC}"
+            echo "${CCB}$adventureRank${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom adventureRank : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $adventureRank ]]; then
+                echo "${RC}Error${WC} : Same adventureRank"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"adventureRank\":"
+            EDconfjson="$adventureRank"
             EDconfjsonTo="$editCfgFunc_input"
         fi
 
