@@ -126,6 +126,30 @@ editCfgFunc() {
             EDconfjsonTo="$editCfgFunc_input"
         fi
 
+        if [ $enterInputEditGrass = "2" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line12 "nameCardId"
+            echo "${GC}Current nameCardId : ${WC}"
+            echo "${CCB}$nameCardId${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom nameCardId : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $nameCardId ]]; then
+                echo "${RC}Error${WC} : Same nameCardId"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"nameCardId\":"
+            EDconfjson="$nameCardId"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
         if [ $enterInputEditGrass = "5" ]; then
             menu_detect_false_true "game"
             credit_hah

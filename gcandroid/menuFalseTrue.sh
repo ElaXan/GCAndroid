@@ -11,6 +11,7 @@ menu_detect_false_true() {
         watchGachaConfig=$(cat "$configpath" | grep "\"watchGachaConfig\":" | sed -e "s/.*\"watchGachaConfig\": //g" -e "s/,//g")
         nickName=$(cat "$configpath" | grep "\"nickName\"" | sed -e "s/.*\"nickName\": \"//g" -e "s/\",//g")
         avatarId=$(cat "$configpath" | grep "\"avatarId\":" | sed -e "s/.*\"avatarId\": //g" -e "s/,//g")
+        nameCardId=$(cat "$configpath" | grep "\"nameCardId\":" | sed -e "s/.*\"nameCardId\": //g" -e "s/,//g")
     fi
 
     if [ $1 = "account" ]; then
