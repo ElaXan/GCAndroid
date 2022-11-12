@@ -10,6 +10,7 @@ menu_detect_false_true() {
         staminaUsage=$(cat "$configpath" | grep "\"staminaUsage\":" | sed -e "s/.*\"staminaUsage\": //g" -e "s/,//g")
         watchGachaConfig=$(cat "$configpath" | grep "\"watchGachaConfig\":" | sed -e "s/.*\"watchGachaConfig\": //g" -e "s/,//g")
         nickName=$(cat "$configpath" | grep "\"nickName\"" | sed -e "s/.*\"nickName\": \"//g" -e "s/\",//g")
+        avatarId=$(cat "$configpath" | grep "\"avatarId\":" | sed -e "s/.*\"avatarId\": //g" -e "s/,//g")
     fi
 
     if [ $1 = "account" ]; then

@@ -105,6 +105,30 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "game"
             credit_hah
+            line12 "avatarId Edit"
+            echo "${GC}Current avatarId :${WC}"
+            echo "${CCB}$avatarId${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom avatarId : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $avatarId ]]; then
+                echo "${RC}Error${WC} : Same avatarId"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"avatarId\":"
+            EDconfjson="$avatarId"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "5" ]; then
+            menu_detect_false_true "game"
+            credit_hah
             line12 "nickName Edit"
             echo "${GC}Current nickName :${WC}"
             echo "${CCB}$nickName${WC}"

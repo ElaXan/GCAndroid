@@ -148,13 +148,17 @@ menu_config_game_serverAccount() {
     menu_config_back="serverAccount"
     credit_hah
     line3 "Menu Config Game serverAccount"
-    echo "1. ${GC}nickName${WC}"
+    echo "1. ${GC}avatarId${WC}"
+    echo "2. ${GC}nameCardId${WC}"
+    echo "3. ${GC}adventureRank${WC}"
+    echo "4. ${GC}worldLevel${WC}"
+    echo "5. ${GC}nickName${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read -r editConfJsonInp
     case $editConfJsonInp in
-    "1") editCfgFunc "serverAccount" ;;
+    "1" | "2" | "3" | "4" | "5") editCfgFunc "serverAccount" ;;
     "0") menu_config_game ;;
     * )
         echo "${RC}Wrong input!${WC}"
