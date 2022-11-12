@@ -8,6 +8,9 @@
 4. Made spinbar clean error if log not found
 5. Add Get GM Handbook to /sdcard
 6. Add edit nickName in Edit config.json
+7. Add Install Java JDK 17 in Install Menu
+8. Add option Installing Grasscutter
+9. Install wget if it not installed
 
 ## 2.5
 
