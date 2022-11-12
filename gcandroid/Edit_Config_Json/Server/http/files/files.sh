@@ -1,0 +1,19 @@
+edit_configjson_Server_http_files() {
+    credit_hah
+    line7 "Edit config.json [files]"
+    getConfigJson "server.http.files"
+    echo "1. [${GC}$server_http_files_indexFile${WC}] indexFile"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r edit_configjson_Server_http_files_input
+    case $edit_configjson_Server_http_files_input in
+    "1") edit_configjson_Server_http_files_indexFile ;;
+    "0") edit_configjson_Server_http ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 0.5s
+        edit_configjson_Server_http_files
+        ;;
+    esac
+}

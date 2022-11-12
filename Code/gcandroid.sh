@@ -169,7 +169,77 @@ fi
 if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh" ]; then
     source $GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh
 else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/useInRouting.sh"
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/useInRouting.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/keystore.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/encryption/keystore.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/keystore.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/keystorePassword.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/encryption/keystorePassword.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/keystorePassword.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/policies.sh" ]; then
+    source $GCAndroid//Edit_Config_Json/Server/http/policies/policies.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/policies.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cors/cors.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/policies/cors/cors.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cors/cors.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cors/enabled.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/policies/cors/enabled.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cors/enabled.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/cores.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/enbaled.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/enabled.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/files.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/files/files.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/files/files.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/indexFile.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/files/indexFile.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}Edit_Config_Json/Server/http/files/indexFile.sh not found!"
     exit 1
 fi
 
