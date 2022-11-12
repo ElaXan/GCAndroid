@@ -235,7 +235,7 @@ Install_Grasscutter_process() {
         rm resourcesGCAndroid.zip
     else
         echo "${GC}Skip extracting Resources${WC}"
-        mv resources.zip Grasscutter/
+        mv resourcesGCAndroid.zip Grasscutter/
     fi
     cd $HOME/Grasscutter || exit 1
     credit_hah

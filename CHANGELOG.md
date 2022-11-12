@@ -11,6 +11,7 @@
 7. Add Install Java JDK 17 in Install Menu
 8. Add option Installing Grasscutter
 9. Install wget if it not installed
+10. Support run grasscutter.jar with resources.zip
 
 ## 2.5
 
