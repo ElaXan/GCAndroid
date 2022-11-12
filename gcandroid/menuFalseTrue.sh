@@ -9,6 +9,12 @@ menu_detect_false_true() {
         enableConsole=$(cat "$configpath" | grep "\"enableConsole\":" | sed -e "s/.*\"enableConsole\": //g" -e "s/,//g")
         staminaUsage=$(cat "$configpath" | grep "\"staminaUsage\":" | sed -e "s/.*\"staminaUsage\": //g" -e "s/,//g")
         watchGachaConfig=$(cat "$configpath" | grep "\"watchGachaConfig\":" | sed -e "s/.*\"watchGachaConfig\": //g" -e "s/,//g")
+        nickName=$(cat "$configpath" | grep "\"nickName\"" | sed -e "s/.*\"nickName\": \"//g" -e "s/\",//g")
+        avatarId=$(cat "$configpath" | grep "\"avatarId\":" | sed -e "s/.*\"avatarId\": //g" -e "s/,//g")
+        nameCardId=$(cat "$configpath" | grep "\"nameCardId\":" | sed -e "s/.*\"nameCardId\": //g" -e "s/,//g")
+        adventureRank=$(cat "$configpath" | grep "\"adventureRank\"" | sed -e "s/.*\"adventureRank\": //g" -e "s/,//g")
+        worldLevel=$(cat "$configpath" | grep "\"worldLevel\"" | sed -e "s/.*\"worldLevel\": //g" -e "s/,//g")
+        signature=$(cat "$configpath" | grep "\"signature\":" | sed -e "s/.*\"signature\": //g" -e "s/\"//g")
     fi
 
     if [ $1 = "account" ]; then

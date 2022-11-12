@@ -22,5 +22,8 @@ GoTouchGrass() {
         sudo service mongodb start
         cd $HOME/Grasscutter
         java -jar $HOME/Grasscutter/grasscutter.jar
+        echo -n "Press enter for back to Main Menu!"
+        read -r
+        main_menu
     fi
 }

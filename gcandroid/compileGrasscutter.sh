@@ -10,6 +10,13 @@ Compile_Grasscutter() {
         menu_Grasscutter
         return
     fi
+    if [ ! -f "$Grasscutter_Folder/gradlew" ]; then
+        echo "${RC}Error${WC} : gradlew not found!"
+        echo
+        read -p "Press enter for back to Menu Grasscutter"
+        menu_Grasscutter
+        return
+    fi
     clear
     credit_hah
     echo "${GC}${space}Compile .jar [PLEASE WAIT]${WC}"

@@ -101,11 +101,158 @@ editCfgFunc() {
         fi
     fi
 
+    if [ $1 = "serverAccount" ]; then
+        if [ $enterInputEditGrass = "1" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line12 "avatarId Edit"
+            echo "${GC}Current avatarId :${WC}"
+            echo "${CCB}$avatarId${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom avatarId : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $avatarId ]]; then
+                echo "${RC}Error${WC} : Same avatarId"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"avatarId\":"
+            EDconfjson="$avatarId"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "2" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line11 "nameCardId Edit"
+            echo "${GC}Current nameCardId : ${WC}"
+            echo "${CCB}$nameCardId${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom nameCardId : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $nameCardId ]]; then
+                echo "${RC}Error${WC} : Same nameCardId"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"nameCardId\":"
+            EDconfjson="$nameCardId"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "3" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line9 "adventureRank Edit"
+            echo "${GC}Current adventureRank : ${WC}"
+            echo "${CCB}$adventureRank${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom adventureRank : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $adventureRank ]]; then
+                echo "${RC}Error${WC} : Same adventureRank"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"adventureRank\":"
+            EDconfjson="$adventureRank"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "4" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line11 "worldLevel Edit"
+            echo "${GC}Current worldLevel : ${WC}"
+            echo "${CCB}$worldLevel${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom worldLevel : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $worldLevel ]]; then
+                echo "${RC}Error${WC} : Same worldLevel"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"worldLevel\":"
+            EDconfjson="$worldLevel"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "5" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line12 "nickName Edit"
+            echo "${GC}Current nickName :${WC}"
+            echo "${CCB}$nickName${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom nickname : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $nickName ]]; then
+                echo "${RC}Error${WC} : Same nickName"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"nickName\":"
+            EDconfjson="\"$nickName\""
+            EDconfjsonTo="\"$editCfgFunc_input\""
+        fi
+
+        if [ $enterInputEditGrass = "6" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line11 "signature Edit"
+            echo "${GC}Current signature :${WC}"
+            echo "${CCB}$signature${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom signature : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $signature ]]; then
+                echo "${RC}Error${WC} : Same signature"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"signature\":"
+            EDconfjson="\"$signature\""
+            EDconfjsonTo="\"$editCfgFunc_input\""
+        fi
+    fi
+
     if [ $1 = "joinOptions" ]; then
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions"
             credit_hah
-            line10 "WelcomeMessage Edit"
+            # Done Center
+            line9 "WelcomeMessage Edit"
             echo "${GC}Current welcomeMessage :${WC}"
             echo "${CCB}$welcomeMessage${WC}"
             echo
@@ -142,6 +289,7 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "1" ]; then
             menu_detect_false_true "joinOptions_welcomeMail"
             credit_hah
+            # Done Center
             line10 "welcomeMail Edit"
             echo "${GC}Current title :${CCB}"
             echo "$welcomeMail_title"
@@ -178,8 +326,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
-            echo "${GC}${space2}Content Edit${WC}"
-            echo "${line}"
+            # Done Center
+            line12 "${GC}Content Edit${GC}"
             echo "${GC}Current content :${CCB}"
             echo "$welcomeMail_content"
             echo
@@ -215,8 +363,8 @@ editCfgFunc() {
             menu_detect_false_true "joinOptions_welcomeMail"
             clear
             credit_hah
-            echo "${GC}${space2}Sender Edit${WC}"
-            echo "${line}"
+            # Done Center
+            line13 "${GC}Sender Edit${WC}"
             echo "${GC}Current sender :${CCB}"
             echo "$welcomeMail_sender"
             echo
@@ -254,5 +402,7 @@ editCfgFunc() {
         editCfgFunc "joinOptions"
     elif [ $menu_config_back = "joinOptions_welcomeMail" ]; then
         editCfgFunc "joinOptions_welcomeMail"
+    elif [ $menu_config_back = "serverAccount" ]; then
+        editCfgFunc "serverAccount"
     fi
 }

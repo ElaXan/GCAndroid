@@ -82,6 +82,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/generateHandbook.sh" ]; then
+    source $GCAndroid/generateHandbook.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/generateHandbook.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
@@ -90,8 +97,13 @@ if ! command -v perl &>/dev/null; then
     sudo apt install perl
 fi
 
+if ! command -v wget &>/dev/null; then
+    sudo apt install wget -y
+fi
+
 credit_hah() {
     clear
+    echo -n "${WC}"
     echo $line
     line8 "Script made by ElaXan"
     echo "$note_credit"
@@ -104,6 +116,7 @@ credit_hah() {
 menu_config_game() {
     menu_config_back="game"
     credit_hah
+    # Done Center
     line10 "Menu Config Game"
     menu_detect_false_true "game"
     echo "1. [${TRenableShopItems}] enableShopItems"
@@ -113,6 +126,7 @@ menu_config_game() {
     echo "5. [${TRstaminaUsage}] staminaUsage"
     echo "6. [${TRwatchGachaConfig}] watchGachaConfig"
     echo "7. ${CCB}joinOptions${WC}"
+    echo "8. ${CCB}serverAccount${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -120,6 +134,7 @@ menu_config_game() {
     case $editConfJsonInp in
     "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "game" ;;
     "7") menu_config_game_joinOptions ;;
+    "8") menu_config_game_serverAccount ;;
     "0") menu_config ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -129,10 +144,35 @@ menu_config_game() {
     esac
 }
 
+menu_config_game_serverAccount() {
+    menu_config_back="serverAccount"
+    credit_hah
+    line3 "Menu Config Game serverAccount"
+    echo "1. ${GC}avatarId${WC}"
+    echo "2. ${GC}nameCardId${WC}"
+    echo "3. ${GC}adventureRank${WC}"
+    echo "4. ${GC}worldLevel${WC}"
+    echo "5. ${GC}nickName${WC}"
+    echo "6. ${GC}signature${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r editConfJsonInp
+    case $editConfJsonInp in
+    "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "serverAccount" ;;
+    "0") menu_config_game ;;
+    * )
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        menu_config_game_serverAccount
+    esac
+}
+
 menu_config_game_joinOptions() {
     menu_config_back="joinOptions"
     credit_hah
-    line5 "Menu Config Game Join Option"
+    # Done Center
+    line4 "Menu Config Game Join Option"
     menu_detect_false_true "joinOptions"
     echo "1. ${CCB}welcomeMessage${WC}"
     echo "2. ${CCB}welcomeMail${WC}"
@@ -200,7 +240,8 @@ menu_config_account_defaultPermissions() {
 menu_config_account() {
     menu_config_back="account"
     credit_hah
-    line8 "Menu Config Account"
+    # Done Center
+    line9 "Menu Config Account"
     menu_detect_false_true "account"
     echo "1. [${TRautoCreate}] autoCreate"
     echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
@@ -382,10 +423,12 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
+    # Done Center
     line10 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Install Plugin${WC}"
     echo "3. ${CCB}Remove Plugin${WC}"
+    echo "4. ${CCB}Get GM Handbook${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -394,6 +437,7 @@ Grasscutter_Tools() {
     "1") menu_config ;;
     "2") installPlugin ;;
     "3") removePlugin ;;
+    "4") generateHandbook ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -403,16 +447,62 @@ Grasscutter_Tools() {
     esac
 }
 
+installJavaJDK17() {
+    credit_hah
+    line7 "Installing Java JDK 17"
+    if (command -v java &>/dev/null); then
+        echo "${YC}You already installed Java"
+        echo "${YC}Want to reinstall?${WC}"
+        echo
+        echo -n "Enter input (y/N) : "
+        read -r installJavaJDK17_input
+        if [[ $installJavaJDK17_input = "n" ]] || [[ $installJavaJDK17_input = "N" ]]; then
+            InstallMenu
+        elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
+            credit_hah
+            line7 "Installing Java JDK 17"
+            run_Program() {
+                sudo apt reinstall openjdk-17-jdk -y &>$HOME/zerr.log
+                errCode=$?
+                log "$errCode"
+            }
+            run_Program &
+            pid=$!
+            spin "${GC}Install Java JDK 17${WC}" "0" "Install Menu" "InstallMenu"
+        else
+            echo "${RC}Wrong Input!${WC}"
+            sleep 1s
+            installJavaJDK17
+        fi
+    else
+        run_Program() {
+            sudo apt install openjdk-17-jdk -y &>$HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
+        spin "${GC}Install Java JDK 17${WC}" "0" "Install Menu" "InstallMenu"
+    fi
+    echo
+    echo -n "Press enter for back to Install Menu!"
+    read -r
+    InstallMenu
+}
+
 InstallMenu() {
     credit_hah
+    # Done Center
     line12 "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
+    echo "2. ${CCB}Install Java JDK 17${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read -r InstallMenu_input
     case $InstallMenu_input in
     "1") installMongodb ;;
+    "2") installJavaJDK17 ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong input!${WC}"
@@ -424,6 +514,7 @@ InstallMenu() {
 
 main_menu() {
     credit_hah
+    # Done Center
     line14 "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"
@@ -452,7 +543,7 @@ main_menu() {
 
 newVersionScript=""
 source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/main/updateinfo)
-versionScript="2.5"
+versionScript="2.6"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"

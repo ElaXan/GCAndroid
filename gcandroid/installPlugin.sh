@@ -305,7 +305,6 @@ installPlugin() {
     fi
     echo "1. ${CCB}Download plugin and Install${WC}"
     echo "2. ${CCB}Install Plugin from local directory${WC}"
-    echo "3. ${CCB}Clone Github Repo, Compile and Install${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -313,7 +312,6 @@ installPlugin() {
     case $installPlugin_Input in
     "1") installPlugin_Download ;;
     "2") installPlugin_from_directory ;;
-    "3") installPlugin_Compile ;;
     "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong input!${WC}"
