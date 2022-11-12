@@ -89,6 +89,90 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/editConfigJson.sh" ]; then
+    source $GCAndroid/editConfigJson.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/editConfigJson.sh not found"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/getConfigjson.sh" ]; then
+    source $GCAndroid/getConfigjson.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/getConfigjson.sh not found"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/Server.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/Server.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/Server.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/logcommands.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/logcommands.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/logcommands.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/runMode.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/runMode.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/runMode.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/Http.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/Http.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/Http.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/bindAddress.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/bindAddress.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/bindAddress.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/accessAddress.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/accessAddress.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/accessAddress.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/accessPort.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/accessPort.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/accessPort.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/encryption.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/encryption/encryption.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/encryption.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useEncryption.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/encryption/useEncryption.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/useEncryption.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/useInRouting.sh"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
@@ -99,6 +183,10 @@ fi
 
 if ! command -v wget &>/dev/null; then
     sudo apt install wget -y
+fi
+
+if ! command -v jq &>/dev/null; then
+    sudo apt install jq -y
 fi
 
 credit_hah() {
@@ -161,10 +249,11 @@ menu_config_game_serverAccount() {
     case $editConfJsonInp in
     "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "serverAccount" ;;
     "0") menu_config_game ;;
-    * )
+    *)
         echo "${RC}Wrong input!${WC}"
         sleep 1s
         menu_config_game_serverAccount
+        ;;
     esac
 }
 
@@ -419,8 +508,6 @@ Grasscutter_Menu() {
     esac
 }
 
-
-
 Grasscutter_Tools() {
     credit_hah
     # Done Center
@@ -520,6 +607,7 @@ main_menu() {
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
+    echo "5. ${CCB}Edit config.json [TEST]${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -529,6 +617,7 @@ main_menu() {
     "2") Grasscutter_Menu ;;
     "3") Grasscutter_Tools ;;
     "4") InstallMenu ;;
+    "5") edit_configjson_Server_main ;;
     "0")
         clear
         exit 0
