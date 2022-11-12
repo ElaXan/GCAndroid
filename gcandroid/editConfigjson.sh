@@ -129,7 +129,7 @@ editCfgFunc() {
         if [ $enterInputEditGrass = "2" ]; then
             menu_detect_false_true "game"
             credit_hah
-            line12 "nameCardId Edit"
+            line11 "nameCardId Edit"
             echo "${GC}Current nameCardId : ${WC}"
             echo "${CCB}$nameCardId${WC}"
             echo
@@ -171,6 +171,30 @@ editCfgFunc() {
             fi
             EDfuncedit="\"adventureRank\":"
             EDconfjson="$adventureRank"
+            EDconfjsonTo="$editCfgFunc_input"
+        fi
+
+        if [ $enterInputEditGrass = "4" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line11 "worldLevel Edit"
+            echo "${GC}Current worldLevel : ${WC}"
+            echo "${CCB}$worldLevel${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom worldLevel : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $worldLevel ]]; then
+                echo "${RC}Error${WC} : Same worldLevel"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"worldLevel\":"
+            EDconfjson="$worldLevel"
             EDconfjsonTo="$editCfgFunc_input"
         fi
 

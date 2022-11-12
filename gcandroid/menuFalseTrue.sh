@@ -13,6 +13,7 @@ menu_detect_false_true() {
         avatarId=$(cat "$configpath" | grep "\"avatarId\":" | sed -e "s/.*\"avatarId\": //g" -e "s/,//g")
         nameCardId=$(cat "$configpath" | grep "\"nameCardId\":" | sed -e "s/.*\"nameCardId\": //g" -e "s/,//g")
         adventureRank=$(cat "$configpath" | grep "\"adventureRank\"" | sed -e "s/.*\"adventureRank\": //g" -e "s/,//g")
+        worldLevel=$(cat "$configpath" | grep "\"worldLevel\"" | sed -e "s/.*\"worldLevel\": //g" -e "s/,//g")
     fi
 
     if [ $1 = "account" ]; then
