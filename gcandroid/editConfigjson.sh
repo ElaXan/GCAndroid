@@ -221,6 +221,30 @@ editCfgFunc() {
             EDconfjson="\"$nickName\""
             EDconfjsonTo="\"$editCfgFunc_input\""
         fi
+
+        if [ $enterInputEditGrass = "6" ]; then
+            menu_detect_false_true "game"
+            credit_hah
+            line11 "signature Edit"
+            echo "${GC}Current signature :${WC}"
+            echo "${CCB}$signature${WC}"
+            echo
+            echo "${YC}Enter b/B for back${WC}"
+            echo -n "Enter custom signature : ${CCB}"
+            read -r editCfgFunc_input
+            echo -n "${WC}"
+            if [[ $editCfgFunc_input = "b" ]] || [[ $editCfgFunc_input = "B" ]]; then
+                menu_config_game_serverAccount
+            fi
+            if [[ $editCfgFunc_input = $signature ]]; then
+                echo "${RC}Error${WC} : Same signature"
+                sleep 1s
+                editCfgFunc "serverAccount"
+            fi
+            EDfuncedit="\"signature\":"
+            EDconfjson="\"$signature\""
+            EDconfjsonTo="\"$editCfgFunc_input\""
+        fi
     fi
 
     if [ $1 = "joinOptions" ]; then

@@ -14,6 +14,7 @@ menu_detect_false_true() {
         nameCardId=$(cat "$configpath" | grep "\"nameCardId\":" | sed -e "s/.*\"nameCardId\": //g" -e "s/,//g")
         adventureRank=$(cat "$configpath" | grep "\"adventureRank\"" | sed -e "s/.*\"adventureRank\": //g" -e "s/,//g")
         worldLevel=$(cat "$configpath" | grep "\"worldLevel\"" | sed -e "s/.*\"worldLevel\": //g" -e "s/,//g")
+        signature=$(cat "$configpath" | grep "\"signature\":" | sed -e "s/.*\"signature\": //g" -e "s/\"//g")
     fi
 
     if [ $1 = "account" ]; then
