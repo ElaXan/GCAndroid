@@ -32,8 +32,8 @@ spin() {
                 echo "Reason :"
                 echo "$errOutput"
                 echo
-                rm $HOME/zerr.log 2>/dev/null | echo "zerr.log : Log not found/script force stopped by User!"
-                rm $HOME/z.log 2>/dev/null | echo "z.log : Log not found/script force stopped by User!"
+                rm $HOME/zerr.log 2>/dev/null || echo "zerr.log : Log not found/script force stopped by User!"
+                rm $HOME/z.log 2>/dev/null || echo "z.log : Log not found/script force stopped by User!"
                 echo
                 read -p "Press enter for back to $3!"
                 $4
