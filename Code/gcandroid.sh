@@ -542,7 +542,8 @@ main_menu() {
 }
 
 newVersionScript=""
-source <(curl -s https://raw.githubusercontent.com/ElaXan/GCAndroid/2.6/updateinfo)
+source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
+source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/updateScript.sh)
 versionScript="2.6"
 if [[ $newVersionScript = "" ]]; then
     clear
