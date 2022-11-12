@@ -97,6 +97,10 @@ if ! command -v perl &>/dev/null; then
     sudo apt install perl
 fi
 
+if ! command -v wget &>/dev/null; then
+    sudo apt install wget -y
+fi
+
 credit_hah() {
     clear
     echo -n "${WC}"
