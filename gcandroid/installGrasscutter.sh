@@ -154,25 +154,25 @@ Install_Grasscutter_process() {
     if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
         if [[ $Install_Grasscutter_Resources_Version = "3.2" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.2.zip -O resources.zip &>$HOME/zerr.log
+                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.2.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.1.zip -O resources.zip &>$HOME/zerr.log
+                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.1.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.0.zip -O resources.zip &>$HOME/zerr.log
+                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.0.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/2.8.zip -O resources.zip &>$HOME/zerr.log
+                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/2.8.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
@@ -180,37 +180,37 @@ Install_Grasscutter_process() {
     elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
         if [[ $Install_Grasscutter_Resources_Version = "3.2" ]]; then
             run_Program() {
-                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.2/GrasscutterResources-3.2.zip -O resources.zip &>$HOME/zerr.log
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.2/GrasscutterResources-3.2.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
             run_Program() {
-                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip -O resources.zip &>$HOME/zerr.log
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
             run_Program() {
-                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.0/GrasscutterResources-3.0.zip -O resources.zip &>$HOME/zerr.log
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.0/GrasscutterResources-3.0.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
             run_Program() {
-                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.8/GrasscutterResources-2.8.zip -O resources.zip &>$HOME/zerr.log
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.8/GrasscutterResources-2.8.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "2.7" ]]; then
             run_Program() {
-                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.7/GrasscutterResources-2.7.zip -O resources.zip &>$HOME/zerr.log
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.7/GrasscutterResources-2.7.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "2.6" ]]; then
             run_Program() {
-                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.6/GrasscutterResources-2.8.zip -O resources.zip &>$HOME/zerr.log
+                wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.6/GrasscutterResources-2.8.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
@@ -219,21 +219,32 @@ Install_Grasscutter_process() {
     run_Program &
     pid=$!
     spin "${GC}Download Resources${WC}" "0" "Menu" "main_menu"
-    run_Program() {
-        unzip resources.zip &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Unzip Resources${WC}" "0" "Menu" "main_menu"
-    mv Grasscutter*Resources*/Resources Grasscutter/resources
-    rm resources.zip
-    rm -rf Grasscutter*Resources*
+    echo -n "Do you want to extract resources? (y/N) : "
+    read -r Install_Grasscutter_process_grasscutter_extract
+    if [[ $Install_Grasscutter_process_grasscutter_extract == "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "Y" ]]; then
+        run_Program() {
+            unzip resourcesGCAndroid.zip &>$HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
+        spin "${GC}Unzip Resources${WC}" "0" "Menu" "main_menu"
+        mv Grasscutter*Resources*/Resources Grasscutter/resources
+        rm -rf Grasscutter*Resources*
+        rm resourcesGCAndroid.zip
+    else
+        echo "${GC}Skip extracting Resources${WC}"
+        mv resources.zip Grasscutter/
+    fi
     cd $HOME/Grasscutter || exit 1
+    credit_hah
+    echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
+    echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
+    echo "====================================="
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
         echo "${GC}Compile jar (Please Wait)${WC}"
-        bash gradlew jar
+        ./gradlew jar
         mv grasscutter*.jar grasscutter.jar
     fi
     timeout --foreground 5s java -jar grasscutter.jar &>/dev/null
@@ -244,6 +255,9 @@ Install_Grasscutter_process() {
     echo "====================================="
     echo "${GC}Editing config.json...${WC}"
     sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
+    if [[ $Install_Grasscutter_process_grasscutter_extract != "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract != "Y" ]]; then
+        sed -i "s/\"resources\": \".*\"/\"resources\": \".\/resourcesGCAndroid.zip\"/g" config.json
+    fi
     sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json
     sed -i "s/\"nickName\": \".*\"/\"nickName\": \"ElaXan\"/g" config.json
     sed -i "s/\"signature\": \".*\"/\"signature\": \"Welcome to GCAndroid, run with Grasscutter!\"/g" config.json
