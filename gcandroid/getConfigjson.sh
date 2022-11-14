@@ -135,6 +135,14 @@ getConfigJson() {
         else
             server_game_gameOptions_staminaUsageOut="${RC}Error${WC}"
         fi
+        server_game_gameOptions_energyUsage=$(jq '.server.game.gameOptions.energyUsage' config.json)
+        if [[ $server_game_gameOptions_energyUsage == "true" ]]; then
+            server_game_gameOptions_energyUsageOut="${GC}True${WC}"
+        elif [[ $server_game_gameOptions_energyUsage == "false" ]]; then
+            server_game_gameOptions_energyUsageOut="${RC}False${WC}"
+        else
+            server_game_gameOptions_energyUsageOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
