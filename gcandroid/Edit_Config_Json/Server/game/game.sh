@@ -8,6 +8,7 @@ edit_configjson_Server_game() {
     echo "4. [${GC}$server_game_accessPort${WC}] accessPort"
     echo "5. [${GC}$server_game_loadEntitiesForPlayerRange${WC}] loadEntitiesForPlayerRange"
     echo "6. [${GC}$server_game_enableScriptInBigWorldOut${WC}] enableScriptInBigWorld"
+    echo "7. [${GC}$server_game_enableConsoleOut${WC}] enableConsole"
     echo "0, ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -19,6 +20,7 @@ edit_configjson_Server_game() {
     "4") edit_configjson_Server_game_accessPort ;;
     "5") edit_configjson_Server_game_loadEntitiesForPlayerRange ;;
     "6") edit_configjson_Server_game_enableScriptInBigWorld ;;
+    "7") edit_configjson_Server_game_enableConsole ;;
     "0") edit_configjson_Server_main ;;
     *)
         echo "${RC}Wrong Input!${WC}"

@@ -83,6 +83,14 @@ getConfigJson() {
         elif [[ $server_game_enableScriptInBigWorld = "false" ]]; then
             server_game_enableScriptInBigWorldOut="${RC}False${WC}"
         fi
+        server_game_enableConsole=$(cat config.json | jq '.server.game.enableConsole')
+        if [[ $server_game_enableConsole == "true" ]]; then
+            server_game_enableConsoleOut="${GC}True${WC}"
+        elif [[ $server_game_enableConsole == "false" ]]; then
+            server_game_enableConsoleOut="${RC}False${WC}"
+        else
+            server_game_enableConsoleOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
