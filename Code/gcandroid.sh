@@ -250,6 +250,55 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/game.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/game.sh
+else
+    echo "${GC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/game.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/bindAddress.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/bindAddress.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/bindAddress.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/bindPort.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/bindPort.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/bindPort.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/accessAddress.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/accessAddress.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/accessAddress.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/accessPort.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/accessPort.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/accessPort.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1

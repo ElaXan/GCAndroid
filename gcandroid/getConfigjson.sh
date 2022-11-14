@@ -70,6 +70,19 @@ getConfigJson() {
         fi
     elif [ $getArguments = "server.http.files" ]; then
         server_http_files_indexFile=$(cat config.json | jq '.server.http.files.indexFile' | sed "s/\"//g")
+        server_http_files_errorFIle=$(cat config.json | jq '.server.http.files.errorFile' | sed "s/\"//g")
+    elif [ $getArguments = "server.http.game" ]; then
+        server_game_bindAddress=$(cat config.json | jq '.server.game.bindAddress' | sed "s/\"//g")
+        server_game_bindPort=$(cat config.json | jq '.server.game.bindPort')
+        server_game_accessAddress=$(cat config.json | jq '.server.game.accessAddress' | sed "s/\"//g")
+        server_game_accessPort=$(cat config.json | jq '.server.game.accessPort' | sed "s/\"//g")
+        server_game_loadEntitiesForPlayerRange=$(cat config.json | jq '.server.game.loadEntitiesForPlayerRange')
+        server_game_enableScriptInBigWorld=$(cat config.json | jq '.server.game.enableScriptInBigWorld')
+        if [[ $server_game_enableScriptInBigWorld = "true" ]]; then
+            server_game_enableScriptInBigWorldOut="${GC}True${WC}"
+        elif [[ $server_game_enableScriptInBigWorld = "false" ]]; then
+            server_game_enableScriptInBigWorldOut="${RC}False${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
