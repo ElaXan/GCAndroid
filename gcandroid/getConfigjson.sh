@@ -92,6 +92,7 @@ getConfigJson() {
             server_game_enableConsoleOut="${RC}Error${WC}"
         fi
         server_game_kcpInterval=$(jq '.server.game.kcpInterval' config.json)
+        server_game_logPackets=$(jq '.server.game.logPackets' config.json | sed "s/\"//g")
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
