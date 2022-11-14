@@ -109,6 +109,8 @@ getConfigJson() {
         else
             server_game_isShowLoopPacketsOut="${RC}Error${WC}"
         fi
+    elif [ $getArguments == "server.game.gameOptions" ]; then
+        server_game_gameOptions_sceneEntityLimit=$(jq '.server.game.gameOptions.sceneEntityLimit' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
