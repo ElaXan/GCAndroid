@@ -127,6 +127,14 @@ getConfigJson() {
         else
             server_game_gameOptions_enableShopItemsOut="${RC}Error${WC}"
         fi
+        server_game_gameOptions_staminaUsage=$(jq '.server.game.gameOptions.staminaUsage' config.json)
+        if [[ $server_game_gameOptions_staminaUsage == "true" ]]; then
+            server_game_gameOptions_staminaUsageOut="${GC}True${WC}"
+        elif [[ $server_game_gameOptions_staminaUsage == "false" ]]; then
+            server_game_gameOptions_staminaUsageOut="${RC}False${WC}"
+        else
+            server_game_gameOptions_staminaUsageOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
