@@ -91,6 +91,7 @@ getConfigJson() {
         else
             server_game_enableConsoleOut="${RC}Error${WC}"
         fi
+        server_game_kcpInterval=$(cat config.json | jq '.server.game.kcpInterval')
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
