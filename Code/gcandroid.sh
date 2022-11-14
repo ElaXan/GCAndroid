@@ -243,6 +243,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/errorFile.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/http/files/errorFile.sh
+else
+    echo "${GC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/files/errorFile.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
