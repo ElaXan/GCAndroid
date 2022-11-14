@@ -119,6 +119,14 @@ getConfigJson() {
         else
             server_game_gameOptions_watchGachaConfigOut="${RC}Error${WC}"
         fi
+        server_game_gameOptions_enableShopItems=$(jq '.server.game.gameOptions.enableShopItems' config.json)
+        if [[ $server_game_gameOptions_enableShopItems == "true" ]]; then
+            server_game_gameOptions_enableShopItemsOut="${GC}True${WC}"
+        elif [[ $server_game_gameOptions_enableShopItems == "false" ]]; then
+            server_game_gameOptions_enableShopItemsOut="${RC}False${WC}"
+        else
+            server_game_gameOptions_enableShopItemsOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi

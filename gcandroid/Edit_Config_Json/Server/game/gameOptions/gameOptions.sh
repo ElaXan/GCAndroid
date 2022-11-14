@@ -4,6 +4,7 @@ edit_configjson_Server_game_gameOptions() {
     getConfigJson "server.game.gameOptions"
     echo "1. [${GC}$server_game_gameOptions_sceneEntityLimit${WC}] sceneEntityLimit"
     echo "2. [$server_game_gameOptions_watchGachaConfigOut] watchGachaConfig"
+    echo "3. [$server_game_gameOptions_enableShopItemsOut] enableShopItems"
     echo "0, ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -11,6 +12,7 @@ edit_configjson_Server_game_gameOptions() {
     case $edit_configjson_Server_game_gameOptions_input in
     "1") edit_configjson_Server_game_gameOptions_sceneEntityLimit ;;
     "2") edit_configjson_Server_game_gameOptions_watchGachaConfig ;;
+    "3") edit_configjson_Server_game_gameOptions_enableShopItems ;;
     "0") edit_configjson_Server_game ;;
     *)
         echo "${RC}Wrong Input!${WC}"
