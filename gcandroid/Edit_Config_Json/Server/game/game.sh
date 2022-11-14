@@ -11,6 +11,8 @@ edit_configjson_Server_game() {
     echo "7. [${GC}$server_game_enableConsoleOut${WC}] enableConsole"
     echo "8. [${GC}$server_game_kcpInterval${WC}] kcpInterval"
     echo "9. [${GC}$server_game_logPackets${WC}] logPackets"
+    echo "10. [${GC}$server_game_isShowPacketPayloadOut${WC}] isShowPacketPayload"
+    echo "11. [$server_game_isShowLoopPacketsOut] isShowLoopPackets"
     echo "0, ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -25,6 +27,8 @@ edit_configjson_Server_game() {
     "7") edit_configjson_Server_game_enableConsole ;;
     "8") edit_configjson_Server_game_kcpInterval ;;
     "9") edit_configjson_Server_game_logPackets ;;
+    "10") edit_configjson_Server_game_isShowPacketPayload ;;
+    "11") edit_configjson_Server_game_isShowLoopPackets ;;
     "0") edit_configjson_Server_main ;;
     *)
         echo "${RC}Wrong Input!${WC}"

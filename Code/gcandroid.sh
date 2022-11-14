@@ -320,6 +320,20 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/isShowPacketPayload.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/isShowPacketPayload.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/isShowPacketPayload.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/isShowLoopPackets.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/isShowLoopPackets.sh
+else
+    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/isShowLoopPackets.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1

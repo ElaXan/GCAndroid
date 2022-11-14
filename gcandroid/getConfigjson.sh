@@ -93,6 +93,22 @@ getConfigJson() {
         fi
         server_game_kcpInterval=$(jq '.server.game.kcpInterval' config.json)
         server_game_logPackets=$(jq '.server.game.logPackets' config.json | sed "s/\"//g")
+        server_game_isShowPacketPayload=$(jq '.server.game.isShowPacketPayload' config.json)
+        if [[ $server_game_isShowPacketPayload == "false" ]]; then
+            server_game_isShowPacketPayloadOut="${RC}False${WC}"
+        elif [[ $server_game_isShowPacketPayload == "true" ]]; then
+            server_game_isShowPacketPayloadOut="${GC}True${WC}"
+        else
+            server_game_isShowPacketPayloadOut="${RC}Error${WC}"
+        fi
+        server_game_isShowLoopPackets=$(jq '.server.game.isShowLoopPackets' config.json)
+        if [[ $server_game_isShowLoopPackets == "true" ]]; then
+            server_game_isShowLoopPacketsOut="${GC}True${WC}"
+        elif [[ $server_game_isShowLoopPackets == "false" ]]; then
+            server_game_isShowLoopPacketsOut="${RC}False${WC}"
+        else
+            server_game_isShowLoopPacketsOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
