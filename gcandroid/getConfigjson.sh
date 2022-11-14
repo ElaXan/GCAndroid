@@ -111,6 +111,14 @@ getConfigJson() {
         fi
     elif [ $getArguments == "server.game.gameOptions" ]; then
         server_game_gameOptions_sceneEntityLimit=$(jq '.server.game.gameOptions.sceneEntityLimit' config.json)
+        server_game_gameOptions_watchGachaConfig=$(jq '.server.game.gameOptions.watchGachaConfig' config.json)
+        if [[ $server_game_gameOptions_watchGachaConfig == "true" ]]; then
+            server_game_gameOptions_watchGachaConfigOut="${GC}True${WC}"
+        elif [[ $server_game_gameOptions_watchGachaConfig == "false" ]]; then
+            server_game_gameOptions_watchGachaConfigOut="${RC}False${WC}"
+        else
+            server_game_gameOptions_watchGachaConfigOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
