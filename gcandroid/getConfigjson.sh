@@ -143,6 +143,14 @@ getConfigJson() {
         else
             server_game_gameOptions_energyUsageOut="${RC}Error${WC}"
         fi
+        server_game_gameOptions_fishhookTeleport=$(jq '.server.game.gameOptions.fishhookTeleport' config.json)
+        if [[ $server_game_gameOptions_fishhookTeleport == "true" ]]; then
+            server_game_gameOptions_fishhookTeleportOut="${GC}True${WC}"
+        elif [[ $server_game_gameOptions_fishhookTeleport == "false" ]]; then
+            server_game_gameOptions_fishhookTeleportOut="${RC}False${WC}"
+        else
+            server_game_gameOptions_fishhookTeleportOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi

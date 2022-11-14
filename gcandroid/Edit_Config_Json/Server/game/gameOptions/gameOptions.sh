@@ -7,6 +7,7 @@ edit_configjson_Server_game_gameOptions() {
     echo "3. [$server_game_gameOptions_enableShopItemsOut] enableShopItems"
     echo "4. [$server_game_gameOptions_staminaUsageOut] staminaUsage"
     echo "5. [$server_game_gameOptions_energyUsageOut] energyUsage"
+    echo "6. [$server_game_gameOptions_fishhookTeleportOut] fishhookTeleport"
     echo "0, ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -17,6 +18,7 @@ edit_configjson_Server_game_gameOptions() {
     "3") edit_configjson_Server_game_gameOptions_enableShopItems ;;
     "4") edit_configjson_Server_game_gameOptions_staminaUsage ;;
     "5") edit_configjson_Server_game_gameOptions_energyUsage ;;
+    "6") edit_configjson_Server_game_gameOptions_fishhookTeleport ;;
     "0") edit_configjson_Server_game ;;
     *)
         echo "${RC}Wrong Input!${WC}"
