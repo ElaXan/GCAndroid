@@ -17,488 +17,91 @@ if [ $isThisLinux = Android ]; then
 fi
 
 GCAndroid=/usr/share/gcandroid
-
-if [ -f "$GCAndroid/changePort.sh" ]; then
-    source $GCAndroid/changePort.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/changePort.sh not found"
-    exit 1
-fi
-if [ -f "$GCAndroid/editConfigjson.sh" ]; then
-    source $GCAndroid/editConfigjson.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/editConfigjson.sh not found"
-    exit 1
-fi
-if [ -f "$GCAndroid/installGrasscutter.sh" ]; then
-    source $GCAndroid/installGrasscutter.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/installGrasscutter.sh not found"
-    exit 1
-fi
-if [ -f "$GCAndroid/menuFalseTrue.sh" ]; then
-    source $GCAndroid/menuFalseTrue.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/menuFalseTrue.sh not found"
-    exit 1
-fi
-if [ -f "$GCAndroid/runGrasscutter.sh" ]; then
-    source $GCAndroid/runGrasscutter.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/runGrasscutter.sh not found"
-    exit 1
-fi
-if [ -f "$GCAndroid/spin.sh" ]; then
-    source $GCAndroid/spin.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/spin.sh not found"
-    exit 1
-fi
-if [ -f "$GCAndroid/installPlugin.sh" ]; then
-    source $GCAndroid/installPlugin.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/installPlugin.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/removePlugin.sh" ]; then
-    source $GCAndroid/removePlugin.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/removePlugin.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/compileGrasscutter.sh" ]; then
-    source $GCAndroid/compileGrasscutter.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/compileGrasscutter.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/descriptionMenu.sh" ]; then
-    source $GCAndroid/descriptionMenu.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/descriptionMenu.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/generateHandbook.sh" ]; then
-    source $GCAndroid/generateHandbook.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/generateHandbook.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/editConfigJson.sh" ]; then
-    source $GCAndroid/editConfigJson.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/editConfigJson.sh not found"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/getConfigjson.sh" ]; then
-    source $GCAndroid/getConfigjson.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/getConfigjson.sh not found"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/Server.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/Server.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/Server.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/logcommands.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/logcommands.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/logcommands.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/runMode.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/runMode.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/runMode.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/Http.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/Http.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/Http.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/bindAddress.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/bindAddress.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/bindAddress.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/accessAddress.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/accessAddress.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/accessAddress.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/accessPort.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/accessPort.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/accessPort.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/encryption.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/encryption/encryption.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/encryption.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useEncryption.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/encryption/useEncryption.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/useEncryption.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/useInRouting.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/keystore.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/encryption/keystore.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/keystore.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/keystorePassword.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/encryption/keystorePassword.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/encryption/keystorePassword.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/policies.sh" ]; then
-    source $GCAndroid//Edit_Config_Json/Server/http/policies/policies.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/policies.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cors/cors.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/policies/cors/cors.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cors/cors.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cors/enabled.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/policies/cors/enabled.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cors/enabled.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/cores.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/enbaled.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/enabled.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/files.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/files/files.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/files/files.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/indexFile.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/files/indexFile.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}Edit_Config_Json/Server/http/files/indexFile.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/errorFile.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/http/files/errorFile.sh
-else
-    echo "${GC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/files/errorFile.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/game.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/game.sh
-else
-    echo "${GC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/game.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/bindAddress.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/bindAddress.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/bindAddress.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/bindPort.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/bindPort.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/bindPort.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/accessAddress.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/accessAddress.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/accessAddress.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/accessPort.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/accessPort.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/accessPort.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/enableConsole.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/enableConsole.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/enableConsole.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/kcpInterval.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/kcpInterval.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/kcpInterval.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/logPackets.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/logPackets.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/logPackets.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/isShowPacketPayload.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/isShowPacketPayload.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/isShowPacketPayload.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/isShowLoopPackets.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/isShowLoopPackets.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/isShowLoopPackets.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/gameOptions.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/gameOptions.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/gameOptions.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/sceneEntityLimit.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/sceneEntityLimit.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/sceneEntityLimit.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/watchGachaConfig.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/watchGachaConfig.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/watchGachaConfig.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/enableShopItems.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/enableShopItems.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/enableShopItems.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/staminaUsage.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/staminaUsage.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/staminaUsage.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/energyUsage.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/energyUsage.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/energyUsage.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/fishhookTeleport.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/fishhookTeleport.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/fishhookTeleport.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/inventoryLimits.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/inventoryLimits.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/inventoryLimits.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/weapons.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/weapons.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/weapons.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/relics.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/relics.sh
-else
-    echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/relics.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/avatarLimits.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/avatarLimits.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/avatarLimits.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/multiplayerTeam.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/multiplayerTeam.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/multiplayerTeam.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinUsage.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinUsage.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinUsage.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/cap.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/cap.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/cap.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/rechargeTime.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/rechargeTime.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/rechargeTime.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/rates.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/rates.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/rates.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/adventureExp.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/adventureExp.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/adventureExp.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/mora.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/mora.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/mora.sh not found!"
-    exit 1
-fi
-
-if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/leyLines.sh" ]; then
-    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/leyLines.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/leyLines.sh not found!"
+line="====================================="
+line0() {
+    echo "${GC}$1${WC}"
+    echo "${line}"
+}
+
+line1() {
+    echo "${GC} $1${WC}"
+    echo "${line}"
+}
+
+line2() {
+    echo "${GC}  $1${WC}"
+    echo "${line}"
+}
+
+line3() {
+    echo "${GC}   $1${WC}"
+    echo "${line}"
+}
+
+line4() {
+    echo "${GC}    $1${WC}"
+    echo "${line}"
+}
+
+line5() {
+    echo "${GC}     $1${WC}"
+    echo "${line}"
+}
+
+line6() {
+    echo "${GC}      $1${WC}"
+    echo "${line}"
+}
+
+line7() {
+    echo "${GC}       $1${WC}"
+    echo "${line}"
+}
+
+line8() {
+    echo "${GC}        $1${WC}"
+    echo "${line}"
+}
+
+line9() {
+    echo "${GC}         $1${WC}"
+    echo "${line}"
+}
+
+line10() {
+    echo "${GC}          $1${WC}"
+    echo "${line}"
+}
+
+line11() {
+    echo "${GC}           $1${WC}"
+    echo "${line}"
+}
+
+line12() {
+    echo "${GC}            $1${WC}"
+    echo "${line}"
+}
+
+line13() {
+    echo "${GC}             $1${WC}"
+    echo "${line}"
+}
+
+line14() {
+    echo "${GC}              $1${WC}"
+    echo "${line}"
+}
+
+line15() {
+    echo "${GC}               $1${WC}"
+    echo "${line}"
+}
+
+if [ -f "$GCAndroid/loadOtherShellScript.sh" ]; then
+    source $GCAndroid/loadOtherShellScript.sh
+else
+    echo "${RC}Error${WC} : $GCAndroid/loadOtherShellScript.sh not found!"
     exit 1
 fi
 
@@ -517,6 +120,18 @@ fi
 if ! command -v jq &>/dev/null; then
     sudo apt install jq -y
 fi
+
+clear
+echo -n "${WC}"
+echo $line
+line8 "Script made by ElaXan"
+line15 "LOADING"
+echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
+echo $line
+echo "${GC}Contact me at chat@elaxan.com${WC}"
+echo $line
+
+loadOtherShellScript
 
 credit_hah() {
     clear
@@ -960,7 +575,9 @@ main_menu() {
 }
 
 newVersionScript=""
+echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}";
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
+echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}";
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/updateScript.sh)
 versionScript="2.6"
 if [[ $newVersionScript = "" ]]; then

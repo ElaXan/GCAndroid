@@ -14,7 +14,7 @@ edit_configjson_Server_game() {
     echo "10. [${GC}$server_game_isShowPacketPayloadOut${WC}] isShowPacketPayload"
     echo "11. [$server_game_isShowLoopPacketsOut] isShowLoopPackets"
     echo "12. ${CCB}gameOptions${WC}"
-    echo "0, ${RC}Back${WC}"
+    echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read -r edit_configjson_game_input

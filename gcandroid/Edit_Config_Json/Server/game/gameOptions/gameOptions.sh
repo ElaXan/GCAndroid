@@ -10,9 +10,9 @@ edit_configjson_Server_game_gameOptions() {
     echo "6. [$server_game_gameOptions_fishhookTeleportOut] fishhookTeleport"
     echo "7. ${CCB}inventoryLimits${WC}"
     echo "8. ${CCB}avatarLimits${WC}"
-    echo "9, ${CCB}resinOptions${WC}"
+    echo "9. ${CCB}resinOptions${WC}"
     echo "10. ${CCB}rates${WC}"
-    echo "0, ${RC}Back${WC}"
+    echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read -r edit_configjson_Server_game_gameOptions_input

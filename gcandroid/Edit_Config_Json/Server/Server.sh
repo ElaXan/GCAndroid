@@ -7,7 +7,6 @@ edit_configjson_Server_main() {
     echo "2. [$runModeOut] runMode"
     echo "3. ${CCB}http${WC}"
     echo "4. ${CCB}game${WC}"
-    echo
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
