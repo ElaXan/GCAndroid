@@ -171,6 +171,8 @@ getConfigJson() {
         fi
         server_game_gameOptions_resinOptions_cap=$(jq '.server.game.gameOptions.resinOptions.cap' config.json)
         server_game_gameOptions_resinOptions_rechargeTime=$(jq '.server.game.gameOptions.resinOptions.rechargeTime' config.json)
+    elif [ $getArguments == "server.game.gameOptions.rates" ]; then
+        server_game_gameOptions_rates_adventureExp=$(jq '.server.game.gameOptions.rates.adventureExp' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
