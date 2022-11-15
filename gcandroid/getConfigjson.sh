@@ -153,6 +153,7 @@ getConfigJson() {
         fi
     elif [ $getArguments == "server.game.gameOptions.inventoryLimits" ]; then
         server_game_gameOptions_inventoryLimits_weapons=$(jq '.server.game.gameOptions.inventoryLimits.weapons' config.json)
+        server_game_gameOptions_inventoryLimits_relics=$(jq '.server.game.gameOptions.inventoryLimits.relics' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
