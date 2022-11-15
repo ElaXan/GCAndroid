@@ -17,7 +17,7 @@ edit_configjson_Server_main() {
     "2") edit_configjson_Server_runMode ;;
     "3") edit_configjson_Server_http ;;
     "4") edit_configjson_Server_game ;;
-    "0") main_menu ;;
+    "0") menu_config ;;
     *)
         echo "${RC}Wrong input!${WC}"
         sleep 1s
