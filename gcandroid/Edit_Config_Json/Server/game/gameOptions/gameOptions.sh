@@ -11,6 +11,7 @@ edit_configjson_Server_game_gameOptions() {
     echo "7. ${CCB}inventoryLimits${WC}"
     echo "8. ${CCB}avatarLimits${WC}"
     echo "9, ${CCB}resinOptions${WC}"
+    echo "10. ${CCB}rates${WC}"
     echo "0, ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -25,6 +26,7 @@ edit_configjson_Server_game_gameOptions() {
     "7") edit_configjson_Server_game_gameOptions_inventoryLimits ;;
     "8") edit_configjson_Server_game_gameOptions_avatarLimits ;;
     "9") edit_configjson_Server_game_gameOptions_resinOptions ;;
+    "10") edit_configjson_Server_game_gameOptions_rates ;;
     "0") edit_configjson_Server_game ;;
     *)
         echo "${RC}Wrong Input!${WC}"
