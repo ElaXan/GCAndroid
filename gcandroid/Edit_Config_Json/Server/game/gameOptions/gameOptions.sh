@@ -9,6 +9,7 @@ edit_configjson_Server_game_gameOptions() {
     echo "5. [$server_game_gameOptions_energyUsageOut] energyUsage"
     echo "6. [$server_game_gameOptions_fishhookTeleportOut] fishhookTeleport"
     echo "7. ${CCB}inventoryLimits${WC}"
+    echo "8. ${CCB}avatarLimits${WC}"
     echo "0, ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -21,6 +22,7 @@ edit_configjson_Server_game_gameOptions() {
     "5") edit_configjson_Server_game_gameOptions_energyUsage ;;
     "6") edit_configjson_Server_game_gameOptions_fishhookTeleport ;;
     "7") edit_configjson_Server_game_gameOptions_inventoryLimits ;;
+    "8") edit_configjson_Server_game_gameOptions_avatarLimits ;;
     "0") edit_configjson_Server_game ;;
     *)
         echo "${RC}Wrong Input!${WC}"
