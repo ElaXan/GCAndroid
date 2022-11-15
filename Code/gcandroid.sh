@@ -407,14 +407,21 @@ fi
 if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh" ]; then
     source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh
 else
-    echo "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh not found!"
+    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh not found!"
     exit 1
 fi
 
 if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh" ]; then
     source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh
 else
-    echo "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh not found!"
+    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh not found!"
+    exit 1
+fi
+
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh
+else
+    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh not found!"
     exit 1
 fi
 
