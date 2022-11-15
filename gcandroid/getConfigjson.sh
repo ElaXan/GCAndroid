@@ -169,6 +169,7 @@ getConfigJson() {
         else
             server_game_gameOptions_resinOptions_resinUsageOut="${RC}Error${WC}"
         fi
+        server_game_gameOptions_resinOptions_cap=$(jq '.server.game.gameOptions.resinOptions.cap' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
