@@ -1,5 +1,9 @@
 # Changelog
 
+# 2.6.2
+
+1. Added some config.json edits
+
 ## 2.6
 
 1. Add prompt when Grasscutter stop by User
