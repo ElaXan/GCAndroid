@@ -1,6 +1,8 @@
-newVersionScript="2.6"
+newVersionScript="2.6.2"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-if [[ $versionScript == "2.5" ]]; then
+if [[ $versionScript == "2.6" ]]; then
+    noteUpdate="1. Added some config.json edits"
+elif [[ $versionScript == "2.5" ]]; then
     noteUpdate="1. Add prompt when Grasscutter stop by User\n"
     noteUpdate+="2. Remove Compile Plugin due to a lot of problem\n"
     noteUpdate+="3. Make it center text\n"
@@ -16,7 +18,8 @@ if [[ $versionScript == "2.5" ]]; then
     noteUpdate+="13. Add edit adventureId in Edit config.json\n"
     noteUpdate+="14. Add edit worldLevel in Edit config.json\n"
     noteUpdate+="15. Add edit nickName in Edit config.json\n"
-    noteUpdate+="16. Add edit signature in Edit config.json"
+    noteUpdate+="16. Add edit signature in Edit config.json\n"
+    noteUpdate+="17. Added some config.json edits"
 elif [[ $versionScript == "2.4" ]]; then
     noteUpdate="1. Change UI\n"
     noteUpdate+="2. Add download 3.2 resources (tamilpp)\n"
@@ -36,22 +39,8 @@ elif [[ $versionScript == "2.4" ]]; then
     noteUpdate+="16. Add edit adventureId in Edit config.json\n"
     noteUpdate+="17. Add edit worldLevel in Edit config.json\n"
     noteUpdate+="18. Add edit nickName in Edit config.json\n"
-    noteUpdate+="19. Add edit signature in Edit config.json"
+    noteUpdate+="19. Add edit signature in Edit config.json\n"
+    noteUpdate+="20. Added some config.json edits"
 else
-    noteUpdate="1. Add prompt when Grasscutter stop by User\n"
-    noteUpdate+="2. Remove Compile Plugin due to a lot of problem\n"
-    noteUpdate+="3. Make it center text\n"
-    noteUpdate+="4. Made spinbar clean error if log not found\n"
-    noteUpdate+="5. Add Get GM Handbook to /sdcard\n"
-    noteUpdate+="6. Add Install Java JDK 17 in Install Menu\n"
-    noteUpdate+="7. Add option Installing Grasscutter\n"
-    noteUpdate+="8. Install wget if it not installed\n"
-    noteUpdate+="9. Support run grasscutter.jar with resources.zip\n"
-    noteUpdate+="10. Add detect if \"gradlew\" not found\n"
-    noteUpdate+="11. Add edit avatarId in Edit config.json\n"
-    noteUpdate+="12. Add edit nameCardId in Edit config.json\n"
-    noteUpdate+="13. Add edit adventureId in Edit config.json\n"
-    noteUpdate+="14. Add edit worldLevel in Edit config.json\n"
-    noteUpdate+="15. Add edit nickName in Edit config.json\n"
-    noteUpdate+="16. Add edit signature in Edit config.json"
+    noteUpdate="1. Added some config.json edits"
 fi
