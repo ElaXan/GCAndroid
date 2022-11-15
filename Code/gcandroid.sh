@@ -432,6 +432,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh
+else
+    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
