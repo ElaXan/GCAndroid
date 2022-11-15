@@ -145,155 +145,6 @@ credit_hah() {
     echo $line
 }
 
-menu_config_game() {
-    menu_config_back="game"
-    credit_hah
-    # Done Center
-    line10 "Menu Config Game"
-    menu_detect_false_true "game"
-    echo "1. [${TRenableShopItems}] enableShopItems"
-    echo "2. [${TRenergyUsage}] energyUsage"
-    echo "3. [${TRenableScriptInBigWorld}] enableScriptInBigWorld"
-    echo "4. [${TRenableConsole}] enableConsole"
-    echo "5. [${TRstaminaUsage}] staminaUsage"
-    echo "6. [${TRwatchGachaConfig}] watchGachaConfig"
-    echo "7. ${CCB}joinOptions${WC}"
-    echo "8. ${CCB}serverAccount${WC}"
-    echo "0. ${RC}Back${WC}"
-    echo
-    echo -n "Enter input : "
-    read -r editConfJsonInp
-    case $editConfJsonInp in
-    "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "game" ;;
-    "7") menu_config_game_joinOptions ;;
-    "8") menu_config_game_serverAccount ;;
-    "0") menu_config ;;
-    *)
-        echo "${RC}Wrong Input!${WC}"
-        sleep 1s
-        menu_config_game
-        ;;
-    esac
-}
-
-menu_config_game_serverAccount() {
-    menu_config_back="serverAccount"
-    credit_hah
-    line3 "Menu Config Game serverAccount"
-    echo "1. ${GC}avatarId${WC}"
-    echo "2. ${GC}nameCardId${WC}"
-    echo "3. ${GC}adventureRank${WC}"
-    echo "4. ${GC}worldLevel${WC}"
-    echo "5. ${GC}nickName${WC}"
-    echo "6. ${GC}signature${WC}"
-    echo "0. ${RC}Back${WC}"
-    echo
-    echo -n "Enter input : "
-    read -r editConfJsonInp
-    case $editConfJsonInp in
-    "1" | "2" | "3" | "4" | "5" | "6") editCfgFunc "serverAccount" ;;
-    "0") menu_config_game ;;
-    *)
-        echo "${RC}Wrong input!${WC}"
-        sleep 1s
-        menu_config_game_serverAccount
-        ;;
-    esac
-}
-
-menu_config_game_joinOptions() {
-    menu_config_back="joinOptions"
-    credit_hah
-    # Done Center
-    line4 "Menu Config Game Join Option"
-    menu_detect_false_true "joinOptions"
-    echo "1. ${CCB}welcomeMessage${WC}"
-    echo "2. ${CCB}welcomeMail${WC}"
-    echo "0. ${RC}Back${WC}"
-    echo
-    echo -n "Enter input : "
-    read -r editConfJsonInp
-    case $editConfJsonInp in
-    "1") editCfgFunc "joinOptions" ;;
-    "2") menu_config_game_joinOptions_welcomeMail ;;
-    "0") menu_config ;;
-    *)
-        echo "${RC}Wrong Input!${WC}"
-        sleep 1s
-        menu_config_game_joinOptions
-        ;;
-    esac
-}
-
-menu_config_game_help() {
-    menu_config_back="joinOptions_welcomeMail"
-    credit_hah
-    menu_detect_false_true "joinOptions_welcomeMail"
-    echo "${YC}Use "'\\n'" for newline not "'\n'
-    echo "Example ${WC}:${CCB}Welcome to ElaXan Server"'\\n'"Thanks for join my Server"
-    echo
-    echo "${YC}if you want use https:// or / thing please use "'\'
-    echo "Example ${WC}:${CCB} "'https:\/\/github.com\/ElaXan\/GCAndroid'"${WC}"
-    echo
-    echo -n "Press enter for back to edit $menu_config_game_help_back"
-    read
-    if [[ $menu_config_game_help_back = "joinOptions" ]]; then
-        editCfgFunc "joinOptions"
-    elif [[ $menu_config_game_help_back = "welcomeMail" ]]; then
-        editCfgFunc "joinOptions_welcomeMail"
-    fi
-}
-
-menu_config_game_joinOptions_welcomeMail() {
-    menu_config_back="joinOptions_welcomeMail"
-    credit_hah
-    menu_detect_false_true "joinOptions_welcomeMail"
-    echo "1. ${CCB}title${WC}"
-    echo "2. ${CCB}content${WC}"
-    echo "3. ${CCB}sender${WC}"
-    echo "0. ${RC}Back${WC}"
-    echo
-    echo -n "Enter Input : "
-    read -r editConfJsonInp
-    case $editConfJsonInp in
-    "1" | "2" | "3") editCfgFunc "joinOptions_welcomeMail" ;;
-    "0") menu_config_game_joinOptions ;;
-    *)
-        echo "${RC}Wrong Input!${WC}"
-        sleep 1s
-        menu_config_game_joinOptions_welcomeMail
-        ;;
-    esac
-}
-
-menu_config_account_defaultPermissions() {
-    credit_hah
-}
-
-menu_config_account() {
-    menu_config_back="account"
-    credit_hah
-    # Done Center
-    line9 "Menu Config Account"
-    menu_detect_false_true "account"
-    echo "1. [${TRautoCreate}] autoCreate"
-    echo "2. [${TREXPERIMENTAL_RealPassword}] EXPERIMENTAL_RealPassword"
-    echo "3. [${TRmaxPlayer}] maxPlayer"
-    echo "0. ${RC}Back${WC}"
-    echo
-    echo -n "Enter input : "
-    read -r editConfJsonInp
-    case $editConfJsonInp in
-    "1" | "2" | "3") editCfgFunc "account" ;;
-    "0") menu_config ;;
-    *)
-        echo "${RC}Wrong Input!${WC}"
-        sleep 1s
-        menu_config_account
-        ;;
-    esac
-}
-
 menu_config_editManual() {
     if ! command -v micro &>/dev/null; then
         sudo apt install micro -y
@@ -316,19 +167,17 @@ menu_config() {
     fi
     credit_hah
     line10 "Edit config.json"
-    echo "1. ${CCB}Account${WC}"
-    echo "2. ${CCB}Game${WC}"
-    echo "3. ${CCB}Edit Manual${WC}"
+    echo "1. ${CCB}Edit using this Script${WC}"
+    echo "2. ${CCB}Edit Manual${WC}"
     echo "4. ${CCB}Change Port${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read menu_config_input
     case $menu_config_input in
-    "1") menu_config_account ;;
-    "2") menu_config_game ;;
-    "3") menu_config_editManual ;;
-    "4") changePort ;;
+    "1") edit_configjson_Server_main ;;
+    "2") menu_config_editManual ;;
+    "3") changePort ;;
     "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -551,7 +400,6 @@ main_menu() {
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
-    echo "5. ${CCB}Edit config.json [TEST]${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -561,7 +409,6 @@ main_menu() {
     "2") Grasscutter_Menu ;;
     "3") Grasscutter_Tools ;;
     "4") InstallMenu ;;
-    "5") edit_configjson_Server_main ;;
     "0")
         clear
         exit 0
@@ -575,11 +422,11 @@ main_menu() {
 }
 
 newVersionScript=""
+versionScript="2.6.2"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}";
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}";
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/updateScript.sh)
-versionScript="2.6"
 if [[ $newVersionScript = "" ]]; then
     clear
     note_credit="${RC}Can't connect to Server${WC}"

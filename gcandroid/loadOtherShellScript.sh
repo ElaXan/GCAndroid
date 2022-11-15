@@ -7,14 +7,6 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}editConfigjson.sh [2]${WC}";
-    if [ -f "$GCAndroid/editConfigjson.sh" ]; then
-        source $GCAndroid/editConfigjson.sh
-    else
-        echo "${RC}Error${WC} : $GCAndroid/editConfigjson.sh not found"
-        exit 1
-    fi
-
     echo -en "\033[2K\r${GC}Load${WC} : ${CCB}installGrasscutter.sh [3]${WC}";
     if [ -f "$GCAndroid/installGrasscutter.sh" ]; then
         source $GCAndroid/installGrasscutter.sh
