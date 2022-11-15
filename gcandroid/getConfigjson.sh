@@ -151,6 +151,8 @@ getConfigJson() {
         else
             server_game_gameOptions_fishhookTeleportOut="${RC}Error${WC}"
         fi
+    elif [ $getArguments == "server.game.gameOptions.inventoryLimits" ]; then
+        server_game_gameOptions_inventoryLimits_weapons=$(jq '.server.game.gameOptions.inventoryLimits.weapons' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
