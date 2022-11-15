@@ -133,12 +133,12 @@ getConfigJson() {
         if [[ $server_game_accessPort == "" ]]; then
             server_game_accessPort="${RC}Error${WC}"
         fi
-        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}.loadEntitiesForPlayerRange${WC}";
+        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}loadEntitiesForPlayerRange${WC}";
         server_game_loadEntitiesForPlayerRange=$(jq '.server.game.loadEntitiesForPlayerRange' config.json 2>/dev/null)
         if [[ $server_game_loadEntitiesForPlayerRange == "" ]]; then
             server_game_loadEntitiesForPlayerRange="${RC}Error${WC}"
         fi
-        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}.enableScriptInBigWorld${WC}";
+        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}enableScriptInBigWorld${WC}";
         server_game_enableScriptInBigWorld=$(jq '.server.game.enableScriptInBigWorld' config.json 2>/dev/null)
         if [[ $server_game_enableScriptInBigWorld = "true" ]]; then
             server_game_enableScriptInBigWorldOut="${GC}True${WC}"

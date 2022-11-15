@@ -7,6 +7,6 @@ edit_configjson_Server_game_bindPort() {
     if [[ $edit_configjson_Server_game_bindPort_input = "" ]]; then
         edit_configjson_Server_game
     else
-        editJsonJq "server.game.bindPort=\"$edit_configjson_Server_game_bindPort_input\""
+        editJsonJq "server.game.bindPort=$edit_configjson_Server_game_bindPort_input"
     fi
 }
