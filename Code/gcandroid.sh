@@ -446,6 +446,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh
+else
+    echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
