@@ -159,6 +159,7 @@ getConfigJson() {
         server_game_gameOptions_inventoryLimits_all=$(jq '.server.game.gameOptions.inventoryLimits.all' config.json)
     elif [ $getArguments == "server.game.gameOptions.avatarLimits" ]; then
         server_game_gameOptions_avatarLimits_singlePlayerTeam=$(jq '.server.game.gameOptions.avatarLimits.singlePlayerTeam' config.json)
+        server_game_gameOptions_avatarLimits_multiplayerTeam=$(jq '.server.game.gameOptions.avatarLimits.multiplayerTeam' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
