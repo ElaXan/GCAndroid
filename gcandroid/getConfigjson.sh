@@ -155,6 +155,7 @@ getConfigJson() {
         server_game_gameOptions_inventoryLimits_weapons=$(jq '.server.game.gameOptions.inventoryLimits.weapons' config.json)
         server_game_gameOptions_inventoryLimits_relics=$(jq '.server.game.gameOptions.inventoryLimits.relics' config.json)
         server_game_gameOptions_inventoryLimits_materials=$(jq '.server.game.gameOptions.inventoryLimits.materials' config.json)
+        server_game_gameOptions_inventoryLimits_furniture=$(jq '.server.game.gameOptions.inventoryLimits.furniture' config.json)
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi

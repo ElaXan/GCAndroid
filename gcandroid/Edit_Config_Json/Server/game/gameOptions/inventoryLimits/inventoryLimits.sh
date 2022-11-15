@@ -5,6 +5,7 @@ edit_configjson_Server_game_gameOptions_inventoryLimits() {
     echo "1. [${GC}$server_game_gameOptions_inventoryLimits_weapons${WC}] weapons"
     echo "2. [${GC}$server_game_gameOptions_inventoryLimits_relics${WC}] relics"
     echo "3. [${GC}$server_game_gameOptions_inventoryLimits_materials${WC}] materials"
+    echo "4. [${GC}$server_game_gameOptions_inventoryLimits_furniture${WC}] furniture"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -13,6 +14,7 @@ edit_configjson_Server_game_gameOptions_inventoryLimits() {
     "1") edit_configjson_Server_game_gameOptions_inventoryLimits_weapons ;;
     "2") edit_configjson_Server_game_gameOptions_inventoryLimits_relics ;;
     "3") edit_configjson_Server_game_gameOptions_inventoryLimits_materials ;;
+    "4") edit_configjson_Server_game_gameOptions_inventoryLimits_furniture ;;
     "0") edit_configjson_Server_game_gameOptions ;;
     *)
         echo "${RC}Wrong Input${WC}"

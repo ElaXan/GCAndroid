@@ -411,6 +411,13 @@ else
     exit 1
 fi
 
+if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh" ]; then
+    source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh
+else
+    echo "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh not found!"
+    exit 1
+fi
+
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
