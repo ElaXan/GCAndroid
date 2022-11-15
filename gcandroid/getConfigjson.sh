@@ -160,6 +160,15 @@ getConfigJson() {
     elif [ $getArguments == "server.game.gameOptions.avatarLimits" ]; then
         server_game_gameOptions_avatarLimits_singlePlayerTeam=$(jq '.server.game.gameOptions.avatarLimits.singlePlayerTeam' config.json)
         server_game_gameOptions_avatarLimits_multiplayerTeam=$(jq '.server.game.gameOptions.avatarLimits.multiplayerTeam' config.json)
+    elif [ $getArguments == "server.game.gameOptions.resinOptions" ]; then
+        server_game_gameOptions_resinOptions_resinUsage=$(jq '.server.game.gameOptions.resinOptions.resinUsage' config.json)
+        if [[ $server_game_gameOptions_resinOptions_resinUsage == "true" ]]; then
+            server_game_gameOptions_resinOptions_resinUsageOut="${GC}True${WC}"
+        elif [[ $server_game_gameOptions_resinOptions_resinUsage == "false" ]]; then
+            server_game_gameOptions_resinOptions_resinUsageOut="${RC}False${WC}"
+        else
+            server_game_gameOptions_resinOptions_resinUsageOut="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
