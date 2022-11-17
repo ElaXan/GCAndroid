@@ -169,7 +169,7 @@ menu_config() {
     line10 "Edit config.json"
     echo "1. ${CCB}Edit using this Script${WC}"
     echo "2. ${CCB}Edit Manual${WC}"
-    echo "4. ${CCB}Change Port${WC}"
+    echo "3. ${CCB}Change Port${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
