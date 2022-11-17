@@ -1,5 +1,5 @@
 loadOtherShellScript() {
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}changePort.sh [1]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}changePort.sh${WC}";
     if [ -f "$GCAndroid/changePort.sh" ]; then
         source $GCAndroid/changePort.sh
     else
@@ -7,7 +7,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}installGrasscutter.sh [3]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}installGrasscutter.sh${WC}";
     if [ -f "$GCAndroid/installGrasscutter.sh" ]; then
         source $GCAndroid/installGrasscutter.sh
     else
@@ -15,7 +15,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}menuFalseTrue.sh [4]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}menuFalseTrue.sh${WC}";
     if [ -f "$GCAndroid/menuFalseTrue.sh" ]; then
         source $GCAndroid/menuFalseTrue.sh
     else
@@ -23,7 +23,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}runGrasscutter.sh [5]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}runGrasscutter.sh${WC}";
     if [ -f "$GCAndroid/runGrasscutter.sh" ]; then
         source $GCAndroid/runGrasscutter.sh
     else
@@ -31,7 +31,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}spin.sh [6]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}spin.sh${WC}";
     if [ -f "$GCAndroid/spin.sh" ]; then
         source $GCAndroid/spin.sh
     else
@@ -39,7 +39,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}installPlugin.sh [7]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}installPlugin.sh${WC}";
     if [ -f "$GCAndroid/installPlugin.sh" ]; then
         source $GCAndroid/installPlugin.sh
     else
@@ -47,7 +47,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}removePlugin.sh [8]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}removePlugin.sh${WC}";
     if [ -f "$GCAndroid/removePlugin.sh" ]; then
         source $GCAndroid/removePlugin.sh
     else
@@ -55,7 +55,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}compileGrasscutter.sh [9]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}compileGrasscutter.sh${WC}";
     if [ -f "$GCAndroid/compileGrasscutter.sh" ]; then
         source $GCAndroid/compileGrasscutter.sh
     else
@@ -63,7 +63,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}generateHandbook.sh [10]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}generateHandbook.sh${WC}";
     if [ -f "$GCAndroid/generateHandbook.sh" ]; then
         source $GCAndroid/generateHandbook.sh
     else
@@ -71,7 +71,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}editConfigJson.sh [11]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}editConfigJson.sh${WC}";
     if [ -f "$GCAndroid/editConfigJson.sh" ]; then
         source $GCAndroid/editConfigJson.sh
     else
@@ -79,7 +79,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getConfigjson.sh [12]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getConfigjson.sh${WC}";
     if [ -f "$GCAndroid/getConfigjson.sh" ]; then
         source $GCAndroid/getConfigjson.sh
     else
@@ -87,7 +87,7 @@ loadOtherShellScript() {
         exit 1
     fi
 
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}Server.sh [13]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}Server.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/Server.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/Server.sh
     else
@@ -95,7 +95,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}logcommands.sh [14]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}logcommands.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/logcommands.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/logcommands.sh
     else
@@ -103,7 +103,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}runMode.sh [15]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}runMode.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/runMode.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/runMode.sh
     else
@@ -111,7 +111,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}Http.sh [16]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}Http.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/Http.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/Http.sh
     else
@@ -119,7 +119,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}bindAddress.sh [17]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}bindAddress.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/bindAddress.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/bindAddress.sh
     else
@@ -127,7 +127,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessAddress.sh [18]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessAddress.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/accessAddress.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/accessAddress.sh
     else
@@ -135,7 +135,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessPort.sh [19]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessPort.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/accessPort.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/accessPort.sh
     else
@@ -143,7 +143,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}encryption.sh [20]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}encryption.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/encryption.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/encryption/encryption.sh
     else
@@ -151,7 +151,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}useEncryption.sh [21]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}useEncryption.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useEncryption.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/encryption/useEncryption.sh
     else
@@ -159,7 +159,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}useInRouting.sh [22]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}useInRouting.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/encryption/useInRouting.sh
     else
@@ -167,7 +167,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}keystore.sh [23]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}keystore.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/keystore.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/encryption/keystore.sh
     else
@@ -175,7 +175,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}keystorePassword.sh [24]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}keystorePassword.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/encryption/keystorePassword.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/encryption/keystorePassword.sh
     else
@@ -183,7 +183,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}policies.sh [25]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}policies.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/policies.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/policies/policies.sh
     else
@@ -191,7 +191,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cors.sh [26]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cors.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cors/cors.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/policies/cors/cors.sh
     else
@@ -199,7 +199,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enabled.sh [27]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enabled.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cors/enabled.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/policies/cors/enabled.sh
     else
@@ -207,7 +207,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cores.sh [28]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cores.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh
     else
@@ -215,7 +215,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enbaled.sh [29]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enbaled.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh
     else
@@ -223,7 +223,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enabled.sh [30]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enabled.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh
     else
@@ -231,7 +231,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}files.sh [31]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}files.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/files.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/files/files.sh
     else
@@ -239,7 +239,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}indexFile.sh [32]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}indexFile.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/indexFile.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/files/indexFile.sh
     else
@@ -247,7 +247,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}errorFile.sh [33]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}errorFile.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/errorFile.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/files/errorFile.sh
     else
@@ -255,7 +255,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}game.sh [34]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}game.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/game.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/game.sh
     else
@@ -263,7 +263,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}bindAddress.sh [35]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}bindAddress.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/bindAddress.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/bindAddress.sh
     else
@@ -271,7 +271,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}bindPort.sh [36]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}bindPort.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/bindPort.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/bindPort.sh
     else
@@ -279,7 +279,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessAddress.sh [37]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessAddress.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/accessAddress.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/accessAddress.sh
     else
@@ -287,7 +287,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessPort.sh [38]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}accessPort.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/accessPort.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/accessPort.sh
     else
@@ -295,7 +295,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}loadEntitiesForPlayerRange.sh [39]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}loadEntitiesForPlayerRange.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/loadEntitiesForPlayerRange.sh
     else
@@ -303,7 +303,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enableScriptInBigWorld.sh [40]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enableScriptInBigWorld.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/enableScriptInBigWorld.sh
     else
@@ -311,7 +311,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enableConsole.sh [41]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enableConsole.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/enableConsole.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/enableConsole.sh
     else
@@ -319,7 +319,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}kcpInterval.sh [42]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}kcpInterval.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/kcpInterval.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/kcpInterval.sh
     else
@@ -327,7 +327,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}logPackets.sh [43]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}logPackets.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/logPackets.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/logPackets.sh
     else
@@ -335,7 +335,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}isShowPacketPayload.sh [44]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}isShowPacketPayload.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/isShowPacketPayload.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/isShowPacketPayload.sh
     else
@@ -343,7 +343,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}isShowLoopPackets.sh [45]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}isShowLoopPackets.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/isShowLoopPackets.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/isShowLoopPackets.sh
     else
@@ -351,7 +351,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}gameOptions.sh [46]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}gameOptions.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/gameOptions.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/gameOptions.sh
     else
@@ -359,7 +359,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}sceneEntityLimit.sh [47]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}sceneEntityLimit.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/sceneEntityLimit.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/sceneEntityLimit.sh
     else
@@ -367,7 +367,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}watchGachaConfig.sh [48]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}watchGachaConfig.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/watchGachaConfig.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/watchGachaConfig.sh
     else
@@ -375,7 +375,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enableShopItems.sh [49]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enableShopItems.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/enableShopItems.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/enableShopItems.sh
     else
@@ -383,7 +383,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}staminaUsage.sh [50]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}staminaUsage.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/staminaUsage.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/staminaUsage.sh
     else
@@ -391,7 +391,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}energyUsage.sh [51]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}energyUsage.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/energyUsage.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/energyUsage.sh
     else
@@ -399,7 +399,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}fishhookTeleport.sh [52]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}fishhookTeleport.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/fishhookTeleport.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/fishhookTeleport.sh
     else
@@ -407,7 +407,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}inventoryLimits.sh [53]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}inventoryLimits.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/inventoryLimits.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/inventoryLimits.sh
     else
@@ -415,7 +415,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}weapons.sh [54]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}weapons.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/weapons.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/weapons.sh
     else
@@ -423,7 +423,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}relics.sh [55]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}relics.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/relics.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/relics.sh
     else
@@ -431,7 +431,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}materials.sh [56]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}materials.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/materials.sh
     else
@@ -439,7 +439,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}furniture.sh [57]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}furniture.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/furniture.sh
     else
@@ -447,7 +447,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}all.sh [58]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}all.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/inventoryLimits/all.sh
     else
@@ -455,7 +455,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}avatarLimits.sh [59]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}avatarLimits.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/avatarLimits.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/avatarLimits.sh
     else
@@ -463,7 +463,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}singlePlayerTeam.sh [60]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}singlePlayerTeam.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/singlePlayerTeam.sh
     else
@@ -471,7 +471,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}multiplayerTeam.sh [61]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}multiplayerTeam.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/multiplayerTeam.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/avatarLimits/multiplayerTeam.sh
     else
@@ -479,7 +479,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}resinOptions.sh [62]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}resinOptions.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinOptions.sh
     else
@@ -487,7 +487,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}resinUsage.sh [63]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}resinUsage.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinUsage.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/resinUsage.sh
     else
@@ -495,7 +495,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cap.sh [64]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cap.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/cap.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/cap.sh
     else
@@ -503,7 +503,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}rechargeTime.sh [65]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}rechargeTime.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/rechargeTime.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/resinOptions/rechargeTime.sh
     else
@@ -511,7 +511,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}rates.sh [66]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}rates.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/rates.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/rates.sh
     else
@@ -519,7 +519,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}adventureExp.sh [67]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}adventureExp.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/adventureExp.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/adventureExp.sh
     else
@@ -527,7 +527,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}mora.sh [68]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}mora.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/mora.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/mora.sh
     else
@@ -535,7 +535,7 @@ loadOtherShellScript() {
         exit 1
     fi
     
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}leyLines.sh [69]${WC}";
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}leyLines.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/leyLines.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/leyLines.sh
     else
