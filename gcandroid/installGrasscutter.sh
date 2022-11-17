@@ -254,17 +254,22 @@ Install_Grasscutter_process() {
     echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
     echo "====================================="
     echo "${GC}Editing config.json...${WC}"
-    sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
-    if [[ $Install_Grasscutter_process_grasscutter_extract != "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract != "Y" ]]; then
-        sed -i "s/\"resources\": \".*\"/\"resources\": \".\/resourcesGCAndroid.zip\"/g" config.json
+    if [ ! -f "config.json" ]; then
+        echo "${RC}config.json not found..."
+        echo "${YC}Skip edit config.json...${WC}"
+    else
+        sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
+        if [[ $Install_Grasscutter_process_grasscutter_extract != "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract != "Y" ]]; then
+            sed -i "s/\"resources\": \".*\"/\"resources\": \".\/resourcesGCAndroid.zip\"/g" config.json
+        fi
+        sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json
+        sed -i "s/\"nickName\": \".*\"/\"nickName\": \"ElaXan\"/g" config.json
+        sed -i "s/\"signature\": \".*\"/\"signature\": \"Welcome to GCAndroid, run with Grasscutter!\"/g" config.json
+        sleep 1s
+        echo "${GC}Done Set All"
+        echo "Address : 127.0.0.1"
+        echo "Port : 54321${WC}"
     fi
-    sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json
-    sed -i "s/\"nickName\": \".*\"/\"nickName\": \"ElaXan\"/g" config.json
-    sed -i "s/\"signature\": \".*\"/\"signature\": \"Welcome to GCAndroid, run with Grasscutter!\"/g" config.json
-    sleep 1s
-    echo "${GC}Done Set All"
-    echo "Address : 127.0.0.1"
-    echo "Port : 54321${WC}"
     echo ""
     echo -n "Press enter for back to Menu!"
     read
