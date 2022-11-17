@@ -247,7 +247,7 @@ Install_Grasscutter_process() {
         ./gradlew jar
         mv grasscutter*.jar grasscutter.jar
     fi
-    timeout --foreground 5s java -jar grasscutter.jar &>/dev/null
+    timeout --foreground 8s java -jar grasscutter.jar &>/dev/null
     clear
     credit_hah
     echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
