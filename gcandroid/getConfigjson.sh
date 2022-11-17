@@ -80,26 +80,6 @@ getConfigJson() {
             server_http_policies_cors_enabledOut="${RC}Errro${WC}"
         fi
         echo -en "\033[2K\r"
-    elif [ $getArguments = "Server.http.policies.cores" ]; then
-        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}enbaled${WC}";
-        server_http_policies_cores_enbaled=$(jq '.server.http.policies.cores.enbaled' config.json 2>/dev/null)
-        if [[ $server_http_policies_cores_enbaled == "true" ]]; then
-            server_http_policies_cores_enbaledOut="${GC}True${WC}"
-        elif [[ $server_http_policies_cores_enbaled == "false" ]]; then
-            server_http_policies_cores_enbaledOut="${RC}False${WC}"
-        else
-            server_http_policies_cores_enbaledOut="${RC}Error${WC}"
-        fi
-        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}enabled${WC}";
-        server_http_policies_cores_enabled=$(jq '.server.http.policies.cores.enabled' config.json 2>/dev/null)
-        if [[ $server_http_policies_cores_enabled == "true" ]]; then
-            server_http_policies_cores_enabledOut="${GC}True${WC}"
-        elif [[ $server_http_policies_cores_enabled == "false" ]]; then
-            server_http_policies_cores_enabledOut="${RC}False${WC}"
-        else
-            server_http_policies_cores_enabledOut="${RC}Error${WC}"
-        fi
-        echo -en "\033[2K\r"
     elif [ $getArguments = "server.http.files" ]; then
         echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}indexFile${WC}";
         server_http_files_indexFile=$(jq '.server.http.files.indexFile' config.json 2>/dev/null | sed "s/\"//g")

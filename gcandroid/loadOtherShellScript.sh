@@ -206,31 +206,7 @@ loadOtherShellScript() {
         echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cors/enabled.sh not found!"
         exit 1
     fi
-    
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}cores.sh${WC}";
-    if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh" ]; then
-        source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/cores.sh
-    else
-        echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/cores.sh not found!"
-        exit 1
-    fi
-    
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enbaled.sh${WC}";
-    if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh" ]; then
-        source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enbaled.sh
-    else
-        echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/enbaled.sh not found!"
-        exit 1
-    fi
-    
-    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}enabled.sh${WC}";
-    if [ -f "$GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh" ]; then
-        source $GCAndroid/Edit_Config_Json/Server/http/policies/cores/enabled.sh
-    else
-        echo "${RC}Error${WC} : ${GCAndroid}/Edit_Config_Json/Server/http/policies/cores/enabled.sh not found!"
-        exit 1
-    fi
-    
+
     echo -en "\033[2K\r${GC}Load${WC} : ${CCB}files.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/http/files/files.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/http/files/files.sh
