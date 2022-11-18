@@ -8,7 +8,7 @@ edit_configjson() {
     echo -n "Enter input : "
     read -r edit_configjson_input
     case $edit_configjson_input in
-    "1") edit_configjson_Server_folderStructure ;;
+    "1") edit_configjson_folderStructure ;;
     "2") edit_configjson_Server_main ;;
     "0") menu_config ;;
     *)
