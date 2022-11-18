@@ -138,7 +138,7 @@ credit_hah() {
     echo -n "${WC}"
     echo $line
     line8 "Script made by ElaXan"
-    echo "$note_credit"
+    echo -e "$note_credit"
     echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
     echo $line
     echo "${GC}Contact me at chat@elaxan.com${WC}"
