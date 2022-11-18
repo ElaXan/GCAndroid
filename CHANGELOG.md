@@ -1,5 +1,12 @@
 # Changelog
 
+# 2.6.5
+
+1. Add interpretation of backslash escapes in "echo"
+2. Edit main config.json
+3. Add menu edit folderStructure config.json
+4. Add edit config.json for "resources"
+
 # 2.6.2
 
 1. Added some config.json edits
