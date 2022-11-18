@@ -2,7 +2,7 @@ edit_configjson_folderStructure() {
     credit_hah
     line5 "Edit config.json [folderStructure]"
     getConfigJson "folderStructure"
-    echo "1. [${GC}$folderStructure_resources${RC}] resources"
+    echo "1. [${GC}$folderStructure_resources${WC}] resources"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "

@@ -518,4 +518,27 @@ loadOtherShellScript() {
         echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/Server/game/gameOptions/rates/leyLines.sh not found!"
         exit 1
     fi
+
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}folderStructure.sh${WC}";
+    if [ -f "$GCAndroid/Edit_Config_Json/folderStructure/folderStructure.sh" ]; then
+        source $GCAndroid/Edit_Config_Json/folderStructure/folderStructure.sh
+    else
+        echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/folderStructure/folderStructure.sh not found!"
+        exit 1
+    fi
+
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}configjsonMain.sh${WC}";
+    if [ -f "$GCAndroid/Edit_Config_Json/configjsonMain.sh" ]; then
+        source $GCAndroid/Edit_Config_Json/configjsonMain.sh
+    else
+        echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/configjsonMain.sh not found!"
+        exit
+    fi
+
+    if [ -f "$GCAndroid/Edit_Config_Json/folderStructure/resources.sh" ]; then
+        source $GCAndroid/Edit_Config_Json/folderStructure/resources.sh
+    else
+        echo "${RC}Error${WC} : $GCAndroid/Edit_Config_Json/folderStructure/resources.sh not found!"
+        exit 1
+    fi
 }

@@ -1,7 +1,7 @@
 getConfigJson() {
     getArguments=$1
     if [ $getArguments = "folderStructure" ]; then
-        folderStructure_resources=$(jq '.folderStructure.resources' config.json | sed "s|\"||")
+        folderStructure_resources=$(jq '.folderStructure.resources' config.json | sed "s/\"//g")
     elif [ $getArguments = "Server" ]; then
         echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}logCommands${WC}";
         logCommands=$(jq '.server.logCommands' config.json 2>/dev/null)

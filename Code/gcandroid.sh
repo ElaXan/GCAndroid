@@ -175,7 +175,7 @@ menu_config() {
     echo -n "Enter input : "
     read menu_config_input
     case $menu_config_input in
-    "1") edit_configjson_Server_main ;;
+    "1") edit_configjson ;;
     "2") menu_config_editManual ;;
     "3") changePort ;;
     "0") Grasscutter_Tools ;;
