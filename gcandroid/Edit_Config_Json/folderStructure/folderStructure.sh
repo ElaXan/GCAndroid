@@ -1,6 +1,7 @@
 edit_configjson_folderStructure() {
+    cd $HOME/Grasscutter || exit 1
     credit_hah
-    line5 "Edit config.json [folderStructure]"
+    line1 "Edit config.json [folderStructure]"
     getConfigJson "folderStructure"
     echo "1. [${GC}$folderStructure_resources${WC}] resources"
     echo "0. ${RC}Back${WC}"

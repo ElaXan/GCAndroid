@@ -535,6 +535,7 @@ loadOtherShellScript() {
         exit
     fi
 
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}resources.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/folderStructure/resources.sh" ]; then
         source $GCAndroid/Edit_Config_Json/folderStructure/resources.sh
     else
