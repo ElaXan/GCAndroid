@@ -23,9 +23,10 @@ OR\
 Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
 
 ## Setup
-
+<a href="https://youtu.be/gVlqw9Lo9K8">
 <img src="https://media.discordapp.net/attachments/1033524980333428746/1043674167351971930/202211200647172.png" alt="nahida-image">
-Click the image for video tutorial!
+</a>Click the image for video tutorial!
+
 
 Note : All commands are to be executed inside Termux
 
