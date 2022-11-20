@@ -24,11 +24,11 @@ Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEE
 
 ## Setup
 <a href="https://youtu.be/gVlqw9Lo9K8">
-<img src="https://media.discordapp.net/attachments/1033524980333428746/1043674167351971930/202211200647172.png" alt="nahida-image" width="150" height="150">
-</a>
-<br>Click the image for video tutorial!
+<img src="https://media.discordapp.net/attachments/1033524980333428746/1043674167351971930/202211200647172.png" alt="nahida-image" width="150" height="150"></a>
 
-<br>Note : All commands are to be executed inside Termux
+Click the image for video tutorial!
+
+Note : All commands are to be executed inside Termux
 
 1. In order to install proot-distro/ubuntu, run this command
 ```bash
@@ -49,7 +49,8 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 ### Script
 
 To download GCAndroid, run this command (One time only)
-```bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/2.6.2/install.sh)
+```bash 
+bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/2.6.2/install.sh)
 ```
 * To run it for the next time, use this command instead
 
