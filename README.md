@@ -23,10 +23,6 @@ OR\
 Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
 
 ## Setup
-<a href="https://youtu.be/gVlqw9Lo9K8">
-<img src="https://media.discordapp.net/attachments/1033524980333428746/1043674167351971930/202211200647172.png" alt="nahida-image" width="150" height="150"></a>
-
-Click the image for video tutorial!
 
 Note : All commands are to be executed inside Termux
 
@@ -57,6 +53,15 @@ bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/2.6.2/insta
 ```bash
 gcandroid
 ```
+
+## Tutorial
+
+<a href="https://youtu.be/gVlqw9Lo9K8">
+<img src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png" alt="nahida-image" width="150" height="150"></a>
+
+If you don't understand this or the setup, you can watch video tutorials on YouTube\
+Click the YouTube logo to redirect to video tutorials
+
 
 ## Edit Mongodb Database
 If you want to edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
