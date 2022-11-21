@@ -48,7 +48,7 @@ Reset_Banners() {
         read -r Reset_Banners
         if [[ "$Reset_Banners" == "y" ]] || [[ "$Reset_Banners" == "Y" ]] || [[ "$Reset_Banners" == "" ]]; then
             rm "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
-            wget -q https://raw.githubusercontent.com/Grasscutter-Team/Grasscutter/main/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
             echo "${GC}Banners.json reset successfully!${WC}"
             sleep 1.5s
             Edit_Banners
