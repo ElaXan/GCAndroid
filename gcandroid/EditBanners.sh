@@ -29,6 +29,34 @@ Import_Banners() {
     fi
 }
 
+Reset_Banners() {
+    credit_hah
+    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json" ]]; then
+        echo "${RC}Banners.json not found!${WC}"
+        echo -n "${GC}Do you want to download it from github? [Y/n] : ${WC}"
+        read -r Download_Banners
+        if [[ "$Download_Banners" == "y" ]] || [[ "$Download_Banners" == "Y" ]] || [[ "$Download_Banners" == "" ]]; then
+            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/main/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            echo "${GC}Banners.json downloaded successfully!${WC}"
+            sleep 1.5s
+            Edit_Banners
+        else
+            Edit_Banners
+        fi
+    else
+        echo -n "${GC}Do you want to reset Banners.json? [Y/n] : ${WC}"
+        read -r Reset_Banners
+        if [[ "$Reset_Banners" == "y" ]] || [[ "$Reset_Banners" == "Y" ]] || [[ "$Reset_Banners" == "" ]]; then
+            rm "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            wget -q https://raw.githubusercontent.com/Grasscutter-Team/Grasscutter/main/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            echo "${GC}Banners.json reset successfully!${WC}"
+            sleep 1.5s
+            Edit_Banners
+        else
+            Edit_Banners
+        fi
+    fi
+}
 
 Edit_Banners() {
     credit_hah
@@ -68,6 +96,7 @@ Edit_Banners() {
     fi
     echo "1. ${CCB}Edit Banners.json${WC}"
     echo "2. ${CCB}Import Banners.json${WC}"
+    echo "3. ${CCB}Reset Banners.json${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter your choice : "
@@ -78,6 +107,9 @@ Edit_Banners() {
             ;;
         2)
             Import_Banners
+            ;;
+        3)
+            Reset_Banners
             ;;
         0)
             Grasscutter_Tools
