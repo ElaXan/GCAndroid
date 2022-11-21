@@ -15,6 +15,10 @@ What can I do with a Localhost Server?
 * The abillity to change the (Banners, Events, Abyss, and etc)
 * Much more
 
+## Changelog
+
+For changelog, please check [here](https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md)
+
 ## Prerequisites
 
 The Requirments are as follows: [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices. \
