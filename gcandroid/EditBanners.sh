@@ -36,7 +36,7 @@ Reset_Banners() {
         echo -n "${GC}Do you want to download it from github? [Y/n] : ${WC}"
         read -r Download_Banners
         if [[ "$Download_Banners" == "y" ]] || [[ "$Download_Banners" == "Y" ]] || [[ "$Download_Banners" == "" ]]; then
-            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/main/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
             echo "${GC}Banners.json downloaded successfully!${WC}"
             sleep 1.5s
             Edit_Banners
