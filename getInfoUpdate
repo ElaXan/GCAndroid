@@ -1,4 +1,4 @@
-newVersionScript="2.7"
+newVersionScript="2.6.2"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
 if [[ $versionScript == "2.6.2" ]]; then
     noteUpdate="1. Add interpretation of backslash escapes in \"echo\"\n"
