@@ -1,6 +1,6 @@
 # Changelog
 
-# 2.6.5
+# 2.7
 
 1. Add interpretation of backslash escapes in "echo"
 2. Edit main config.json
@@ -9,6 +9,7 @@
 5. Edit Banners.json
 6. Import Banners.json
 7. Reset Banners.json
+8. Update Download grasscutter.jar
 
 # 2.6.2
 
