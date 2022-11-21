@@ -6,6 +6,9 @@
 2. Edit main config.json
 3. Add menu edit folderStructure config.json
 4. Add edit config.json for "resources"
+5. Edit Banners.json
+6. Import Banners.json
+7. Reset Banners.json
 
 # 2.6.2
 

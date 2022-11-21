@@ -133,7 +133,7 @@ Install_Grasscutter_process() {
         fi
         cd "Grasscutter" || exit 1
         run_Program() {
-            wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/grasscutter-1.4.4-dev-05fe62b4.jar -O grasscutter.jar &>$HOME/zerr.log
+            wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/grasscutter-1.4.4-dev-1e932ce1.jar -O grasscutter.jar &>$HOME/zerr.log
             errCode=$?
             log "$errCode"
         }
@@ -154,25 +154,25 @@ Install_Grasscutter_process() {
     if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
         if [[ $Install_Grasscutter_Resources_Version = "3.2" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.2.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
+                wget https://git.crepe.moe/tamilpp25/Grasscutter_Resources/-/archive/3.2/Grasscutter_Resources-3.2.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.1.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
+                wget https://git.crepe.moe/tamilpp25/Grasscutter_Resources/-/archive/3.1/Grasscutter_Resources-3.1.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/3.0.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
+                wget https://git.crepe.moe/tamilpp25/Grasscutter_Resources/-/archive/3.0/Grasscutter_Resources-3.0.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
         elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
             run_Program() {
-                wget https://github.com/tamilpp25/Grasscutter_Resources/archive/refs/heads/2.8.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
+                wget https://git.crepe.moe/tamilpp25/Grasscutter_Resources/-/archive/2.8/Grasscutter_Resources-2.8.zip -O resourcesGCAndroid.zip &>$HOME/zerr.log
                 errCode=$?
                 log "$errCode"
             }
