@@ -7,7 +7,7 @@
 Project is free to use. If you bought it from someone, please refund\
 When I see someone selling GCAndroid, then I will close the source code\
 Open source will be available for Score-Inc or Contributor with GCAndroid\
-Join out [Discord](https://discord.gg/2TTSUZZ)
+Join our [Discord](https://discord.gg/2TTSUZZ)
 
 ## About
 
