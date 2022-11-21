@@ -465,6 +465,8 @@ elif [[ $versionScript < $newVersionScript ]]; then
     esac
 elif [[ $versionScript = $newVersionScript ]]; then
     note_credit="$noteLatestVersion"
+else
+    note_credit="${RC}Unknowm Version${WC}"
 fi
 
 case $inpscript in
