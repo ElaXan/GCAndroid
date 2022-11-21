@@ -137,7 +137,7 @@ credit_hah() {
     clear
     echo -n "${WC}"
     echo $line
-    line8 "Project owner by ElaXan"
+    line7 "Project owner by ElaXan"
     echo -e "$note_credit"
     echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
     echo $line
@@ -268,7 +268,10 @@ Install_Grasscutter() {
         read Install_Grasscutter_input
         echo -n "${WC}"
         case $Install_Grasscutter_input in
-        "y" | "Y") Install_Grasscutter_option ;;
+        "y" | "Y")
+            Grasscutter_Already_Installed=1
+            Install_Grasscutter_option
+            ;;
         "n" | "N") Grasscutter_Menu ;;
         *)
             echo "${RC}Wrong Input!${WC}"
@@ -277,6 +280,7 @@ Install_Grasscutter() {
             ;;
         esac
     else
+        Backup_Resources="0"
         Install_Grasscutter_option
     fi
 }
@@ -426,9 +430,9 @@ main_menu() {
 
 newVersionScript=""
 versionScript="2.7"
-echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}";
+echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
-echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}";
+echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/updateScript.sh)
 if [[ $newVersionScript = "" ]]; then
     clear
