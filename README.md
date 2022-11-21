@@ -9,15 +9,19 @@ When I see someone selling GCAndroid, then I will close the source code\
 Open source code will only be available for whoever affiliated with [Score Inc](https://github.com/Score-Inc)
 
 ## About
+
 What can I do with a Localhost Server?
 * The lowest Ping possible.
 * The abillity to change the (Banners, Events, Abyss, and etc)
 * Much more
+
 ## Prerequisites
+
 The Requirments are as follows: [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices. \
 But, why not try it? I could be wrong XD
 
 ## Download links
+
 Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
 OR\
 Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
@@ -64,6 +68,7 @@ Click the YouTube logo to redirect to video tutorials
 
 
 ## Edit Mongodb Database
+
 If you want to edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
 If you don't have money to buy the app, you can search for other apks or search for the cracked version of the app that exists in the Internet...
 
@@ -82,13 +87,16 @@ Don't change anything unless you want to change the Mongodb port. Make sure to s
 5. Done, now you can edit the Database
 
 ## Play
+
 ### Chinese APK
+
 You need to use Termux for this or make your own Private DNS to redirect to localhost\
 And dont ask me idk\
 You can play without Private DNS or Termux, but it needs Root/SuperUser permissions\
 And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 ## YuukiPS V1
+
 Click on "Localhost"\
 <img src="img/YuukiPS_V1.png" width="500" alt="Click on Localhost"><br />
 If you change a port for Grasscutter, then enter the Custom Port\
@@ -97,11 +105,13 @@ After that click on "Enter Localhost"\
 <img src="img/YuukiPS_V1_2.png" altf="Click on ENTER LOCALHOST" width="500">
 
 ## YuukiPS V2
+
 You cant play localhost on V2.\
 Try to mod the module, and patch it.\
 Dont ask me how
 
 ### Termux/mitmproxy
+
 You can use [my script](https://github.com/Score-Inc/AnimeGamePatch)\
 Select Menu on mitmproxy by running command `zex 4`\
 <img src="img/termux.png" width="350"/><br />
