@@ -6,7 +6,8 @@
 
 Project is free to use. If you bought it from someone, please refund\
 When I see someone selling GCAndroid, then I will close the source code\
-Open source code will only be available for whoever affiliated with [Score Inc](https://github.com/Score-Inc)
+Open source will be available for Score-Inc or Contributor with GCAndroid\
+Join out [Discord](https://discord.gg/2TTSUZZ)
 
 ## About
 
@@ -21,14 +22,11 @@ For changelog, please check [here](https://github.com/Score-Inc/GCAndroid/blob/S
 
 ## Prerequisites
 
-The Requirments are as follows: [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices. \
-But, why not try it? I could be wrong XD
+The Requirments are as follows: [Ubuntu](https://ubuntu.com), [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices.
 
 ## Download links
 
 Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
-OR\
-Download [Termux Android 12+](https://github.com/HardcodedCat/termux-monet) (NEED ROOT OR ADB)
 
 ## Setup
 
@@ -70,11 +68,10 @@ gcandroid
 If you don't understand this or the setup, you can watch video tutorials on YouTube\
 Click the YouTube logo to redirect to video tutorials
 
-
 ## Edit Mongodb Database
 
 If you want to edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\
-If you don't have money to buy the app, you can search for other apks or search for the cracked version of the app that exists in the Internet...
+If you don't have money to buy an app, you can look for other apps or look for crack apps on the internet
 
 Make sure MongoDB is running using this command
 ```bash
@@ -94,7 +91,7 @@ Don't change anything unless you want to change the Mongodb port. Make sure to s
 
 ### Chinese APK
 
-You need to use Termux for this or make your own Private DNS to redirect to localhost\
+You need to use Termux for this or make your own Private DNS redirect to Localhost (127.0.0.1)
 And dont ask me idk\
 You can play without Private DNS or Termux, but it needs Root/SuperUser permissions\
 And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
