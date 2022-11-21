@@ -54,7 +54,7 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 
 To download GCAndroid, run this command (One time only)
 ```bash 
-bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/Install.sh)
 ```
 * To run it for the next time, use this command instead
 
