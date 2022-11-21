@@ -1,8 +1,41 @@
+Edit_Banner() {
+    credit_hah
+    echo "${YC}For exit CTRL+Q"
+    echo "${YC}For save CTRL+S"
+    echo "${YC}For help CTRL+G"
+    sleep 1.5s
+    micro "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+    Edit_Banners
+}
+
+Import_Banners() {
+    credit_hah
+    echo "${YC}For cancel enter b/B${WC}"
+    echo -n "${GC}Enter the path to the file : ${WC}"
+    read -r Import_Banners_Path
+    if [[ "$Import_Banners_Path" == "b" ]] || [[ "$Import_Banners_Path" == "B" ]]; then
+        Edit_Banners
+    else
+        if [[ -f "$Import_Banners_Path" ]]; then
+            cp "$Import_Banners_Path" "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            echo "${GC}File imported successfully!${WC}"
+            sleep 1.5s
+            Edit_Banners
+        else
+            echo "${RC}File not found!${WC}"
+            sleep 1.5s
+            Import_Banners
+        fi
+    fi
+}
+
+
 Edit_Banners() {
     credit_hah
     if ! (command -v micro &> /dev/null); then
         echo "${GC}Installing micro text editor${NC}"
         apt install micro -y &> /dev/null
+        credit_hah
     fi
     if ! (command -v micro &> /dev/null); then
         echo "${RC}Failed to install micro text editor${NC}"
@@ -33,11 +66,26 @@ Edit_Banners() {
         read
         main_menu
     fi
-    echo "${GC}Editing banners${NC}"
-    echo "${YC}For exit CTRL+Q${NC}"
-    echo "${YC}For save CTRL+S${NC}"
-    echo "${YC}For help CTRL+G${NC}"
-    sleep 1.5s
-    micro "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
-    Grasscutter_Tools
+    echo "1. ${CCB}Edit Banners.json${WC}"
+    echo "2. ${CCB}Import Banners.json${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter your choice : "
+    read Edit_Banners_Choice
+    case $Edit_Banners_Choice in
+        1)
+            Edit_Banner
+            ;;
+        2)
+            Import_Banners
+            ;;
+        0)
+            Grasscutter_Tools
+            ;;
+        *)
+            echo "${RC}Error${WC} : Invalid Choice${NC}"
+            sleep 1s
+            Edit_Banners
+            ;;
+    esac
 }
