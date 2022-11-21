@@ -87,6 +87,14 @@ loadOtherShellScript() {
         exit 1
     fi
 
+    echo -en "\033[2K\r${GC}Load${WC} : ${CCB}EditBanners.sh${WC}";
+    if [ -f "$GCAndroid/EditBanners.sh" ]; then
+        source $GCAndroid/EditBanners.sh
+    else
+        echo "${RC}Error${WC} : ${GCAndroid}/EditBanners.sh not found"
+        exit 1
+    fi
+
     echo -en "\033[2K\r${GC}Load${WC} : ${CCB}Server.sh${WC}";
     if [ -f "$GCAndroid/Edit_Config_Json/Server/Server.sh" ]; then
         source $GCAndroid/Edit_Config_Json/Server/Server.sh

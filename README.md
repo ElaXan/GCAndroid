@@ -45,14 +45,23 @@ apts=$(cat /etc/apt/sources.list); echo -e "$apts\ndeb http://ports.ubuntu.com/u
 ### Script
 
 To download GCAndroid, run this command (One time only)
-```bash
-bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/main/install.sh)
+```bash 
+bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/2.6.2/install.sh)
 ```
 * To run it for the next time, use this command instead
 
 ```bash
 gcandroid
 ```
+
+## Tutorial
+
+<a href="https://youtu.be/gVlqw9Lo9K8">
+<img src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png" alt="Tutorial Youtube How to install Grasscutter using Termux" width="150" height="150"></a>
+
+If you don't understand this or the setup, you can watch video tutorials on YouTube\
+Click the YouTube logo to redirect to video tutorials
+
 
 ## Edit Mongodb Database
 If you want to edit mongodb database, you can use [this app](https://play.google.com/store/apps/details?id=com.mongolime.app)\

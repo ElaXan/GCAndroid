@@ -306,18 +306,20 @@ Grasscutter_Tools() {
     # Done Center
     line10 "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
-    echo "2. ${CCB}Install Plugin${WC}"
-    echo "3. ${CCB}Remove Plugin${WC}"
-    echo "4. ${CCB}Get GM Handbook${WC}"
+    echo "2. ${CCB}Edit Banners.json${WC}"
+    echo "3. ${CCB}Install Plugin${WC}"
+    echo "4. ${CCB}Remove Plugin${WC}"
+    echo "5. ${CCB}Get GM Handbook${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read -r Grasscutter_Tools_Input
     case $Grasscutter_Tools_Input in
     "1") menu_config ;;
-    "2") installPlugin ;;
-    "3") removePlugin ;;
-    "4") generateHandbook ;;
+    "2") Edit_Banners ;;
+    "3") installPlugin ;;
+    "4") removePlugin ;;
+    "5") generateHandbook ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
