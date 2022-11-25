@@ -99,9 +99,7 @@ line15() {
 }
 
 # load other ".sh" in "gcandroid" folder
-for file in $GCAndroid/*.sh; do
-    source $file
-done
+
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
@@ -424,7 +422,10 @@ main_menu() {
         ;;
     esac
 }
-
+for file in $GCAndroid/*.sh; do
+    echo -ne "\033[2K\r${YC}Loading $file${WC}"
+    source $file
+done
 newVersionScript=""
 versionScript="2.7"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
