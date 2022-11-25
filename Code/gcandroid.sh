@@ -394,6 +394,86 @@ InstallMenu() {
     esac
 }
 
+license() {
+    credit_hah
+    line15 "License"
+    echo "${GC}GNU General Public License v3.0${WC}"
+    echo
+    echo "This program is free software:"
+    echo "you can redistribute it and/or modify"
+    echo "it under the terms of the"
+    echo "GNU General Public License as published by"
+    echo "the Free Software Foundation,"
+    echo "either version 3 of the License, or"
+    echo "(at your option) any later version."
+    echo
+    echo "This program is distributed in the"
+    echo "hope that it will be useful,"
+    echo "but WITHOUT ANY WARRANTY; without even"
+    echo "the implied warranty of"
+    echo "MERCHANTABILITY or FITNESS FOR A"
+    echo "PARTICULAR PURPOSE."
+    echo "See theGNU General Public License"
+    echo "for more details."
+    echo
+    echo "You should have received a copy of"
+    echo "the GNU General Public License"
+    echo "along with this program."
+    echo "If not, see <https://www.gnu.org/licenses/>."
+    echo
+    echo -n "Press enter for back to About Us!"
+    read -r
+    about_us
+}
+
+credits() {
+    credit_hah
+    line10 "Credits"
+    echo "${CCB}Creator :${WC} ${GC}ElaXan${WC}"
+    echo "${CCB}Github :${WC} ${CCU}https://github.com/ElaXan${WC}"
+    echo "${CCB}Telegram :${WC} ${CCU}https://t.me/ElashXander${WC}"
+    echo "${CCB}Discord :${WC} ${CCU}https://discord.com/users/506212044152897546${WC}"
+    echo
+    echo -n "Press enter for back to About Us!"
+    read -r
+    about_us
+}
+
+about_us2() {
+    credit_hah
+    line14 "About Us"
+    echo -e "${GC}I am an ordinary person who learns about programming.\nand I made this at will, without payment or free.\nso, if you buy this project or GCAndroid,\nPlease refund you got scam\n\n"
+    echo "${CCB}Website Score-Inc: ${CCU}https://scoreps.xyz${WC}"
+    echo "${CCB}Github: ${CCU}https://github.com/Score-Inc${WC}"
+    echo
+    echo -n "Press enter for back to About Us"
+    read -r
+    about_us
+}
+
+about_us() {
+    credit_hah
+    line14 "About Us"
+    echo "1. ${CCB}About Us${WC}"
+    echo "2. ${CCB}Credits${WC}"
+    echo "3. ${CCB}License${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r about_us_input
+    case $about_us_input in
+    "1") about_us2 ;;
+    "2") credits ;;
+    "3") license ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        about_us
+        ;;
+    esac
+}
+
 main_menu() {
     credit_hah
     # Done Center
@@ -402,6 +482,7 @@ main_menu() {
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
+    echo "5. ${CCB}About Us!${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -411,6 +492,7 @@ main_menu() {
     "2") Grasscutter_Menu ;;
     "3") Grasscutter_Tools ;;
     "4") InstallMenu ;;
+    "5") about_us ;;
     "0")
         clear
         exit 0
