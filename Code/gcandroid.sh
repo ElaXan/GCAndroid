@@ -18,85 +18,6 @@ fi
 
 GCAndroid=/usr/share/gcandroid
 line="====================================="
-line0() {
-    echo "${GC}$1${WC}"
-    echo "${line}"
-}
-
-line1() {
-    echo "${GC} $1${WC}"
-    echo "${line}"
-}
-
-line2() {
-    echo "${GC}  $1${WC}"
-    echo "${line}"
-}
-
-line3() {
-    echo "${GC}   $1${WC}"
-    echo "${line}"
-}
-
-line4() {
-    echo "${GC}    $1${WC}"
-    echo "${line}"
-}
-
-line5() {
-    echo "${GC}     $1${WC}"
-    echo "${line}"
-}
-
-line6() {
-    echo "${GC}      $1${WC}"
-    echo "${line}"
-}
-
-line7() {
-    echo "${GC}       $1${WC}"
-    echo "${line}"
-}
-
-line8() {
-    echo "${GC}        $1${WC}"
-    echo "${line}"
-}
-
-line9() {
-    echo "${GC}         $1${WC}"
-    echo "${line}"
-}
-
-line10() {
-    echo "${GC}          $1${WC}"
-    echo "${line}"
-}
-
-line11() {
-    echo "${GC}           $1${WC}"
-    echo "${line}"
-}
-
-line12() {
-    echo "${GC}            $1${WC}"
-    echo "${line}"
-}
-
-line13() {
-    echo "${GC}             $1${WC}"
-    echo "${line}"
-}
-
-line14() {
-    echo "${GC}              $1${WC}"
-    echo "${line}"
-}
-
-line15() {
-    echo "${GC}               $1${WC}"
-    echo "${line}"
-}
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
@@ -114,29 +35,6 @@ if ! command -v jq &>/dev/null; then
     sudo apt install jq -y
 fi
 
-clear
-echo -n "${WC}"
-echo $line
-line8 "Script made by ElaXan"
-line15 "LOADING"
-echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
-echo $line
-echo "${GC}Contact me at chat@elaxan.com${WC}"
-echo $line
-
-credit_hah() {
-    clear
-    echo -n "${WC}"
-    echo $line
-    line7 "Project owner by ElaXan"
-    echo -e "$note_credit"
-    echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
-    echo $line
-    echo "${GC}      Join our Discord Server!${WC}"
-    echo "${CCU}https://discord.gg/discord.gg/2TTSUZZ${WC}"
-    echo $line
-}
-
 Center_Text() {
     textss=$1
 
@@ -146,6 +44,29 @@ Center_Text() {
     space=$((space / 2))
     space=$(printf "%${space}s")
     echo "${GC}${space}$1${WC}"
+    echo $line
+}
+
+clear
+echo -n "${WC}"
+echo $line
+Center_Text "Project Owner by ElaXan"
+Center_Text "LOADING..."
+echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
+echo $line
+echo "${GC}Contact me at chat@elaxan.com${WC}"
+echo $line
+
+credit_hah() {
+    clear
+    echo -n "${WC}"
+    echo $line
+    Center_Text "Project Owner by ElaXan"
+    echo -e "$note_credit"
+    echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
+    echo $line
+    echo "${GC}      Join our Discord Server!${WC}"
+    echo "${CCU}https://discord.gg/discord.gg/2TTSUZZ${WC}"
     echo $line
 }
 
@@ -584,6 +505,16 @@ for file in $GCAndroid/*.sh; do
     echo -ne "\033[2K\r${YC}Loading $file${WC}"
     source $file
 done
+Path_Shell="/usr/share/gcandroid"
+for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
+    for j in $(find "$i" -maxdepth 1 -type f); do
+        . "$j"
+    done
+done
+for i in $(find "$Path_Shell/Edit_Config_Json" -maxdepth 1 -type f); do
+    . "$i"
+done
+
 newVersionScript=""
 versionScript="2.7"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
