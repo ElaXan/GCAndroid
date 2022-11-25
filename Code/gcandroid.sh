@@ -129,7 +129,6 @@ echo $line
 echo "${GC}Contact me at chat@elaxan.com${WC}"
 echo $line
 
-loadOtherShellScript
 
 credit_hah() {
     clear
