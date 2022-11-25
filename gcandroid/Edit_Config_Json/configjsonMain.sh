@@ -1,7 +1,7 @@
 edit_configjson() {
     cd $HOME/Grasscutter || exit 1
     credit_hah
-    line7 "Edit config.json [MAIN]"
+    Center_Text "Edit config.json [MAIN]"
     echo "1. ${CCB}folderStructure${WC}"
     echo "2. ${CCB}Server${WC}"
     echo "0. ${RC}Back${WC}"

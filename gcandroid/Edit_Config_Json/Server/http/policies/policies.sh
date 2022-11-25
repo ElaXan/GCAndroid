@@ -1,6 +1,6 @@
 edit_configjson_Server_http_policies() {
     credit_hah
-    line5 "Edit config.json [policies]"
+    Center_Text "Edit config.json [policies]"
     echo "1. ${CCB}cors${WC}"
     echo "0. ${RC}Back${WC}"
     echo

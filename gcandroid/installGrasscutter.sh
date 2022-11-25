@@ -29,7 +29,7 @@ Install_Grasscutter_process() {
         fi
     fi
     credit_hah
-    line1 "Install Grasscutter Version Select"
+    Center_Text "Install Grasscutter Version Select"
     cd $HOME || exit 1
     echo "1. ${CCB}Compile grasscutter.jar${WC}"
     echo "2. ${CCB}Download grasscutter.jar${WC}"
@@ -47,7 +47,7 @@ Install_Grasscutter_process() {
             Install_Grasscutter_process
     esac
     credit_hah
-    line1 "Install Grasscutter Version Select"
+    Center_Text "Install Grasscutter Version Select"
     if [[ $Backup_Resources == "0" ]]; then
         if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
             echo "${GC}Choose Version Resources...${WC}"

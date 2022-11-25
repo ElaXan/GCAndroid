@@ -98,9 +98,6 @@ line15() {
     echo "${line}"
 }
 
-# load other ".sh" in "gcandroid" folder
-
-
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
 inpscript=$1
@@ -127,7 +124,6 @@ echo $line
 echo "${GC}Contact me at chat@elaxan.com${WC}"
 echo $line
 
-
 credit_hah() {
     clear
     echo -n "${WC}"
@@ -138,6 +134,18 @@ credit_hah() {
     echo $line
     echo "${GC}      Join our Discord Server!${WC}"
     echo "${CCU}https://discord.gg/discord.gg/2TTSUZZ${WC}"
+    echo $line
+}
+
+Center_Text() {
+    textss=$1
+
+    lines=$(echo $line | wc -c)
+    textss=$(echo $1 | wc -c)
+    space=$((lines - textss))
+    space=$((space / 2))
+    space=$(printf "%${space}s")
+    echo "${GC}${space}$1${WC}"
     echo $line
 }
 
@@ -162,7 +170,7 @@ menu_config() {
         return
     fi
     credit_hah
-    line10 "Edit config.json"
+    Center_Text "Edit config.json"
     echo "1. ${CCB}Edit using this Script${WC}"
     echo "2. ${CCB}Edit Manual${WC}"
     echo "3. ${CCB}Change Port${WC}"
@@ -194,7 +202,7 @@ installMongodb() {
         case $mongodbAsk in
         "y" | "Y")
             credit_hah
-            line10 "Mongodb Install"
+            Center_Text "Mongodb Install"
             sudo apt reinstall mongodb
             main_menu
             ;;
@@ -226,7 +234,7 @@ installMongodb() {
 
 Install_Grasscutter_option() {
     credit_hah
-    line0 "Please choose this for download Resources"
+    Center_Text "Please choose this for download Resources"
     echo "1. ${YC}tamilpp25 Resources${WC}"
     echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
     echo "0. ${RC}Back/Cancel${WC}"
@@ -282,7 +290,7 @@ Install_Grasscutter() {
 
 Grasscutter_Menu() {
     credit_hah
-    line11 "Grascutter Menu"
+    Center_Text "Grasscutter Menu"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
     echo "0. ${RC}Back${WC}"
@@ -303,8 +311,7 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
-    # Done Center
-    line10 "Grasscutter Tools"
+    Center_Text "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Edit Banners.json${WC}"
     echo "3. ${CCB}Install Plugin${WC}"
@@ -331,7 +338,7 @@ Grasscutter_Tools() {
 
 installJavaJDK17() {
     credit_hah
-    line7 "Installing Java JDK 17"
+    Center_Text "Install Java JDK 17"
     if (command -v java &>/dev/null); then
         echo "${YC}You already installed Java"
         echo "${YC}Want to reinstall?${WC}"
@@ -342,7 +349,7 @@ installJavaJDK17() {
             InstallMenu
         elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
             credit_hah
-            line7 "Installing Java JDK 17"
+            Center_Text "Installing Java JDK 17"
             run_Program() {
                 sudo apt reinstall openjdk-17-jdk -y &>$HOME/zerr.log
                 errCode=$?
@@ -374,8 +381,7 @@ installJavaJDK17() {
 
 InstallMenu() {
     credit_hah
-    # Done Center
-    line12 "Install Menu"
+    Center_Text "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
     echo "2. ${CCB}Install Java JDK 17${WC}"
     echo "0. ${RC}Back${WC}"
@@ -396,7 +402,7 @@ InstallMenu() {
 
 license() {
     credit_hah
-    line15 "License"
+    Center_Text "License"
     echo "${GC}GNU General Public License v3.0${WC}"
     echo
     echo "This program is free software:"
@@ -428,7 +434,7 @@ license() {
 
 credits() {
     credit_hah
-    line10 "Credits"
+    Center_Text "Credits"
     echo "${CCB}Creator :${WC} ${GC}ElaXan${WC}"
     echo "${CCB}Github :${WC} ${CCU}https://github.com/ElaXan${WC}"
     echo "${CCB}Telegram :${WC} ${CCU}https://t.me/ElashXander${WC}"
@@ -441,7 +447,7 @@ credits() {
 
 about_us2() {
     credit_hah
-    line14 "About Me"
+    Center_Text "About Me"
     echo -e "${GC}I am an ordinary person who learns about programming.\nand I made this at will, without payment or free.\nso, if you buy this project or GCAndroid,\nPlease refund you got scam\n\n"
     echo "${CCB}Website Score-Inc: ${CCU}https://scoreps.xyz${WC}"
     echo "${CCB}Github: ${CCU}https://github.com/Score-Inc${WC}"
@@ -453,7 +459,7 @@ about_us2() {
 
 about_us() {
     credit_hah
-    line14 "About Us"
+    Center_Text "About Us"
     echo "1. ${CCB}About Me${WC}"
     echo "2. ${CCB}Credits${WC}"
     echo "3. ${CCB}License${WC}"
@@ -476,7 +482,7 @@ about_us() {
 
 how_to_setup() {
     credit_hah
-    line14 "How to Setup"
+    Center_Text "How to Setup"
     echo "${CCB}First you need to install ${GC}Mongodb${CCB}"
     echo "and ${GC}Java JDK 17${CCB} in ${GC}Install Menu${CCB}"
     echo "and then you can use ${GC}Grasscutter Menu${CCB}"
@@ -524,7 +530,7 @@ how_to_setup() {
     echo "you can select ${YC}N${CCB}"
     echo
     echo "Thats all done."
-    echo 
+    echo
     echo "If you have error for ${WC}port already in use${CCB}"
     echo "You can change port in config.json"
     echo "and then you can use ${YC}Grasscutter Menu${CCB}"
@@ -545,8 +551,7 @@ how_to_setup() {
 
 main_menu() {
     credit_hah
-    # Done Center
-    line14 "Main Menu"
+    Center_Text "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"

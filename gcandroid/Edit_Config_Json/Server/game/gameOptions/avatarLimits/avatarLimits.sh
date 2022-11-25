@@ -1,6 +1,6 @@
 edit_configjson_Server_game_gameOptions_avatarLimits() {
     credit_hah
-    line3 "Edit config.json [avatarLimits]"
+    Center_Text "Edit config.json [avatarLimits]"
     getConfigJson "server.game.gameOptions.avatarLimits"
     echo "1. [${GC}$server_game_gameOptions_avatarLimits_singlePlayerTeam${WC}] singlePlayerTeam"
     echo "2. [${GC}$server_game_gameOptions_avatarLimits_multiplayerTeam${WC}] multiplayerTeam"

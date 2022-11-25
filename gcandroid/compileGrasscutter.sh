@@ -19,8 +19,7 @@ Compile_Grasscutter() {
     fi
     clear
     credit_hah
-    echo "${GC}${space}Compile .jar [PLEASE WAIT]${WC}"
-    echo "${line}"
+    Center_Text "Compile .jar [PLEASE WAIT]"
     cd $HOME/Grasscutter || exit 1
     if [ -f "grasscutter.jar" ]; then
         rm grasscutter.jar

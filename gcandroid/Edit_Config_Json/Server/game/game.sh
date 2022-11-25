@@ -1,6 +1,6 @@
 edit_configjson_Server_game() {
     credit_hah
-    line6 "Edit config.json [GAME]"
+    Center_Text "Edit config.json [GAME]"
     getConfigJson "server.http.game"
     echo "1. [${GC}$server_game_bindAddress${WC}] bindAddress"
     echo "2. [${GC}$server_game_bindPort${WC}] bindPort"

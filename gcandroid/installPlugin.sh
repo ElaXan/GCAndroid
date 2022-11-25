@@ -3,7 +3,7 @@
 
 installPlugin_Download() {
     credit_hah
-    line5 "Install Plugin Download"
+    Center_Text "Install Plugin Download"
     echo "${YC}Enter b/B for back${WC}"
     echo
     echo -n "${GC}Enter link Download .jar : ${WC}"
@@ -82,7 +82,7 @@ installPlugin_Download() {
 
 installPlugin_from_directory() {
     credit_hah
-    line5 "Install Plugin Directory"
+    Center_Text "Install Plugin Directory"
     echo "1. ${CCB}Using dialog command${WC}"
     echo "2. ${CCB}Manual Typing${WC}"
     echo "3. ${CCB}Help for Dialog command${WC}"
@@ -127,10 +127,10 @@ installPlugin_from_directory_process() {
         # echo "$installPlugin_from_directory_Input_File"
         # exit
         credit_hah
-        line5 "Install Plugin Directory"
+        Center_Text "Install Plugin Directory"
     elif [[ $installPlugin_from_directory_Input == "2" ]]; then
         credit_hah
-        line5 "Install Plugin Directory"
+        Center_Text "Install Plugin Directory"
         echo "${YC}Enter b/B for back${WC}"
         echo
         echo "${CCB}Please enter where .jar plugin${WC}"
@@ -193,7 +193,7 @@ installPlugin_from_directory_process() {
 installPlugin_Compile() {
     if ! command -v mvn &>/dev/null; then
         credit_hah
-        line10 "Installing Program maven"
+        Center_Text "Installing Program maven"
         run_Program() {
             sudo apt install maven &>$HOME/zerr.log
             errCode=$?
@@ -205,7 +205,7 @@ installPlugin_Compile() {
     fi
     if ! command -v git &>/dev/null; then
         credit_hah
-        line10 "Installing Program git${WC}"
+        Center_Text "Installing Program git"
         run_Program() {
             sudo apt install git &>$HOME/zerr.log
             errCode=$?
@@ -216,7 +216,7 @@ installPlugin_Compile() {
         spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
     fi
     credit_hah
-    line5 "Install Plugin Clone Repo"
+    Center_Text "Install Plugin Clone Repo"
     echo "${YC}Enter b/B for back!${WC}"
     echo
     echo "${CCB}Enter link Github Repo for Clone!${WC}"
@@ -239,7 +239,7 @@ installPlugin_Compile() {
         mkdir $folderRepo
     fi
     credit_hah
-    line10 "Compiling"
+    Center_Text "Compiling"
     cd $folderRepo
     run_Program() {
         git clone $installPlugin_Compile_Link &>$HOME/zerr.log
@@ -296,7 +296,7 @@ installPlugin_Compile() {
 
 installPlugin() {
     credit_hah
-    line10 "Install Plugin"
+    Center_Text "Install Plugin"
     if ! [ -d "$HOME/Grasscutter" ]; then
         echo "${RC}Folder Grasscutter in $HOME/Grasscutter is not found!${WC}"
         echo

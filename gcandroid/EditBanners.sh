@@ -10,6 +10,7 @@ Edit_Banner() {
 
 Import_Banners() {
     credit_hah
+    Center_Text "Import Banners"
     echo "${YC}For cancel enter b/B${WC}"
     echo -n "${GC}Enter the path to the file : ${WC}"
     read -r Import_Banners_Path
@@ -31,6 +32,7 @@ Import_Banners() {
 
 Reset_Banners() {
     credit_hah
+    Center_Text "Reset Banners"
     if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json" ]]; then
         echo "${RC}Banners.json not found!${WC}"
         echo -n "${GC}Do you want to download it from github? [Y/n] : ${WC}"
@@ -60,10 +62,12 @@ Reset_Banners() {
 
 Edit_Banners() {
     credit_hah
+    Center_Text "Edit Banners"
     if ! (command -v micro &> /dev/null); then
         echo "${GC}Installing micro text editor${NC}"
         apt install micro -y &> /dev/null
         credit_hah
+        Center_Text "Edit Banners"
     fi
     if ! (command -v micro &> /dev/null); then
         echo "${RC}Failed to install micro text editor${NC}"

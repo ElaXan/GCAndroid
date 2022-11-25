@@ -1,6 +1,6 @@
 edit_configjson_Server_http_policies_cors() {
     credit_hah
-    line7 "Edit config.json [cors]"
+    Center_Text "Edit config.json [cors]"
     getConfigJson "Server.http.policies.cors"
     echo "1. [$server_http_policies_cors_enabledOut] enabled"
     echo "0. ${RC}Back${WC}"

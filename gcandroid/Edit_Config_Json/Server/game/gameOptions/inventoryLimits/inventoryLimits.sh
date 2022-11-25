@@ -1,6 +1,6 @@
 edit_configjson_Server_game_gameOptions_inventoryLimits() {
     credit_hah
-    line1 "Edit config.json [inventoryLimits]"
+    Center_Text "Edit config.json [inventoryLimits]"
     getConfigJson "server.game.gameOptions.inventoryLimits"
     echo "1. [${GC}$server_game_gameOptions_inventoryLimits_weapons${WC}] weapons"
     echo "2. [${GC}$server_game_gameOptions_inventoryLimits_relics${WC}] relics"
