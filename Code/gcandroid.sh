@@ -98,12 +98,10 @@ line15() {
     echo "${line}"
 }
 
-if [ -f "$GCAndroid/loadOtherShellScript.sh" ]; then
-    source $GCAndroid/loadOtherShellScript.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/loadOtherShellScript.sh not found!"
-    exit 1
-fi
+# load other ".sh" in "gcandroid" folder
+for file in $GCAndroid/*.sh; do
+    source $file
+done
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar

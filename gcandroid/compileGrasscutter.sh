@@ -7,14 +7,14 @@ Compile_Grasscutter() {
         echo "${RC}Error${WC} : $Grasscutter_Folder not found"
         echo
         read -p "Press enter for back to Menu Grasscutter"
-        menu_Grasscutter
+        Grasscutter_Menu
         return
     fi
     if [ ! -f "$Grasscutter_Folder/gradlew" ]; then
         echo "${RC}Error${WC} : gradlew not found!"
         echo
         read -p "Press enter for back to Menu Grasscutter"
-        menu_Grasscutter
+        Grasscutter_Menu
         return
     fi
     clear
