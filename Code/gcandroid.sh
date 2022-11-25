@@ -441,7 +441,7 @@ credits() {
 
 about_us2() {
     credit_hah
-    line14 "About Us"
+    line14 "About Me"
     echo -e "${GC}I am an ordinary person who learns about programming.\nand I made this at will, without payment or free.\nso, if you buy this project or GCAndroid,\nPlease refund you got scam\n\n"
     echo "${CCB}Website Score-Inc: ${CCU}https://scoreps.xyz${WC}"
     echo "${CCB}Github: ${CCU}https://github.com/Score-Inc${WC}"
@@ -454,7 +454,7 @@ about_us2() {
 about_us() {
     credit_hah
     line14 "About Us"
-    echo "1. ${CCB}About Us${WC}"
+    echo "1. ${CCB}About Me${WC}"
     echo "2. ${CCB}Credits${WC}"
     echo "3. ${CCB}License${WC}"
     echo "0. ${RC}Back${WC}"
@@ -474,6 +474,75 @@ about_us() {
     esac
 }
 
+how_to_setup() {
+    credit_hah
+    line14 "How to Setup"
+    echo "${CCB}First you need to install ${GC}Mongodb${CCB}"
+    echo "and ${GC}Java JDK 17${CCB} in ${GC}Install Menu${CCB}"
+    echo "and then you can use ${GC}Grasscutter Menu${CCB}"
+    echo "In Grasscutter Menu there is ${YC}2${CCB} options"
+    echo "${WC}1. ${GC}Install Grasscutter"
+    echo "${WC}2. ${GC}Compile .jar${CCB}"
+    echo "If you want to install ${GC}Grasscutter${CCB}"
+    echo "you can use ${GC}Install Grasscutter${CCB}"
+    echo "and if you want to compile .jar"
+    echo "you can use ${GC}Compile .jar${CCB}"
+    echo "but you need to have ${YC}gradlew${CCB} first"
+    echo "If not you cant use ${GC}Compile .jar${CCB}"
+    echo "So now choose number ${GC}1${CCB}"
+    echo
+    echo "Then there is ${YC}2${CCB} options again"
+    echo "${WC}1. ${GC}tamilpp25 Resources"
+    echo "${WC}2. ${GC}Yuuki Resources${CCB}"
+    echo "If you want to use ${GC}tamilpp25 Resources${CCB}"
+    echo "you can select number ${GC}1${CCB}"
+    echo "and if you want to use ${GC}Yuuki Resources${CCB}"
+    echo "you can select number ${GC}2${CCB}"
+    echo
+    echo "Then there is ${YC}2${CCB} options again"
+    echo "${WC}1. ${GC}Compile grasscutter.jar"
+    echo "${WC}2. ${GC}Download grasscutter.jar${CCB}"
+    echo "${YC}Compile grasscutter${CCB} mean you ${GC}can${CCB} modify ${YC}Banners${CCB}"
+    echo "And other code for ${YC}grasscutter${CCB}"
+    echo "${YC}Download grasscutter${CCB} mean you ${RC}cant${CCB} modify ${YC}Banners${CCB}"
+    echo "And other code for ${YC}grasscutter${CCB}"
+    echo "So if you want to modify ${YC}Banners${CCB}"
+    echo "you can select number ${YC}1${CCB}"
+    echo "and if you dont want to modify ${YC}Banners${CCB}"
+    echo "you can select number ${YC}2${CCB}"
+    echo
+    echo "Then there is options for choose ${YC}version Resources${CCB}"
+    echo "and you can choose ${YC}version Resources${CCB}"
+    echo "As version AnimeGame you have."
+    echo "if ${YC}3.2${CCB} then you can choose ${YC}3.2${CCB}"
+    echo
+    echo "Now installing grasscutter"
+    echo
+    echo "If you see ${WC}\"Do you want extract resources? [y/N]\"${CCB}"
+    echo "you can select ${GC}y${CCB} if you want to extract resources"
+    echo "and if you dont want to extract resources"
+    echo "you can select ${YC}N${CCB}"
+    echo
+    echo "Thats all done."
+    echo 
+    echo "If you have error for ${WC}port already in use${CCB}"
+    echo "You can change port in config.json"
+    echo "and then you can use ${YC}Grasscutter Menu${CCB}"
+    echo "and then you can select number"
+    echo "1 -> 3 "
+    echo "Then change the port, if current port is ${RC}443${CCB}"
+    echo "Please change it. because on Android"
+    echo "${RC}443${CCB} cant use in Android"
+    echo "Maybe for ${YC}bypass using Root permission${CCB}"
+    echo "${RC}But i dont recommend you to use Root permission${CCB}"
+    echo "For force to use port ${RC}443${CCB}"
+    echo "because it can make your phone unstable"
+    echo "Just change it to ${GC}54321${CCB} or other Port!"
+    echo ${WC}
+    read -r -p "Press enter for back to Main Menu!"
+    main_menu
+}
+
 main_menu() {
     credit_hah
     # Done Center
@@ -483,6 +552,7 @@ main_menu() {
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
     echo "5. ${CCB}About Us!${WC}"
+    echo "6. ${CCB}How to setup Grasscutter${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -493,6 +563,7 @@ main_menu() {
     "3") Grasscutter_Tools ;;
     "4") InstallMenu ;;
     "5") about_us ;;
+    "6") how_to_setup ;;
     "0")
         clear
         exit 0
