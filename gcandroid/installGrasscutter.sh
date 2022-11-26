@@ -175,7 +175,7 @@ Install_Grasscutter_process() {
         fi
         cd "Grasscutter" || exit 1
         run_Program() {
-            wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/grasscutter-1.4.4-dev-1e932ce1.jar -O grasscutter.jar &>$HOME/zerr.log
+            wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/grasscutter-1.4.4-dev-100d08ec.jar -O grasscutter.jar &>$HOME/zerr.log
             errCode=$?
             log "$errCode"
         }
