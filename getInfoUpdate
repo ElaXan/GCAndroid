@@ -1,6 +1,14 @@
-newVersionScript="2.7"
+newVersionScript="2.8"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-if [[ $versionScript == "2.6.2" ]]; then
+if [[ $versionScript == "2.7" ]]; then
+    noteUpdate="1. Fix bug in Compile .jar\n"
+    noteUpdate+="2. Add edit config.json for \"data\" in \"folderStructure\"\n"
+    noteUpdate+="3. Backup resources when reinstall Grasscutter\n"
+    noteUpdate+="4. Remove spam load other script (.sh)\n"
+    noteUpdate+="5. Change Banners.json to Banners.tsj\n"
+    noteUpdate+="For more information, please visit\n"
+    noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
+elif [[ $versionScript == "2.6.2" ]]; then
     noteUpdate="1. Add interpretation of backslash escapes in \"echo\"\n"
     noteUpdate+="2. Edit main config.json\n"
     noteUpdate+="3. Add menu edit folderStructure config.json\n"
@@ -8,9 +16,13 @@ if [[ $versionScript == "2.6.2" ]]; then
     noteUpdate+="5. Edit Banners.json\n"
     noteUpdate+="6. Import Banners.json\n"
     noteUpdate+="7. Reset Banners.json\n"
-    noteUpdate+="8. Update Download grasscutter.jar"
+    noteUpdate+="8. Update Download grasscutter.jar\n"
+    noteUpdate+="For more information, please visit\n"
+    noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 elif [[ $versionScript == "2.6" ]]; then
-    noteUpdate="1. Added some config.json edits"
+    noteUpdate="1. Added some config.json edits\n"
+    noteUpdate+="For more information, please visit\n"
+    noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 elif [[ $versionScript == "2.5" ]]; then
     noteUpdate="1. Add prompt when Grasscutter stop by User\n"
     noteUpdate+="2. Remove Compile Plugin due to a lot of problem\n"
@@ -28,7 +40,9 @@ elif [[ $versionScript == "2.5" ]]; then
     noteUpdate+="14. Add edit worldLevel in Edit config.json\n"
     noteUpdate+="15. Add edit nickName in Edit config.json\n"
     noteUpdate+="16. Add edit signature in Edit config.json\n"
-    noteUpdate+="17. Added some config.json edits"
+    noteUpdate+="17. Added some config.json edits\n"
+    noteUpdate+="For more information, please visit\n"
+    noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 elif [[ $versionScript == "2.4" ]]; then
     noteUpdate="1. Change UI\n"
     noteUpdate+="2. Add download 3.2 resources (tamilpp)\n"
@@ -49,7 +63,15 @@ elif [[ $versionScript == "2.4" ]]; then
     noteUpdate+="17. Add edit worldLevel in Edit config.json\n"
     noteUpdate+="18. Add edit nickName in Edit config.json\n"
     noteUpdate+="19. Add edit signature in Edit config.json\n"
-    noteUpdate+="20. Added some config.json edits"
+    noteUpdate+="20. Added some config.json edits\n"
+    noteUpdate+="For more information, please visit\n"
+    noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 else
-    noteUpdate="1. Added some config.json edits"
+    noteUpdate="1. Fix bug in Compile .jar\n"
+    noteUpdate+="2. Add edit config.json for \"data\" in \"folderStructure\"\n"
+    noteUpdate+="3. Backup resources when reinstall Grasscutter\n"
+    noteUpdate+="4. Remove spam load other script (.sh)\n"
+    noteUpdate+="5. Change Banners.json to Banners.tsj\n"
+    noteUpdate+="For more information, please visit\n"
+    noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 fi
