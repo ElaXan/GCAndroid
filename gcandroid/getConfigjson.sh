@@ -9,6 +9,8 @@ getConfigJson() {
         folderStructure_packets=$(jq '.folderStructure.packets' config.json | sed "s/\"//g")
         echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}scripts${WC}";
         folderStructure_scripts=$(jq '.folderStructure.scripts' config.json | sed "s/\"//g")
+        echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}plugins${WC}";
+        folderStructure_plugins=$(jq '.folderStructure.plugins' config.json | sed "s/\"//g")
         echo -en "\033[2K\r"
     elif [ $getArguments = "Server" ]; then
         echo -en "\033[2K\r${GC}Getting Value${WC} : ${CCB}logCommands${WC}";

@@ -7,6 +7,7 @@ edit_configjson_folderStructure() {
     echo "2. [${GC}$folderStructure_data${WC}] data"
     echo "3. [${GC}$folderStructure_packets${WC}] packets"
     echo "4. [${GC}$folderStructure_scripts${WC}] scripts"
+    echo "5. [${GC}$folderStructure_plugins${WC}] plugins"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -16,6 +17,7 @@ edit_configjson_folderStructure() {
     "2") edit_configjson_folderStructure_data ;;
     "3") edit_configjson_folderStructure_packets ;;
     "4") edit_configjson_folderStructure_scripts ;;
+    "5") edit_configjson_folderStructure_plugins ;;
     "0") edit_configjson ;;
     *)
         echo "${RC}Wrong Input!${WC}"
