@@ -4,7 +4,7 @@ Edit_Banner() {
     echo "${YC}For save CTRL+S"
     echo "${YC}For help CTRL+G"
     sleep 1.5s
-    micro "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+    micro "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
     Edit_Banners
 }
 
@@ -17,8 +17,14 @@ Import_Banners() {
     if [[ "$Import_Banners_Path" == "b" ]] || [[ "$Import_Banners_Path" == "B" ]]; then
         Edit_Banners
     else
+        # if file exist but not extension ".tsj", then error
+        if [[ -f "$Import_Banners_Path" ]] && [[ ! "$Import_Banners_Path" == *.tsj ]]; then
+            echo "${RC}Error${WC} : $Import_Banners_Path is not \".tsj\" extension${WC}"
+            sleep 1s
+            Import_Banners
+        fi
         if [[ -f "$Import_Banners_Path" ]]; then
-            cp "$Import_Banners_Path" "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            cp "$Import_Banners_Path" "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
             echo "${GC}File imported successfully!${WC}"
             sleep 1.5s
             Edit_Banners
@@ -33,25 +39,25 @@ Import_Banners() {
 Reset_Banners() {
     credit_hah
     Center_Text "Reset Banners"
-    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json" ]]; then
+    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj" ]]; then
         echo "${RC}Banners.json not found!${WC}"
         echo -n "${GC}Do you want to download it from github? [Y/n] : ${WC}"
         read -r Download_Banners
         if [[ "$Download_Banners" == "y" ]] || [[ "$Download_Banners" == "Y" ]] || [[ "$Download_Banners" == "" ]]; then
             wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
-            echo "${GC}Banners.json downloaded successfully!${WC}"
+            echo "${GC}Banners.tsj downloaded successfully!${WC}"
             sleep 1.5s
             Edit_Banners
         else
             Edit_Banners
         fi
     else
-        echo -n "${GC}Do you want to reset Banners.json? [Y/n] : ${WC}"
+        echo -n "${GC}Do you want to reset Banners.tsj? [Y/n] : ${WC}"
         read -r Reset_Banners
         if [[ "$Reset_Banners" == "y" ]] || [[ "$Reset_Banners" == "Y" ]] || [[ "$Reset_Banners" == "" ]]; then
-            rm "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
-            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
-            echo "${GC}Banners.json reset successfully!${WC}"
+            rm "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
+            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
+            echo "${GC}Banners.tsj reset successfully!${WC}"
             sleep 1.5s
             Edit_Banners
         else
@@ -64,43 +70,43 @@ Edit_Banners() {
     credit_hah
     Center_Text "Edit Banners"
     if ! (command -v micro &> /dev/null); then
-        echo "${GC}Installing micro text editor${NC}"
+        echo "${GC}Installing micro text editor${WC}"
         apt install micro -y &> /dev/null
         credit_hah
         Center_Text "Edit Banners"
     fi
     if ! (command -v micro &> /dev/null); then
-        echo "${RC}Failed to install micro text editor${NC}"
+        echo "${RC}Failed to install micro text editor${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
         main_menu
     fi
     if [[ ! -d "$HOME/Grasscutter" ]]; then
-        echo "${RC}Error${WC} : Grasscutter directory not found${NC}"
+        echo "${RC}Error${WC} : Grasscutter directory not found${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
         main_menu
     fi
     if [[ ! -f "$HOME/Grasscutter/gradlew" ]]; then
-        echo "${RC}Error${WC} : Grasscutter gradlew file not found${NC}"
+        echo "${RC}Error${WC} : Grasscutter gradlew file not found${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
         main_menu
     fi
-    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json" ]]; then
-        echo "${RC}Error${WC} : Banners.json file not found${NC}"
+    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj" ]]; then
+        echo "${RC}Error${WC} : Banners.tsj file not found${WC}"
         echo "${YC}Please Install Grasscutter with \"Compile\" not dowmload grasscutter.jar"
         echo
         echo -n "Press enter for back to Menu"
         read
         main_menu
     fi
-    echo "1. ${CCB}Edit Banners.json${WC}"
-    echo "2. ${CCB}Import Banners.json${WC}"
-    echo "3. ${CCB}Reset Banners.json${WC}"
+    echo "1. ${CCB}Edit Banners.tsj${WC}"
+    echo "2. ${CCB}Import Banners.tsj${WC}"
+    echo "3. ${CCB}Reset Banners.tsj${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter your choice : "
@@ -119,7 +125,7 @@ Edit_Banners() {
             Grasscutter_Tools
             ;;
         *)
-            echo "${RC}Error${WC} : Invalid Choice${NC}"
+            echo "${RC}Error${WC} : Invalid Choice${WC}"
             sleep 1s
             Edit_Banners
             ;;

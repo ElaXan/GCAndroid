@@ -118,7 +118,6 @@ Reset_Config_Json() {
         echo
         echo "${YC}Enter custom port for Grasscutter${WC}"
         read -p "Port : " port
-        # if port is lower than 1024, and empty, then set port to 54321
         if [ $port -lt 1024 ] || [ -z $port ]; then
             echo "${RC}Port must be higher than 1024!${WC}"
             echo "${GC}Port will be set to 54321${WC}"
@@ -136,7 +135,12 @@ Reset_Config_Json() {
         else
             echo "${GC}resources will be set to $custom_resources${WC}"
         fi
-        # edit config.json with jq command
+        if [ ! -f $configpath ]; then
+            echo "${RC}Error${WC} : Failed to reset config.json!"
+            echo
+            read -p "Press enter for back to Edit Config Json"
+            menu_config
+        fi
         editJsonJqs() {
             jq "$1" $configpath >$HOME/temp.json
             mv $HOME/temp.json $configpath
@@ -313,7 +317,7 @@ Grasscutter_Tools() {
     credit_hah
     Center_Text "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
-    echo "2. ${CCB}Edit Banners.json${WC}"
+    echo "2. ${CCB}Edit Banners.tsj${WC}"
     echo "3. ${CCB}Install Plugin${WC}"
     echo "4. ${CCB}Remove Plugin${WC}"
     echo "5. ${CCB}Get GM Handbook${WC}"
