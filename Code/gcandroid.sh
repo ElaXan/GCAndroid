@@ -43,7 +43,13 @@ Center_Text() {
     space=$((lines - textss))
     space=$((space / 2))
     space=$(printf "%${space}s")
-    echo "${GC}${space}$1${WC}"
+    if [[ $2 == "link" ]]; then
+        if [[ $3 == "Cyan" ]]; then
+            echo "${space}${CCU}$1${WC}"
+        fi
+    else
+        echo "${GC}${space}$1${WC}"
+    fi
     echo $line
 }
 
@@ -63,11 +69,11 @@ credit_hah() {
     echo $line
     Center_Text "Project Owner by ElaXan"
     echo -e "$note_credit"
+    echo $line
     echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
     echo $line
     echo "${GC}      Join our Discord Server!${WC}"
-    echo "${CCU}https://discord.gg/discord.gg/2TTSUZZ${WC}"
-    echo $line
+    Center_Text "https://discord.gg/2TTSUZZ" "link" "Cyan"
 }
 
 menu_config_editManual() {
