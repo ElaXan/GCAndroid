@@ -1,6 +1,6 @@
 edit_configjson_Server_http() {
     credit_hah
-    line7 "Edit config.json [HTTP]"
+    Center_Text "Edit config.json [HTTP]"
     getConfigJson "Server.HTTP"
     echo "1. [${GC}$server_http_bindAddress${WC}] bindAddress"
     echo "2. [${GC}$server_http_accessAddress${WC}] accessAddress"

@@ -3,6 +3,7 @@
 
 GoTouchGrass() {
     credit_hah
+    Center_Text "Go Touch Grass"
     if ! command -v mongo &>/dev/null; then
         echo "${RC}Please install mongodb First!${WC}"
         echo

@@ -3,7 +3,7 @@
 
 generateHandbook() {
     credit_hah
-    line13 "GM Handbook"
+    Center_Text "GM Handbook"
     if ! command -v java &>/dev/null; then
         echo "${RC}Java not found!${WC}"
         echo

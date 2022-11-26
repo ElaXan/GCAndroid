@@ -1,6 +1,6 @@
 edit_configjson_Server_game_gameOptions_resinOptions() {
     credit_hah
-    line3 "Edit config.json [resinOptions]"
+    Center_Text "Edit config.json [resinOptions]"
     getConfigJson "server.game.gameOptions.resinOptions"
     echo "1. [$server_game_gameOptions_resinOptions_resinUsageOut] resinUsage"
     echo "2. [${GC}$server_game_gameOptions_resinOptions_cap${WC}] cap"

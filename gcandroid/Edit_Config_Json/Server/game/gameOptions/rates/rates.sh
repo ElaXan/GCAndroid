@@ -1,6 +1,6 @@
 edit_configjson_Server_game_gameOptions_rates() {
     credit_hah
-    line6 "Edit config.json [rates]"
+    Center_Text "Edit config.json [rates]"
     getConfigJson "server.game.gameOptions.rates"
     echo "1. [${GC}$server_game_gameOptions_rates_adventureExp${WC}] adventureExp"
     echo "2. [${GC}$server_game_gameOptions_rates_mora${WC}] mora"

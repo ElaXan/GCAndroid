@@ -18,92 +18,6 @@ fi
 
 GCAndroid=/usr/share/gcandroid
 line="====================================="
-line0() {
-    echo "${GC}$1${WC}"
-    echo "${line}"
-}
-
-line1() {
-    echo "${GC} $1${WC}"
-    echo "${line}"
-}
-
-line2() {
-    echo "${GC}  $1${WC}"
-    echo "${line}"
-}
-
-line3() {
-    echo "${GC}   $1${WC}"
-    echo "${line}"
-}
-
-line4() {
-    echo "${GC}    $1${WC}"
-    echo "${line}"
-}
-
-line5() {
-    echo "${GC}     $1${WC}"
-    echo "${line}"
-}
-
-line6() {
-    echo "${GC}      $1${WC}"
-    echo "${line}"
-}
-
-line7() {
-    echo "${GC}       $1${WC}"
-    echo "${line}"
-}
-
-line8() {
-    echo "${GC}        $1${WC}"
-    echo "${line}"
-}
-
-line9() {
-    echo "${GC}         $1${WC}"
-    echo "${line}"
-}
-
-line10() {
-    echo "${GC}          $1${WC}"
-    echo "${line}"
-}
-
-line11() {
-    echo "${GC}           $1${WC}"
-    echo "${line}"
-}
-
-line12() {
-    echo "${GC}            $1${WC}"
-    echo "${line}"
-}
-
-line13() {
-    echo "${GC}             $1${WC}"
-    echo "${line}"
-}
-
-line14() {
-    echo "${GC}              $1${WC}"
-    echo "${line}"
-}
-
-line15() {
-    echo "${GC}               $1${WC}"
-    echo "${line}"
-}
-
-if [ -f "$GCAndroid/loadOtherShellScript.sh" ]; then
-    source $GCAndroid/loadOtherShellScript.sh
-else
-    echo "${RC}Error${WC} : $GCAndroid/loadOtherShellScript.sh not found!"
-    exit 1
-fi
 
 configpath=$HOME/Grasscutter/config.json
 wherethegrassss=$HOME/Grasscutter/grasscutter.jar
@@ -121,23 +35,33 @@ if ! command -v jq &>/dev/null; then
     sudo apt install jq -y
 fi
 
+Center_Text() {
+    textss=$1
+
+    lines=$(echo $line | wc -c)
+    textss=$(echo $1 | wc -c)
+    space=$((lines - textss))
+    space=$((space / 2))
+    space=$(printf "%${space}s")
+    echo "${GC}${space}$1${WC}"
+    echo $line
+}
+
 clear
 echo -n "${WC}"
 echo $line
-line8 "Script made by ElaXan"
-line15 "LOADING"
+Center_Text "Project Owner by ElaXan"
+Center_Text "LOADING..."
 echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
 echo $line
 echo "${GC}Contact me at chat@elaxan.com${WC}"
 echo $line
 
-loadOtherShellScript
-
 credit_hah() {
     clear
     echo -n "${WC}"
     echo $line
-    line7 "Project owner by ElaXan"
+    Center_Text "Project Owner by ElaXan"
     echo -e "$note_credit"
     echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
     echo $line
@@ -156,6 +80,87 @@ menu_config_editManual() {
     menu_config
 }
 
+Reset_Config_Json() {
+    credit_hah
+    Center_Text "Reset config.json"
+    if ! (command -v java &>/dev/null); then
+        echo "${RC}Error${WC} : Java not found!"
+        echo
+        read -p "Press enter for back to Edit Config Json"
+        menu_config
+    fi
+    if [ ! -f $wherethegrassss ]; then
+        echo "${RC}Error${WC} : Grasscutter.jar not found!"
+        echo
+        read -p "Press enter for back to Edit Config Json"
+        menu_config
+    fi
+    if [ ! -f $configpath ]; then
+        echo "${RC}Error${WC} : config.json not found!"
+        echo
+        read -p "Press enter for back to Edit Config Json"
+        menu_config
+    fi
+    echo "${RC}This will reset your config.json to default!${WC}"
+    echo -n "${RC}Are you sure? [y/N] : ${WC}"
+    read -r Reset_Config_Json_Input
+    if [ $Reset_Config_Json_Input = y ]; then
+        cd $HOME/Grasscutter || exit 1
+        rm "config.json"
+        run_Program() {
+            timeout --foreground 8s java -jar grasscutter.jar &> $HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
+        spin "${GC}Resetting config.json${WC}" "124" "Menu Config" "menu_config"
+        echo
+        echo "${YC}Enter custom port for Grasscutter${WC}"
+        read -p "Port : " port
+        if [ $port -lt 1024 ] || [ -z $port ]; then
+            echo "${RC}Port must be higher than 1024!${WC}"
+            echo "${GC}Port will be set to 54321${WC}"
+            port=54321
+        else
+            echo "${GC}Port will be set to $port${WC}"
+        fi
+        echo
+        echo "${YC}Enter custom folderStructure for Grasscutter${WC}"
+        read -p "resources : " custom_resources
+        if [ -z $custom_resources ]; then
+            echo "${RC}resources cannot be empty!${WC}"
+            echo "${GC}skip edit resources${WC}"
+            custom_resources=""
+        else
+            echo "${GC}resources will be set to $custom_resources${WC}"
+        fi
+        if [ ! -f $configpath ]; then
+            echo "${RC}Error${WC} : Failed to reset config.json!"
+            echo
+            read -p "Press enter for back to Edit Config Json"
+            menu_config
+        fi
+        editJsonJqs() {
+            jq "$1" $configpath >$HOME/temp.json
+            mv $HOME/temp.json $configpath
+        }
+        editJsonJqs ".server.http.bindPort=$port"
+        if [ ! -z $custom_resources ]; then
+            editJsonJqs ".folderStructure.resources=\"$custom_resources\""
+        fi
+
+        editJsonJqs '.server.game.joinOptions.welcomeMessage="localhost on Android using GCAndroid\n\n\rhttps://github.com/Score-Inc/GCAndroid"'
+
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    else
+        menu_config
+    fi
+}
+
 menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
@@ -167,10 +172,11 @@ menu_config() {
         return
     fi
     credit_hah
-    line10 "Edit config.json"
+    Center_Text "Edit config.json"
     echo "1. ${CCB}Edit using this Script${WC}"
     echo "2. ${CCB}Edit Manual${WC}"
     echo "3. ${CCB}Change Port${WC}"
+    echo "4. ${CCB}Reset config.json${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -179,6 +185,7 @@ menu_config() {
     "1") edit_configjson ;;
     "2") menu_config_editManual ;;
     "3") changePort ;;
+    "4") Reset_Config_Json ;;
     "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -199,7 +206,7 @@ installMongodb() {
         case $mongodbAsk in
         "y" | "Y")
             credit_hah
-            line10 "Mongodb Install"
+            Center_Text "Mongodb Install"
             sudo apt reinstall mongodb
             main_menu
             ;;
@@ -231,7 +238,7 @@ installMongodb() {
 
 Install_Grasscutter_option() {
     credit_hah
-    line0 "Please choose this for download Resources"
+    Center_Text "Please choose this for download Resources"
     echo "1. ${YC}tamilpp25 Resources${WC}"
     echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
     echo "0. ${RC}Back/Cancel${WC}"
@@ -287,7 +294,7 @@ Install_Grasscutter() {
 
 Grasscutter_Menu() {
     credit_hah
-    line11 "Grascutter Menu"
+    Center_Text "Grasscutter Menu"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
     echo "0. ${RC}Back${WC}"
@@ -308,10 +315,9 @@ Grasscutter_Menu() {
 
 Grasscutter_Tools() {
     credit_hah
-    # Done Center
-    line10 "Grasscutter Tools"
+    Center_Text "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
-    echo "2. ${CCB}Edit Banners.json${WC}"
+    echo "2. ${CCB}Edit Banners.tsj${WC}"
     echo "3. ${CCB}Install Plugin${WC}"
     echo "4. ${CCB}Remove Plugin${WC}"
     echo "5. ${CCB}Get GM Handbook${WC}"
@@ -336,7 +342,7 @@ Grasscutter_Tools() {
 
 installJavaJDK17() {
     credit_hah
-    line7 "Installing Java JDK 17"
+    Center_Text "Install Java JDK 17"
     if (command -v java &>/dev/null); then
         echo "${YC}You already installed Java"
         echo "${YC}Want to reinstall?${WC}"
@@ -347,7 +353,7 @@ installJavaJDK17() {
             InstallMenu
         elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
             credit_hah
-            line7 "Installing Java JDK 17"
+            Center_Text "Installing Java JDK 17"
             run_Program() {
                 sudo apt reinstall openjdk-17-jdk -y &>$HOME/zerr.log
                 errCode=$?
@@ -379,8 +385,7 @@ installJavaJDK17() {
 
 InstallMenu() {
     credit_hah
-    # Done Center
-    line12 "Install Menu"
+    Center_Text "Install Menu"
     echo "1. ${CCB}Install Mongodb${WC}"
     echo "2. ${CCB}Install Java JDK 17${WC}"
     echo "0. ${RC}Back${WC}"
@@ -399,14 +404,164 @@ InstallMenu() {
     esac
 }
 
+license() {
+    credit_hah
+    Center_Text "License"
+    echo "${GC}GNU General Public License v3.0${WC}"
+    echo
+    echo "This program is free software:"
+    echo "you can redistribute it and/or modify"
+    echo "it under the terms of the"
+    echo "GNU General Public License as published by"
+    echo "the Free Software Foundation,"
+    echo "either version 3 of the License, or"
+    echo "(at your option) any later version."
+    echo
+    echo "This program is distributed in the"
+    echo "hope that it will be useful,"
+    echo "but WITHOUT ANY WARRANTY; without even"
+    echo "the implied warranty of"
+    echo "MERCHANTABILITY or FITNESS FOR A"
+    echo "PARTICULAR PURPOSE."
+    echo "See theGNU General Public License"
+    echo "for more details."
+    echo
+    echo "You should have received a copy of"
+    echo "the GNU General Public License"
+    echo "along with this program."
+    echo "If not, see <https://www.gnu.org/licenses/>."
+    echo
+    echo -n "Press enter for back to About Us!"
+    read -r
+    about_us
+}
+
+credits() {
+    credit_hah
+    Center_Text "Credits"
+    echo "${CCB}Creator :${WC} ${GC}ElaXan${WC}"
+    echo "${CCB}Github :${WC} ${CCU}https://github.com/ElaXan${WC}"
+    echo "${CCB}Telegram :${WC} ${CCU}https://t.me/ElashXander${WC}"
+    echo "${CCB}Discord :${WC} ${CCU}https://discord.com/users/506212044152897546${WC}"
+    echo
+    echo -n "Press enter for back to About Us!"
+    read -r
+    about_us
+}
+
+about_us2() {
+    credit_hah
+    Center_Text "About Me"
+    echo -e "${GC}I am an ordinary person who learns about programming.\nand I made this at will, without payment or free.\nso, if you buy this project or GCAndroid,\nPlease refund you got scam\n\n"
+    echo "${CCB}Website Score-Inc: ${CCU}https://scoreps.xyz${WC}"
+    echo "${CCB}Github: ${CCU}https://github.com/Score-Inc${WC}"
+    echo
+    echo -n "Press enter for back to About Us"
+    read -r
+    about_us
+}
+
+about_us() {
+    credit_hah
+    Center_Text "About Us"
+    echo "1. ${CCB}About Me${WC}"
+    echo "2. ${CCB}Credits${WC}"
+    echo "3. ${CCB}License${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r about_us_input
+    case $about_us_input in
+    "1") about_us2 ;;
+    "2") credits ;;
+    "3") license ;;
+    "0") main_menu ;;
+    *)
+        echo "${RC}Wrong input!${WC}"
+        sleep 1s
+        about_us
+        ;;
+    esac
+}
+
+how_to_setup() {
+    credit_hah
+    Center_Text "How to Setup"
+    echo "${CCB}First you need to install ${GC}Mongodb${CCB}"
+    echo "and ${GC}Java JDK 17${CCB} in ${GC}Install Menu${CCB}"
+    echo "and then you can use ${GC}Grasscutter Menu${CCB}"
+    echo "In Grasscutter Menu there is ${YC}2${CCB} options"
+    echo "${WC}1. ${GC}Install Grasscutter"
+    echo "${WC}2. ${GC}Compile .jar${CCB}"
+    echo "If you want to install ${GC}Grasscutter${CCB}"
+    echo "you can use ${GC}Install Grasscutter${CCB}"
+    echo "and if you want to compile .jar"
+    echo "you can use ${GC}Compile .jar${CCB}"
+    echo "but you need to have ${YC}gradlew${CCB} first"
+    echo "If not you cant use ${GC}Compile .jar${CCB}"
+    echo "So now choose number ${GC}1${CCB}"
+    echo
+    echo "Then there is ${YC}2${CCB} options again"
+    echo "${WC}1. ${GC}tamilpp25 Resources"
+    echo "${WC}2. ${GC}Yuuki Resources${CCB}"
+    echo "If you want to use ${GC}tamilpp25 Resources${CCB}"
+    echo "you can select number ${GC}1${CCB}"
+    echo "and if you want to use ${GC}Yuuki Resources${CCB}"
+    echo "you can select number ${GC}2${CCB}"
+    echo
+    echo "Then there is ${YC}2${CCB} options again"
+    echo "${WC}1. ${GC}Compile grasscutter.jar"
+    echo "${WC}2. ${GC}Download grasscutter.jar${CCB}"
+    echo "${YC}Compile grasscutter${CCB} mean you ${GC}can${CCB} modify ${YC}Banners${CCB}"
+    echo "And other code for ${YC}grasscutter${CCB}"
+    echo "${YC}Download grasscutter${CCB} mean you ${RC}cant${CCB} modify ${YC}Banners${CCB}"
+    echo "And other code for ${YC}grasscutter${CCB}"
+    echo "So if you want to modify ${YC}Banners${CCB}"
+    echo "you can select number ${YC}1${CCB}"
+    echo "and if you dont want to modify ${YC}Banners${CCB}"
+    echo "you can select number ${YC}2${CCB}"
+    echo
+    echo "Then there is options for choose ${YC}version Resources${CCB}"
+    echo "and you can choose ${YC}version Resources${CCB}"
+    echo "As version AnimeGame you have."
+    echo "if ${YC}3.2${CCB} then you can choose ${YC}3.2${CCB}"
+    echo
+    echo "Now installing grasscutter"
+    echo
+    echo "If you see ${WC}\"Do you want extract resources? [y/N]\"${CCB}"
+    echo "you can select ${GC}y${CCB} if you want to extract resources"
+    echo "and if you dont want to extract resources"
+    echo "you can select ${YC}N${CCB}"
+    echo
+    echo "Thats all done."
+    echo
+    echo "If you have error for ${WC}port already in use${CCB}"
+    echo "You can change port in config.json"
+    echo "and then you can use ${YC}Grasscutter Menu${CCB}"
+    echo "and then you can select number"
+    echo "1 -> 3 "
+    echo "Then change the port, if current port is ${RC}443${CCB}"
+    echo "Please change it. because on Android"
+    echo "${RC}443${CCB} cant use in Android"
+    echo "Maybe for ${YC}bypass using Root permission${CCB}"
+    echo "${RC}But i dont recommend you to use Root permission${CCB}"
+    echo "For force to use port ${RC}443${CCB}"
+    echo "because it can make your phone unstable"
+    echo "Just change it to ${GC}54321${CCB} or other Port!"
+    echo ${WC}
+    read -r -p "Press enter for back to Main Menu!"
+    main_menu
+}
+
 main_menu() {
     credit_hah
-    # Done Center
-    line14 "Main Menu"
+    Center_Text "Main Menu"
     echo "1. ${CCB}Run Grasscutter${WC}"
     echo "2. ${CCB}Grasscutter Menu${WC}"
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}Install Menu${WC}"
+    echo "5. ${CCB}About Us!${WC}"
+    echo "6. ${CCB}How to setup Grasscutter${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -416,6 +571,8 @@ main_menu() {
     "2") Grasscutter_Menu ;;
     "3") Grasscutter_Tools ;;
     "4") InstallMenu ;;
+    "5") about_us ;;
+    "6") how_to_setup ;;
     "0")
         clear
         exit 0
@@ -427,9 +584,22 @@ main_menu() {
         ;;
     esac
 }
+for file in $GCAndroid/*.sh; do
+    echo -ne "\033[2K\r${YC}Loading $file${WC}"
+    source $file
+done
+Path_Shell="/usr/share/gcandroid"
+for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
+    for j in $(find "$i" -maxdepth 1 -type f); do
+        . "$j"
+    done
+done
+for i in $(find "$Path_Shell/Edit_Config_Json" -maxdepth 1 -type f); do
+    . "$i"
+done
 
 newVersionScript=""
-versionScript="2.7"
+versionScript="2.8"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
@@ -465,6 +635,8 @@ elif [[ $versionScript < $newVersionScript ]]; then
     esac
 elif [[ $versionScript = $newVersionScript ]]; then
     note_credit="$noteLatestVersion"
+else
+    note_credit="${RC}Unknowm Version${WC}"
 fi
 
 case $inpscript in

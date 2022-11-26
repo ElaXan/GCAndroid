@@ -1,6 +1,6 @@
 edit_configjson_Server_game_gameOptions() {
     credit_hah
-    line3 "Edit config.json [gameOptions]"
+    Center_Text "Edit config.json [gameOptions]"
     getConfigJson "server.game.gameOptions"
     echo "1. [${GC}$server_game_gameOptions_sceneEntityLimit${WC}] sceneEntityLimit"
     echo "2. [$server_game_gameOptions_watchGachaConfigOut] watchGachaConfig"

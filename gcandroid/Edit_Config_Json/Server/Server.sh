@@ -3,7 +3,7 @@ edit_configjson_Server_main() {
     cd $HOME/Grasscutter || exit 1
     getConfigJson "Server"
     echo "${YC}          Still Development${WC}"
-    line6 "Edit config.json [SERVER]"
+    Center_Text "Edit config.json [SERVER]"
     echo "1. [$logCommandsOut] logCommand"
     echo "2. [$runModeOut] runMode"
     echo "3. ${CCB}http${WC}"

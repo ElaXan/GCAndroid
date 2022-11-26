@@ -1,6 +1,6 @@
 edit_configjson_Server_http_files() {
     credit_hah
-    line7 "Edit config.json [files]"
+    Center_Text "Edit config.json [files]"
     getConfigJson "server.http.files"
     echo "1. [${GC}$server_http_files_indexFile${WC}] indexFile"
     echo "2. [${GC}$server_http_files_errorFIle${WC}] errorFile"

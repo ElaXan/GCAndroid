@@ -1,7 +1,7 @@
 edit_configjson_Server_http_encryption() {
     credit_hah
     getConfigJson "Server.HTTP.Encryption"
-    line4 "Edit config.json [Encryption]"
+    Center_Text "Edit config.json [Encryption]"
     echo "1. [$server_http_encryption_useEncryptionOut] useEncryption"
     echo "2. [$server_http_encryption_useInRoutingOut] useInRouting"
     echo "3. [${GC}$server_http_encryption_keystore${WC}] keystore"

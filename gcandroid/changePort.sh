@@ -3,7 +3,7 @@
 
 changePort() {
     credit_hah
-    line12 "Change Port"
+    Center_Text "Change Port"
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : $configpath not found!"
         echo
