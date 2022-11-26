@@ -80,6 +80,83 @@ menu_config_editManual() {
     menu_config
 }
 
+Reset_Config_Json() {
+    credit_hah
+    Center_Text "Reset config.json"
+    if ! (command -v java &>/dev/null); then
+        echo "${RC}Error${WC} : Java not found!"
+        echo
+        read -p "Press enter for back to Edit Config Json"
+        menu_config
+    fi
+    if [ ! -f $wherethegrassss ]; then
+        echo "${RC}Error${WC} : Grasscutter.jar not found!"
+        echo
+        read -p "Press enter for back to Edit Config Json"
+        menu_config
+    fi
+    if [ ! -f $configpath ]; then
+        echo "${RC}Error${WC} : config.json not found!"
+        echo
+        read -p "Press enter for back to Edit Config Json"
+        menu_config
+    fi
+    echo "${RC}This will reset your config.json to default!${WC}"
+    echo -n "${RC}Are you sure? [y/N] : ${WC}"
+    read -r Reset_Config_Json_Input
+    if [ $Reset_Config_Json_Input = y ]; then
+        cd $HOME/Grasscutter || exit 1
+        rm "config.json"
+        run_Program() {
+            timeout --foreground 8s java -jar grasscutter.jar &> $HOME/zerr.log
+            errCode=$?
+            log "$errCode"
+        }
+        run_Program &
+        pid=$!
+        spin "${GC}Resetting config.json${WC}" "124" "Menu Config" "menu_config"
+        echo
+        echo "${YC}Enter custom port for Grasscutter${WC}"
+        read -p "Port : " port
+        # if port is lower than 1024, and empty, then set port to 54321
+        if [ $port -lt 1024 ] || [ -z $port ]; then
+            echo "${RC}Port must be higher than 1024!${WC}"
+            echo "${GC}Port will be set to 54321${WC}"
+            port=54321
+        else
+            echo "${GC}Port will be set to $port${WC}"
+        fi
+        echo
+        echo "${YC}Enter custom folderStructure for Grasscutter${WC}"
+        read -p "resources : " custom_resources
+        if [ -z $custom_resources ]; then
+            echo "${RC}resources cannot be empty!${WC}"
+            echo "${GC}skip edit resources${WC}"
+            custom_resources=""
+        else
+            echo "${GC}resources will be set to $custom_resources${WC}"
+        fi
+        # edit config.json with jq command
+        editJsonJqs() {
+            jq "$1" $configpath >$HOME/temp.json
+            mv $HOME/temp.json $configpath
+        }
+        editJsonJqs ".server.http.bindPort=$port"
+        if [ ! -z $custom_resources ]; then
+            editJsonJqs ".folderStructure.resources=\"$custom_resources\""
+        fi
+
+        editJsonJqs '.server.game.joinOptions.welcomeMessage="localhost on Android using GCAndroid\n\n\rhttps://github.com/Score-Inc/GCAndroid"'
+
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    else
+        menu_config
+    fi
+}
+
 menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
@@ -95,6 +172,7 @@ menu_config() {
     echo "1. ${CCB}Edit using this Script${WC}"
     echo "2. ${CCB}Edit Manual${WC}"
     echo "3. ${CCB}Change Port${WC}"
+    echo "4. ${CCB}Reset config.json${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -103,6 +181,7 @@ menu_config() {
     "1") edit_configjson ;;
     "2") menu_config_editManual ;;
     "3") changePort ;;
+    "4") Reset_Config_Json ;;
     "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong Input!${WC}"
