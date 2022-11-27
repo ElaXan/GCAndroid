@@ -542,25 +542,31 @@ delete_avatars() {
     credit_hah
     Center_Text "Delete Avatars"
     list_get=$(mongo --quiet grasscutter --eval "db.avatars.find()")
+    echo "${YC}Enter b/B for back/cancel${CCB}"
+    echo
     read -p "${CCB}Enter your UID : ${WC}" delete_mongodb_uid
-    read -p "${CCB}Enter Avatars ID/Name : ${WC}" delete_mongodb_avatar_id
-    if [[ $delete_mongodb_avatar_id =~ [a-zA-Z] ]]; then
-        delete_mongodb_avatar_id=$(echo "$delete_mongodb_avatar_id" | awk '{print toupper(substr($0,1,1))tolower(substr($0,2))}')
-        Characters_Name=$(grep "$delete_mongodb_avatar_id" /usr/share/gcandroid/GM_Handbook/avatars.txt)
-        delete_mongodb_avatar_id_results=$(echo -n "$Character_Name" | grep -i "$delete_mongodb_avatar_id" | awk -F ":" '{print $1}')
-    elif [[ $delete_mongodb_avatar_id =~ [0-9] ]]; then
+    if [[ $delete_mongodb_uid == "b" ]] || [[ $delete_mongodb_uid == "B" ]]; then
+        main_menu
+    fi
+    read -p "${CCB}Enter Avatars ID : ${WC}" delete_mongodb_avatar_id
+    if [[ $delete_mongodb_avatar_id =~ [0-9] ]]; then
         Characters_Name=$(grep "$delete_mongodb_avatar_id" /usr/share/gcandroid/GM_Handbook/avatars.txt)
         delete_mongodb_avatar_id_results=$(echo -n "$Character_Name" | grep -i "$delete_mongodb_avatar_id" | awk -F ":" '{print $1}')
         if [ ${#delete_mongodb_avatar_id} -lt 8 ]; then
-            echo "${RC}Wrong Input!${WC}"
+            echo "${RC}Please enter 8 character not ${#delete_mongodb_avatar_id}!${WC}"
+            sleep 1s
+            delete_avatars
+        elif [ ${#delete_mongodb_avatar_id} -gt 8 ]; then
+            echo "${RC}Please enter 8 character not ${#delete_mongodb_avatar_id}!${WC}"
             sleep 1s
             delete_avatars
         fi
+    elif [[ $delete_mongodb_avatar_id == "b" ]] || [[ $delete_mongodb_avatar_id == "B" ]]; then
+        main_menu
     fi
     
     echo
-    checking_the_avatars_id=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "$delete_mongodb_avatar_id_results" | grep "$delete_mongodb_uid")
-    echo $checking_the_avatars_id
+    checking_the_avatars_id=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "$delete_mongodb_avatar_id" | grep "$delete_mongodb_uid")
     if [[ $? != 0 ]]; then
         echo "${RC}Avatars ID not found!${WC}"
         echo
