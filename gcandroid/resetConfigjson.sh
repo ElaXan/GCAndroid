@@ -37,14 +37,7 @@ reset_configjson() {
     esac
     clear
     credit_hah
-    run_Program() {
-        timeout --foreground 5s java -jar grasscutter.jar &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Reset config.json${WC}" "124" "Menu" "main_menu"
+    Run "timeout --foreground 5s java -jar grasscutter.jar" "Reset config.json" "124" "Menu" "main_menu"
     echo
     read -p "Press enter for back to edit config.json"
     menu_config

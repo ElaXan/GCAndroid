@@ -113,15 +113,7 @@ Reset_Config_Json() {
     if [ $Reset_Config_Json_Input = y ]; then
         cd $HOME/Grasscutter || exit 1
         rm "config.json"
-        run_Program() {
-            timeout --foreground 8s java -jar grasscutter.jar &> $HOME/zerr.log
-            errCode=$?
-            log "$errCode"
-        }
-        run_Program &
-        pid=$!
-        spin "${GC}Resetting config.json${WC}" "124" "Menu Config" "menu_config"
-        echo
+        Run "timeout --foreground 8s java -jar grasscutter.jar" "Resetting config.json" "124" "Main Config" "menu_config"
         echo "${YC}Enter custom port for Grasscutter${WC}"
         read -p "Port : " port
         if [ $port -lt 1024 ] || [ -z $port ]; then
@@ -327,6 +319,7 @@ Grasscutter_Tools() {
     echo "3. ${CCB}Install Plugin${WC}"
     echo "4. ${CCB}Remove Plugin${WC}"
     echo "5. ${CCB}Get GM Handbook${WC}"
+    echo "6. ${CCB}Edit Mongodb Database${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -337,6 +330,7 @@ Grasscutter_Tools() {
     "3") installPlugin ;;
     "4") removePlugin ;;
     "5") generateHandbook ;;
+    "6") menu_mongodb ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -360,28 +354,14 @@ installJavaJDK17() {
         elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
             credit_hah
             Center_Text "Installing Java JDK 17"
-            run_Program() {
-                sudo apt reinstall openjdk-17-jdk -y &>$HOME/zerr.log
-                errCode=$?
-                log "$errCode"
-            }
-            run_Program &
-            pid=$!
-            spin "${GC}Install Java JDK 17${WC}" "0" "Install Menu" "InstallMenu"
+            Run "sudo apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
         else
             echo "${RC}Wrong Input!${WC}"
             sleep 1s
             installJavaJDK17
         fi
     else
-        run_Program() {
-            sudo apt install openjdk-17-jdk -y &>$HOME/zerr.log
-            errCode=$?
-            log "$errCode"
-        }
-        run_Program &
-        pid=$!
-        spin "${GC}Install Java JDK 17${WC}" "0" "Install Menu" "InstallMenu"
+        Run "sudo apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
     fi
     echo
     echo -n "Press enter for back to Install Menu!"
@@ -559,6 +539,71 @@ how_to_setup() {
     main_menu
 }
 
+delete_avatars() {
+    service mongodb start
+    credit_hah
+    Center_Text "Delete Avatars"
+    list_get=$(mongo --quiet grasscutter --eval "db.avatars.find()")
+    read -p "${CCB}Enter your UID : ${WC}" delete_mongodb_uid
+    read -p "${CCB}Enter Avatars ID/Name : ${WC}" delete_mongodb_avatar_id
+    if [[ $delete_mongodb_avatar_id =~ [a-zA-Z] ]]; then
+        delete_mongodb_avatar_id=$(echo "$delete_mongodb_avatar_id" | awk '{print toupper(substr($0,1,1))tolower(substr($0,2))}')
+        Characters_Name=$(grep "$delete_mongodb_avatar_id" /usr/share/gcandroid/GM_Handbook/avatars.txt)
+        delete_mongodb_avatar_id_results=$(echo -n "$Character_Name" | grep -i "$delete_mongodb_avatar_id" | awk -F ":" '{print $1}')
+    elif [[ $delete_mongodb_avatar_id =~ [0-9] ]]; then
+        Characters_Name=$(grep "$delete_mongodb_avatar_id" /usr/share/gcandroid/GM_Handbook/avatars.txt)
+        delete_mongodb_avatar_id_results=$(echo -n "$Character_Name" | grep -i "$delete_mongodb_avatar_id" | awk -F ":" '{print $1}')
+        if [ ${#delete_mongodb_avatar_id} -lt 8 ]; then
+            echo "${RC}Wrong Input!${WC}"
+            sleep 1s
+            delete_avatars
+        fi
+    fi
+    
+    echo
+    checking_the_avatars_id=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "$delete_mongodb_avatar_id_results" | grep "$delete_mongodb_uid")
+    echo $checking_the_avatars_id
+    if [[ $? != 0 ]]; then
+        echo "${RC}Avatars ID not found!${WC}"
+        echo
+        echo -n "Press enter for back to Main Menu!"
+        read
+        main_menu
+    else
+        delete_mongodb_avatar_id_results_name=$(echo "$Characters_Name" | grep -i "$delete_mongodb_avatar_id_results" | awk -F ":" '{print $2}')
+        delete_mongodb_avatar_id_results_name=$(echo "$delete_mongodb_avatar_id_results_name" | sed 's/^ *//')
+        echo "${CCB}Avatars ID found!${WC}"
+        echo "${GC}Avatars Name${WC} : ${CCB}$delete_mongodb_avatar_id_results_name${WC}"
+        echo
+        echo -n "Are you sure? (y/N) : "
+        read -r delete_mongodb_input
+        case $delete_mongodb_input in
+        "y" | "Y")
+            mongo --quiet grasscutter --eval "db.avatars.remove($checking_the_avatars_id)" > /dev/null 2>&1
+            if [[ $? != 0 ]]; then
+                echo "${RC}Failed to delete!${WC}"
+                echo
+                echo -n "Press enter for back to Main Menu!"
+                read
+                main_menu
+            else
+                echo "${GC}Success deleted!${WC}"
+                echo
+                echo -n "Press enter for back to Main Menu!"
+                read
+                main_menu
+            fi
+            ;;
+        "n" | "N") main_menu ;;
+        *)
+            echo "${RC}Wrong Input!${WC}"
+            sleep 1s
+            delete_avatars
+            ;;
+        esac
+    fi
+}
+
 main_menu() {
     credit_hah
     Center_Text "Main Menu"
@@ -568,6 +613,7 @@ main_menu() {
     echo "4. ${CCB}Install Menu${WC}"
     echo "5. ${CCB}About Us!${WC}"
     echo "6. ${CCB}How to setup Grasscutter${WC}"
+    echo "7. ${CCB}Delete Avatars${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -579,6 +625,7 @@ main_menu() {
     "4") InstallMenu ;;
     "5") about_us ;;
     "6") how_to_setup ;;
+    "7") delete_avatars ;;
     "0")
         clear
         exit 0
@@ -591,7 +638,7 @@ main_menu() {
     esac
 }
 for file in $GCAndroid/*.sh; do
-    echo -ne "\033[2K\r${YC}Loading $file${WC}"
+    echo -ne "\033[2K\r${YC}Loading $(echo $file | cut -c 1-$(( $(tput cols) - 10 )))${WC}"
     source $file
 done
 Path_Shell="/usr/share/gcandroid"

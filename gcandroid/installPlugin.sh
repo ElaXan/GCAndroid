@@ -24,14 +24,7 @@ installPlugin_Download() {
         mkdir $folderNamePlugin
     fi
     cd $folderNamePlugin
-    run_Program() {
-        wget $installPlugin_Download_Link &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Download .jar plugin${WC}" "0" "Plugins Menu" "installPlugin"
+    Run "wget $installPlugin_Download_Link" "Download .jar plugin" "0" "Plugins Menu" "installPlugin"
     getNamePlugin=$(ls $folderNamePlugin | sed "s/.*\///g")
     if [ ! -d "$HOME/Grasscutter/plugins" ]; then
         mkdir "$HOME/Grasscutter/plugins"
@@ -53,14 +46,7 @@ installPlugin_Download() {
         installPlugin
         return
     fi
-    run_Program() {
-        cp $folderNamePlugin/$getNamePlugin $HOME/Grasscutter/plugins/$getNamePlugin &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Installing .jar plugin${WC}" "0" "Plugins Menu" "installPlugin"
+    Run "cp $folderNamePlugin/$getNamePlugin $HOME/Grasscutter/plugins/" "Installing .jar plugin" "0" "Plugins Menu" "installPlugin"
     if [ -f "$HOME/Grasscutter/plugins/${getNamePlugin}" ]; then
         echo "${GC}Install plugin ${getNamePlugin} success!${WC}"
         echo
@@ -187,110 +173,6 @@ installPlugin_from_directory_process() {
             main_menu
             return
         fi
-    fi
-}
-
-installPlugin_Compile() {
-    if ! command -v mvn &>/dev/null; then
-        credit_hah
-        Center_Text "Installing Program maven"
-        run_Program() {
-            sudo apt install maven &>$HOME/zerr.log
-            errCode=$?
-            log "$errCode"
-        }
-        run_Program &
-        pid=$!
-        spin "${GC}Installing Maven${WC}" "0" "Menu Plugin" "installPlugin"
-    fi
-    if ! command -v git &>/dev/null; then
-        credit_hah
-        Center_Text "Installing Program git"
-        run_Program() {
-            sudo apt install git &>$HOME/zerr.log
-            errCode=$?
-            log "$errCode"
-        }
-        run_Program &
-        pid=$!
-        spin "${GC}Installing Git${WC}" "0" "Menu Plugin" "installPlugin"
-    fi
-    credit_hah
-    Center_Text "Install Plugin Clone Repo"
-    echo "${YC}Enter b/B for back!${WC}"
-    echo
-    echo "${CCB}Enter link Github Repo for Clone!${WC}"
-    echo -n "Link : "
-    read -r installPlugin_Compile_Link
-    if [[ $installPlugin_Compile_Link == "" ]]; then
-        echo "${RC}Please enter link!${WC}"
-        sleep 1s
-        installPlugin_Compile
-    fi
-    if [[ $installPlugin_Compile_Link == "b" ]] || [[ $installPlugin_Compile_Link == "B" ]]; then
-        installPlugin
-    fi
-    folderRepo="$HOME/GCCloneRepo"
-    if [ ! -d "$folderRepo" ]; then
-        mkdir $folderRepo
-    fi
-    if [ -d "$folderRepo" ]; then
-        rm -rf $folderRepo
-        mkdir $folderRepo
-    fi
-    credit_hah
-    Center_Text "Compiling"
-    cd $folderRepo
-    run_Program() {
-        git clone $installPlugin_Compile_Link &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Git Clone Repo${WC}" "0" "Try Again" "installPlugin_Compile"
-    getRepoName=$(basename "$installPlugin_Compile_Link")
-    if echo "$getRepoName" | grep ".*.git" &>/dev/null; then
-        getRepoName=$(echo "$getRepoName" | sed "s/.git//g")
-    fi
-    cd $getRepoName || exit 1
-    echo "${YC}If first time, it will take long time. so wait!${WC}"
-    run_Program() {
-        mvn package &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Compiling Plugin${WC}" "0" "Menu Plugin" "installPlugin"
-    getNamePlugin=$(basename "$(ls "target/" | grep ".*.jar" | sed "s/original-//g" | head -1)")
-    if [ -f "$HOME/Grasscutter/plugins/$getNamePlugin" ]; then
-        echo "${YC}Plugin $getNamePlugin already installed!${WC}"
-    else
-        run_Program() {
-            cp "target/$getNamePlugin" "$HOME/Grasscutter/plugins" &>$HOME/zerr.log
-            errCode=$?
-            log "$errCode"
-        }
-        run_Program &
-        pid=$!
-        spin "${GC}Installing Plugins${WC}" "0" "Menu Plugin" "installPlugin"
-    fi
-    rm -rf $folderRepo
-    if [ -f "$HOME/Grasscutter/plugins/$getNamePlugin" ]; then
-        echo "${GC}Plugins $getNamePlugin success installed!${WC}"
-        echo
-        echo -n "Press enter for back to Menu Plugin"
-        read
-        installPlugin
-        return
-    else
-        echo "${RC}Plugins $getNamePlugin failed install${WC}"
-        echo
-        echo -n "Press enter for back to Menu Plugin"
-        read
-        installPlugin
-        return
     fi
 }
 

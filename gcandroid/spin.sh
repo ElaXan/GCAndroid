@@ -1,52 +1,86 @@
 # Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
 
-# Source Code from StackOverflow
-# And the code already modified by me, aka @ElaXan on GitHub
-spin() {
-    # Spin var
+Loading() {
+    pid=$!
+    name=$1
     spin[0]="-"
     spin[1]="\\"
     spin[2]="|"
     spin[3]="/"
-    # Check for process
-    while kill -0 "$pid" 2>/dev/null; do
+    index=0
+    # :)
+    echo
+
+    while kill -0 $pid 2> /dev/null; do
+        Loading_Text=$(tail -n 1 $HOME/zerr.log)
+        tput civis
         for i in "${spin[@]}"; do
-            echo -ne "\r["
-            echo -ne ${GC}"$i"
-            echo -ne ${WC}"]" "$1"
+            tput cuu1
+            tput el
+            if [ -z "$Loading_Text" ]; then
+                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\r"
+            else
+                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\033[2K\r > ${YC}$(echo $Loading_Text | cut -c 1-$(( $(tput cols) - 3 )))${WC}"
+            fi
             sleep 0.1
-            trap '' INT
         done
-        if ! (ps "$pid" &>/dev/null); then
+        if ! (ps $pid > /dev/null); then
+            tput cnorm
             errCode=$(cat $HOME/z.log 2>/dev/null | grep "$catLogs_code")
             errOutput=$(cat $HOME/zerr.log 2>/dev/null)
             if [[ $errCode == $2 ]]; then
-                echo -ne "\r[${GC}✓${WC}"
-                echo
+                tput cuu1
+                tput el
+                echo -ne "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
             else
-                trap - INT
-                echo -ne "\r[${RC}X${WC}] $1"
-                echo -e "\n${RC}Failed output${WC}"
+                tput cuu1
+                tput el
+                echo -ne "\r[${RC}X${WC}] ${GC}$name${WC} ${RC}Failed${WC}\n\r\033[2K"
+                if [ ${#errOutput} -gt 400 ]; then
+                    echo -e "\n${RC}Error Output${WC} : \n\n$(echo $errOutput | tail -c 400)${WC}..."
+                else
+                    echo -e "\n${RC}Error Output${WC} : \n\n$errOutput${WC}"
+                fi
                 echo
-                echo "Reason :"
-                echo "$errOutput"
+                echo "${GC}Exit Code${WC} : ${RC}$errCode${WC}"
+                echo "${GC}Exit Target${WC} : ${RC}$2${WC}"
+                if [ $(cat $HOME/z.log) != $2 ]; then
+                    echo -e "\n${YC}If this bug, please report it to Issues page${WC}"
+                fi
+                if [ -f $HOME/z.log ]; then
+                    rm -rf $HOME/z.log 2>/dev/null || echo "z.log not found/script stopped by user"
+                fi
+                if [ -f $HOME/zerr.log ]; then
+                    rm -rf $HOME/zerr.log 2>/dev/null || echo "zerr.log not found/script stopped by user"
+                fi
                 echo
-                rm $HOME/zerr.log 2>/dev/null || echo "zerr.log : Log not found/script force stopped by User!"
-                rm $HOME/z.log 2>/dev/null || echo "z.log : Log not found/script force stopped by User!"
-                echo
-                read -p "Press enter for back to $3!"
+                echo -n "Press enter for back to $3!"
+                read
                 $4
             fi
-            rm $HOME/z.log
-            rm $HOME/zerr.log
-            trap - INT
+            tput cnorm
+            rm -rf $HOME/z.log 2>/dev/null || echo "z.log not found/script stopped by user"
+            rm -rf $HOME/zerr.log 2>/dev/null || echo "zerr.log not found/script stopped by user"
         fi
     done
 }
 
-# Get Error Code
+# Run "Code_Program" "Progress_Name" "Exit_Code" "Back_To" "function_name"
+
 log() {
     echo -n "$1" >$HOME/z.log 2> /dev/null
     catLogs_code=$(cat "$HOME"/z.log 2>/dev/null | grep "$1")
+}
+
+Run() {
+    command=$1
+    name=$2
+    run_Program() {
+        $command > $HOME/zerr.log 2>&1
+        errCode=$?
+        log $errCode
+    }
+    run_Program &
+    Loading "$name" "$3" "$4" "$5"
 }

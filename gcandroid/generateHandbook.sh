@@ -39,42 +39,22 @@ generateHandbook() {
         read -r
         Grasscutter_Tools
     fi
-    cd $HOME/Grasscutter | exit 1
-    run_Program() {
-        sudo service mongodb start &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Start Mongodb Database${WC}" "0" "Menu" "main_menu"
-    run_Program() {
-        timeout 25s java -jar grasscutter.jar -handbook &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Getting GM_Handbook${WC}" "124" "Menu" "main_menu"
+    cd $HOME/Grasscutter || exit 1
+    Run "sudo service mongodb start" "Start MongoDB Database" "0" "Menu" "main_menu"
+    Run "timeout 15s java -jar grasscutter.jar -handbook" "Getting GM_Handbook" "124" "Menu" "main_menu"
+    if [ -z "$(ls -A $HOME/Grasscutter/GM\ Handbook/)" ]; then
+        echo "${RC}Error${WC} : GM Handbook not found!"
+        echo
+        echo -n "Press enter for back to Grasscutter Tools"
+        read -r
+        Grasscutter_Tools
+    fi
     if [ ! -d "/sdcard/GM_Handbook" ]; then
         mkdir "/sdcard/GM_Handbook"
     fi
-    run_Program() {
-        mv -f "GM Handbook"/* "/sdcard/GM_Handbook/" &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Move GM_Handbook to /sdcard${WC}" "0" "Menu" "main_menu"
-    run_Program() {
-        pkill mongo; sudo service mongodb stop &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Stop Mongodb Database${WC}" "0" "Menu" "main_menu"
+    Run "mv -f GM*Handbook/* /sdcard/GM_Handbook/" "Move GM_Handbook to /sdcard" "0" "Menu" "main_menu"
+    pkill mongo
+    Run "sudo service mongodb stop" "Stop Mongodb Database" "0" "Menu" "main_menu"
     if (ls "/sdcard/GM_Handbook"/* > /dev/null 2>&1); then
         echo "${GC}Success get GM Handbook to /sdcard in Folder GM_Handbook${WC}"
         echo

@@ -24,14 +24,7 @@ Compile_Grasscutter() {
     if [ -f "grasscutter.jar" ]; then
         rm grasscutter.jar
     fi
-    run_Program() {
-        ./gradlew jar &>$HOME/zerr.log
-        errCode=$?
-        log "$errCode"
-    }
-    run_Program &
-    pid=$!
-    spin "${GC}Compiling grasscutter.jar${WC}" "0" "Menu" "main_menu"
+    Run "./gradlew jar" "Compiling grasscutter.jar" "0" "Menu" "main_menu"
     GrasscutterJar=$(ls grasscutter*.jar)
     if [ ! $GrasscutterJar ]; then
         echo "${RC}Error${WC} : Failed compile jar${WC}"

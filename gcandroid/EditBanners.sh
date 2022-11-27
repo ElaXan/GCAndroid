@@ -44,7 +44,7 @@ Reset_Banners() {
         echo -n "${GC}Do you want to download it from github? [Y/n] : ${WC}"
         read -r Download_Banners
         if [[ "$Download_Banners" == "y" ]] || [[ "$Download_Banners" == "Y" ]] || [[ "$Download_Banners" == "" ]]; then
-            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.json -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.json"
+            Run "wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O \"$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj\"" "Download Banners.tsj" "0" "Edit Banners" "Edit_Banners"
             echo "${GC}Banners.tsj downloaded successfully!${WC}"
             sleep 1.5s
             Edit_Banners
@@ -56,7 +56,7 @@ Reset_Banners() {
         read -r Reset_Banners
         if [[ "$Reset_Banners" == "y" ]] || [[ "$Reset_Banners" == "Y" ]] || [[ "$Reset_Banners" == "" ]]; then
             rm "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
-            wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
+            Run "wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O \"$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj\"" "Download Banners.tsj" "0" "Edit Banners" "Edit_Banners"
             echo "${GC}Banners.tsj reset successfully!${WC}"
             sleep 1.5s
             Edit_Banners
