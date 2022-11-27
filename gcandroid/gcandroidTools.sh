@@ -69,6 +69,55 @@ delete_avatars() {
     fi
 }
 
+check_avatars() {
+    service mongodb start
+    credit_hah
+    Center_Text "Check Avatars"
+    read -p "Enter your UID : " check_mongodb_uid
+    check_uid_database=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "\"ownerId\" : $check_mongodb_uid")
+    if [[ -z $check_uid_database ]]; then
+        echo "${RC}UID not found!${WC}"
+        echo
+        echo -n "Press enter for back to Main Menu!"
+        read
+        main_menu
+    else
+        echo "${GC}UID found!${WC}"
+        check_character_database=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "\"ownerId\" : $check_mongodb_uid" | grep "\"avatarId\" :" | sed "s/.*\"avatarId\" : //g" | sed "s/,.*//g")
+        if [[ -z $check_character_database ]]; then
+            echo "${RC}Character not found!${WC}"
+            echo
+            echo -n "Press enter for back to Main Menu!"
+            read
+            main_menu
+        else
+            check_character_avatars=$(grep "$check_character_database" /usr/share/gcandroid/GM_Handbook/avatars.txt)
+            if [[ -z $check_character_avatars ]]; then
+                echo "${RC}Character not found!${WC}"
+                echo
+                echo -n "Press enter for back to Main Menu!"
+                read
+                main_menu
+            else
+                echo "${CCB}List Avatars${WC}"
+                echo $line | sed 's/=/~/g'
+                get_character_avatars=$(grep "$check_character_database" /usr/share/gcandroid/GM_Handbook/avatars.txt | awk -F ":" '{print $1}')
+                count_character_avatars=0
+                for i in $get_character_avatars; do
+                    count_character_avatars=$((count_character_avatars + 1))
+                    get_character_avatars_name=$(grep "$i" /usr/share/gcandroid/GM_Handbook/avatars.txt | awk -F ":" '{print $2}')
+                    get_character_avatars_id=$(grep "$i" /usr/share/gcandroid/GM_Handbook/avatars.txt | awk -F ":" '{print $1}')
+                    echo -e "$count_character_avatars. Name :${YC}$get_character_avatars_name${WC}\n > ID : ${GC}$get_character_avatars_id${WC}\n$(echo $line | sed 's/=/~/g')"
+                done
+                echo
+                echo -n "Press enter for back to GCAndroid Tools!"
+                read
+                gcandroidTools
+            fi
+        fi
+    fi
+}
+
 gcandroidTools() {
     credit_hah
     Center_Text "GCAndroid Tools"
@@ -76,7 +125,7 @@ gcandroidTools() {
     echo "2. ${CCB}Check Avatars${WC}"
     echo "0. ${RC}Back${WC}"
     echo
-    read -p "}Enter your choice : " gcandroid_tools_input
+    read -p "Enter your choice : " gcandroid_tools_input
     case $gcandroid_tools_input in
     1) delete_avatars ;;
     2) check_avatars ;;

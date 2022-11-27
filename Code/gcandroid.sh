@@ -47,6 +47,10 @@ Center_Text() {
         if [[ $3 == "Cyan" ]]; then
             echo "${space}${CCU}$1${WC}"
         fi
+    elif [[ $2 == "error" ]]; then
+        if [[ $3 == "Red" ]]; then
+            echo "${space}${RC}$1${WC}"
+        fi
     else
         echo "${GC}${space}$1${WC}"
     fi
@@ -547,7 +551,6 @@ main_menu() {
     echo "5. ${CCB}Install Menu${WC}"
     echo "6. ${CCB}About Us!${WC}"
     echo "7. ${CCB}How to setup Grasscutter${WC}"
-    echo "8. ${CCB}Delete Avatars${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -560,7 +563,6 @@ main_menu() {
     "5") InstallMenu ;;
     "6") about_us ;;
     "7") how_to_setup ;;
-    "8") delete_avatars ;;
     "0")
         clear
         exit 0
@@ -594,7 +596,7 @@ echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/updateScript.sh)
 if [[ $newVersionScript = "" ]]; then
     clear
-    note_credit="${RC}Can't connect to Server${WC}"
+    note_credit=$(Center "Can't connect to server!")
     echo "$note_credit"
     echo
     echo "Press enter for continue!"
