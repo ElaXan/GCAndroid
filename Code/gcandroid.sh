@@ -319,7 +319,6 @@ Grasscutter_Tools() {
     echo "3. ${CCB}Install Plugin${WC}"
     echo "4. ${CCB}Remove Plugin${WC}"
     echo "5. ${CCB}Get GM Handbook${WC}"
-    echo "6. ${CCB}Edit Mongodb Database${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -330,7 +329,6 @@ Grasscutter_Tools() {
     "3") installPlugin ;;
     "4") removePlugin ;;
     "5") generateHandbook ;;
-    "6") menu_mongodb ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
