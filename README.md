@@ -26,7 +26,7 @@ The Requirments are as follows: [Ubuntu](https://ubuntu.com), [Termux](https://t
 
 ## Download links
 
-Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk) [RECOMMEND]\
+Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk)
 
 ## Setup
 
@@ -88,13 +88,6 @@ Don't change anything unless you want to change the Mongodb port. Make sure to s
 5. Done, now you can edit the Database
 
 ## Play
-
-### Chinese APK
-
-You need to use Termux for this or make your own Private DNS redirect to Localhost (127.0.0.1)
-And dont ask me idk\
-You can play without Private DNS or Termux, but it needs Root/SuperUser permissions\
-And dont ask me how to root, go to [XDA](https://www.xda-developers.com/)
 
 ## YuukiPS V1
 
