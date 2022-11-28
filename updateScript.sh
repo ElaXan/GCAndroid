@@ -32,8 +32,9 @@ update() {
         rm /data/data/com.termux/files/usr/bin/gcandroid
     fi
     echo -n "proot-distro login ubuntu -- gcandroid" > /data/data/com.termux/files/usr/bin/gcandroid
+    chmod +x /data/data/com.termux/files/usr/bin/gcandroid
     rm -rf $HOME/$folderName
-    if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ]; then
+    if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ] && [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
         clear
         echo "Install Success!!"
         echo "now enter command : gcandroid"

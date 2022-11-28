@@ -47,7 +47,8 @@ if [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
     rm /data/data/com.termux/files/usr/bin/gcandroid
 fi
 echo -n "proot-distro login ubuntu -- gcandroid" > /data/data/com.termux/files/usr/bin/gcandroid
-if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ]; then
+chmod +x /data/data/com.termux/files/usr/bin/gcandroid
+if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ] && [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
     clear
     echo "Install Success!!"
     echo "now enter command : gcandroid"
