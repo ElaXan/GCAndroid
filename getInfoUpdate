@@ -7,7 +7,7 @@ if [[ $versionScript == "2.8" ]]; then
     noteUpdate+="4. Add edit config.json for Database Info\n"
     noteUpdate+="5. Add edit config.json for language\n"
     noteUpdate+="6. Support run GCAndroid in Termux Environment"
-if [[ $versionScript == "2.7" ]]; then
+elif [[ $versionScript == "2.7" ]]; then
     noteUpdate="1. Fix bug in Compile .jar\n"
     noteUpdate+="2. Add edit config.json for \"data\" in \"folderStructure\"\n"
     noteUpdate+="3. Backup resources when reinstall Grasscutter\n"
