@@ -5,9 +5,7 @@ edit_configjson_database_game_collection() {
     read -r edit_configjson_database_game_collection_input
     echo -n "${WC}"
     if [[ -z $edit_configjson_database_game_collection_input ]]; then
-        echo -e "${RC}Invalid input!${WC}"
-        sleep 0.5s
-        edit_configjson_database_game_collection
+        edit_configjson_database_game
     else
         editJsonJq "databaseInfo.game.collection=\"$edit_configjson_database_game_collection_input\""
     fi
