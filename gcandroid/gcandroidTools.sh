@@ -7,7 +7,7 @@ delete_avatars() {
     echo
     read -p "${CCB}Enter your UID : ${WC}" delete_mongodb_uid
     if [[ $delete_mongodb_uid == "b" ]] || [[ $delete_mongodb_uid == "B" ]]; then
-        main_menu
+        gcandroidTools
     fi
     read -p "${CCB}Enter Avatars ID : ${WC}" delete_mongodb_avatar_id
     if [[ $delete_mongodb_avatar_id =~ [0-9] ]]; then
@@ -23,16 +23,16 @@ delete_avatars() {
             delete_avatars
         fi
     elif [[ $delete_mongodb_avatar_id == "b" ]] || [[ $delete_mongodb_avatar_id == "B" ]]; then
-        main_menu
+        gcandroidTools
     fi
     echo
     checking_the_avatars_id=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "$delete_mongodb_avatar_id" | grep "$delete_mongodb_uid")
     if [[ $? != 0 ]]; then
         echo "${RC}Avatars ID not found!${WC}"
         echo
-        echo -n "Press enter for back to Main Menu!"
+        echo -n "Press enter for back to GCAndroid Tools!"
         read
-        main_menu
+        gcandroidTools
     else
         delete_mongodb_avatar_id_results_name=$(echo "$Characters_Name" | grep -i "$delete_mongodb_avatar_id_results" | awk -F ":" '{print $2}')
         delete_mongodb_avatar_id_results_name=$(echo "$delete_mongodb_avatar_id_results_name" | sed 's/^ *//')
@@ -47,15 +47,15 @@ delete_avatars() {
             if [[ $? != 0 ]]; then
                 echo "${RC}Failed to delete!${WC}"
                 echo
-                echo -n "Press enter for back to Main Menu!"
+                echo -n "Press enter for back to GCAndroid Tools!"
                 read
-                main_menu
+                gcandroidTools
             else
                 echo "${GC}Success deleted!${WC}"
                 echo
-                echo -n "Press enter for back to Main Menu!"
+                echo -n "Press enter for back to GCAndroid Tools!"
                 read
-                main_menu
+                gcandroidTools
             fi
             ;;
         "n" | "N") main_menu ;;
@@ -77,26 +77,28 @@ check_avatars() {
     if [[ -z $check_uid_database ]]; then
         echo "${RC}UID not found!${WC}"
         echo
-        echo -n "Press enter for back to Main Menu!"
+        echo -n "Press enter for back to GCAndroid Tools!"
         read
-        main_menu
+        gcandroidTools
+    elif [[ $check_uid_database == "b" ]] || [[ $check_uid_database == "B" ]]; then
+        gcandroidTools
     else
         echo "${GC}UID found!${WC}"
         check_character_database=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "\"ownerId\" : $check_mongodb_uid" | grep "\"avatarId\" :" | sed "s/.*\"avatarId\" : //g" | sed "s/,.*//g")
         if [[ -z $check_character_database ]]; then
             echo "${RC}Character not found!${WC}"
             echo
-            echo -n "Press enter for back to Main Menu!"
+            echo -n "Press enter for back to GCAndroid Tools!"
             read
-            main_menu
+            gcandroidTools
         else
             check_character_avatars=$(grep "$check_character_database" /usr/share/gcandroid/GM_Handbook/avatars.txt)
             if [[ -z $check_character_avatars ]]; then
                 echo "${RC}Character not found!${WC}"
                 echo
-                echo -n "Press enter for back to Main Menu!"
+                echo -n "Press enter for back to GCAndroid Tools!"
                 read
-                main_menu
+                gcandroidTools
             else
                 echo "${CCB}List Avatars${WC}"
                 echo $line | sed 's/=/~/g'

@@ -18,13 +18,10 @@ Loading() {
         for i in "${spin[@]}"; do
             tput cuu1
             tput el
-            # remove color from log zerr.log
-            # Example: remove <[34 before and after ""
-            Loading_Text=$(echo "$Loading_Text" | sed 's/.*<\[[0-9;]*m//g')
             if [ -z "$Loading_Text" ]; then
-                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\r" | sed 's/.*<\[[0-9;]*m//g'
+                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\r"
             else
-                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\033[2K\r > ${YC}$(echo $Loading_Text | cut -c 1-$(( $(tput cols) - 3 )))${WC}" | sed 's/.*<\[[0-9;]*m//g'
+                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\033[2K\r > ${YC}$(echo $Loading_Text | cut -c 1-$(( $(tput cols) - 3 )))${WC}"
             fi
             sleep 0.1
         done
