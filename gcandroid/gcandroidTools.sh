@@ -72,16 +72,19 @@ check_avatars() {
     service mongodb start
     credit_hah
     Center_Text "Check Avatars"
+    echo "${YC}Enter b/B for back/cancel${CCB}"
+    echo
     read -p "Enter your UID : " check_mongodb_uid
     check_uid_database=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "\"ownerId\" : $check_mongodb_uid")
-    if [[ -z $check_uid_database ]]; then
+    if [[ $check_mongodb_uid == "b" ]] || [[ $check_mongodb_uid == "B" ]]; then
+        gcandroidTools
+    elif [[ -z $check_uid_database ]]; then
         echo "${RC}UID not found!${WC}"
         echo
         echo -n "Press enter for back to GCAndroid Tools!"
         read
         gcandroidTools
-    elif [[ $check_uid_database == "b" ]] || [[ $check_uid_database == "B" ]]; then
-        gcandroidTools
+    
     else
         echo "${GC}UID found!${WC}"
         check_character_database=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "\"ownerId\" : $check_mongodb_uid" | grep "\"avatarId\" :" | sed "s/.*\"avatarId\" : //g" | sed "s/,.*//g")
