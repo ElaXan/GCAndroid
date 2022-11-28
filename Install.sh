@@ -43,7 +43,11 @@ fi
 sudo mv gcandroid /usr/share
 sudo chmod +x /usr/share/gcandroid/*
 rm -rf $HOME/$folderName
-if [ -f "/bin/gcandroid" ] || [ -d "/usr/share/gcandroid" ]; then
+if [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
+    rm /data/data/com.termux/files/usr/bin/gcandroid
+fi
+echo -n "proot-distro login ubuntu -- gcandroid" > /data/data/com.termux/files/usr/bin/gcandroid
+if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ]; then
     clear
     echo "Install Success!!"
     echo "now enter command : gcandroid"
