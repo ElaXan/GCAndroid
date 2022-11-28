@@ -263,6 +263,19 @@ getConfigJson() {
         if [[ $databaseInfo_server_collection == "" ]]; then
             databaseInfo_server_collection="${RC}Error${WC}"
         fi
+    elif [ $getArguments == "language" ]; then
+        language_language=$(jq '.language.language' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $language_language == "" ]]; then
+            language_language="${RC}Error${WC}"
+        fi
+        language_fallback=$(jq '.language.fallback' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $language_fallback == "" ]]; then
+            language_fallback="${RC}Error${WC}"
+        fi
+        language_document=$(jq '.language.document' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $language_document == "" ]]; then
+            language_document="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
