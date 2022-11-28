@@ -4,6 +4,7 @@ edit_configjson() {
     Center_Text "Edit config.json [MAIN]"
     echo "1. ${CCB}folderStructure${WC}"
     echo "2. ${CCB}Server${WC}"
+    echo "3. ${CCB}Database${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -11,6 +12,7 @@ edit_configjson() {
     case $edit_configjson_input in
     "1") edit_configjson_folderStructure ;;
     "2") edit_configjson_Server_main ;;
+    "3") edit_configjson_database ;;
     "0") menu_config ;;
     *)
         echo "${RC}Wrong input!${WC}"

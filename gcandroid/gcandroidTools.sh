@@ -25,7 +25,6 @@ delete_avatars() {
     elif [[ $delete_mongodb_avatar_id == "b" ]] || [[ $delete_mongodb_avatar_id == "B" ]]; then
         main_menu
     fi
-    
     echo
     checking_the_avatars_id=$(mongo --quiet grasscutter --eval "db.avatars.find()" | grep "$delete_mongodb_avatar_id" | grep "$delete_mongodb_uid")
     if [[ $? != 0 ]]; then
@@ -44,7 +43,7 @@ delete_avatars() {
         read -r delete_mongodb_input
         case $delete_mongodb_input in
         "y" | "Y")
-            mongo --quiet grasscutter --eval "db.avatars.remove($checking_the_avatars_id)" > /dev/null 2>&1
+            mongo --quiet grasscutter --eval "db.avatars.remove($checking_the_avatars_id)" >/dev/null 2>&1
             if [[ $? != 0 ]]; then
                 echo "${RC}Failed to delete!${WC}"
                 echo

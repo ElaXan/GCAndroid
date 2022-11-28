@@ -245,6 +245,24 @@ getConfigJson() {
         if [[ $server_game_gameOptions_rates_leyLines == "" ]]; then
             server_game_gameOptions_rates_leyLines="${RC}Error${WC}"
         fi
+    elif [ $getArguments == "databaseInfo.game" ]; then
+        databaseInfo_game_connectionUri=$(jq '.databaseInfo.game.connectionUri' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $databaseInfo_game_connectionUri == "" ]]; then
+            databaseInfo_game_connectionUri="${RC}Error${WC}"
+        fi
+        databaseInfo_game_collection=$(jq '.databaseInfo.game.collection' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $databaseInfo_game_collection == "" ]]; then
+            databaseInfo_game_collection="${RC}Error${WC}"
+        fi
+    elif [ $getArguments == "databaseInfo.server" ]; then
+        databaseInfo_server_connectionUri=$(jq '.databaseInfo.server.connectionUri' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $databaseInfo_server_connectionUri == "" ]]; then
+            databaseInfo_server_connectionUri="${RC}Error${WC}"
+        fi
+        databaseInfo_server_collection=$(jq '.databaseInfo.server.collection' config.json 2>/dev/null | sed 's/\"//g')
+        if [[ $databaseInfo_server_collection == "" ]]; then
+            databaseInfo_server_collection="${RC}Error${WC}"
+        fi
     else
         echo "${RC}Cant Load, Unknown Error!${WC}"
     fi
