@@ -1,5 +1,12 @@
-newVersionScript="2.8"
+newVersionScript="2.8.6"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
+if [[ $versionScript == "2.8" ]]; then
+    noteUpdate="1. Update Progress Bar\n"
+    noteUpdate+="2. Add remove Character/Avatars\n"
+    noteUpdate+="3. check character have in Database\n"
+    noteUpdate+="4. Add edit config.json for Database Info\n"
+    noteUpdate+="5. Add edit config.json for language\n"
+    noteUpdate+="6. Support run GCAndroid in Termux Environment"
 if [[ $versionScript == "2.7" ]]; then
     noteUpdate="1. Fix bug in Compile .jar\n"
     noteUpdate+="2. Add edit config.json for \"data\" in \"folderStructure\"\n"
@@ -67,11 +74,6 @@ elif [[ $versionScript == "2.4" ]]; then
     noteUpdate+="For more information, please visit\n"
     noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 else
-    noteUpdate="1. Fix bug in Compile .jar\n"
-    noteUpdate+="2. Add edit config.json for \"data\" in \"folderStructure\"\n"
-    noteUpdate+="3. Backup resources when reinstall Grasscutter\n"
-    noteUpdate+="4. Remove spam load other script (.sh)\n"
-    noteUpdate+="5. Change Banners.json to Banners.tsj\n"
-    noteUpdate+="For more information, please visit\n"
+    noteUpdate="For update, please visit\n"
     noteUpdate+="https://github.com/Score-Inc/GCAndroid/blob/Server/CHANGELOG.md"
 fi

@@ -1,5 +1,14 @@
 # Changelog
 
+# 2.8.5
+
+1. Update Progress Bar
+2. Add remove Character/Avatars
+3. check character have in Database
+4. Add edit config.json for Database Info
+5. Add edit config.json for language
+6. Support run GCAndroid in Termux Environment
+
 # 2.8
 
 1. Fix bug in Compile .jar
