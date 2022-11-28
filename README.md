@@ -60,6 +60,12 @@ bash <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/Inst
 gcandroid
 ```
 
+* or in Termux without login to Ubuntu
+
+```bash
+gcandroid
+```
+
 ## Tutorial
 
 <a href="https://youtu.be/gVlqw9Lo9K8">
