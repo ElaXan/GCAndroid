@@ -1,6 +1,6 @@
 # Changelog
 
-# 2.8.5
+# 2.8.6
 
 1. Update Progress Bar
 2. Add remove Character/Avatars
