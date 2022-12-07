@@ -586,7 +586,7 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
 done
 
 newVersionScript=""
-versionScript="2.8.6"
+versionScript="2.8.8"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
