@@ -58,6 +58,7 @@ Center_Text() {
         echo "${GC}${space}$1${WC}"
         ;;
     esac
+    echo $line
 }
 
 clear
