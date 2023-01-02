@@ -1,3 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
 # Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
 
@@ -10,7 +12,7 @@ Install_Grasscutter_process() {
         echo "${GC}Installing git command...${WC}"
         sudo apt install git -y &>/dev/null
     fi
-    if [[ $Grasscutter_Already_Installed == "1" ]]; then
+    if [[ "${Grasscutter_Already_Installed}" == "1" ]]; then
         credit_hah
         echo "${GC}Do you want to keep resources folder?${WC}"
         echo
@@ -30,7 +32,7 @@ Install_Grasscutter_process() {
     fi
     credit_hah
     Center_Text "Install Grasscutter Version Select"
-    cd $HOME || exit 1
+    cd "$HOME" || exit 1
     echo "1. ${CCB}Compile grasscutter.jar${WC}"
     echo "2. ${CCB}Download grasscutter.jar${WC}"
     echo "0. ${RC}Cancel${WC}"
@@ -214,6 +216,7 @@ Install_Grasscutter_process() {
         echo "====================================="
     fi
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
+        chmod +x gradlew
         Run "./gradlew jar" "Compiling grasscutter.jar" "0" "Menu" "main_menu"
         mv grasscutter*.jar grasscutter.jar
     fi

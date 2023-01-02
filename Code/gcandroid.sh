@@ -43,18 +43,21 @@ Center_Text() {
     space=$((lines - textss))
     space=$((space / 2))
     space=$(printf "%${space}s")
-    if [[ $2 == "link" ]]; then
-        if [[ $3 == "Cyan" ]]; then
+    case $2 in
+    link)
+        if [ $3 = Cyan ]; then
             echo "${space}${CCU}$1${WC}"
         fi
-    elif [[ $2 == "error" ]]; then
-        if [[ $3 == "Red" ]]; then
+        ;;
+    error)
+        if [ $3 = Red ]; then
             echo "${space}${RC}$1${WC}"
         fi
-    else
+        ;;
+    *)
         echo "${GC}${space}$1${WC}"
-    fi
-    echo $line
+        ;;
+    esac
 }
 
 clear
