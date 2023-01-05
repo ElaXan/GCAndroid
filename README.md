@@ -2,6 +2,10 @@
     <img src="gif/20221026_150902.gif" alt="gif animated" width="450" height="100">
 </p>
 
+# Important
+
+GCAndroid is not getting updates since 1 month ago. and only 2 commits I did. i am busy with Javascript these days. So it's possible that GCAndroid will get a longer update or will move to Javascript or Python
+
 # GCAndroid
 
 Project is free to use. If you bought it from someone, please refund\
