@@ -1,9 +1,11 @@
 import os
-import urllib3
+import subprocess
+import requests
 import shutil
 import zipfile
 from pathlib import Path
 from Utils.Info import info
+from tqdm import tqdm
 info = info()
 
 home = Path.home()
@@ -42,15 +44,15 @@ def check_file(path):
 def move(path, new_path):
     try:
         if not (check_file(new_path)):
-            print(f"\r\033[K{info.info} Moving file from {path} to {new_path}")
+            print(f"{info.info} Moving file from {path} to {new_path}", end="")
             shutil.move(path, new_path)
-            print(f"\r\033[K{info.success} Moved file from {path} to {new_path}")
+            print(f"\r\033[F\033[2K{info.success} Moved file from {path} to {new_path}")
             return True
         else:
             print(f"{info.warning} Skip moving file because file already exists")
             return True
     except Exception as e:
-        print(f"{info.error} Failed to move file from {path} to {new_path}\n{e}")
+        print(f"\r\033[F\033[2K{info.error} Failed to move file from {path} to {new_path}\n{e}")
 
 # Remove file
 def remove(path):
@@ -101,6 +103,9 @@ def change_permission(path, permission):
 
 def extract_zip(path, new_path):
     try:
+        if (check_folder(new_path)):
+            print(f"{info.warning} Skip extracting zip because folder already exists")
+            return True
         with zipfile.ZipFile(path, 'r') as zip_ref:
             for file in zip_ref.namelist():
                 # get percent and ignore after dot
@@ -124,25 +129,30 @@ def extract_zip(path, new_path):
 def download_file(url, path):
     try:
         if not (check_file(path)):
-            print(f"{info.info} Downloading file from {url} to {path}")
-            http = urllib3.PoolManager()
-            with http.request('GET', url, preload_content=False) as r, open(path, 'wb') as out_file:
-                shutil.copyfileobj(r, out_file)
-            return True
+            print(f"{info.running} Downloading file {path}"[:os.get_terminal_size().columns + 15])
+            r = requests.get(url, stream=True)
+            size = int(r.headers.get('Content-Length', 0))
+            block_size = 1024
+            progress_bar = tqdm(total=size, unit='iB', unit_scale=True)
+            with open(path, 'wb') as f:
+                for data in r.iter_content(block_size):
+                    # progress_bar.update(len(data))
+                    progress_bar.update(len(data))
+                    f.write(data)
+            print(f"\r\033[F\033[2K{info.success} {path} Downloaded")
         else:
             print(f"{info.info} File already downloaded")
             return True
     except Exception as e:
-        print(f"Failed to download file from {url}\n{e}")
+        print(f"\033[F\033[2K{info.error} Failed to download file from {url}\n{e}")
         exit(1)
     
 # Clone repository
 def clone_repositories(url, name_repo):
     if not (check_folder(name_repo)):
-        print(f"{info.info} Cloning repository from {url}")
-        try:
-            os.system(f"git clone {url}")
-            return True
-        except Exception as e:
-            print(f"{info.error} Failed to clone repository from {url}\n{e}")
-            exit(1)
+        print(f"{info.info} Cloning repository {name_repo}")
+        subprocess.Popen(f"git clone {url}", shell=True).wait()
+        print(f"\r\033[F\033[2K{info.success} Cloned repository {name_repo}")
+    else:
+        print(f"{info.info} Repository already cloned")
+        return True

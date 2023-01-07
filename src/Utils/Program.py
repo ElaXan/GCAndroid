@@ -42,8 +42,12 @@ def run(name_program):
         run(name_program)
     """
     try:
-        print(f"{info.info} Running {name_program}...")
-        os.system(name_program)
+        print(f"{info.running} Running {name_program}...")
+        output = subprocess.Popen(name_program, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        for line in iter(output.stdout.readline, b''):
+            print(line.decode("utf-8").rstrip())
+            print(f"\r\033[F\033[2K", end="")
+        print(f"\033[F\033[2K{info.success} Finished running {name_program}")
         return True
     except Exception as e:
         print(f"{info.error} Failed to run {name_program}\n{e}")

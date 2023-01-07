@@ -19,6 +19,8 @@ Files.extract_zip("GC-Resources-3.3.zip", "GC-Resources-3.3")
 Files.remove("GC-Resources-3.3.zip")
 # Move file
 Files.move("GC-Resources-3.3/GC-Resources-3.3/Resources", "Grasscutter/resources")
+# Remove Folder
+Files.remove("GC-Resources-3.3")
 # Change directory
 os.chdir("Grasscutter")
 # Change permission
