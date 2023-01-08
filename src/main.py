@@ -43,6 +43,17 @@ def uninstall_grasscutter():
     selectMenu.home()
     
 def run_grasscutter():
-    print("TODO: Run Grasscutter")
-    time.sleep(1)
+    clear()
+    selectMenu.credit()
+    # check folders
+    if not Files.check_folder(f"{Files.home}/Grasscutter"):
+        print("Grasscutter not found")
+        time.sleep(1)
+        selectMenu.home()
+    if not Files.check_file(f"{Files.home}/Grasscutter/grasscutter-1.4.5-dev.jar"):
+        print("grasscutter-1.4.5-dev.jar not found")
+        time.sleep(1)
+        selectMenu.home()
+    os.chdir(f"{Files.home}/Grasscutter")
+    os.system("java -jar grasscutter-1.4.5-dev.jar")
     selectMenu.home()

@@ -22,6 +22,7 @@ class info:
         self.info = color.CYAN + "[INFO]" + color.RESET
         self.success = color.GREEN + "[SUCCESS]" + color.RESET
         self.warning = color.YELLOW + "[WARNING]" + color.RESET
+        self.running = color.BLUE + "[RUNNING]" + color.RESET
         self.error = color.RED + "[ERROR]" + color.RESET
         
 def clear():

@@ -21,7 +21,7 @@ def home():
         elif user_input == "2":
             main.uninstall_grasscutter()
         elif user_input == "3":
-            print("TODO: Run Grasscutter")
+            main.run_grasscutter()
         elif user_input == "0":
             exit(0)
         else:

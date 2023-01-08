@@ -7,6 +7,8 @@ from pathlib import Path
 import Utils.info as info
 from tqdm import tqdm
 home = Path.home()
+colors = info.colors()
+info = info.info()
 
 # Check if folders exist
 def check_folder(path):
@@ -113,7 +115,7 @@ def extract_zip(path, new_path):
                 zip_ref.extract(file, new_path)
                 get_terminal_size = os.get_terminal_size()
                 # Clear 2 lines
-                print(f"\r\033[F\033[2K{info.green}[{percent}%]{info.clear} Extracting : {file}"[:get_terminal_size.columns + 15])
+                print(f"\r\033[F\033[2K{colors.green}[{percent}%]{colors.clear} Extracting : {file}"[:get_terminal_size.columns + 15])
         print(f"\r\033[F\033[2K{info.success} Extracting zip from {path} to {new_path}")
         # Show a cursor
         print("\033[?25h", end="")

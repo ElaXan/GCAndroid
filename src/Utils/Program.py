@@ -3,6 +3,9 @@ import subprocess
 import shutil
 import Utils.info as info
 
+colors = info.colors()
+info = info.info()
+
 # Check if program installed
 def check_program(program):
     """Checking if program installed or not
