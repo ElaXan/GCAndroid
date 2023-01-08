@@ -36,6 +36,8 @@ def install_grasscutter():
     Program.run_timeout("java -jar grasscutter-1.4.5-dev.jar >/dev/null 2>&1", 10)
     # Replace config.json
     Files.replace_text("config.json", "\"bindPort\": 443,", "\"bindPort\": 54321,")
+    input("Press enter back to home")
+    selectMenu.home()
 
 def uninstall_grasscutter():
     print("TODO: Uninstall Grasscutter")

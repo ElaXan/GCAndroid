@@ -62,6 +62,11 @@ def remove(path):
             os.remove(path)
             print(f"\r\033[F\033[2K{info.success} Removed file from {path}")
             return True
+        elif (check_folder(path)):
+            print(f"{info.info} Removing folder from {path}")
+            shutil.rmtree(path)
+            print(f"\r\033[F\033[2K{info.success} Removed folder from {path}")
+            return True
         else:
             print(f"{info.warning} Skip removing file because file not exists")
             return True
