@@ -39,8 +39,8 @@ if __name__ == "__main__":
         if sys.argv[1] in ("install", "i", "1"):
             main.install_grasscutter()
         elif sys.argv[1] in ("uninstall", "u", "2"):
-            print("TODO: Uninstall Grasscutter")
+            main.uninstall_grasscutter()
         elif sys.argv[1] in ("run", "r", "3"):
-            print("TODO: Run Grasscutter")
+            main.run_grasscutter()
         else:
             home()

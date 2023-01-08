@@ -57,19 +57,20 @@ def move(path, new_path):
 # Remove file
 def remove(path):
     try:
-        if (check_file(path)):
+        if check_file(path):
             print(f"{info.info} Removing file from {path}")
             os.remove(path)
             print(f"\r\033[F\033[2K{info.success} Removed file from {path}")
-            return True
-        elif (check_folder(path)):
+            
+        elif check_folder(path):
             print(f"{info.info} Removing folder from {path}")
             shutil.rmtree(path)
             print(f"\r\033[F\033[2K{info.success} Removed folder from {path}")
-            return True
+            
         else:
             print(f"{info.warning} Skip removing file because file not exists")
-            return True
+            
+        return True
     except Exception as e:
         print(f"{info.error} Failed to remove file from {path}\n{e}")
         return False
@@ -83,10 +84,10 @@ def replace_text(path, old_text, new_text):
             with open(path, "w") as file:
                 for line in lines:
                     file.write(line.replace(old_text, new_text))
-            print(f"\r\033[F\033[2K{info.success} Replaced text from {path}")
+            print(f"{info.success} Text replaced successfully in {path}")
             return True
         else:
-            print(f"{info.warning} Skip replacing text because file not exists")
+            print(f"{info.warning} Skipping text replacement because file does not exist")
             return True
     except Exception as e:
         print(f"{info.error} Failed to replace text from {path}\n{e}")
