@@ -4,10 +4,8 @@ import requests
 import shutil
 import zipfile
 from pathlib import Path
-from Utils.Info import info
+import Utils.info as info
 from tqdm import tqdm
-info = info()
-
 home = Path.home()
 
 # Check if folders exist

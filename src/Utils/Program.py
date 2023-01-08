@@ -1,9 +1,7 @@
 import os
 import subprocess
 import shutil
-from Utils.Info import info
-
-info = info()
+import Utils.info as info
 
 # Check if program installed
 def check_program(program):
