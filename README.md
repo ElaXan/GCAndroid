@@ -2,16 +2,16 @@
     <img src="gif/20221026_150902.gif" alt="gif animated" width="450" height="100">
 </p>
 
-# Important
-
-GCAndroid is not getting updates since 1 month ago. and only 2 commits I did. i am busy with Javascript these days. So it's possible that GCAndroid will get a longer update or will move to Javascript or Python
-
 # GCAndroid
 
 Project is free to use. If you bought it from someone, please refund\
 When I see someone selling GCAndroid, then I will close the source code\
 Open source will be available for Score-Inc or Contributor with GCAndroid\
 Join our [Discord](https://discord.gg/2TTSUZZ)
+
+## Documents
+
+About Install, Uninstall, FAQ or other will move to my [website](https://docs.elaxan.com/tutorial/GCAndroid/install)
 
 ## About
 
