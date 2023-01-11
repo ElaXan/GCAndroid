@@ -51,58 +51,7 @@ Install_Grasscutter_process() {
     esac
     credit_hah
     Center_Text "Install Grasscutter Version Select"
-    if [[ $Backup_Resources == "0" ]]; then
-        if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
-            echo "${GC}Choose Version Resources...${WC}"
-            echo "1. ${CCB}3.3${WC}"
-            echo "2. ${CCB}3.2${WC}"
-            echo "3. ${CCB}3.1${WC}"
-            echo "4. ${CCB}3.0${WC}"
-            echo "5. ${CCB}2.8${WC}"
-            echo "0. ${RC}Back/Cancel${WC}"
-            echo
-            echo -n "Enter input : ${CCB}"
-            read Install_Grasscutter_process_input
-            echo -n "${WC}"
-            case $Install_Grasscutter_process_input in
-            "1") Install_Grasscutter_Resources_Version="3.3" ;;
-            "2") Install_Grasscutter_Resources_Version="3.2" ;;
-            "3") Install_Grasscutter_Resources_Version="3.1" ;;
-            "4") Install_Grasscutter_Resources_Version="3.0" ;;
-            "5") Install_Grasscutter_Resources_Version="2.8" ;;
-            "0") main_menu ;;
-            *) echo "${RC}Wrong input!${WC}" ;;
-            esac
-        elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
-            echo "${GC}Choose Version Resources...${WC}"
-            echo "1. ${CCB}3.3${WC}"
-            echo "2. ${CCB}3.2${WC}"
-            echo "3. ${CCB}3.1${WC}"
-            echo "4. ${CCB}3.0${WC}"
-            echo "5. ${CCB}2.8${WC}"
-            echo "6. ${CCB}2.7${WC}"
-            echo "7. ${CCB}2.6${WC}"
-            echo "0. ${RC}Back/Cancel${WC}"
-            echo
-            echo -n "Enter input : ${CCB}"
-            read Install_Grasscutter_process_input
-            case $Install_Grasscutter_process_input in
-            "1") Install_Grasscutter_Resources_Version="3.3" ;;
-            "2") Install_Grasscutter_Resources_Version="3.2" ;;
-            "3") Install_Grasscutter_Resources_Version="3.1" ;;
-            "4") Install_Grasscutter_Resources_Version="3.0" ;;
-            "5") Install_Grasscutter_Resources_Version="2.8" ;;
-            "6") Install_Grasscutter_Resources_Version="2.7" ;;
-            "7") Install_Grasscutter_Resources_Version="2.6" ;;
-            "0") main_menu ;;
-            *)
-                echo "${RC}Wrong input!${WC}"
-                sleep 1s
-                Install_Grasscutter_process
-                ;;
-            esac
-        fi
-    fi
+    Install_Grasscutter_Resources_Version="3.3"
     credit_hah
     if [[ $Backup_Resources == "0" ]]; then
         echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
@@ -167,33 +116,9 @@ Install_Grasscutter_process() {
     cd $HOME || exit 1
     if [[ $Backup_Resources == "0" ]]; then
         if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
-            if [[ $Install_Grasscutter_Resources_Version = "3.3" ]]; then
-                Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/3.3/Grasscutter_Resources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "3.2" ]]; then
-                Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/3.2/Grasscutter_Resources-3.2.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
-                Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/3.1/Grasscutter_Resources-3.1.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
-                Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/3.0/Grasscutter_Resources-3.0.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
-                Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/2.8/Grasscutter_Resources-2.8.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            fi
+            Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/3.3/Grasscutter_Resources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
-            if [[ $Install_Grasscutter_Resources_Version = "3.3" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "3.2" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.2/GrasscutterResources-3.2.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "3.1" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.1/GrasscutterResources-3.1.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "3.0" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.0/GrasscutterResources-3.0.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "2.8" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.8/GrasscutterResources-2.8.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "2.7" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.7/GrasscutterResources-2.7.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            elif [[ $Install_Grasscutter_Resources_Version = "2.6" ]]; then
-                Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/2.6/GrasscutterResources-2.8.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-            fi
+            Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         fi
         echo -n "Do you want to extract resources? (y/N) : "
         read -r Install_Grasscutter_process_grasscutter_extract
