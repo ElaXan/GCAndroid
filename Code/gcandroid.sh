@@ -209,12 +209,18 @@ installMongodb() {
         "y" | "Y")
             credit_hah
             Center_Text "Mongodb Install"
-            apt reinstall mongodb
+            Run "apt reinstall mongodb -y" "Reinstalling Mongodb" "0" "Install Menu" "installMenu"
+            echo
+            echo -n "Press enter for back to Main Menu"
+            read -r
             main_menu
             ;;
         "n" | "N") main_menu ;;
         "")
-            apt reinstall mongodb
+            Run "apt reinstall mongodb -y" "Reinstalling Mongodb" "0" "Install Menu" "installMenu"
+            echo
+            echo -n "Press enter for back to Main Menu"
+            read -r
             main_menu
             ;;
         *)
@@ -224,7 +230,8 @@ installMongodb() {
             ;;
         esac
     else
-        apt install mongodb
+        Run "apt install tur-repo -y" "Installing Tur Repo" "0" "Install Menu" "installMenu"
+        Run "apt install mongodb -y" "Installing Mongodb" "0" "Install Menu" "installMenu"
         credit_hah
         if ! command -v mongo &>/dev/null; then
             echo "${RC}Mongodb failed to install!${WC}"
@@ -328,14 +335,14 @@ installJavaJDK17() {
         elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
             credit_hah
             Center_Text "Installing Java JDK 17"
-            Run "apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
+            Run "apt reinstall openjdk-17 -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
         else
             echo "${RC}Wrong Input!${WC}"
             sleep 1s
             installJavaJDK17
         fi
     else
-        Run "apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
+        Run "apt reinstall openjdk-17 -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
     fi
     echo
     echo -n "Press enter for back to Install Menu!"
