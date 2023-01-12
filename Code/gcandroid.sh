@@ -13,6 +13,12 @@ WC="$(printf '\033[0;37m')"
 GCAndroid=$HOME/.ElaXan/GCAndroid
 line="====================================="
 
+isThisLinux=$(uname -o)
+if [ $isThisLinux = "GNU/Linux" ]; then
+    echo "${RC}Please run on Termux Environment!\n${GC}Try to reinstall and see GCAndroid Github for more informations...${WC}"
+    exit 2
+fi
+
 grasscutter_path=$HOME/Grasscutter
 configpath=$grasscutter_path/config.json
 wherethegrassss=$grasscutter_path/grasscutter.jar
