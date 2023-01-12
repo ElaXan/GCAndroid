@@ -6,11 +6,11 @@
 Install_Grasscutter_process() {
     if ! command -v unzip &>/dev/null; then
         echo "${GC}Installing unzip command...${WC}"
-        sudo apt install unzip -y &>/dev/null
+        apt install unzip -y &>/dev/null
     fi
     if ! command -v git &>/dev/null; then
         echo "${GC}Installing git command...${WC}"
-        sudo apt install git -y &>/dev/null
+        apt install git -y &>/dev/null
     fi
     if [[ "${Grasscutter_Already_Installed}" == "1" ]]; then
         credit_hah
@@ -53,17 +53,12 @@ Install_Grasscutter_process() {
     Center_Text "Install Grasscutter Version Select"
     Install_Grasscutter_Resources_Version="3.3"
     credit_hah
-    if [[ $Backup_Resources == "0" ]]; then
-        echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
-        echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
-        echo "====================================="
-    fi
     if [[ $Backup_Resources == "1" ]]; then
         echo "${CCB}Backup Resources : ${GC}Yes${WC}"
         if [ -f $(echo Grasscutter/resources*) ]; then
-            mv $HOME/Grasscutter/resources* "$HOME/resourcesBackupGCAndroid.zip"
+            mv $grasscutter_path/resources* "$HOME/resourcesBackupGCAndroid.zip"
         elif [ -d $(echo Grasscutter/resources* ) ]; then
-            mv $HOME/Grasscutter/resources* "$HOME/resourcesBackupGCAndroid"
+            mv $grasscutter_path/resources* "$HOME/resourcesBackupGCAndroid"
         elif [[ -z $(ls -A $HOME/Grasscutter/resources*) ]]; then
             echo "${CCB}Resources : ${RC}Resources is exist but empty${WC}"
             echo
@@ -89,14 +84,12 @@ Install_Grasscutter_process() {
     else
         echo "${CCB}Backup Resources : ${RC}Not Selected${WC}"
     fi
+    sleep 1s
     if [[ $Backup_Resources == "0" ]]; then
         clear
         credit_hah
-        echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
-        echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
-        echo "====================================="
     fi
-    Run "sudo apt install openjdk-17-jdk -y" "Install Java JDK 17" "0" "Menu" "main_menu"
+    Run "apt install openjdk-17 -y" "Install Java JDK 17" "0" "Menu" "main_menu"
     if [ -d "$HOME/Grasscutter" ]; then
         Run "rm -rf $HOME/Grasscutter" "Removing Folder Grasscutter" "0" "Menu" "main_menu"
     fi
@@ -105,27 +98,23 @@ Install_Grasscutter_process() {
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
         Run "git clone https://github.com/Grasscutters/Grasscutter.git" "Clone Repository Grasscutter" "0" "Menu" "main_menu"
     elif [[ $Install_Grasscutter_process_grasscutter = "download" ]]; then
-        if [ ! -f "Grasscutter" ]; then
-            mkdir "Grasscutter"
+        if [ ! -d "$grasscutter_path" ]; then
+            mkdir "$grasscutter_path"
         fi
-        cd "Grasscutter" || exit 1
+        cd "$grasscutter_path" || exit 1
         Run "wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/grasscutter-1.4.4-dev-100d08ec.jar" "Download Grasscutter" "0" "Menu" "main_menu"
         Run "wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/keystore.p12" "Download SSL/Certificate" "0" "Menu" "main_menu"
     fi
     sleep 1s
     cd $HOME || exit 1
     if [[ $Backup_Resources == "0" ]]; then
-        if [[ $Install_Grasscutter_Resources = "tamilpp25" ]]; then
-            Run "wget https://git.crepe.moe/grasscutters/Grasscutter_Resources/-/archive/3.3/Grasscutter_Resources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-        elif [[ $Install_Grasscutter_Resources = "Yuuki" ]]; then
-            Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
-        fi
+        Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         echo -n "Do you want to extract resources? (y/N) : "
         read -r Install_Grasscutter_process_grasscutter_extract
         if [[ $Install_Grasscutter_process_grasscutter_extract == "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "Y" ]]; then
-            Run "unzip resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-            mv Grasscutter*Resources*/Resources Grasscutter/resources
-            rm -rf Grasscutter*Resources*
+            Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
+            mv GC*Resources*3.3*/Resources Grasscutter/resources
+            rm -rf GC*Resources*3.3*
             rm resourcesGCAndroid.zip
         else
             echo "${GC}Skip extracting Resources${WC}"
@@ -133,13 +122,8 @@ Install_Grasscutter_process() {
             sleep 1s
         fi
     fi
-    cd $HOME/Grasscutter || exit 1
+    cd $grasscutter_path || exit 1
     credit_hah
-    if [[ $Backup_Resources == "0" ]]; then
-        echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
-        echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
-        echo "====================================="
-    fi
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
         chmod +x gradlew
         Run "./gradlew jar" "Compiling grasscutter.jar" "0" "Menu" "main_menu"
@@ -149,21 +133,16 @@ Install_Grasscutter_process() {
     timeout --foreground 8s java -jar grasscutter.jar &>/dev/null
     clear
     credit_hah
-    if [[ $Backup_Resources == "0" ]]; then
-        echo "${CCB}Resources : ${GC}$Install_Grasscutter_Resources${WC}"
-        echo "${CCB}Version Resources : ${GC}$Install_Grasscutter_Resources_Version${WC}"
-        echo "====================================="
-    elif [[ $Backup_Resources == "1" ]]; then
+    if [[ $Backup_Resources == "1" ]]; then
         if [ -d $HOME/Grasscutter/resources ]; then
             rm -rf $HOME/Grasscutter/resources
         fi
-        if [[ -f $(echo $HOME/resourcesBackupGCAndroid*) ]]; then
+        if test -f $HOME/resourcesBackupGCAndroid.zip && test -d $HOME/resourcesBackupGCAndroid ; then
             mv $HOME/resourcesBackupGCAndroid.zip $HOME/Grasscutter/resourcesGCAndroid.zip
             Install_Grasscutter_process_grasscutter_extract="y"
-        elif [[ -d $(echo $HOME/resourcesBackupGCAndroid*) ]]; then
             mv $HOME/resourcesBackupGCAndroid $HOME/Grasscutter/resources
         else
-            echo "${RC}Backup resources not found${WC}"
+            echo "${RC}Backup resources not found${WC}" 
         fi
     fi
     echo "${GC}Editing config.json...${WC}"

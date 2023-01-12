@@ -10,29 +10,25 @@ CCB="$(printf '\033[1;36m')"
 CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
 
-isThisLinux=$(uname -o)
-if [ $isThisLinux = Android ]; then
-    echo "${RC}Please run on Ubuntu not Termux!${WC}"
-    exit 2
-fi
-
-GCAndroid=/usr/share/gcandroid
+GCAndroid=$HOME/.ElaXan/GCAndroid
 line="====================================="
 
-configpath=$HOME/Grasscutter/config.json
-wherethegrassss=$HOME/Grasscutter/grasscutter.jar
+grasscutter_path=$HOME/Grasscutter
+configpath=$grasscutter_path/config.json
+wherethegrassss=$grasscutter_path/grasscutter.jar
+Path_Shell=$GCAndroid/gcandroid
 inpscript=$1
 
 if ! command -v perl &>/dev/null; then
-    sudo apt install perl
+    apt install perl
 fi
 
 if ! command -v wget &>/dev/null; then
-    sudo apt install wget -y
+    apt install wget -y
 fi
 
 if ! command -v jq &>/dev/null; then
-    sudo apt install jq -y
+    apt install jq -y
 fi
 
 Center_Text() {
@@ -86,7 +82,7 @@ credit_hah() {
 
 menu_config_editManual() {
     if ! command -v micro &>/dev/null; then
-        sudo apt install micro -y
+        apt install micro -y
     fi
     echo "${GC}Press CTRL + Q on your keyboard for exit${WC}"
     sleep 2s
@@ -213,12 +209,12 @@ installMongodb() {
         "y" | "Y")
             credit_hah
             Center_Text "Mongodb Install"
-            sudo apt reinstall mongodb
+            apt reinstall mongodb
             main_menu
             ;;
         "n" | "N") main_menu ;;
         "")
-            sudo apt reinstall mongodb
+            apt reinstall mongodb
             main_menu
             ;;
         *)
@@ -228,7 +224,7 @@ installMongodb() {
             ;;
         esac
     else
-        sudo apt install mongodb
+        apt install mongodb
         credit_hah
         if ! command -v mongo &>/dev/null; then
             echo "${RC}Mongodb failed to install!${WC}"
@@ -240,34 +236,6 @@ installMongodb() {
         read
         main_menu
     fi
-}
-
-Install_Grasscutter_option() {
-    credit_hah
-    Center_Text "Please choose this for download Resources"
-    echo "1. ${YC}tamilpp25 Resources${WC}"
-    echo "2. ${YC}Yuuki Resources (RECOMMEND)${WC}"
-    echo "0. ${RC}Back/Cancel${WC}"
-    echo
-    echo -n "Enter input : ${CCB}"
-    read Install_Grasscutter_option_input
-    echo -n "${WC}"
-    case $Install_Grasscutter_option_input in
-    "1")
-        Install_Grasscutter_Resources="tamilpp25"
-        Install_Grasscutter_process
-        ;;
-    "2")
-        Install_Grasscutter_Resources="Yuuki"
-        Install_Grasscutter_process
-        ;;
-    "0") main_menu ;;
-    *)
-        echo "${RC}Wrong input!${WC}"
-        sleep 1s
-        Install_Grasscutter_option
-        ;;
-    esac
 }
 
 Install_Grasscutter() {
@@ -283,7 +251,7 @@ Install_Grasscutter() {
         case $Install_Grasscutter_input in
         "y" | "Y")
             Grasscutter_Already_Installed=1
-            Install_Grasscutter_option
+            Install_Grasscutter_process
             ;;
         "n" | "N") Grasscutter_Menu ;;
         *)
@@ -360,14 +328,14 @@ installJavaJDK17() {
         elif [[ $installJavaJDK17_input = "y" ]] || [[ $installJavaJDK17_input = "Y" ]]; then
             credit_hah
             Center_Text "Installing Java JDK 17"
-            Run "sudo apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
+            Run "apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
         else
             echo "${RC}Wrong Input!${WC}"
             sleep 1s
             installJavaJDK17
         fi
     else
-        Run "sudo apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
+        Run "apt reinstall openjdk-17-jdk -y" "Install Java JDK 17" "0" "Install Menu" "InstallMenu"
     fi
     echo
     echo -n "Press enter for back to Install Menu!"
@@ -578,11 +546,10 @@ main_menu() {
         ;;
     esac
 }
-for file in $GCAndroid/*.sh; do
-    echo -ne "\033[2K\r${YC}Loading $(echo $file | cut -c 1-$(( $(tput cols) - 10 )))${WC}"
+for file in $Path_Shell/*.sh; do
+    echo -ne "\033[2K\r${GC}Load : ${CCB}$(echo $file | cut -c 1-$(( $(tput cols) - 10 )))${WC}"
     source $file
 done
-Path_Shell="/usr/share/gcandroid"
 for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
     for j in $(find "$i" -maxdepth 1 -type f); do
         . "$j"
