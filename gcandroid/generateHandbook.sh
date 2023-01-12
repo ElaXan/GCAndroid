@@ -40,8 +40,8 @@ generateHandbook() {
         Grasscutter_Tools
     fi
     cd $HOME/Grasscutter || exit 1
-    Run "sudo service mongodb start" "Start MongoDB Database" "0" "Menu" "main_menu"
-    Run "timeout 15s java -jar grasscutter.jar -handbook" "Getting GM_Handbook" "124" "Menu" "main_menu"
+    mongod &>/dev/null &
+    Run "timeout 10s java -jar grasscutter.jar -handbook" "Getting GM_Handbook" "124" "Menu" "main_menu"
     if [ -z "$(ls -A $HOME/Grasscutter/GM\ Handbook/)" ]; then
         echo "${RC}Error${WC} : GM Handbook not found!"
         echo
@@ -53,8 +53,7 @@ generateHandbook() {
         mkdir "/sdcard/GM_Handbook"
     fi
     Run "mv -f GM*Handbook/* /sdcard/GM_Handbook/" "Move GM_Handbook to /sdcard" "0" "Menu" "main_menu"
-    pkill mongo
-    Run "sudo service mongodb stop" "Stop Mongodb Database" "0" "Menu" "main_menu"
+    pkill mongod
     if (ls "/sdcard/GM_Handbook"/* > /dev/null 2>&1); then
         echo "${GC}Success get GM Handbook to /sdcard in Folder GM_Handbook${WC}"
         echo
