@@ -4,7 +4,7 @@
 
 # GCAndroid
 
-Do not even try to install and run this in this branch\
+Do not even try to install and run in this branch\
 Still under development
 
 ## TODO
@@ -17,3 +17,7 @@ Still under development
 
 1. Remove choose version of Resources
 2. Remove Tamilpp Resources
+3. Update GCAndroid Tools
+4. Update Install Menu for Mongodb and Java
+5. Exit or Block if run in GNU/Linux
+6. Update run grasscutter for mongodb command

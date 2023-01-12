@@ -19,8 +19,8 @@ GoTouchGrass() {
         main_menu
         return
     else
-        pkill mongo
-        sudo service mongodb start
+        pkill mongod
+        mongod &>/dev/null &
         cd $HOME/Grasscutter
         java -jar $HOME/Grasscutter/grasscutter.jar
         echo -n "Press enter for back to Main Menu!"
