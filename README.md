@@ -11,7 +11,7 @@ Still under development
 
 ### Working in Progress
 
-1. Move to Termux Environment
+1. Update about FAQ, Install, Uninstall in [docs](https://docs.elaxan.com)
 
 ### Complete
 
@@ -22,3 +22,6 @@ Still under development
 5. Exit or Block if run in GNU/Linux
 6. Update run grasscutter for mongodb command
 7. Update get GM Handbook to /sdcard
+8. Move from proot-distro or Ubuntu Environmet to Termux Environment
+9. Update Install.sh
+10. Update updateScript.sh

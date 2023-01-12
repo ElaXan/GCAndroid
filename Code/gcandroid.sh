@@ -570,7 +570,7 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
 done
 
 newVersionScript=""
-versionScript="2.8.8"
+versionScript="3.0"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
@@ -611,11 +611,11 @@ else
 fi
 
 case $inpscript in
-"1") GoTouchGrass ;;
-"2") Install_Grasscutter ;;
-"3") menu_config ;;
-"4") installPlugin ;;
-"5") removePlugin ;;
-"6") installMongodb ;;
-*) main_menu ;;
+    "1") GoTouchGrass ;;
+    "2") Install_Grasscutter ;;
+    "3") menu_config ;;
+    "4") installPlugin ;;
+    "5") removePlugin ;;
+    "6") installMongodb ;;
+    *) main_menu ;;
 esac
