@@ -1,5 +1,5 @@
 delete_avatars() {
-    service mongodb start
+    mongod &> /dev/null &
     credit_hah
     Center_Text "Delete Avatars"
     list_get=$(mongo --quiet grasscutter --eval "db.avatars.find()")
@@ -11,7 +11,7 @@ delete_avatars() {
     fi
     read -p "${CCB}Enter Avatars ID : ${WC}" delete_mongodb_avatar_id
     if [[ $delete_mongodb_avatar_id =~ [0-9] ]]; then
-        Characters_Name=$(grep "$delete_mongodb_avatar_id" /usr/share/gcandroid/GM_Handbook/avatars.txt)
+        Characters_Name=$(grep "$delete_mongodb_avatar_id" $Path_Shell/GM_Handbook/avatars.txt)
         delete_mongodb_avatar_id_results=$(echo -n "$Character_Name" | grep -i "$delete_mongodb_avatar_id" | awk -F ":" '{print $1}')
         if [ ${#delete_mongodb_avatar_id} -lt 8 ]; then
             echo "${RC}Please enter 8 character not ${#delete_mongodb_avatar_id}!${WC}"
@@ -69,7 +69,7 @@ delete_avatars() {
 }
 
 check_avatars() {
-    service mongodb start
+    mongod &> /dev/null &
     credit_hah
     Center_Text "Check Avatars"
     echo "${YC}Enter b/B for back/cancel${CCB}"
@@ -95,7 +95,7 @@ check_avatars() {
             read
             gcandroidTools
         else
-            check_character_avatars=$(grep "$check_character_database" /usr/share/gcandroid/GM_Handbook/avatars.txt)
+            check_character_avatars=$(grep "$check_character_database" $Path_Shell/GM_Handbook/avatars.txt)
             if [[ -z $check_character_avatars ]]; then
                 echo "${RC}Character not found!${WC}"
                 echo
@@ -105,12 +105,12 @@ check_avatars() {
             else
                 echo "${CCB}List Avatars${WC}"
                 echo $line | sed 's/=/~/g'
-                get_character_avatars=$(grep "$check_character_database" /usr/share/gcandroid/GM_Handbook/avatars.txt | awk -F ":" '{print $1}')
+                get_character_avatars=$(grep "$check_character_database" $Path_Shell/GM_Handbook/avatars.txt | awk -F ":" '{print $1}')
                 count_character_avatars=0
                 for i in $get_character_avatars; do
                     count_character_avatars=$((count_character_avatars + 1))
-                    get_character_avatars_name=$(grep "$i" /usr/share/gcandroid/GM_Handbook/avatars.txt | awk -F ":" '{print $2}')
-                    get_character_avatars_id=$(grep "$i" /usr/share/gcandroid/GM_Handbook/avatars.txt | awk -F ":" '{print $1}')
+                    get_character_avatars_name=$(grep "$i" $Path_Shell/GM_Handbook/avatars.txt | awk -F ":" '{print $2}')
+                    get_character_avatars_id=$(grep "$i" $Path_Shell/GM_Handbook/avatars.txt | awk -F ":" '{print $1}')
                     echo -e "$count_character_avatars. Name :${YC}$get_character_avatars_name${WC}\n > ID : ${GC}$get_character_avatars_id${WC}\n$(echo $line | sed 's/=/~/g')"
                 done
                 echo
