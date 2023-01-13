@@ -117,6 +117,7 @@ Install_Grasscutter_process() {
             rm -rf GC*Resources*3.3*
             rm resourcesGCAndroid.zip
         else
+            Install_Grasscutter_process_grasscutter_extract="n"
             echo "${GC}Skip extracting Resources${WC}"
             mv resourcesGCAndroid.zip Grasscutter/
             sleep 1s
@@ -152,7 +153,7 @@ Install_Grasscutter_process() {
         echo "${YC}Skip edit config.json...${WC}"
     else
         sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
-        if [[ $Install_Grasscutter_process_grasscutter_extract != "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract != "Y" ]]; then
+        if [[ $Install_Grasscutter_process_grasscutter_extract == "n" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "N" ]]; then
             sed -i "s/\"resources\": \".*\"/\"resources\": \".\/resourcesGCAndroid.zip\"/g" config.json
         fi
         sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json

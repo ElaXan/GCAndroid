@@ -13,7 +13,9 @@ Loading() {
     echo
 
     while kill -0 $pid 2> /dev/null; do
-        Loading_Text=$(tail -n 1 $HOME/zerr.log)
+        if [ -f "$HOME/zerr.log" ]; then
+            Loading_Text=$(tail -n 1 $HOME/zerr.log)
+        fi
         tput civis
         for i in "${spin[@]}"; do
             tput cuu1

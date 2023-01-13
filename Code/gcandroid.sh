@@ -37,6 +37,10 @@ if ! command -v jq &>/dev/null; then
     apt install jq -y
 fi
 
+if ! command -v tput &>/dev/null; then
+    apt install ncurses-utils -y
+fi
+
 Center_Text() {
     textss=$1
 
@@ -275,7 +279,7 @@ Install_Grasscutter() {
         esac
     else
         Backup_Resources="0"
-        Install_Grasscutter_option
+        Install_Grasscutter_process
     fi
 }
 
