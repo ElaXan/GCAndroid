@@ -1,54 +1,48 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 # Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
 
-sudo apt update
+apt update
 isThisAndroid=$(uname -o)
-if [[ $isThisAndroid = "Android" ]]; then
+if [[ $isThisAndroid = "GNU/Linux" ]]; then
     clear
-    echo "Please install on Ubuntu not Termux!"
+    echo "Please install on Termux Environment not on Linux Environment"
     exit 2
 fi
 
-if [ -f "/bin/gcandroid" ]; then
-    sudo rm /bin/gcandroid
+if [ -f "$PREFIX/bin/gcandroid" ]; then
+    rm $PREFIX/bin/gcandroid
 fi
 
-if [ -d "/usr/share/gcandroid" ]; then
-    sudo rm -rf "/usr/share/gcandroid"
+if [ -d "$HOME/.ElaXan/GCAndroid" ]; then
+    rm -rf "$HOME/.ElaXan/GCAndroid"
 fi
 
 folderName="GCAndroid"
 if ! command -v git &> /dev/null; then
-    sudo apt install git -y
+    apt install git -y
 fi
 clear
 echo "Download Script..."
 sleep 1s
-if [ -d "$folderName" ]; then
-    rm -rf "$folderName"
+if [ ! -d "$HOME/.ElaXan" ]; then
+    mkdir $HOME/.ElaXan
 fi
-git clone https://github.com/ElaXan/GCAndroid.git
+
+if [ -d "$HOME/.ElaXan/$folderName" ]; then
+    rm -rf "$HOME/.ElaXan/$folderName"
+fi
+
+cd $HOME/.ElaXan
+git clone https://github.com/Score-Inc/GCAndroid.git
 if [[ ! -d "$folderName" ]]; then
     echo "Install Failed!"
     exit 1
 fi
 cd $folderName
-sudo mv Code/gcandroid.sh /bin/gcandroid
-sudo chmod +x /bin/gcandroid
-if [ -d "/usr/share/gcandroid" ]; then
-    sudo rm -rf "/usr/share/gcandroid"
-fi
-sudo mv gcandroid /usr/share
-sudo chmod +x /usr/share/gcandroid/*
-rm -rf $HOME/$folderName
-if [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
-    rm /data/data/com.termux/files/usr/bin/gcandroid
-fi
-echo -n "proot-distro login ubuntu -- gcandroid" > /data/data/com.termux/files/usr/bin/gcandroid
-chmod +x /data/data/com.termux/files/usr/bin/gcandroid
-if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ] && [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
+ln -sv $HOME/.ElaXan/$folderName/Code/gcandroid.sh $PREFIX/bin/gcandroid
+if [ -f "$PREFIX/bin/gcandroid" ] && [ -d "$HOME/.ElaXan/GCAndroid" ]; then
     clear
     echo "Install Success!!"
     echo "now enter command : gcandroid"
