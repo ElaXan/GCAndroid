@@ -1,5 +1,16 @@
 # Changelog
 
+# 3.0
+
+1. Remove choose version of Resources
+2. Remove Tamilpp Resources
+3. Update GCAndroid Tools
+4. Update Install Menu for Mongodb and Java
+5. Exit or Block if run in GNU/Linux
+6. Update run grasscutter for mongodb command
+7. Update get GM Handbook to /sdcard
+8. Move from proot-distro or Ubuntu Environmet to Termux Environment
+
 # 2.8.6
 
 1. Update Progress Bar
