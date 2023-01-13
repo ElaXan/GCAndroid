@@ -1,6 +1,16 @@
-newVersionScript="2.8.8"
+newVersionScript="3.0"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-if [[ $versionScript == "2.8.6" ]]; then
+if [[ $versionScript == "2.8.8" ]]; then
+    noteUpdate="1. Remove choose version of Resources\n"
+    noteUpdate+="2. Remove Tamilpp Resources\n"
+    noteUpdate+="3. Update GCAndroid Tools\n"
+    noteUpdate+="4. Update Install Menu for Mongodb and Java\n"
+    noteUpdate+="5. Exit or Block if run in GNU/Linux\n"
+    noteUpdate+="6. Update run grasscutter for mongodb command\n"
+    noteUpdate+="7. Update get GM Handbook to /sdcard\n"
+    noteUpdate+="8. Move from proot-distro or Ubuntu Environmet to Termux Environment\n"
+    noteUpdate+=""
+elif [[ $versionScript == "2.8.6" ]]; then
     noteUpdate="1. Add version 3.3 resources (tamilpp)\n"
     noteUpdate+="2. Add version 3.3 resources (Yuki)"
 elif [[ $versionScript == "2.8" ]]; then
