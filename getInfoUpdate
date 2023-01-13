@@ -1,4 +1,4 @@
-newVersionScript="3.0"
+newVersionScript="3.3"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
 if [[ $versionScript == "3.0" ]]; then
     noteUpdate="1. Fix resources issue\n"
