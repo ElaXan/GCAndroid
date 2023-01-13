@@ -1,13 +1,19 @@
 update() {
-    if [ -f "/bin/gcandroid" ]; then
-        sudo rm /bin/gcandroid
+    isThisAndroid=$(uname -o)
+    if [[ $isThisAndroid = "GNU/Linux" ]]; then
+        clear
+        echo "Please update on Termux Environment not on Linux Environment\nSee Github GCAndroid for more information"
+        exit 2
     fi
-    if [ -d "/usr/share/gcandroid" ]; then
-        sudo rm -rf "/usr/share/gcandroid"
+    if [ -f "$PREFIX/bin/gcandroid" ]; then
+        rm $PREFIX/bin/gcandroid
+    fi
+    if [ -d "$HOME/.ElaXan/GCAndroid" ]; then
+        rm -rf "$HOME/.ElaXan/GCAndroid"
     fi
     folderName="GCAndroid"
     if ! command -v git &> /dev/null; then
-        sudo apt install git -y
+        apt install git -y
     fi
     clear
     echo "Download Script..."
@@ -15,33 +21,24 @@ update() {
     if [ -d "$folderName" ]; then
         rm -rf "$folderName"
     fi
-    git clone https://github.com/ElaXan/GCAndroid.git
+    if [ ! -d "$HOME/.ElaXan" ]; then
+        mkdir $HOME/.ElaXan
+    fi
+    cd $HOME/.ElaXan || exit 1
+    git clone https://github.com/Score-Inc/GCAndroid.git
     if [[ $? != 0 ]]; then
         echo "Install Failed!"
         exit 1
     fi
-    cd $folderName
-    sudo mv Code/gcandroid.sh /bin/gcandroid
-    sudo chmod +x /bin/gcandroid
-    if [ -d "/usr/share/gcandroid" ]; then
-        sudo rm -rf "/usr/share/gcandroid"
-    fi
-    sudo mv gcandroid /usr/share
-    sudo chmod +x /usr/share/gcandroid/*s
-    if [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
-        rm /data/data/com.termux/files/usr/bin/gcandroid
-    fi
-    echo -n "proot-distro login ubuntu -- gcandroid" > /data/data/com.termux/files/usr/bin/gcandroid
-    chmod +x /data/data/com.termux/files/usr/bin/gcandroid
-    rm -rf $HOME/$folderName
-    if [ -f "/bin/gcandroid" ] && [ -d "/usr/share/gcandroid" ] && [ -f "/data/data/com.termux/files/usr/bin/gcandroid" ]; then
+    ln -sv $HOME/.ElaXan/$folderName/Code/gcandroid.sh $PREFIX/bin/gcandroid
+    if [ -f "$PREFIX/bin/gcandroid" ] && [ -d "$HOME/.ElaXan/GCAndroid" ]; then
         clear
-        echo "Install Success!!"
+        echo "Update Success!!"
         echo "now enter command : gcandroid"
         exit
     else
         clear
-        echo "Install Failed!"
+        echo "Update Failed!"
         exit
     fi
 }
