@@ -1,6 +1,14 @@
 # Changelog
 
-# 3.0
+Changelog for Grasscutter Android (GCAndroid)
+
+## 3.3
+
+1. Fix resources issue
+2. Fix tput command not found
+3. Improve code for move resources (backup)
+
+## 3.0
 
 1. Remove choose version of Resources
 2. Remove Tamilpp Resources
@@ -11,7 +19,7 @@
 7. Update get GM Handbook to /sdcard
 8. Move from proot-distro or Ubuntu Environmet to Termux Environment
 
-# 2.8.6
+## 2.8.6
 
 1. Update Progress Bar
 2. Add remove Character/Avatars
@@ -20,7 +28,7 @@
 5. Add edit config.json for language
 6. Support run GCAndroid in Termux Environment
 
-# 2.8
+## 2.8
 
 1. Fix bug in Compile .jar
 2. Add edit config.json for "data" in "folderStructure"
@@ -42,7 +50,7 @@
 18. Update to Banners.tsj
 19. Update link grasscutter.jar
 
-# 2.7
+## 2.7
 
 1. Add interpretation of backslash escapes in "echo"
 2. Edit main config.json
@@ -53,7 +61,7 @@
 7. Reset Banners.json
 8. Update Download grasscutter.jar
 
-# 2.6.2
+## 2.6.2
 
 1. Added some config.json edits
 
