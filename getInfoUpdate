@@ -1,6 +1,10 @@
 newVersionScript="3.0"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-if [[ $versionScript == "2.8.8" ]]; then
+if [[ $versionScript == "3.0" ]]; then
+    noteUpdate="1. Fix resources issue\n"
+    noteUpdate+="2. Fix tput command not found\n"
+    noteUpdate+="3. Improve code for move resources (backup)"
+elif [[ $versionScript == "2.8.8" ]]; then
     noteUpdate="1. Remove choose version of Resources\n"
     noteUpdate+="2. Remove Tamilpp Resources\n"
     noteUpdate+="3. Update GCAndroid Tools\n"
