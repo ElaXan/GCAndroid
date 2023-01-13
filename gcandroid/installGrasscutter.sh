@@ -55,10 +55,10 @@ Install_Grasscutter_process() {
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
         echo "${CCB}Backup Resources : ${GC}Yes${WC}"
-        if [ -f $(echo Grasscutter/resources*) ]; then
-            mv $grasscutter_path/resources* "$HOME/resourcesBackupGCAndroid.zip"
-        elif [ -d $(echo Grasscutter/resources* ) ]; then
-            mv $grasscutter_path/resources* "$HOME/resourcesBackupGCAndroid"
+        if [ -f $grasscutter_path/resources* ]; then
+            mv -r $grasscutter_path/resources* $HOME/resourcesBackupGCAndroid.zip
+        elif [ -d $grasscutter_path/resources* ]; then
+            mv -r $grasscutter_path/resources* $HOME/resourcesBackupGCAndroid
         elif [[ -z $(ls -A $HOME/Grasscutter/resources*) ]]; then
             echo "${CCB}Resources : ${RC}Resources is exist but empty${WC}"
             echo
