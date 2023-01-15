@@ -3,7 +3,7 @@ Update_Grasscutter() {
     echo "${GC}Updating Grasscutter${WC}"
     # Check folder in $HOME/Grasscutter/.git if not exist then return
     if [[ ! -d $HOME/Grasscutter/.git ]]; then
-        echo "${RC}Grasscutter is not installed${WC}"
+        echo "${RC}.git folder not found, can't update Grasscutter${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
