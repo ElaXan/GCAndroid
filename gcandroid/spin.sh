@@ -21,9 +21,11 @@ Loading() {
             tput cuu1
             tput el
             if [ -z "$Loading_Text" ]; then
-                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\r"
+                # echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\r"
+                printf "\r[${GC}$i${WC}] ${GC}$name${WC}\n\r"
             else
-                echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\033[2K\r > ${YC}$(echo $Loading_Text | cut -c 1-$(( $(tput cols) - 3 )))${WC}"
+                # echo -ne "\r[${GC}$i${WC}] ${GC}$name${WC}\n\033[2K\r > ${YC}$(echo $Loading_Text | cut -c 1-$(( $(tput cols) - 3 )))${WC}"
+                printf "\r[${GC}$i${WC}] ${GC}$name${WC}\n\033[2K\r > ${YC}$(echo $Loading_Text | cut -c 1-$(( $(tput cols) - 3 )))${WC}"
             fi
             sleep 0.1
         done
@@ -34,7 +36,8 @@ Loading() {
             if [[ $errCode == $2 ]]; then
                 tput cuu1
                 tput el
-                echo -ne "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
+                printf "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
+                # echo -ne "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
             else
                 tput cuu1
                 tput el

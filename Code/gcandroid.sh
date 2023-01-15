@@ -288,6 +288,7 @@ Grasscutter_Menu() {
     Center_Text "Grasscutter Menu"
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
+    echo "3. ${CCB}Update Grasscutter${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -295,6 +296,7 @@ Grasscutter_Menu() {
     case $Grasscutter_Menu_Input in
     "1") Install_Grasscutter ;;
     "2") Compile_Grasscutter ;;
+    "3") Update_Grasscutter ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
