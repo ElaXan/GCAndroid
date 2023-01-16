@@ -2,6 +2,14 @@
 
 Changelog for Grasscutter Android (GCAndroid)
 
+## 3.3.5
+
+1. Add update grasscutter with "git pull"
+2. update to check packages commands needed
+3. Add tur-repo when reinstall Mongodb
+4. Remove download grasscutter.jar
+5. Add "Download Resources Only"
+
 ## 3.3
 
 1. Fix resources issue

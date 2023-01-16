@@ -1,6 +1,12 @@
-newVersionScript="3.3"
+newVersionScript="3.3.5"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-if [[ $versionScript == "3.0" ]]; then
+if [[ $versionScript == "3.3" ]]; then
+    noteUpdate="1. Add update grasscutter with \"git pull\"\n"
+    noteUpdate+="2. update to check packages commands needed\n"
+    noteUpdate+="3. Add tur-repo when reinstall Mongodb\n"
+    noteUpdate+="4. Remove download grasscutter.jar\n"
+    noteUpdate+="5. Add \"Download Resources Only\""
+elif [[ $versionScript == "3.0" ]]; then
     noteUpdate="1. Fix resources issue\n"
     noteUpdate+="2. Fix tput command not found\n"
     noteUpdate+="3. Improve code for move resources (backup)"
