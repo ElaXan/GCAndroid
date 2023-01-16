@@ -236,9 +236,10 @@ installMongodb() {
         echo -n "Enter input (y/N) : "
         read mongodbAsk
         case $mongodbAsk in
-        "y" | "Y")
+        "y" | "Y" | "")
             credit_hah
             Center_Text "Mongodb Install"
+            Run "apt install tur-repo -y" "Installing Tur Repo" "0" "Install Menu" "installMenu"
             Run "apt reinstall mongodb -y" "Reinstalling Mongodb" "0" "Install Menu" "installMenu"
             echo
             echo -n "Press enter for back to Main Menu"
@@ -246,13 +247,6 @@ installMongodb() {
             main_menu
             ;;
         "n" | "N") main_menu ;;
-        "")
-            Run "apt reinstall mongodb -y" "Reinstalling Mongodb" "0" "Install Menu" "installMenu"
-            echo
-            echo -n "Press enter for back to Main Menu"
-            read -r
-            main_menu
-            ;;
         *)
             echo "Wrong Input!"
             sleep 1s
