@@ -256,14 +256,8 @@ installMongodb() {
     else
         Run "apt install tur-repo -y" "Installing Tur Repo" "0" "Install Menu" "installMenu"
         Run "apt install mongodb -y" "Installing Mongodb" "0" "Install Menu" "installMenu"
-        credit_hah
-        if ! command -v mongo &>/dev/null; then
-            echo "${RC}Mongodb failed to install!${WC}"
-        else
-            echo "${GC}Mongodb success installed!${WC}"
-        fi
         echo
-        echo -n "Press enter for back to Main Menu!"
+        echo -n "Press enter for back to Main Menu"
         read
         main_menu
     fi

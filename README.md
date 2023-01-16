@@ -5,7 +5,7 @@
 # GCAndroid
 
 Project is free to use. If you bought it from someone, please refund\
-When I see someone selling GCAndroid, then I will close the source code\
+When I see someone selling GCAndroid, then I will close the source code or project will end.
 Open source will be available for Score-Inc or Contributor with GCAndroid\
 Join our [Discord](https://discord.gg/2TTSUZZ)
 
