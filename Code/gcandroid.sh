@@ -297,6 +297,7 @@ Grasscutter_Menu() {
     echo "1. ${CCB}Install Grasscutter${WC}"
     echo "2. ${CCB}Compile .jar${WC}"
     echo "3. ${CCB}Update Grasscutter${WC}"
+    echo "4. ${CCB}Download Resources Only${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -305,6 +306,7 @@ Grasscutter_Menu() {
     "1") Install_Grasscutter ;;
     "2") Compile_Grasscutter ;;
     "3") Update_Grasscutter ;;
+    "4") Download_Resources ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"

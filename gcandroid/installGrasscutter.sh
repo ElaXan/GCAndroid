@@ -149,3 +149,51 @@ Install_Grasscutter_process() {
     read
     main_menu
 }
+
+Download_Resources() {
+    credit_hah
+    echo -n "${CCB}Are you sure want to download resources only?${WC} (y/N) : "
+    read -r Download_Resources_process
+    if [[ $Download_Resources_process == "y" ]] || [[ $Download_Resources_process == "Y" ]]; then
+        # Check if folder $grasscutter_path exist but empty, if yes then return
+        check_folder_empty=$(ls -A "$grasscutter_path")
+        if [ -d "$grasscutter_path" ] && [ -z "$check_folder_empty" ]; then
+            echo "${RC}Looks like you haven't installed Grasscutter yet${WC}"
+            echo -n "Do you want to continue? (y/N) : "
+            read -r Download_Resources_process_continue
+            if [[ $Download_Resources_process_continue == "y" ]] || [[ $Download_Resources_process_continue == "Y" ]]; then
+                echo "${GC}Continue...${WC}"
+            else
+                echo "${RC}Skip...${WC}"
+                sleep 1s
+                main_menu
+            fi
+        elif [ ! -d "$grasscutter_path" ]; then
+            mkdir -p "$grasscutter_path"
+        fi
+        sleep 1s
+        cd $grasscutter_path || exit 1
+        Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        echo -n "Do you want to extract resources? (y/N) : "
+        read -r Download_Resources_process_extract
+        if [[ $Download_Resources_process_extract == "y" ]] || [[ $Download_Resources_process_extract == "Y" ]]; then
+            Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
+            mv GC*Resources*3.3*/Resources Grasscutter/resources
+            rm -rf GC*Resources*3.3*
+            rm resourcesGCAndroid.zip
+        else
+            Download_Resources_process_extract="n"
+            echo "${GC}Skip extracting Resources${WC}"
+            sleep 1s
+        fi
+        echo "${GC}Success Download Resources${WC}"
+        echo ""
+        echo -n "Press enter for back to Menu!"
+        read
+        main_menu
+    else
+        echo "${GC}Skip Download Resources${WC}"
+        sleep 1s
+        main_menu
+    fi
+}
