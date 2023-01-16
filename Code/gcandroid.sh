@@ -25,21 +25,41 @@ wherethegrassss=$grasscutter_path/grasscutter.jar
 Path_Shell=$GCAndroid/gcandroid
 inpscript=$1
 
-if ! command -v perl &>/dev/null; then
-    apt install perl
-fi
+# check dependencies without run in inside array
+dependencies_apt=(
+    "perl"
+    "wget"
+    "jq"
+    "tput"
+)
 
-if ! command -v wget &>/dev/null; then
-    apt install wget -y
-fi
 
-if ! command -v jq &>/dev/null; then
-    apt install jq -y
-fi
+dependencies_apt_install=(
+    "perl"
+    "wget"
+    "jq"
+    "ncurses-utils"
+)
 
-if ! command -v tput &>/dev/null; then
-    apt install ncurses-utils -y
-fi
+for package in "${dependencies_apt[@]}"; do
+    if ! command -v $package &>/dev/null; then
+        echo "Install : $package"
+        for i in "${dependencies_apt_install[@]}"; do
+            apt install $i -y
+        done
+    fi
+done
+
+# Check if install dependencies is failed by checking package not found
+for package in "${dependencies_apt[@]}"; do
+    if ! command -v $package &>/dev/null; then
+        echo "${RC}Error${WC} : $package not found!"
+        echo
+        echo -n "Press enter for exit"
+        read
+        exit 1
+    fi
+done
 
 Center_Text() {
     textss=$1
