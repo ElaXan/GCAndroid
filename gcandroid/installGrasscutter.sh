@@ -30,27 +30,7 @@ Install_Grasscutter_process() {
             main_menu
         fi
     fi
-    credit_hah
-    Center_Text "Install Grasscutter Version Select"
-    cd "$HOME" || exit 1
-    echo "1. ${CCB}Compile grasscutter.jar${WC}"
-    echo "2. ${CCB}Download grasscutter.jar${WC}"
-    echo "0. ${RC}Cancel${WC}"
-    echo
-    echo -n "Enter Input : ${CB}"
-    read -r Install_Grasscutter_process_grasscutter_input
-    case $Install_Grasscutter_process_grasscutter_input in
-        "1") Install_Grasscutter_process_grasscutter="compile" ;;
-        "2") Install_Grasscutter_process_grasscutter="download" ;;
-        "0") main_menu ;;
-        * )
-            echo "${RC}Wrong Input!${WC}"
-            sleep 1s
-            Install_Grasscutter_process
-            ;;
-    esac
-    credit_hah
-    Center_Text "Install Grasscutter Version Select"
+    Install_Grasscutter_process_grasscutter="compile"
     Install_Grasscutter_Resources_Version="3.3"
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
