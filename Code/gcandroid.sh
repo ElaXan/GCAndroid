@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 # Score-Inc/GCAndroid is licensed under the
 # GNU General Public License v3.0
@@ -50,6 +50,7 @@ for package in "${dependencies_apt[@]}"; do
     fi
 done
 
+
 # Check if install dependencies is failed by checking package not found
 for package in "${dependencies_apt[@]}"; do
     if ! command -v $package &>/dev/null; then
@@ -94,8 +95,31 @@ Center_Text "Project Owner by ElaXan"
 Center_Text "LOADING..."
 echo "${CCU}https://github.com/Score-Inc/GCAndroid${WC}"
 echo $line
-echo "${GC}Contact me at chat@elaxan.com${WC}"
+echo "${GC}Contact me at zero@elaxan.com${WC}"
 echo $line
+
+if [ ! -f "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
+    echo "{
+    \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
+    \"Resources\": \"https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip\"
+}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+else
+    if [ ! -s "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
+        echo "{
+    \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
+    \"Resources\": \"https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip\"
+}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+        echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
+    fi
+
+    if ! (jq . "$HOME/.ElaXan/GCAndroid/repo.json" &>/dev/null); then
+        echo "{
+    \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
+    \"Resources\": \"https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip\"
+}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+        echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
+    fi
+fi
 
 credit_hah() {
     clear
@@ -474,14 +498,25 @@ about_us() {
     esac
 }
 
-how_to_setup() {
+settingsMenu() {
     credit_hah
-    Center_Text "How to Setup"
-    echo "${GC}Please check how to setup in our website${WC}"
-    echo "${CCU}https://docs.elaxan.com${WC}"
-    echo ${WC}
-    read -r -p "Press enter for back to Main Menu!"
-    main_menu
+    Center_Text "Settings Menu"
+    echo "1. ${CCB}Grasscutter Repo${WC}"
+    echo "2. ${CCB}Resources Repo${WC}"
+    echo "3. ${YC}Reset settings.json${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read -r about_us_input
+    case $about_us_input in
+    "1") GrasscutterRepo ;;
+    "2") ResourcesRepo ;;
+    "3") ResetSettingsJSON ;;
+    "0") main_menu ;;
+    *) echo "Wrong input!${WC}"
+        sleep 1s
+        settingsMenu
+    esac
 }
 
 main_menu() {
@@ -492,8 +527,8 @@ main_menu() {
     echo "3. ${CCB}Grasscutter Tools${WC}"
     echo "4. ${CCB}GCAndroid Tools${WC}"
     echo "5. ${CCB}Install Menu${WC}"
-    echo "6. ${CCB}About Us!${WC}"
-    echo "7. ${CCB}How to setup Grasscutter${WC}"
+    echo "6. ${CCB}Setting Repo${WC}"
+    echo "7. ${CCB}About Us!${WC}"
     echo "0. ${RC}Exit${WC}"
     echo
     echo -n "Enter input : "
@@ -504,8 +539,8 @@ main_menu() {
     "3") Grasscutter_Tools ;;
     "4") gcandroidTools ;;
     "5") InstallMenu ;;
-    "6") about_us ;;
-    "7") how_to_setup ;;
+    "6") settingsMenu ;;
+    "7") about_us ;;
     "0")
         clear
         exit 0

@@ -3,7 +3,7 @@
     "workbench.activityBar.visible": true,
     "editor.cursorStyle": "block-outline",
     "python.analysis.logLevel": "Information",
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.fontSize": 14,
     "shellformat.effectLanguages": [
         "shellscript",

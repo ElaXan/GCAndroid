@@ -76,7 +76,7 @@ Install_Grasscutter_process() {
     sleep 1s
     cd $HOME || exit 1
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
-        Run "git clone https://github.com/Grasscutters/Grasscutter.git" "Clone Repository Grasscutter" "0" "Menu" "main_menu"
+        Run "git clone $(jq .Grasscutter \"$HOME/.ElaXan/GCAndroid/repo.json\")" "Clone Repository Grasscutter" "0" "Menu" "main_menu"
     elif [[ $Install_Grasscutter_process_grasscutter = "download" ]]; then
         if [ ! -d "$grasscutter_path" ]; then
             mkdir "$grasscutter_path"
@@ -88,7 +88,7 @@ Install_Grasscutter_process() {
     sleep 1s
     cd $HOME || exit 1
     if [[ $Backup_Resources == "0" ]]; then
-        Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "wget $(jq .Resources \"$HOME/.ElaXan/GCAndroid/repo.json\") -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         echo -n "Do you want to extract resources? (y/N) : "
         read -r Install_Grasscutter_process_grasscutter_extract
         if [[ $Install_Grasscutter_process_grasscutter_extract == "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "Y" ]]; then
@@ -173,7 +173,7 @@ Download_Resources() {
         fi
         sleep 1s
         cd $grasscutter_path || exit 1
-        Run "wget https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "wget $(jq .Resources \"$HOME/.ElaXan/GCAndroid/repo.json\") -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         echo -n "Do you want to extract resources? (y/N) : "
         read -r Download_Resources_process_extract
         if [[ $Download_Resources_process_extract == "y" ]] || [[ $Download_Resources_process_extract == "Y" ]]; then
