@@ -101,13 +101,13 @@ echo $line
 if [ ! -f "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
     echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
-    \"Resources\": \"https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip\"
+    \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
 }" > "$HOME/.ElaXan/GCAndroid/repo.json"
 else
     if [ ! -s "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
-    \"Resources\": \"https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip\"
+    \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
 }" > "$HOME/.ElaXan/GCAndroid/repo.json"
         echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
     fi
@@ -115,7 +115,7 @@ else
     if ! (jq . "$HOME/.ElaXan/GCAndroid/repo.json" &>/dev/null); then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
-    \"Resources\": \"https://gitlab.com/yukiz/GrasscutterResources/-/archive/3.3/GrasscutterResources-3.3.zip\"
+    \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
 }" > "$HOME/.ElaXan/GCAndroid/repo.json"
         echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
     fi
