@@ -1,5 +1,6 @@
 newVersionScript="3.3.5"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
+docker_zip_name="dockergs-f4501c5.zip"
 if [[ $versionScript == "3.3" ]]; then
     noteUpdate="1. Add update grasscutter with \"git pull\"\n"
     noteUpdate+="2. update to check packages commands needed\n"
