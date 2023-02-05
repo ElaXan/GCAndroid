@@ -31,14 +31,16 @@ changePort() {
         changePort
         return
     fi
-    if [[ $PortChange -lt 1025 ]]; then
-        echo -e "${RC}Port $PortChange not allowed for Android\n${YC}Try Higher than 1024\n${WC}"
+    if [[ $PortChange == $checkPort ]]; then
+        echo "${RC}Error:${WC} Port $PortChange already used!"
+        echo
         echo -n "Press enter for try again!"
         read
         changePort
         return
-    elif [[ $PortChange = "22102" ]]; then
-        echo -e "${RC}Port ${PortChange} not allowed\n${YC}Reason ${WC}: ${CCB}Already used by Grasscutter Port${WC}"
+    fi
+    if nc localhost $PortChange; then
+        echo "${RC}Error:${WC} Port $PortChange already used!"
         echo
         echo -n "Press enter for try again!"
         read

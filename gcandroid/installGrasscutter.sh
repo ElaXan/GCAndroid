@@ -93,8 +93,8 @@ Install_Grasscutter_process() {
         read -r Install_Grasscutter_process_grasscutter_extract
         if [[ $Install_Grasscutter_process_grasscutter_extract == "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "Y" ]]; then
             Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-            mv GC*Resources*3.3*/Resources Grasscutter/resources
-            rm -rf GC*Resources*3.3*
+            mv GC*Resources*/Resources Grasscutter/resources
+            rm -rf GC*Resources*
             rm resourcesGCAndroid.zip
         else
             Install_Grasscutter_process_grasscutter_extract="n"
@@ -193,6 +193,109 @@ Download_Resources() {
         main_menu
     else
         echo "${GC}Skip Download Resources${WC}"
+        sleep 1s
+        main_menu
+    fi
+}
+
+Download_Grasscutter() {
+    credit_hah
+    Center_Text "Download Grasscutter"
+    if [ -z "$docker_zip_name" ]; then
+        echo "${RC}Error${WC}: docker_zip_name is not set"
+        read
+        Docker
+    fi
+    echo -n "${CCB}Are you sure want to download Grasscutter?${WC} (y/N) : "
+    read -r Download_Grasscutter_process
+    if [[ $Download_Grasscutter_process == "y" ]] || [[ $Download_Grasscutter_process == "Y" ]]; then
+        if [ ! -d "$grasscutter_path" ]; then
+            mkdir -p "$grasscutter_path"
+        fi
+        cd $grasscutter_path || exit 1
+        Run "wget $docker_zip_url -O $docker_zip_name" "Download Grasscutter" "0" "Menu" "main_menu"
+        Run "unzip -o $docker_zip_name" "Unzip Grasscutter" "0" "Menu" "main_menu"
+        rm $docker_zip_name
+        Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
+        mv GC*Resources*3.3*/Resources Grasscutter/resources
+        rm -rf GC*Resources*3.3*
+        rm resourcesGCAndroid.zip
+        echo "${GC}Success Download Grasscutter${WC}"
+        echo ""
+        echo -n "Press enter for back to Menu!"
+        read
+        main_menu
+    fi
+}
+
+Pull_DockerGS_Image() {
+    credit_hah
+    Center_Text "Pull DockerGS Image"
+    if ! su -c echo &>/dev/null; then
+        echo "${RC}Error${WC}: Your phone is not rooted"
+        echo
+        echo -n "Press enter for back to Menu!"
+        read
+        main_menu
+    fi
+    if ! command -v docker &>/dev/null; then
+        Run "apt install root-repo -y" "Install Root Repo" "0" "Menu" "main_menu"
+        Run "apt install docker -y" "Install Docker" "0" "Menu" "main_menu"
+    fi
+    if ! command -v sudo &>/dev/null; then
+        Run "apt install tsu -y" "Install Tsu/Sudo" "0" "Menu" "main_menu"
+    fi
+    echo -n "${CCB}Are you sure want to pull DockerGS Image?${WC} (y/N) : "
+    read -r Pull_DockerGS_Image_process
+    if [[ $Pull_DockerGS_Image_process == "y" ]] || [[ $Pull_DockerGS_Image_process == "Y" ]]; then
+        sudo dockerd --iptables=false &>/dev/null &
+        sleep 2s
+        Run "sudo docker pull siakbary/dockergs:alpine-gc-3.4" "Pull DockerGS Image" "0" "Menu" "main_menu"
+        pathDockerGS=$(sudo docker inspect --format='{{.GraphDriver.Data.LowerDir}}' "siakbary/dockergs:alpine-gc-3.4" | awk '{split($0,a,":"); print a[1]}')
+        if [ ! -d "$grasscutter_path" ]; then
+            mkdir -p "$grasscutter_path"
+        fi
+        cd $grasscutter_path || exit 1
+        sudo mv -f $pathDockerGS/home/dockergs $HOME
+        sudo mv -f $HOME/dockergs/* $grasscutter_path
+        sudo rm -rf $HOME/dockergs
+
+        for fileFolder in $(find "$HOME/Grasscutter" -type d); do
+            sudo chown $(whoami):$(whoami) "$fileFolder"
+        done
+
+        sudo chown $(whoami):$(whoami) $grasscutter_path/*
+        Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
+        mv GC*Resources*/Resources $HOME/Grasscutter/resources
+        rm -rf GC*Resources*
+        rm resourcesGCAndroid.zip
+        Run "sudo docker rmi siakbary/dockergs:alpine-gc-3.4" "Remove DockerGS Image" "0" "Menu" "main_menu"
+        echo "${GC}Generate config.json${WC}"
+        timeout --foreground 8s java -jar grasscutter.jar &>/dev/null
+        echo "${GC}Editing config.json...${WC}"
+        if [ ! -f "config.json" ]; then
+            echo "${RC}config.json not found..."
+            echo "${YC}Skip edit config.json...${WC}"
+        else
+            sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
+            sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json
+            sed -i "s/\"nickName\": \".*\"/\"nickName\": \"ElaXan\"/g" config.json
+            sed -i "s/\"signature\": \".*\"/\"signature\": \"Welcome to GCAndroid, run with Grasscutter!\"/g" config.json
+            sleep 1s
+            echo "${GC}Done Set All"
+            echo "Address : 127.0.0.1"
+            echo "Port : 54321${WC}"
+        fi
+        sudo pkill dockerd
+        echo "${GC}Success Pull DockerGS Image${WC}"
+        echo ""
+        echo -n "Press enter for back to Menu!"
+        read
+        main_menu
+    else
+        echo "${GC}Cancel Pull DockerGS Image${WC}"
         sleep 1s
         main_menu
     fi

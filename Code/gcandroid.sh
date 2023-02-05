@@ -31,6 +31,7 @@ dependencies_apt=(
     "wget"
     "jq"
     "tput"
+    "nc"
 )
 
 
@@ -39,6 +40,7 @@ dependencies_apt_install=(
     "wget"
     "jq"
     "ncurses-utils"
+    "netcat-openbsd"
 )
 
 for package in "${dependencies_apt[@]}"; do
@@ -287,6 +289,48 @@ installMongodb() {
     fi
 }
 
+Docker() {
+    credit_hah
+    Center_Text "Docker"
+    echo "1. ${CCB}Download grasscutter.jar${WC}"
+    echo "2. ${CCB}Pull DockerGS image${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read Docker_input
+    case $Docker_input in
+    "1") Download_Grasscutter ;;
+    "2") Pull_DockerGS_Image ;;
+    "0") Grasscutter_Tools ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        Docker
+        ;;
+    esac
+}
+
+Install_Grasscutter_Menu() {
+    credit_hah
+    Center_Text "Install Grasscutter"
+    echo "1. ${CCB}Compile from source${WC}"
+    echo "2. ${CCB}Download from Github (Docker)${WC}"
+    echo "0. ${RC}Back${WC}"
+    echo
+    echo -n "Enter input : "
+    read Install_Grasscutter_Menu_input
+    case $Install_Grasscutter_Menu_input in
+    "1") Install_Grasscutter ;;
+    "2") Docker ;;
+    "0") Grasscutter_Menu ;;
+    *)
+        echo "${RC}Wrong Input!${WC}"
+        sleep 1s
+        Install_Grasscutter_Menu
+        ;;
+    esac
+}
+
 Install_Grasscutter() {
     credit_hah
     if [ -d "$HOME/Grasscutter" ]; then
@@ -327,7 +371,7 @@ Grasscutter_Menu() {
     echo -n "Enter input : "
     read -r Grasscutter_Menu_Input
     case $Grasscutter_Menu_Input in
-    "1") Install_Grasscutter ;;
+    "1") Install_Grasscutter_Menu ;;
     "2") Compile_Grasscutter ;;
     "3") Update_Grasscutter ;;
     "4") Download_Resources ;;
