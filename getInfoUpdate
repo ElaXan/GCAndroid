@@ -7,7 +7,7 @@ if [[ $versionScript == "3.3.5" ]]; then
     noteUpdate+="3. Update avatars.txt to 3.4\n"
     noteUpdate+="4. Update link Resources to 3.4\n"
     noteUpdate+="5. (spin.sh) back to \"echo\" again\n"
-    noteupdate+="6. Add code check port is used\n"
+    noteUpdate+="6. Add code check port is used\n"
     noteUpdate+="7. Add DockerGS pull (ROOT)\n"
     noteUpdate+="8. Add Download DockerGS"
 elif [[ $versionScript == "3.3" ]]; then
