@@ -213,14 +213,30 @@ Download_Grasscutter() {
             mkdir -p "$grasscutter_path"
         fi
         cd $grasscutter_path || exit 1
-        Run "wget $docker_zip_url -O $docker_zip_name" "Download Grasscutter" "0" "Menu" "main_menu"
+        Run "wget https://github.com/Score-Inc/GCAndroid/releases/download/DockerGS/$docker_zip_name -O $docker_zip_name" "Download Grasscutter" "0" "Menu" "main_menu"
         Run "unzip -o $docker_zip_name" "Unzip Grasscutter" "0" "Menu" "main_menu"
         rm $docker_zip_name
         Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-        mv GC*Resources*3.3*/Resources Grasscutter/resources
-        rm -rf GC*Resources*3.3*
+        mv GC*Resources*/Resources $HOME/Grasscutter/resources
+        rm -rf GC*Resources*
         rm resourcesGCAndroid.zip
+        echo "${GC}Generate config.json${WC}"
+        timeout --foreground 8s java -jar grasscutter.jar &>/dev/null
+        echo "${GC}Editing config.json...${WC}"
+        if [ ! -f "config.json" ]; then
+            echo "${RC}config.json not found..."
+            echo "${YC}Skip edit config.json...${WC}"
+        else
+            sed -i "s/\"bindPort\": 443/\"bindPort\": 54321/g" config.json
+            sed -i "s/\"welcomeMessage\": \".*\"/\"welcomeMessage\": \"Localhost on Android using GCAndroid(Z3RO ElaXan)\\\n\\\nhttps:\/\/github.com\/Score-Inc\/GCAndroid\"/g" config.json
+            sed -i "s/\"nickName\": \".*\"/\"nickName\": \"ElaXan\"/g" config.json
+            sed -i "s/\"signature\": \".*\"/\"signature\": \"Welcome to GCAndroid, run with Grasscutter!\"/g" config.json
+            sleep 1s
+            echo "${GC}Done Set All"
+            echo "Address : 127.0.0.1"
+            echo "Port : 54321${WC}"
+        fi
         echo "${GC}Success Download Grasscutter${WC}"
         echo ""
         echo -n "Press enter for back to Menu!"
@@ -233,7 +249,7 @@ Pull_DockerGS_Image() {
     credit_hah
     Center_Text "Pull DockerGS Image"
     if ! su -c echo &>/dev/null; then
-        echo "${RC}Error${WC}: Your phone is not rooted"
+        echo "${RC}Error${WC}: Your phone is not rooted for pull Docker Image!"
         echo
         echo -n "Press enter for back to Menu!"
         read
