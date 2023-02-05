@@ -2,6 +2,17 @@
 
 Changelog for Grasscutter Android (GCAndroid)
 
+## 3.4
+
+1. Add custom Repository
+2. Remove "How to setup Grasscutter"
+3. Update avatars.txt to 3.4
+4. Update link Resources to 3.4
+5. (spin.sh) back to "echo" again
+6. Add code check port is used
+7. Add DockerGS pull (ROOT)
+8. Add Download DockerGS
+
 ## 3.3.5
 
 1. Add update grasscutter with "git pull"
