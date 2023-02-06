@@ -282,7 +282,7 @@ Pull_DockerGS_Image() {
     echo -n "${CCB}Are you sure want to pull DockerGS Image?${WC} (y/N) : "
     read -r Pull_DockerGS_Image_process
     if [[ $Pull_DockerGS_Image_process == "y" ]] || [[ $Pull_DockerGS_Image_process == "Y" ]]; then
-        if [ -d "$grascutter_path" ]; then
+        if [ -d "$grasscutter_path" ]; then
             echo "${RC}Looks like you have installed Grasscutter already${WC}"
             echo -n "Do you want to delete old Grasscutter and continue? (y/N) : "
             read -r Pull_DockerGS_Image_process_continue
