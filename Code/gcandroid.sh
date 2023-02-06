@@ -219,6 +219,81 @@ Reset_Config_Json() {
     fi
 }
 
+menu_config_editThirdParty() {
+    credit_hah
+    Center_Text "Edit config.json with third-party App"
+    if [ ! -f $configpath ]; then
+        echo "${RC}Error${WC} : config.json not found!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    mv $configpath /sdcard/config.json
+    echo "${GC}config.json has been moved to /sdcard/config.json${WC}"
+    echo
+    echo "${GC}Please edit config.json with your favorite text editor${WC}"
+    echo
+    echo "${GC}After you finish editing, press enter to move config.json back to Grasscutter folder${WC}"
+    read -r
+    if [ ! -f /sdcard/config.json ]; then
+        echo "${RC}Error${WC} : config.json not found in /sdcard/config.json!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    mv /sdcard/config.json $configpath
+    echo "${GC}config.json has been moved back to Grasscutter folder${WC}"
+    echo
+    echo -n "Press enter for back to Edit Config Json"
+    read -r
+    menu_config
+}
+
+import_configjson() {
+    credit_hah
+    Center_Text "Import config.json"
+    echo "${YC}Enter b/b for back to Edit Config Json${WC}"
+    echo -n "${YC}Enter path to config.json : ${WC}"
+    read -r import_configjson_path
+    if [ $import_configjson == "b" ] || [ $import_configjson == "B" ]; then
+        menu_config
+    fi
+    if [ ! -f $import_configjson_path ]; then
+        echo "${RC}Error${WC} : $import_configjson_path not found!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    rm $configpath
+    cp $import_configjson_path $configpath
+    echo "${GC}config.json has been imported!${WC}"
+    echo
+    echo -n "Press enter for back to Edit Config Json"
+    read -r
+    menu_config
+}
+
+export_configjson() {
+    credit_hah
+    Center_Text "Export config.json"
+    if [ -f "/sdcard/config.json" ]; then
+        echo "${RC}Error${WC} : config.json already exist in /sdcard/config.json!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    cp $configpath /sdcard/config.json
+    echo "${GC}config.json has been exported to /sdcard/config.json${WC}"
+    echo
+    echo -n "Press enter for back to Edit Config Json"
+    read -r
+    menu_config
+}
+
 menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
@@ -235,6 +310,9 @@ menu_config() {
     echo "2. ${CCB}Edit Manual${WC}"
     echo "3. ${CCB}Change Port${WC}"
     echo "4. ${CCB}Reset config.json${WC}"
+    echo "5. ${CCB}Edit with third-party App${WC}"
+    echo "6. ${CCB}Import config.json${WC}"
+    echo "7. ${CCB}Export config.json${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -244,6 +322,9 @@ menu_config() {
     "2") menu_config_editManual ;;
     "3") changePort ;;
     "4") Reset_Config_Json ;;
+    "5") menu_config_editThirdParty ;;
+    "6") import_configjson ;;
+    "7") export_configjson ;;
     "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong Input!${WC}"
