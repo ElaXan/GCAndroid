@@ -9,6 +9,11 @@ When I see someone selling GCAndroid, then I will close the source code or proje
 Open source will be available for Score-Inc or Contributor with GCAndroid\
 Join our [Discord](https://discord.gg/2TTSUZZ)
 
+## Important
+
+Because my Phone dead again and this project cannot be continued until my Phone returns to normal again\
+Can't turn it on, maybe the CPU RAM is damaged or something I don't understand ( The best phone Poco X3 Pro )
+
 ## Documents
 
 About Install, Uninstall, FAQ or other will move to my [website](https://docs.elaxan.com/tutorial/GCAndroid/install)
