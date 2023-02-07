@@ -2,6 +2,10 @@
 
 Changelog for Grasscutter Android (GCAndroid)
 
+## 3.5.2
+
+1. Fix bug
+
 ## 3.5
 
 1. Add edit config,json with third-party app
