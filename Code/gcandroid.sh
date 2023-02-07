@@ -34,7 +34,6 @@ dependencies_apt=(
     "nc"
 )
 
-
 dependencies_apt_install=(
     "perl"
     "wget"
@@ -51,7 +50,6 @@ for package in "${dependencies_apt[@]}"; do
         done
     fi
 done
-
 
 # Check if install dependencies is failed by checking package not found
 for package in "${dependencies_apt[@]}"; do
@@ -104,13 +102,13 @@ if [ ! -f "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
     echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+}" >"$HOME/.ElaXan/GCAndroid/repo.json"
 else
     if [ ! -s "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+}" >"$HOME/.ElaXan/GCAndroid/repo.json"
         echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
     fi
 
@@ -118,7 +116,7 @@ else
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+}" >"$HOME/.ElaXan/GCAndroid/repo.json"
         echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
     fi
 fi
@@ -470,9 +468,10 @@ Grasscutter_Tools() {
     Center_Text "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Edit Banners.tsj${WC}"
-    echo "3. ${CCB}Install Plugin${WC}"
-    echo "4. ${CCB}Remove Plugin${WC}"
-    echo "5. ${CCB}Get GM Handbook${WC}"
+    echo "3. ${CCB}Generate Keystore.p12${WC}"
+    echo "4. ${CCB}Install Plugin${WC}"
+    echo "5. ${CCB}Remove Plugin${WC}"
+    echo "6. ${CCB}Get GM Handbook${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -480,9 +479,10 @@ Grasscutter_Tools() {
     case $Grasscutter_Tools_Input in
     "1") menu_config ;;
     "2") Edit_Banners ;;
-    "3") installPlugin ;;
-    "4") removePlugin ;;
-    "5") generateHandbook ;;
+    "3") Generate_Keystore ;;
+    "4") installPlugin ;;
+    "5") removePlugin ;;
+    "6") generateHandbook ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -638,9 +638,11 @@ settingsMenu() {
     "2") ResourcesRepo ;;
     "3") ResetSettingsJSON ;;
     "0") main_menu ;;
-    *) echo "Wrong input!${WC}"
+    *)
+        echo "Wrong input!${WC}"
         sleep 1s
         settingsMenu
+        ;;
     esac
 }
 
@@ -678,7 +680,7 @@ main_menu() {
     esac
 }
 for file in $Path_Shell/*.sh; do
-    echo -ne "\033[2K\r${GC}Load : ${CCB}$(echo $file | cut -c 1-$(( $(tput cols) - 10 )))${WC}"
+    echo -ne "\033[2K\r${GC}Load : ${CCB}$(echo $file | cut -c 1-$(($(tput cols) - 10)))${WC}"
     source $file
 done
 for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
@@ -728,12 +730,78 @@ else
     note_credit="${RC}Unknowm Version${WC}"
 fi
 
+# WIP: Add more subcommands
+
 case $inpscript in
-    "1") GoTouchGrass ;;
-    "2") Install_Grasscutter ;;
-    "3") menu_config ;;
-    "4") installPlugin ;;
-    "5") removePlugin ;;
-    "6") installMongodb ;;
-    *) main_menu ;;
+    --install | -i)
+        case $2 in
+        grasscutter)
+            InstallGrasscutter
+            ;;
+        dockergs)
+            Download_Grasscutter
+            ;;
+        dockergspull)
+            Pull_DockerGS_Image
+            ;;
+        *)
+            echo "${RC}Wrong input!${WC}"
+            exit 1
+            ;;
+        esac
+        ;;
+    --run | -r)
+        GoTouchGrass
+        ;;
+    --update | -u)
+        update
+        ;;
+    --download)
+        if [[ $3 = "" ]]; then
+            echo "${RC}Wrong input!${WC}"
+            exit 1
+        elif [[ $4 = "" ]]; then
+            echo "${RC}Wrong input!${WC}"
+            exit 1
+        elif [[ $5 = "" ]]; then
+            DownloadFile "$3" "$4"
+        else
+            DownloadFile "$4" "$5"
+        fi
+        ;;
+    --import)
+        if [[ $2 = "" ]]; then
+            echo "${RC}Wrong input!${WC}"
+            exit 1
+        else
+            ImportFile "$2"
+        fi
+        ;;
+    --help)
+        echo
+        echo "Usage : gcandroid [OPTION] [ARGUMENT]"
+        echo "Options :"
+        echo "  --install, -i <name> : Install Grasscutter or DockerGS"
+        echo "  --run, -r : Run Grasscutter"
+        echo "  --update, -u : Update Script"
+        echo "  --download <url> <path> : Download file from url to path"
+        echo "  --import <path> : Import file from path"
+        echo "  --help : Show this help"
+        exit 0
+        ;;
+    "")
+        main_menu
+        ;;
+    *)
+        echo
+        echo "Usage : gcandroid [OPTION] [ARGUMENT]"
+        echo "Options :"
+        echo "  --install, -i <name> : Install Grasscutter or DockerGS"
+        echo "  --run, -r : Run Grasscutter"
+        echo "  --update, -u : Update Script"
+        echo "  --download <url> <path> : Download file from url to path"
+        echo "  --import <path> : Import file from path"
+        echo "  --help : Show this help"
+        exit 0
+        ;;
 esac
