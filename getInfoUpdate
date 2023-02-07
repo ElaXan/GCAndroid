@@ -1,6 +1,6 @@
 newVersionScript="3.5"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
-docker_zip_name="dockergs-cf135a2.zip"
+docker_zip_name="dockergs-f86738c.zip"
 if [[ $versionScript == "3.4" ]]; then
     noteUpdate="1. Add edit config,json with third-party app\n"
     noteUpdate+="2. Add import config.json\n"
