@@ -30,14 +30,14 @@ Generate_Keystore() {
     if ! [[ "$num" =~ ^[0-9]+$ ]]; then
         echo "${RC}Error${WC} : Please input the number!"
         echo
-        echo -n "Press any key to back to the main menu..."
+        echo -n "Press any key to try again..."
         read -n 1
         Generate_Keystore
     fi
     if [ "$num" -gt "$numberIp" ] || [ "$num" -lt 1 ]; then
         echo "${RC}Error${WC} : Please input the number between 1 and $numberIp!"
         echo
-        echo -n "Press any key to back to the main menu..."
+        echo -n "Press any key to try again..."
         read -n 1
         Generate_Keystore
     fi
