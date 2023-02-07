@@ -32,6 +32,7 @@ dependencies_apt=(
     "jq"
     "tput"
     "nc"
+    "php"
 )
 
 dependencies_apt_install=(
@@ -40,6 +41,7 @@ dependencies_apt_install=(
     "jq"
     "ncurses-utils"
     "netcat-openbsd"
+    "php"
 )
 
 for package in "${dependencies_apt[@]}"; do
