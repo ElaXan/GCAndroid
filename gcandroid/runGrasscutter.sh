@@ -19,6 +19,19 @@ GoTouchGrass() {
         main_menu
         return
     else
+        echo "${GC}Checking port used${WC}"
+        timeout --foreground 2s php -S $(jq -r .server.http.accessAddress $HOME/Grasscutter/config.json):$(jq .server.http.bindPort $HOME/Grasscutter/config.json) &>/dev/null
+        exitCode=$?
+        if [[ $exitCode == 1 ]]; then
+            echo "${RC}Error${WC} : Port $(jq .server.http.bindPort $HOME/Grasscutter/config.json) is used/permission denied!"
+            echo "${YC}Server: $(jq -r .server.http.accessAddress $HOME/Grasscutter/config.json):$(jq .server.http.bindPort $HOME/Grasscutter/config.json)${WC}"
+            echo
+            echo -n "Press enter for back to Menu!"
+            read -r
+            main_menu
+            return
+        fi
+        echo "${GC}Port $(jq .server.http.bindPort $HOME/Grasscutter/config.json) is not used!${WC}"
         pkill mongod
         mongod &>/dev/null &
         cd $HOME/Grasscutter

@@ -5,18 +5,7 @@
 # GCAndroid
 
 Project is free to use. If you bought it from someone, please refund\
-When I see someone selling GCAndroid, then I will close the source code or project will end.
-Open source will be available for Score-Inc or Contributor with GCAndroid\
 Join our [Discord](https://discord.gg/2TTSUZZ)
-
-## Important
-
-Because my Phone dead again and this project cannot be continued until my Phone returns to normal again\
-Can't turn it on, maybe the CPU RAM is damaged or something I don't understand ( The best phone Poco X3 Pro )
-
-## Documents
-
-About Install, Uninstall, FAQ or other will move to my [website](https://docs.elaxan.com/tutorial/GCAndroid/install)
 
 ## About
 
@@ -32,7 +21,7 @@ For changelog, please check [here](https://github.com/Score-Inc/GCAndroid/blob/S
 
 ## Prerequisites
 
-The Requirments are as follows: [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices.
+The Requirements are as follows: [Termux](https://termux.dev/en/) and a ton of `Skillssss`. This may burden your phone, so it's not recommended for low spec devices.
 
 ## Download links
 

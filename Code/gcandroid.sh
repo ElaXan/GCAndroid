@@ -32,8 +32,8 @@ dependencies_apt=(
     "jq"
     "tput"
     "nc"
+    "php"
 )
-
 
 dependencies_apt_install=(
     "perl"
@@ -41,6 +41,7 @@ dependencies_apt_install=(
     "jq"
     "ncurses-utils"
     "netcat-openbsd"
+    "php"
 )
 
 for package in "${dependencies_apt[@]}"; do
@@ -51,7 +52,6 @@ for package in "${dependencies_apt[@]}"; do
         done
     fi
 done
-
 
 # Check if install dependencies is failed by checking package not found
 for package in "${dependencies_apt[@]}"; do
@@ -104,13 +104,13 @@ if [ ! -f "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
     echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+}" >"$HOME/.ElaXan/GCAndroid/repo.json"
 else
     if [ ! -s "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+}" >"$HOME/.ElaXan/GCAndroid/repo.json"
         echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
     fi
 
@@ -118,7 +118,7 @@ else
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" > "$HOME/.ElaXan/GCAndroid/repo.json"
+}" >"$HOME/.ElaXan/GCAndroid/repo.json"
         echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
     fi
 fi
@@ -219,6 +219,81 @@ Reset_Config_Json() {
     fi
 }
 
+menu_config_editThirdParty() {
+    credit_hah
+    Center_Text "Edit config.json with third-party App"
+    if [ ! -f $configpath ]; then
+        echo "${RC}Error${WC} : config.json not found!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    mv $configpath /sdcard/config.json
+    echo "${GC}config.json has been moved to /sdcard/config.json${WC}"
+    echo
+    echo "${GC}Please edit config.json with your favorite text editor${WC}"
+    echo
+    echo "${GC}After you finish editing, press enter to move config.json back to Grasscutter folder${WC}"
+    read -r
+    if [ ! -f /sdcard/config.json ]; then
+        echo "${RC}Error${WC} : config.json not found in /sdcard/config.json!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    mv /sdcard/config.json $configpath
+    echo "${GC}config.json has been moved back to Grasscutter folder${WC}"
+    echo
+    echo -n "Press enter for back to Edit Config Json"
+    read -r
+    menu_config
+}
+
+import_configjson() {
+    credit_hah
+    Center_Text "Import config.json"
+    echo "${YC}Enter b/b for back to Edit Config Json${WC}"
+    echo -n "${YC}Enter path to config.json : ${WC}"
+    read -r import_configjson_path
+    if [ $import_configjson == "b" ] || [ $import_configjson == "B" ]; then
+        menu_config
+    fi
+    if [ ! -f $import_configjson_path ]; then
+        echo "${RC}Error${WC} : $import_configjson_path not found!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    rm $configpath
+    cp $import_configjson_path $configpath
+    echo "${GC}config.json has been imported!${WC}"
+    echo
+    echo -n "Press enter for back to Edit Config Json"
+    read -r
+    menu_config
+}
+
+export_configjson() {
+    credit_hah
+    Center_Text "Export config.json"
+    if [ -f "/sdcard/config.json" ]; then
+        echo "${RC}Error${WC} : config.json already exist in /sdcard/config.json!"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
+    cp $configpath /sdcard/config.json
+    echo "${GC}config.json has been exported to /sdcard/config.json${WC}"
+    echo
+    echo -n "Press enter for back to Edit Config Json"
+    read -r
+    menu_config
+}
+
 menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
@@ -235,6 +310,9 @@ menu_config() {
     echo "2. ${CCB}Edit Manual${WC}"
     echo "3. ${CCB}Change Port${WC}"
     echo "4. ${CCB}Reset config.json${WC}"
+    echo "5. ${CCB}Edit with third-party App${WC}"
+    echo "6. ${CCB}Import config.json${WC}"
+    echo "7. ${CCB}Export config.json${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -244,6 +322,9 @@ menu_config() {
     "2") menu_config_editManual ;;
     "3") changePort ;;
     "4") Reset_Config_Json ;;
+    "5") menu_config_editThirdParty ;;
+    "6") import_configjson ;;
+    "7") export_configjson ;;
     "0") Grasscutter_Tools ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -389,9 +470,10 @@ Grasscutter_Tools() {
     Center_Text "Grasscutter Tools"
     echo "1. ${CCB}Edit config.json${WC}"
     echo "2. ${CCB}Edit Banners.tsj${WC}"
-    echo "3. ${CCB}Install Plugin${WC}"
-    echo "4. ${CCB}Remove Plugin${WC}"
-    echo "5. ${CCB}Get GM Handbook${WC}"
+    echo "3. ${CCB}Generate Keystore.p12${WC}"
+    echo "4. ${CCB}Install Plugin${WC}"
+    echo "5. ${CCB}Remove Plugin${WC}"
+    echo "6. ${CCB}Get GM Handbook${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -399,9 +481,10 @@ Grasscutter_Tools() {
     case $Grasscutter_Tools_Input in
     "1") menu_config ;;
     "2") Edit_Banners ;;
-    "3") installPlugin ;;
-    "4") removePlugin ;;
-    "5") generateHandbook ;;
+    "3") Generate_Keystore ;;
+    "4") installPlugin ;;
+    "5") removePlugin ;;
+    "6") generateHandbook ;;
     "0") main_menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -557,9 +640,11 @@ settingsMenu() {
     "2") ResourcesRepo ;;
     "3") ResetSettingsJSON ;;
     "0") main_menu ;;
-    *) echo "Wrong input!${WC}"
+    *)
+        echo "Wrong input!${WC}"
         sleep 1s
         settingsMenu
+        ;;
     esac
 }
 
@@ -597,7 +682,7 @@ main_menu() {
     esac
 }
 for file in $Path_Shell/*.sh; do
-    echo -ne "\033[2K\r${GC}Load : ${CCB}$(echo $file | cut -c 1-$(( $(tput cols) - 10 )))${WC}"
+    echo -ne "\033[2K\r${GC}Load : ${CCB}$(echo $file | cut -c 1-$(($(tput cols) - 10)))${WC}"
     source $file
 done
 for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
@@ -607,7 +692,7 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
 done
 
 newVersionScript=""
-versionScript="3.4"
+versionScript="3.5"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
@@ -647,12 +732,48 @@ else
     note_credit="${RC}Unknowm Version${WC}"
 fi
 
+# WIP: Add more subcommands
+
 case $inpscript in
-    "1") GoTouchGrass ;;
-    "2") Install_Grasscutter ;;
-    "3") menu_config ;;
-    "4") installPlugin ;;
-    "5") removePlugin ;;
-    "6") installMongodb ;;
-    *) main_menu ;;
+    --install | -i)
+        case $2 in
+        grasscutter)
+            InstallGrasscutter
+            ;;
+        dockergs)
+            Download_Grasscutter
+            ;;
+        dockergspull)
+            Pull_DockerGS_Image
+            ;;
+        *)
+            echo "${RC}Wrong input!${WC}"
+            exit 1
+            ;;
+        esac
+        ;;
+    --run | -r)
+        GoTouchGrass
+        ;;
+    --help)
+        echo
+        echo "Usage : gcandroid [OPTION] [ARGUMENT]"
+        echo "Options :"
+        echo "  --install, -i <name> : Install Grasscutter or DockerGS"
+        echo "  --run, -r : Run Grasscutter"
+        echo "  --help : Show this help"
+        exit 0
+        ;;
+    "")
+        main_menu
+        ;;
+    *)
+        echo
+        echo "Usage : gcandroid [OPTION] [ARGUMENT]"
+        echo "Options :"
+        echo "  --install, -i <name> : Install Grasscutter or DockerGS"
+        echo "  --run, -r : Run Grasscutter"
+        echo "  --help : Show this help"
+        exit 1
+        ;;
 esac

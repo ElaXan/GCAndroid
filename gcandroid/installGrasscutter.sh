@@ -209,7 +209,20 @@ Download_Grasscutter() {
     echo -n "${CCB}Are you sure want to download Grasscutter?${WC} (y/N) : "
     read -r Download_Grasscutter_process
     if [[ $Download_Grasscutter_process == "y" ]] || [[ $Download_Grasscutter_process == "Y" ]]; then
-        if [ ! -d "$grasscutter_path" ]; then
+        if [ -d "$grasscutter_path" ]; then
+            echo "${RC}Looks like you have installed Grasscutter already${WC}"
+            echo -n "Do you want to delete old Grasscutter and continue? (y/N) : "
+            read -r Download_Grasscutter_process_continue
+            if [[ $Download_Grasscutter_process_continue == "y" ]] || [[ $Download_Grasscutter_process_continue == "Y" ]]; then
+                echo "${GC}Continue...${WC}"
+                rm -rf "$grasscutter_path"
+                mkdir -p "$grasscutter_path"
+            else
+                echo "${RC}Cancel...${WC}"
+                sleep 1s
+                main_menu
+            fi
+        else
             mkdir -p "$grasscutter_path"
         fi
         cd $grasscutter_path || exit 1
@@ -242,6 +255,10 @@ Download_Grasscutter() {
         echo -n "Press enter for back to Menu!"
         read
         main_menu
+    else 
+        echo "${GC}Skip Download Grasscutter${WC}"
+        sleep 1s
+        main_menu
     fi
 }
 
@@ -265,6 +282,19 @@ Pull_DockerGS_Image() {
     echo -n "${CCB}Are you sure want to pull DockerGS Image?${WC} (y/N) : "
     read -r Pull_DockerGS_Image_process
     if [[ $Pull_DockerGS_Image_process == "y" ]] || [[ $Pull_DockerGS_Image_process == "Y" ]]; then
+        if [ -d "$grasscutter_path" ]; then
+            echo "${RC}Looks like you have installed Grasscutter already${WC}"
+            echo -n "Do you want to delete old Grasscutter and continue? (y/N) : "
+            read -r Pull_DockerGS_Image_process_continue
+            if [[ $Pull_DockerGS_Image_process_continue == "y" ]] || [[ $Pull_DockerGS_Image_process_continue == "Y" ]]; then
+                echo "${GC}Continue...${WC}"
+                rm -rf "$grasscutter_path"
+            else
+                echo "${RC}Cancel...${WC}"
+                sleep 1s
+                main_menu
+            fi
+        fi
         sudo dockerd --iptables=false &>/dev/null &
         sleep 2s
         Run "sudo docker pull siakbary/dockergs:alpine-gc-3.4" "Pull DockerGS Image" "0" "Menu" "main_menu"
