@@ -9,7 +9,7 @@ if [[ $versionScript == "3.4" ]]; then
     noteUpdate+="5. Update subcommand\n"
     noteUpdate+="6. Add Generate Keystore\n"
     noteUpdate+="7. Check if port is already used for run Grasscutter"
-if [[ $versionScript == "3.3.5" ]]; then
+elif [[ $versionScript == "3.3.5" ]]; then
     noteUpdate="1. Add custom Repository\n"
     noteUpdate+="2. Remove \"How to setup Grasscutter\"\n"
     noteUpdate+="3. Update avatars.txt to 3.4\n"
