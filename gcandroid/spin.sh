@@ -34,8 +34,7 @@ Loading() {
             if [[ $errCode == $2 ]]; then
                 tput cuu1
                 tput el
-                printf "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
-                # echo -ne "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
+                echo -ne "\r\033[2K[${GC}✓${WC}] ${GC}$name Done${WC}\n\r\033[2K\r"
             else
                 tput cuu1
                 tput el

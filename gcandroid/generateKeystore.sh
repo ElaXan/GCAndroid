@@ -47,8 +47,8 @@ Generate_Keystore() {
     if [ "$answer" = "yes" ]; then
         echo "Using source code from ${CCB}https://github.com/Grasscutters/Grasscutter/blob/development/install.sh${WC}"
         echo
-        mkdir .ElaXan/certs
-        cd .ElaXan/certs
+        mkdir $HOME/.ElaXan/certs
+        cd $HOME/.ElaXan/certs
         echo "Generating CA key and certificate pair..."
         openssl req -x509 -nodes -days 25202 -newkey rsa:2048 -subj "/C=GB/ST=Essex/L=London/O=Grasscutters/OU=Grasscutters/CN=$ip" -keyout CAkey.key -out CAcert.crt
         echo "Generating SSL key and certificate pair..."
