@@ -755,39 +755,12 @@ case $inpscript in
     --run | -r)
         GoTouchGrass
         ;;
-    --update | -u)
-        update
-        ;;
-    --download)
-        if [[ $3 = "" ]]; then
-            echo "${RC}Wrong input!${WC}"
-            exit 1
-        elif [[ $4 = "" ]]; then
-            echo "${RC}Wrong input!${WC}"
-            exit 1
-        elif [[ $5 = "" ]]; then
-            DownloadFile "$3" "$4"
-        else
-            DownloadFile "$4" "$5"
-        fi
-        ;;
-    --import)
-        if [[ $2 = "" ]]; then
-            echo "${RC}Wrong input!${WC}"
-            exit 1
-        else
-            ImportFile "$2"
-        fi
-        ;;
     --help)
         echo
         echo "Usage : gcandroid [OPTION] [ARGUMENT]"
         echo "Options :"
         echo "  --install, -i <name> : Install Grasscutter or DockerGS"
         echo "  --run, -r : Run Grasscutter"
-        echo "  --update, -u : Update Script"
-        echo "  --download <url> <path> : Download file from url to path"
-        echo "  --import <path> : Import file from path"
         echo "  --help : Show this help"
         exit 0
         ;;
@@ -800,10 +773,7 @@ case $inpscript in
         echo "Options :"
         echo "  --install, -i <name> : Install Grasscutter or DockerGS"
         echo "  --run, -r : Run Grasscutter"
-        echo "  --update, -u : Update Script"
-        echo "  --download <url> <path> : Download file from url to path"
-        echo "  --import <path> : Import file from path"
         echo "  --help : Show this help"
-        exit 0
+        exit 1
         ;;
 esac
