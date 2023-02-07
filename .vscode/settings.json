@@ -18,5 +18,9 @@
         "azcli",
         "bats"
     ],
-    "git.mergeEditor": false
+    "git.mergeEditor": false,
+    "cSpell.words": [
+        "abillity",
+        "Termux"
+    ]
 }
