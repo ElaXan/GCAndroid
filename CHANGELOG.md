@@ -2,6 +2,16 @@
 
 Changelog for Grasscutter Android (GCAndroid)
 
+## 3.5
+
+1. Add edit config,json with third-party app
+2. Add import config.json
+3. Add Export config,json
+4. Check if folder Grasscutter is exists for install DockerGS
+5. Update subcommand
+6. Add Generate Keystore
+7. Check if port is already used for run Grasscutter
+
 ## 3.4
 
 1. Add custom Repository
