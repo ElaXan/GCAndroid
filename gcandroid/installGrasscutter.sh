@@ -35,11 +35,11 @@ Install_Grasscutter_process() {
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
         echo "${CCB}Backup Resources : ${GC}Yes${WC}"
-        if [ -f $grasscutter_path/resources* ]; then
-            mv -r $grasscutter_path/resources* $HOME/resourcesBackupGCAndroid.zip
-        elif [ -d $grasscutter_path/resources* ]; then
-            mv -r $grasscutter_path/resources* $HOME/resourcesBackupGCAndroid
-        elif [[ -z $(ls -A $HOME/Grasscutter/resources*) ]]; then
+        if [ -f $pathPemotongJembud/resources* ]; then
+            mv -r $pathPemotongJembud/resources* $HOME/resourcesBackupGCAndroid.zip
+        elif [ -d $pathPemotongJembud/resources* ]; then
+            mv -r $pathPemotongJembud/resources* $HOME/resourcesBackupGCAndroid
+        elif [[ -z $(ls -A $pathPemotongJembud/resources* 2>/dev/null) ]]; then
             echo "${CCB}Resources : ${RC}Resources is exist but empty${WC}"
             echo
             echo -n "Press enter for back to Menu"
@@ -70,40 +70,33 @@ Install_Grasscutter_process() {
         credit_hah
     fi
     Run "apt install openjdk-17 -y" "Install Java JDK 17" "0" "Menu" "main_menu"
-    if [ -d "$HOME/Grasscutter" ]; then
-        Run "rm -rf $HOME/Grasscutter" "Removing Folder Grasscutter" "0" "Menu" "main_menu"
+    if [ -d "$pathPemotongJembud" ]; then
+        Run "rm -rf $pathPemotongJembud" "Removing Folder $namePemotongJembud" "0" "Menu" "main_menu"
     fi
     sleep 1s
     cd $HOME || exit 1
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
-        Run "git clone $(jq -r .Grasscutter $HOME/.ElaXan/GCAndroid/repo.json)" "Clone Repository Grasscutter" "0" "Menu" "main_menu"
-    elif [[ $Install_Grasscutter_process_grasscutter = "download" ]]; then
-        if [ ! -d "$grasscutter_path" ]; then
-            mkdir "$grasscutter_path"
-        fi
-        cd "$grasscutter_path" || exit 1
-        Run "wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/grasscutter-1.4.4-dev-100d08ec.jar" "Download Grasscutter" "0" "Menu" "main_menu"
-        Run "wget https://github.com/Score-Inc/GCAndroid/releases/download/grasscutter/keystore.p12" "Download SSL/Certificate" "0" "Menu" "main_menu"
+        Run "git clone $(jq -r .Grasscutter $Path_Repojson)" "Clone Repository $namePemotongJembud" "0" "Menu" "main_menu"
     fi
     sleep 1s
     cd $HOME || exit 1
     if [[ $Backup_Resources == "0" ]]; then
-        Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "wget $(jq -r .Resources $Path_Repojson) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         echo -n "Do you want to extract resources? (y/N) : "
         read -r Install_Grasscutter_process_grasscutter_extract
         if [[ $Install_Grasscutter_process_grasscutter_extract == "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "Y" ]]; then
             Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-            mv GC*Resources*/Resources Grasscutter/resources
+            mv GC*Resources*/Resources $pathPemotongJembud/resources
             rm -rf GC*Resources*
             rm resourcesGCAndroid.zip
         else
             Install_Grasscutter_process_grasscutter_extract="n"
             echo "${GC}Skip extracting Resources${WC}"
-            mv resourcesGCAndroid.zip Grasscutter/
+            mv resourcesGCAndroid.zip $namePemotongJembud/
             sleep 1s
         fi
     fi
-    cd $grasscutter_path || exit 1
+    cd $pathPemotongJembud || exit 1
     credit_hah
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
         chmod +x gradlew
@@ -115,13 +108,13 @@ Install_Grasscutter_process() {
     clear
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
-        if [ -d $HOME/Grasscutter/resources ]; then
-            rm -rf $HOME/Grasscutter/resources
+        if [ -d $pathPemotongJembud/resources ]; then
+            rm -rf $pathPemotongJembud/resources
         fi
         if test -f $HOME/resourcesBackupGCAndroid.zip && test -d $HOME/resourcesBackupGCAndroid ; then
-            mv $HOME/resourcesBackupGCAndroid.zip $HOME/Grasscutter/resourcesGCAndroid.zip
+            mv $HOME/resourcesBackupGCAndroid.zip $pathPemotongJembud/resourcesGCAndroid.zip
             Install_Grasscutter_process_grasscutter_extract="y"
-            mv $HOME/resourcesBackupGCAndroid $HOME/Grasscutter/resources
+            mv $HOME/resourcesBackupGCAndroid $pathPemotongJembud/resources
         else
             echo "${RC}Backup resources not found${WC}" 
         fi
@@ -173,7 +166,7 @@ Download_Resources() {
         fi
         sleep 1s
         cd $grasscutter_path || exit 1
-        Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "wget $(jq -r .Resources $Path_Repojson) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         echo -n "Do you want to extract resources? (y/N) : "
         read -r Download_Resources_process_extract
         if [[ $Download_Resources_process_extract == "y" ]] || [[ $Download_Resources_process_extract == "Y" ]]; then
@@ -229,9 +222,9 @@ Download_Grasscutter() {
         Run "wget https://github.com/Score-Inc/GCAndroid/releases/download/DockerGS/$docker_zip_name -O $docker_zip_name" "Download Grasscutter" "0" "Menu" "main_menu"
         Run "unzip -o $docker_zip_name" "Unzip Grasscutter" "0" "Menu" "main_menu"
         rm $docker_zip_name
-        Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "wget $(jq -r .Resources $Path_Repojson) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-        mv GC*Resources*/Resources $HOME/Grasscutter/resources
+        mv GC*Resources*/Resources $grasscutter_path/resources
         rm -rf GC*Resources*
         rm resourcesGCAndroid.zip
         echo "${GC}Generate config.json${WC}"
@@ -307,14 +300,14 @@ Pull_DockerGS_Image() {
         sudo mv -f $HOME/dockergs/* $grasscutter_path
         sudo rm -rf $HOME/dockergs
 
-        for fileFolder in $(find "$HOME/Grasscutter" -type d); do
+        for fileFolder in $(find "$grasscutter_path" -type d); do
             sudo chown $(whoami):$(whoami) "$fileFolder"
         done
 
         sudo chown $(whoami):$(whoami) $grasscutter_path/*
-        Run "wget $(jq -r .Resources $HOME/.ElaXan/GCAndroid/repo.json) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
+        Run "wget $(jq -r .Resources $Path_Repojson) -O resourcesGCAndroid.zip" "Download Resources" "0" "Menu" "main_menu"
         Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-        mv GC*Resources*/Resources $HOME/Grasscutter/resources
+        mv GC*Resources*/Resources $grasscutter_path/resources
         rm -rf GC*Resources*
         rm resourcesGCAndroid.zip
         Run "sudo docker rmi siakbary/dockergs:alpine-gc-3.4" "Remove DockerGS Image" "0" "Menu" "main_menu"

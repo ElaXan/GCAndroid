@@ -2,15 +2,14 @@
 # GNU General Public License v3.0
 
 Compile_Grasscutter() {
-    Grasscutter_Folder=$HOME/Grasscutter
-    if [ ! -d "$Grasscutter_Folder" ]; then
-        echo "${RC}Error${WC} : $Grasscutter_Folder not found"
+    if [ ! -d "$grasscutter_path" ]; then
+        echo "${RC}Error${WC} : $grasscutter_path not found"
         echo
         read -p "Press enter for back to Menu Grasscutter"
         Grasscutter_Menu
         return
     fi
-    if [ ! -f "$Grasscutter_Folder/gradlew" ]; then
+    if [ ! -f "$grasscutter_path/gradlew" ]; then
         echo "${RC}Error${WC} : gradlew not found!"
         echo
         read -p "Press enter for back to Menu Grasscutter"
@@ -20,7 +19,7 @@ Compile_Grasscutter() {
     clear
     credit_hah
     Center_Text "Compile .jar [PLEASE WAIT]"
-    cd $HOME/Grasscutter || exit 1
+    cd $grasscutter_path || exit 1
     if [ -f "grasscutter.jar" ]; then
         rm grasscutter.jar
     fi
@@ -33,10 +32,10 @@ Compile_Grasscutter() {
         Grasscutter_Menu
     else
         mv grasscutter*.jar grasscutter.jar
-        echo "${GC}Success compile jar and output to $HOME/Grasscutter folder"
+        echo "${GC}Success compile jar and output to $grasscutter_path folder"
         echo "With name grasscutter.jar${WC}"
         echo
-        read -p "Press enter for back to Menu Graascutter!"
+        read -p "Press enter for back to Menu Grasscutter!"
         Grasscutter_Menu
     fi
 }

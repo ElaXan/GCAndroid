@@ -26,8 +26,8 @@ installPlugin_Download() {
     cd $folderNamePlugin
     Run "wget $installPlugin_Download_Link" "Download .jar plugin" "0" "Plugins Menu" "installPlugin"
     getNamePlugin=$(ls $folderNamePlugin | sed "s/.*\///g")
-    if [ ! -d "$HOME/Grasscutter/plugins" ]; then
-        mkdir "$HOME/Grasscutter/plugins"
+    if [ ! -d "$grasscutter_path/plugins" ]; then
+        mkdir "$grasscutter_path/plugins"
     fi
     if [[ $(echo "$getNamePlugin" | sed "s/.*\.//g") != "jar" ]]; then
         echo "${RC}Cannot continue because $getNamePlugin not .jar file!${WC}"
@@ -37,7 +37,7 @@ installPlugin_Download() {
         main_menu
         return
     fi
-    if [ -f "$HOME/Grasscutter/plugins/$getNamePlugin" ]; then
+    if [ -f "$grasscutter_path/plugins/$getNamePlugin" ]; then
         echo "${YC}Failed to install because $getNamePlugin already installed${WC}"
         echo
         echo -n "Press enter for back to Plugin Menu!"
@@ -46,8 +46,8 @@ installPlugin_Download() {
         installPlugin
         return
     fi
-    Run "cp $folderNamePlugin/$getNamePlugin $HOME/Grasscutter/plugins/" "Installing .jar plugin" "0" "Plugins Menu" "installPlugin"
-    if [ -f "$HOME/Grasscutter/plugins/${getNamePlugin}" ]; then
+    Run "cp $folderNamePlugin/$getNamePlugin $grasscutter_path/plugins/" "Installing .jar plugin" "0" "Plugins Menu" "installPlugin"
+    if [ -f "$grasscutter_path/plugins/${getNamePlugin}" ]; then
         echo "${GC}Install plugin ${getNamePlugin} success!${WC}"
         echo
         rm -rf $folderNamePlugin
@@ -157,10 +157,10 @@ installPlugin_from_directory_process() {
             main_menu
             return
         else
-            cp "$installPlugin_from_directory_Input_File" $HOME/Grasscutter/plugins &>/dev/null
+            cp "$installPlugin_from_directory_Input_File" $grasscutter_path/plugins &>/dev/null
         fi
         getNamePlugin=$(ls $installPlugin_from_directory_Input_File | sed "s/.*\///g")
-        if [[ ! -f "$HOME/Grasscutter/plugins/$(echo $installPlugin_from_directory_Input_File | sed "s/.*\///g")" ]]; then
+        if [[ ! -f "$grasscutter_path/plugins/$(echo $installPlugin_from_directory_Input_File | sed "s/.*\///g")" ]]; then
             echo "${RC}Failed install ${getNamePlugin} plugin to Grasscutter Folder!${WC}"
             echo
             read -p "Press enter for back to Menu!"
@@ -179,8 +179,8 @@ installPlugin_from_directory_process() {
 installPlugin() {
     credit_hah
     Center_Text "Install Plugin"
-    if ! [ -d "$HOME/Grasscutter" ]; then
-        echo "${RC}Folder Grasscutter in $HOME/Grasscutter is not found!${WC}"
+    if ! [ -d "$grasscutter_path" ]; then
+        echo "${RC}Folder Grasscutter in $grasscutter_path is not found!${WC}"
         echo
         read -p "Press enter for back to Menu Grasscutter Tools"
         Grasscutter_Tools

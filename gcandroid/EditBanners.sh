@@ -4,7 +4,7 @@ Edit_Banner() {
     echo "${YC}For save CTRL+S"
     echo "${YC}For help CTRL+G"
     sleep 1.5s
-    micro "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
+    micro "$grasscutter_path/src/main/resources/defaults/data/Banners.tsj"
     Edit_Banners
 }
 
@@ -24,7 +24,7 @@ Import_Banners() {
             Import_Banners
         fi
         if [[ -f "$Import_Banners_Path" ]]; then
-            cp "$Import_Banners_Path" "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
+            cp "$Import_Banners_Path" "$grasscutter_path/src/main/resources/defaults/data/Banners.tsj"
             echo "${GC}File imported successfully!${WC}"
             sleep 1.5s
             Edit_Banners
@@ -39,12 +39,12 @@ Import_Banners() {
 Reset_Banners() {
     credit_hah
     Center_Text "Reset Banners"
-    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj" ]]; then
+    if [[ ! -f "$grasscutter_path/src/main/resources/defaults/data/Banners.tsj" ]]; then
         echo "${RC}Banners.json not found!${WC}"
         echo -n "${GC}Do you want to download it from github? [Y/n] : ${WC}"
         read -r Download_Banners
         if [[ "$Download_Banners" == "y" ]] || [[ "$Download_Banners" == "Y" ]] || [[ "$Download_Banners" == "" ]]; then
-            Run "wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O \"$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj\"" "Download Banners.tsj" "0" "Edit Banners" "Edit_Banners"
+            Run "wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O \"$grasscutter_path/src/main/resources/defaults/data/Banners.tsj\"" "Download Banners.tsj" "0" "Edit Banners" "Edit_Banners"
             echo "${GC}Banners.tsj downloaded successfully!${WC}"
             sleep 1.5s
             Edit_Banners
@@ -55,8 +55,8 @@ Reset_Banners() {
         echo -n "${GC}Do you want to reset Banners.tsj? [Y/n] : ${WC}"
         read -r Reset_Banners
         if [[ "$Reset_Banners" == "y" ]] || [[ "$Reset_Banners" == "Y" ]] || [[ "$Reset_Banners" == "" ]]; then
-            rm "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj"
-            Run "wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O \"$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj\"" "Download Banners.tsj" "0" "Edit Banners" "Edit_Banners"
+            rm "$grasscutter_path/src/main/resources/defaults/data/Banners.tsj"
+            Run "wget -q https://raw.githubusercontent.com/Grasscutters/Grasscutter/development/src/main/resources/defaults/data/Banners.tsj -O \"$grasscutter_path/src/main/resources/defaults/data/Banners.tsj\"" "Download Banners.tsj" "0" "Edit Banners" "Edit_Banners"
             echo "${GC}Banners.tsj reset successfully!${WC}"
             sleep 1.5s
             Edit_Banners
@@ -82,23 +82,22 @@ Edit_Banners() {
         read
         main_menu
     fi
-    if [[ ! -d "$HOME/Grasscutter" ]]; then
-        echo "${RC}Error${WC} : Grasscutter directory not found${WC}"
+    if [[ ! -d "$grasscutter_path" ]]; then
+        echo "${RC}Error${WC} : $nameFolder directory not found${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
         main_menu
     fi
-    if [[ ! -f "$HOME/Grasscutter/gradlew" ]]; then
-        echo "${RC}Error${WC} : Grasscutter gradlew file not found${WC}"
+    if [[ ! -f "$grasscutter_path/gradlew" ]]; then
+        echo "${RC}Error${WC} : $nameFolder gradlew file not found${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
         main_menu
     fi
-    if [[ ! -f "$HOME/Grasscutter/src/main/resources/defaults/data/Banners.tsj" ]]; then
+    if [[ ! -f "$grasscutter_path/src/main/resources/defaults/data/Banners.tsj" ]]; then
         echo "${RC}Error${WC} : Banners.tsj file not found${WC}"
-        echo "${YC}Please Install Grasscutter with \"Compile\" not dowmload grasscutter.jar"
         echo
         echo -n "Press enter for back to Menu"
         read

@@ -70,7 +70,7 @@ getConfigJson() {
         elif [[ $server_http_policies_cors_enabled == "true" ]]; then
             server_http_policies_cors_enabledOut="${GC}True${WC}"
         else
-            server_http_policies_cors_enabledOut="${RC}Errro${WC}"
+            server_http_policies_cors_enabledOut="${RC}Error${WC}"
         fi
     elif [ $getArguments = "server.http.files" ]; then
         server_http_files_indexFile=$(jq '.server.http.files.indexFile' config.json 2>/dev/null | sed "s/\"//g")

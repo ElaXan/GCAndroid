@@ -5,7 +5,7 @@
 # And the code already modified by me, aka @ElaXan on GitHub
 removePlugin() {
     credit_hah
-    pathPlugin="$HOME/Grasscutter/plugins"
+    pathPlugin="$grasscutter_path/plugins"
     if [ ! -d "$pathPlugin" ]; then
         echo "${RC}Folder $pathPlugin not found!${WC}"
         sleep 1s

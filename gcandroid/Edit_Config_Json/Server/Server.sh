@@ -1,6 +1,6 @@
 edit_configjson_Server_main() {
     credit_hah
-    cd $HOME/Grasscutter || exit 1
+    cd $grasscutter_path || exit 1
     getConfigJson "Server"
     echo "${YC}          Still Development${WC}"
     Center_Text "Edit config.json [SERVER]"

@@ -11,18 +11,16 @@ CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
 
 GCAndroid=$HOME/.ElaXan/GCAndroid
+Path_Repojson=$GCAndroid/repo.json
+Path_Shell=$GCAndroid/gcandroid
 line="====================================="
 
 isThisLinux=$(uname -o)
 if [ $isThisLinux = "GNU/Linux" ]; then
-    echo "${RC}Please run on Termux Environment!\n${GC}Try to reinstall and see GCAndroid Github for more informations...${WC}"
+    echo "${RC}Please run on Termux Environment!\n${GC}Try to reinstall and see GCAndroid Github for more information's...${WC}"
     exit 2
 fi
 
-grasscutter_path=$HOME/Grasscutter
-configpath=$grasscutter_path/config.json
-wherethegrassss=$grasscutter_path/grasscutter.jar
-Path_Shell=$GCAndroid/gcandroid
 inpscript=$1
 
 # check dependencies without run in inside array
@@ -100,25 +98,25 @@ echo $line
 echo "${GC}Contact me at zero@elaxan.com${WC}"
 echo $line
 
-if [ ! -f "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
+if [ ! -f $Path_Repojson ]; then
     echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" >"$HOME/.ElaXan/GCAndroid/repo.json"
+}" >$Path_Repojson
 else
-    if [ ! -s "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
+    if [ ! -s $Path_Repojson ]; then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" >"$HOME/.ElaXan/GCAndroid/repo.json"
+}" >$Path_Repojson
         echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
     fi
 
-    if ! (jq . "$HOME/.ElaXan/GCAndroid/repo.json" &>/dev/null); then
+    if ! (jq . $Path_Repojson &>/dev/null); then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" >"$HOME/.ElaXan/GCAndroid/repo.json"
+}" >$Path_Repojson
         echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
     fi
 fi
@@ -171,7 +169,7 @@ Reset_Config_Json() {
     echo -n "${RC}Are you sure? [y/N] : ${WC}"
     read -r Reset_Config_Json_Input
     if [ $Reset_Config_Json_Input = y ]; then
-        cd $HOME/Grasscutter || exit 1
+        cd $grasscutter_path || exit 1
         rm "config.json"
         Run "timeout --foreground 8s java -jar grasscutter.jar" "Resetting config.json" "124" "Main Config" "menu_config"
         echo "${YC}Enter custom port for Grasscutter${WC}"
@@ -394,7 +392,9 @@ Docker() {
 Install_Grasscutter_Menu() {
     credit_hah
     Center_Text "Install Grasscutter"
-    echo "1. ${CCB}Compile from source${WC}"
+    repositoryOfPemotongJembud=$(jq -r '.Grasscutter' $Path_Repojson)
+    namePemotongJembud=$(basename "$repositoryOfPemotongJembud")
+    echo "1. ${CCB}Compile from $namePemotongJembud${WC}"
     echo "2. ${CCB}Download from Github (Docker)${WC}"
     echo "0. ${RC}Back${WC}"
     echo
@@ -414,8 +414,8 @@ Install_Grasscutter_Menu() {
 
 Install_Grasscutter() {
     credit_hah
-    if [ -d "$HOME/Grasscutter" ]; then
-        echo "${RC}Grasscutter already installed${WC}"
+    if [ -d "$HOME/$namePemotongJembud" ]; then
+        echo "${RC}$namePemotongJembud already installed${WC}"
         echo
         echo "${YC}Do you want reinstall?${WC}"
         echo
@@ -691,6 +691,11 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
     done
 done
 
+nameFolder=$(basename $(jq .Grasscutter -r $Path_Repojson))
+grasscutter_path=$HOME/$nameFolder
+configpath=$grasscutter_path/config.json
+wherethegrassss=$grasscutter_path/grasscutter.jar
+
 newVersionScript=""
 versionScript="3.5.2"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
@@ -729,7 +734,7 @@ elif [[ $versionScript < $newVersionScript ]]; then
 elif [[ $versionScript = $newVersionScript ]]; then
     note_credit="$noteLatestVersion"
 else
-    note_credit="${RC}Unknowm Version${WC}"
+    note_credit="${RC}Unknown Version${WC}"
 fi
 
 # WIP: Add more subcommands

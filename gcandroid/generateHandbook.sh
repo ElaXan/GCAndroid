@@ -18,14 +18,14 @@ generateHandbook() {
         read -r
         main_menu
     fi
-    if [ ! -d "$HOME/Grasscutter" ]; then   
-        echo "${RC}Folder Grasscutter not found!${RC}"
+    if [ ! -d "$grasscutter_path" ]; then   
+        echo "${RC}Folder $nameFolder not found!${RC}"
         echo
         echo -n "Press enter for back to Grasscutter Tools"
         read -r
         Grasscutter_Tools
     fi
-    if [ ! -f "$HOME/Grasscutter/grasscutter.jar" ]; then
+    if [ ! -f "$grasscutter_path/grasscutter.jar" ]; then
         echo "${RC}File grasscutter.jar not found!${RC}"
         echo
         echo -n "Press enter for back to Grasscutter Tools"
@@ -39,10 +39,10 @@ generateHandbook() {
         read -r
         Grasscutter_Tools
     fi
-    cd $HOME/Grasscutter || exit 1
+    cd $grasscutter_path || exit 1
     mongod &>/dev/null &
     Run "timeout 10s java -jar grasscutter.jar -handbook" "Getting GM_Handbook" "124" "Menu" "main_menu"
-    if [ -z "$(ls -A $HOME/Grasscutter/GM\ Handbook/)" ]; then
+    if [ -z "$(ls -A $grasscutter_path/GM\ Handbook/)" ]; then
         echo "${RC}Error${WC} : GM Handbook not found!"
         echo
         echo -n "Press enter for back to Grasscutter Tools"
