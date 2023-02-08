@@ -154,7 +154,7 @@ Reset_Config_Json() {
         menu_config
     fi
     if [ ! -f $wherethegrassss ]; then
-        echo "${RC}Error${WC} : Grasscutter.jar not found!"
+        echo "${RC}Error${WC} : grasscutter.jar not found!"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
@@ -172,7 +172,7 @@ Reset_Config_Json() {
         cd $grasscutter_path || exit 1
         rm "config.json"
         Run "timeout --foreground 8s java -jar grasscutter.jar" "Resetting config.json" "124" "Main Config" "menu_config"
-        echo "${YC}Enter custom port for Grasscutter${WC}"
+        echo "${YC}Enter custom port for $nameFolder${WC}"
         read -p "Port : " port
         if [ $port -lt 1024 ] || [ -z $port ]; then
             echo "${RC}Port must be higher than 1024!${WC}"
@@ -182,7 +182,7 @@ Reset_Config_Json() {
             echo "${GC}Port will be set to $port${WC}"
         fi
         echo
-        echo "${YC}Enter custom folderStructure for Grasscutter${WC}"
+        echo "${YC}Enter custom folderStructure for $nameFolder${WC}"
         read -p "resources : " custom_resources
         if [ -z $custom_resources ]; then
             echo "${RC}resources cannot be empty!${WC}"
@@ -232,7 +232,7 @@ menu_config_editThirdParty() {
     echo
     echo "${GC}Please edit config.json with your favorite text editor${WC}"
     echo
-    echo "${GC}After you finish editing, press enter to move config.json back to Grasscutter folder${WC}"
+    echo "${GC}After you finish editing, press enter to move config.json back to $nameFolder folder${WC}"
     read -r
     if [ ! -f /sdcard/config.json ]; then
         echo "${RC}Error${WC} : config.json not found in /sdcard/config.json!"
@@ -391,7 +391,7 @@ Docker() {
 
 Install_Grasscutter_Menu() {
     credit_hah
-    Center_Text "Install Grasscutter"
+    Center_Text "Install $nameFolder"
     repositoryOfPemotongJembud=$(jq -r '.Grasscutter' $Path_Repojson)
     namePemotongJembud=$(basename "$repositoryOfPemotongJembud")
     echo "1. ${CCB}Compile from $namePemotongJembud${WC}"
@@ -691,7 +691,7 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
     done
 done
 
-nameFolder=$(basename $(jq .Grasscutter -r $Path_Repojson))
+nameFolder=$(basename $(jq .Grasscutter -r $Path_Repojson))%.git
 grasscutter_path=$HOME/$nameFolder
 configpath=$grasscutter_path/config.json
 wherethegrassss=$grasscutter_path/grasscutter.jar
