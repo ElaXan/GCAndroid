@@ -13,6 +13,7 @@ WC="$(printf '\033[0;37m')"
 GCAndroid=$HOME/.ElaXan/GCAndroid
 Path_Repojson=$GCAndroid/repo.json
 Path_Shell=$GCAndroid/gcandroid
+linksDocs="https://docs.elaxan.com/tutorial/GCAndroid"
 line="====================================="
 
 isThisLinux=$(uname -o)
@@ -149,18 +150,21 @@ Reset_Config_Json() {
     Center_Text "Reset config.json"
     if ! (command -v java &>/dev/null); then
         echo "${RC}Error${WC} : Java not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-java-not-found${WC}"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
     fi
     if [ ! -f $wherethegrassss ]; then
         echo "${RC}Error${WC} : grasscutter.jar not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-java-not-found${WC}"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
     fi
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : config.json not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
@@ -193,6 +197,7 @@ Reset_Config_Json() {
         fi
         if [ ! -f $configpath ]; then
             echo "${RC}Error${WC} : Failed to reset config.json!"
+            echo "See : ${CCU}${linksDocs}/Error#error--failed-to-reset-configjson${WC}"
             echo
             read -p "Press enter for back to Edit Config Json"
             menu_config
@@ -222,6 +227,7 @@ menu_config_editThirdParty() {
     Center_Text "Edit config.json with third-party App"
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : config.json not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         echo -n "Press enter for back to Edit Config Json"
         read -r
@@ -236,6 +242,7 @@ menu_config_editThirdParty() {
     read -r
     if [ ! -f /sdcard/config.json ]; then
         echo "${RC}Error${WC} : config.json not found in /sdcard/config.json!"
+        echo "See : ${CCU}${linksDocs}/Error#error--configjson-not-found-in-sdcardconfigjson${WC}"
         echo
         echo -n "Press enter for back to Edit Config Json"
         read -r
@@ -279,6 +286,7 @@ export_configjson() {
     Center_Text "Export config.json"
     if [ -f "/sdcard/config.json" ]; then
         echo "${RC}Error${WC} : config.json already exist in /sdcard/config.json!"
+        echo "See : ${CCU}${linksDocs}/Error#error--configjson-already-exist-in-sdcardconfigjson${WC}"
         echo
         echo -n "Press enter for back to Edit Config Json"
         read -r
@@ -296,6 +304,7 @@ menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
         echo "${RC}Error${WC} : $configpath not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         echo -n "Press enter for back to Menu!"
         read
@@ -691,7 +700,8 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
     done
 done
 
-nameFolder=$(basename $(jq .Grasscutter -r $Path_Repojson))%.git
+nameFolder=$(basename $(jq .Grasscutter -r $Path_Repojson))
+nameFolder=${nameFolder%.git}
 grasscutter_path=$HOME/$nameFolder
 configpath=$grasscutter_path/config.json
 wherethegrassss=$grasscutter_path/grasscutter.jar
@@ -752,7 +762,7 @@ case $inpscript in
             Pull_DockerGS_Image
             ;;
         *)
-            echo "${RC}Wrong input!${WC}"
+            echo -n "Usage : gcandroid --install <name>\n\nName:\n\tgrasscutter\n\tdockergs\n\tdockergspull\n"
             exit 1
             ;;
         esac

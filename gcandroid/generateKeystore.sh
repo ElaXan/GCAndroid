@@ -7,6 +7,7 @@ Generate_Keystore() {
     Center_Text "Generate Keystore File"
     if [ ! -d $grasscutter_path ]; then
         echo "${RC}Error${WC} : The directory ${CCB}$grasscutter_path${WC} does not exist."
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-directory-not-found${WC}"
         echo
         echo -n "Press any key to back to the main menu..."
         read -n 1

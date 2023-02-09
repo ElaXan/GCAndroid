@@ -20,6 +20,7 @@ Import_Banners() {
         # if file exist but not extension ".tsj", then error
         if [[ -f "$Import_Banners_Path" ]] && [[ ! "$Import_Banners_Path" == *.tsj ]]; then
             echo "${RC}Error${WC} : $Import_Banners_Path is not \".tsj\" extension${WC}"
+            echo "See : ${CCU}${linksDocs}/Error#error--pathtofile-is-not-tsj-extension${WC}"
             sleep 1s
             Import_Banners
         fi
@@ -84,6 +85,7 @@ Edit_Banners() {
     fi
     if [[ ! -d "$grasscutter_path" ]]; then
         echo "${RC}Error${WC} : $nameFolder directory not found${WC}"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-directory-not-found${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read
@@ -91,6 +93,7 @@ Edit_Banners() {
     fi
     if [[ ! -f "$grasscutter_path/gradlew" ]]; then
         echo "${RC}Error${WC} : $nameFolder gradlew file not found${WC}"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-gradlew-file-not-found${WC}"
         echo
         echo -n "Press enter for back to Menu"
         read

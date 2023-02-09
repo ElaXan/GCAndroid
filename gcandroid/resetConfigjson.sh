@@ -4,6 +4,7 @@
 reset_configjson() {
     if [ ! -d "$grasscutter_path" ]; then
         echo "${RC}Error${WC} : $grasscutter_path not found"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-directory-not-found${WC}"
         echo
         read -p "Press enter for back to Menu!"
         main_menu
@@ -11,6 +12,7 @@ reset_configjson() {
     fi
     if [ ! -f "$wherethegrassss" ]; then
         echo "${RC}Error${WC} : $wherethegrassss not found"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutterjar-not-found${WC}"
         echo
         read -p "Press enter for back to Menu!"
         main_menu

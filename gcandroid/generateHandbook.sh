@@ -33,7 +33,7 @@ generateHandbook() {
         Grasscutter_Tools
     fi
     if ! (ls /sdcard > /dev/null 2>&1); then
-        echo "${RC}Error${WC} : /sdcard cant access/permission denied"
+        echo "${RC}Error${WC} : /sdcard can't access/permission denied"
         echo
         echo -n "Press enter for back to Grasscutter Tools"
         read -r

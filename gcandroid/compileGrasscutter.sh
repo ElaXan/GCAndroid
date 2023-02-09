@@ -4,6 +4,7 @@
 Compile_Grasscutter() {
     if [ ! -d "$grasscutter_path" ]; then
         echo "${RC}Error${WC} : $grasscutter_path not found"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-directory-not-found${WC}"
         echo
         read -p "Press enter for back to Menu Grasscutter"
         Grasscutter_Menu
@@ -11,6 +12,7 @@ Compile_Grasscutter() {
     fi
     if [ ! -f "$grasscutter_path/gradlew" ]; then
         echo "${RC}Error${WC} : gradlew not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-gradlew-file-not-found${WC}"
         echo
         read -p "Press enter for back to Menu Grasscutter"
         Grasscutter_Menu

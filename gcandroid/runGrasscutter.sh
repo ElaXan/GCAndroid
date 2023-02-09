@@ -4,9 +4,6 @@
 GoTouchGrass() {
     credit_hah
     Center_Text "Go Touch Grass"
-    repositoryOfPemotongJembud=$(jq -r '.Grasscutter' $Path_Repojson)
-    namePemotongJembud=$(basename "$repositoryOfPemotongJembud")
-    pathPemotongJembud="$HOME/$namePemotongJembud"
     if ! command -v mongo &>/dev/null; then
         echo "${RC}Please install mongodb First!${WC}"
         echo
@@ -15,14 +12,16 @@ GoTouchGrass() {
         main_menu
         return
     fi
-    if [[ ! -f $pathPemotongJembud/grasscutter.jar ]]; then
-        echo "${RC}Error${WC} : $pathPemotongJembud/grasscutter.jar not found!"
+    if [[ ! -f $grasscutter_path/grasscutter.jar ]]; then
+        echo "${RC}Error${WC} : $grasscutter_path/grasscutter.jar not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutterjar-not-found${WC}"
+        echo
         echo -n "Press enter for back to Menu!"
         read -r
         main_menu
         return
     else
-        config_file="$pathPemotongJembud/config.json"
+        config_file="$grasscutter_path/config.json"
         if [[ -f $config_file ]]; then
             access_address=$(jq -r .server.http.accessAddress $config_file)
             bind_port=$(jq .server.http.bindPort $config_file)
@@ -32,6 +31,7 @@ GoTouchGrass() {
             exitCode=$?
             if [[ $exitCode == 1 ]]; then
                 echo "${RC}Error${WC} : Port $bind_port is used/permission denied!"
+
                 echo "${YC}Server: $access_address:$bind_port${WC}"
                 echo
                 echo -n "Press enter for back to Menu!"
@@ -45,8 +45,8 @@ GoTouchGrass() {
             pkill mongod
         fi
         mongod &>/dev/null &
-        cd $pathPemotongJembud
-        java -jar $pathPemotongJembud/grasscutter.jar
+        cd $grasscutter_path
+        java -jar $wherethegrassss
         echo -n "Press enter for back to Main Menu!"
         read -r
         main_menu
