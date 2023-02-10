@@ -7,6 +7,16 @@
 Project is free to use. If you bought it from someone, please refund\
 Join our [Discord](https://discord.gg/2TTSUZZ)
 
+# Note
+
+GCAndroid has finished updating and will not continue to program Shell Script, so I'm trying to switch to Python, because it's better than Shell Script. Too many files and I'm at a loss to fix bugs etc.
+
+It will probably get an update 2 weeks later and start from 0 again, it will probably use arguments like `gcandroid --install grasscutter` or `gcandroid --run grasscutter`
+
+Unlike
+when you want to run Grasscutter
+Of course enter the command `gcandroid` and enter number `1`
+
 ## About
 
 What can I do with a Localhost Server?
