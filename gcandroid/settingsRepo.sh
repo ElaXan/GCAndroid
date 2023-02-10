@@ -18,7 +18,7 @@ GrasscutterRepo() {
         read -r
         GrasscutterRepo
     fi
-    jq .Grasscutter=\"$new_gc_repo\" "$Path_Repojson" > "$HOME/.ElaXan/GCAndroid/ZEdit.json"
+    jq .Grasscutter=\"$new_gc_repo\" "$Path_Repojson" > "$GCAndroid/ZEdit.json"
     rm "$Path_Repojson"
     mv "$HOME/.ElaXan/GCAndroid/ZEdit.json" "$Path_Repojson"
     echo "${GC}Grasscutter repository changed to: $new_gc_repo${WC}"
@@ -50,7 +50,7 @@ ResourcesRepo() {
     fi
     jq .Resources=\"$new_resources_repo\" "$Path_Repojson" > "$HOME/.ElaXan/GCAndroid/ZEdit.json"
     rm "$Path_Repojson"
-    mv "$HOME/.ElaXan/GCAndroid/ZEdit.json" "$Path_Repojson"
+    mv "$GCAndroid/ZEdit.json" "$Path_Repojson"
     echo "${GC}Resources repository changed to: $new_resources_repo${WC}"
     echo
     echo "${CCB}Restarting GCAndroid${WC}"

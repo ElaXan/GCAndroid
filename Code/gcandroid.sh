@@ -284,6 +284,15 @@ import_configjson() {
 export_configjson() {
     credit_hah
     Center_Text "Export config.json"
+    # check if /sdcard cant access
+    if ! ls /sdcard >/dev/null 2>&1; then
+        echo "${RC}Error${WC} : /sdcard cant access!"
+        echo "See : ${CCU}${linksDocs}/Error#error--configjson-already-exist-in-sdcardconfigjson${WC}"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
     if [ -f "/sdcard/config.json" ]; then
         echo "${RC}Error${WC} : config.json already exist in /sdcard/config.json!"
         echo "See : ${CCU}${linksDocs}/Error#error--configjson-already-exist-in-sdcardconfigjson${WC}"
@@ -401,8 +410,6 @@ Docker() {
 Install_Grasscutter_Menu() {
     credit_hah
     Center_Text "Install $nameFolder"
-    repositoryOfPemotongJembud=$(jq -r '.Grasscutter' $Path_Repojson)
-    namePemotongJembud=$(basename "$repositoryOfPemotongJembud")
     echo "1. ${CCB}Compile from $namePemotongJembud${WC}"
     echo "2. ${CCB}Download from Github (Docker)${WC}"
     echo "0. ${RC}Back${WC}"
@@ -423,8 +430,8 @@ Install_Grasscutter_Menu() {
 
 Install_Grasscutter() {
     credit_hah
-    if [ -d "$HOME/$namePemotongJembud" ]; then
-        echo "${RC}$namePemotongJembud already installed${WC}"
+    if [ -d "$grasscutter_path" ]; then
+        echo "${RC}$nameFolder already installed${WC}"
         echo
         echo "${YC}Do you want reinstall?${WC}"
         echo
@@ -707,7 +714,7 @@ configpath=$grasscutter_path/config.json
 wherethegrassss=$grasscutter_path/grasscutter.jar
 
 newVersionScript=""
-versionScript="3.5.2"
+versionScript="3.6"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"

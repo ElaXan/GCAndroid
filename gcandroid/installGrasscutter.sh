@@ -35,11 +35,11 @@ Install_Grasscutter_process() {
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
         echo "${CCB}Backup Resources : ${GC}Yes${WC}"
-        if [ -f $pathPemotongJembud/resources* ]; then
-            mv -r $pathPemotongJembud/resources* $HOME/resourcesBackupGCAndroid.zip
-        elif [ -d $pathPemotongJembud/resources* ]; then
-            mv -r $pathPemotongJembud/resources* $HOME/resourcesBackupGCAndroid
-        elif [[ -z $(ls -A $pathPemotongJembud/resources* 2>/dev/null) ]]; then
+        if [ -f $grasscutter_path/resources* ]; then
+            mv -r $grasscutter_path/resources* $HOME/resourcesBackupGCAndroid.zip
+        elif [ -d $grasscutter_path/resources* ]; then
+            mv -r $grasscutter_path/resources* $HOME/resourcesBackupGCAndroid
+        elif [[ -z $(ls -A $grasscutter_path/resources* 2>/dev/null) ]]; then
             echo "${CCB}Resources : ${RC}Resources is exist but empty${WC}"
             echo
             echo -n "Press enter for back to Menu"
@@ -70,13 +70,13 @@ Install_Grasscutter_process() {
         credit_hah
     fi
     Run "apt install openjdk-17 -y" "Install Java JDK 17" "0" "Menu" "main_menu"
-    if [ -d "$pathPemotongJembud" ]; then
-        Run "rm -rf $pathPemotongJembud" "Removing Folder $namePemotongJembud" "0" "Menu" "main_menu"
+    if [ -d "$grasscutter_path" ]; then
+        Run "rm -rf $grasscutter_path" "Removing Folder $nameFolder" "0" "Menu" "main_menu"
     fi
     sleep 1s
     cd $HOME || exit 1
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
-        Run "git clone $(jq -r .Grasscutter $Path_Repojson)" "Clone Repository $namePemotongJembud" "0" "Menu" "main_menu"
+        Run "git clone $(jq -r .Grasscutter $Path_Repojson)" "Clone Repository $nameFolder" "0" "Menu" "main_menu"
     fi
     sleep 1s
     cd $HOME || exit 1
@@ -86,17 +86,17 @@ Install_Grasscutter_process() {
         read -r Install_Grasscutter_process_grasscutter_extract
         if [[ $Install_Grasscutter_process_grasscutter_extract == "y" ]] || [[ $Install_Grasscutter_process_grasscutter_extract == "Y" ]]; then
             Run "unzip -o resourcesGCAndroid.zip" "Unzip Resources" "0" "Menu" "main_menu"
-            mv GC*Resources*/Resources $pathPemotongJembud/resources
+            mv GC*Resources*/Resources $grasscutter_path/resources
             rm -rf GC*Resources*
             rm resourcesGCAndroid.zip
         else
             Install_Grasscutter_process_grasscutter_extract="n"
             echo "${GC}Skip extracting Resources${WC}"
-            mv resourcesGCAndroid.zip $namePemotongJembud/
+            mv resourcesGCAndroid.zip $nameFolder/
             sleep 1s
         fi
     fi
-    cd $pathPemotongJembud || exit 1
+    cd $grasscutter_path || exit 1
     credit_hah
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
         chmod +x gradlew
@@ -108,13 +108,13 @@ Install_Grasscutter_process() {
     clear
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
-        if [ -d $pathPemotongJembud/resources ]; then
-            rm -rf $pathPemotongJembud/resources
+        if [ -d $grasscutter_path/resources ]; then
+            rm -rf $grasscutter_path/resources
         fi
         if test -f $HOME/resourcesBackupGCAndroid.zip && test -d $HOME/resourcesBackupGCAndroid ; then
-            mv $HOME/resourcesBackupGCAndroid.zip $pathPemotongJembud/resourcesGCAndroid.zip
+            mv $HOME/resourcesBackupGCAndroid.zip $grasscutter_path/resourcesGCAndroid.zip
             Install_Grasscutter_process_grasscutter_extract="y"
-            mv $HOME/resourcesBackupGCAndroid $pathPemotongJembud/resources
+            mv $HOME/resourcesBackupGCAndroid $grasscutter_path/resources
         else
             echo "${RC}Backup resources not found${WC}" 
         fi
