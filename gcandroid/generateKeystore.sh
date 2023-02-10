@@ -5,8 +5,9 @@
 Generate_Keystore() {
     credit_hah
     Center_Text "Generate Keystore File"
-    if [ ! -d $HOME/Grasscutter ]; then
-        echo "${RC}Error${WC} : The directory ${CCB}$HOME/Grasscutter${WC} does not exist."
+    if [ ! -d $grasscutter_path ]; then
+        echo "${RC}Error${WC} : The directory ${CCB}$grasscutter_path${WC} does not exist."
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutter-directory-not-found${WC}"
         echo
         echo -n "Press any key to back to the main menu..."
         read -n 1
@@ -88,14 +89,14 @@ EOF
         openssl x509 -req -in ssl.csr -CA CAcert.crt -CAkey CAkey.key -CAcreateserial -out ssl.crt -days 25202 -sha256 -extfile cert.conf
         echo "Generating keystore.p12 from key and certificate..."
         openssl pkcs12 -export -out keystore.p12 -inkey ssl.key -in ssl.crt -certfile CAcert.crt -passout pass:123456
-        if [ -f $HOME/Grasscutter/keystore.p12 ]; then
-            rm $HOME/Grasscutter/keystore.p12
+        if [ -f $grasscutter_path/keystore.p12 ]; then
+            rm $grasscutter_path/keystore.p12
         fi
-        mv ./keystore.p12 $HOME/Grasscutter/keystore.p12
+        mv ./keystore.p12 $grasscutter_path/keystore.p12
         cd ..
         rm -rf certs
         echo "The keystore file has been created successfully."
-        echo "The keystore file is ${CCB}$HOME/Grasscutter/keystore.p12${WC}."
+        echo "The keystore file is ${CCB}$grasscutter_path/keystore.p12${WC}."
         echo "The password of the keystore file is ${CCB}123456${WC}."
         echo
         echo -n "Press any key to continue..."

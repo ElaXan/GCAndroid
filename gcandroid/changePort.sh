@@ -6,6 +6,7 @@ changePort() {
     Center_Text "Change Port"
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : $configpath not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         echo -n "Press enter for back to Menu!"
         read

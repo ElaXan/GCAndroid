@@ -11,18 +11,17 @@ CCU="$(printf '\033[4;36m')"
 WC="$(printf '\033[0;37m')"
 
 GCAndroid=$HOME/.ElaXan/GCAndroid
+Path_Repojson=$GCAndroid/repo.json
+Path_Shell=$GCAndroid/gcandroid
+linksDocs="https://docs.elaxan.com/project/GCAndroid"
 line="====================================="
 
 isThisLinux=$(uname -o)
 if [ $isThisLinux = "GNU/Linux" ]; then
-    echo "${RC}Please run on Termux Environment!\n${GC}Try to reinstall and see GCAndroid Github for more informations...${WC}"
+    echo "${RC}Please run on Termux Environment!\n${GC}Try to reinstall and see GCAndroid Github for more information's...${WC}"
     exit 2
 fi
 
-grasscutter_path=$HOME/Grasscutter
-configpath=$grasscutter_path/config.json
-wherethegrassss=$grasscutter_path/grasscutter.jar
-Path_Shell=$GCAndroid/gcandroid
 inpscript=$1
 
 # check dependencies without run in inside array
@@ -100,25 +99,25 @@ echo $line
 echo "${GC}Contact me at zero@elaxan.com${WC}"
 echo $line
 
-if [ ! -f "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
+if [ ! -f $Path_Repojson ]; then
     echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" >"$HOME/.ElaXan/GCAndroid/repo.json"
+}" >$Path_Repojson
 else
-    if [ ! -s "$HOME/.ElaXan/GCAndroid/repo.json" ]; then
+    if [ ! -s $Path_Repojson ]; then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" >"$HOME/.ElaXan/GCAndroid/repo.json"
+}" >$Path_Repojson
         echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
     fi
 
-    if ! (jq . "$HOME/.ElaXan/GCAndroid/repo.json" &>/dev/null); then
+    if ! (jq . $Path_Repojson &>/dev/null); then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
-}" >"$HOME/.ElaXan/GCAndroid/repo.json"
+}" >$Path_Repojson
         echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
     fi
 fi
@@ -151,18 +150,21 @@ Reset_Config_Json() {
     Center_Text "Reset config.json"
     if ! (command -v java &>/dev/null); then
         echo "${RC}Error${WC} : Java not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-java-not-found${WC}"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
     fi
     if [ ! -f $wherethegrassss ]; then
-        echo "${RC}Error${WC} : Grasscutter.jar not found!"
+        echo "${RC}Error${WC} : grasscutter.jar not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-java-not-found${WC}"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
     fi
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : config.json not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         read -p "Press enter for back to Edit Config Json"
         menu_config
@@ -171,10 +173,10 @@ Reset_Config_Json() {
     echo -n "${RC}Are you sure? [y/N] : ${WC}"
     read -r Reset_Config_Json_Input
     if [ $Reset_Config_Json_Input = y ]; then
-        cd $HOME/Grasscutter || exit 1
+        cd $grasscutter_path || exit 1
         rm "config.json"
         Run "timeout --foreground 8s java -jar grasscutter.jar" "Resetting config.json" "124" "Main Config" "menu_config"
-        echo "${YC}Enter custom port for Grasscutter${WC}"
+        echo "${YC}Enter custom port for $nameFolder${WC}"
         read -p "Port : " port
         if [ $port -lt 1024 ] || [ -z $port ]; then
             echo "${RC}Port must be higher than 1024!${WC}"
@@ -184,7 +186,7 @@ Reset_Config_Json() {
             echo "${GC}Port will be set to $port${WC}"
         fi
         echo
-        echo "${YC}Enter custom folderStructure for Grasscutter${WC}"
+        echo "${YC}Enter custom folderStructure for $nameFolder${WC}"
         read -p "resources : " custom_resources
         if [ -z $custom_resources ]; then
             echo "${RC}resources cannot be empty!${WC}"
@@ -195,6 +197,7 @@ Reset_Config_Json() {
         fi
         if [ ! -f $configpath ]; then
             echo "${RC}Error${WC} : Failed to reset config.json!"
+            echo "See : ${CCU}${linksDocs}/Error#error--failed-to-reset-configjson${WC}"
             echo
             read -p "Press enter for back to Edit Config Json"
             menu_config
@@ -224,6 +227,7 @@ menu_config_editThirdParty() {
     Center_Text "Edit config.json with third-party App"
     if [ ! -f $configpath ]; then
         echo "${RC}Error${WC} : config.json not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         echo -n "Press enter for back to Edit Config Json"
         read -r
@@ -234,10 +238,11 @@ menu_config_editThirdParty() {
     echo
     echo "${GC}Please edit config.json with your favorite text editor${WC}"
     echo
-    echo "${GC}After you finish editing, press enter to move config.json back to Grasscutter folder${WC}"
+    echo "${GC}After you finish editing, press enter to move config.json back to $nameFolder folder${WC}"
     read -r
     if [ ! -f /sdcard/config.json ]; then
         echo "${RC}Error${WC} : config.json not found in /sdcard/config.json!"
+        echo "See : ${CCU}${linksDocs}/Error#error--configjson-not-found-in-sdcardconfigjson${WC}"
         echo
         echo -n "Press enter for back to Edit Config Json"
         read -r
@@ -279,8 +284,18 @@ import_configjson() {
 export_configjson() {
     credit_hah
     Center_Text "Export config.json"
+    # check if /sdcard cant access
+    if ! ls /sdcard >/dev/null 2>&1; then
+        echo "${RC}Error${WC} : /sdcard cant access!"
+        echo "See : ${CCU}${linksDocs}/Error#error--configjson-already-exist-in-sdcardconfigjson${WC}"
+        echo
+        echo -n "Press enter for back to Edit Config Json"
+        read -r
+        menu_config
+    fi
     if [ -f "/sdcard/config.json" ]; then
         echo "${RC}Error${WC} : config.json already exist in /sdcard/config.json!"
+        echo "See : ${CCU}${linksDocs}/Error#error--configjson-already-exist-in-sdcardconfigjson${WC}"
         echo
         echo -n "Press enter for back to Edit Config Json"
         read -r
@@ -298,6 +313,7 @@ menu_config() {
     if [ ! -f $configpath ]; then
         credit_hah
         echo "${RC}Error${WC} : $configpath not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error-configjson-not-found${WC}"
         echo
         echo -n "Press enter for back to Menu!"
         read
@@ -393,8 +409,8 @@ Docker() {
 
 Install_Grasscutter_Menu() {
     credit_hah
-    Center_Text "Install Grasscutter"
-    echo "1. ${CCB}Compile from source${WC}"
+    Center_Text "Install $nameFolder"
+    echo "1. ${CCB}Compile from $namePemotongJembud${WC}"
     echo "2. ${CCB}Download from Github (Docker)${WC}"
     echo "0. ${RC}Back${WC}"
     echo
@@ -414,8 +430,8 @@ Install_Grasscutter_Menu() {
 
 Install_Grasscutter() {
     credit_hah
-    if [ -d "$HOME/Grasscutter" ]; then
-        echo "${RC}Grasscutter already installed${WC}"
+    if [ -d "$grasscutter_path" ]; then
+        echo "${RC}$nameFolder already installed${WC}"
         echo
         echo "${YC}Do you want reinstall?${WC}"
         echo
@@ -691,8 +707,14 @@ for i in $(find "$Path_Shell/Edit_Config_Json" -type d); do
     done
 done
 
+nameFolder=$(basename $(jq .Grasscutter -r $Path_Repojson))
+nameFolder=${nameFolder%.git}
+grasscutter_path=$HOME/$nameFolder
+configpath=$grasscutter_path/config.json
+wherethegrassss=$grasscutter_path/grasscutter.jar
+
 newVersionScript=""
-versionScript="3.5.2"
+versionScript="3.6"
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}getInfoUpdate [FROM SERVER]${WC}"
 source <(curl -s https://raw.githubusercontent.com/Score-Inc/GCAndroid/Server/getInfoUpdate)
 echo -en "\033[2K\r${GC}Load${WC} : ${CCB}updateScript.sh [FROM SERVER]${WC}"
@@ -729,7 +751,7 @@ elif [[ $versionScript < $newVersionScript ]]; then
 elif [[ $versionScript = $newVersionScript ]]; then
     note_credit="$noteLatestVersion"
 else
-    note_credit="${RC}Unknowm Version${WC}"
+    note_credit="${RC}Unknown Version${WC}"
 fi
 
 # WIP: Add more subcommands
@@ -747,7 +769,7 @@ case $inpscript in
             Pull_DockerGS_Image
             ;;
         *)
-            echo "${RC}Wrong input!${WC}"
+            echo -n "Usage : gcandroid --install <name>\n\nName:\n\tgrasscutter\n\tdockergs\n\tdockergspull\n"
             exit 1
             ;;
         esac

@@ -12,15 +12,16 @@ GoTouchGrass() {
         main_menu
         return
     fi
-    if [[ ! -f $wherethegrassss ]]; then
-        echo "${RC}Error${WC} : $wherethegrassss not found!"
+    if [[ ! -f $grasscutter_path/grasscutter.jar ]]; then
+        echo "${RC}Error${WC} : $grasscutter_path/grasscutter.jar not found!"
+        echo "See : ${CCU}${linksDocs}/Error#error--grasscutterjar-not-found${WC}"
+        echo
         echo -n "Press enter for back to Menu!"
         read -r
         main_menu
         return
     else
-        # Read config values into variables
-        config_file="$HOME/Grasscutter/config.json"
+        config_file="$grasscutter_path/config.json"
         if [[ -f $config_file ]]; then
             access_address=$(jq -r .server.http.accessAddress $config_file)
             bind_port=$(jq .server.http.bindPort $config_file)
@@ -30,6 +31,7 @@ GoTouchGrass() {
             exitCode=$?
             if [[ $exitCode == 1 ]]; then
                 echo "${RC}Error${WC} : Port $bind_port is used/permission denied!"
+
                 echo "${YC}Server: $access_address:$bind_port${WC}"
                 echo
                 echo -n "Press enter for back to Menu!"
@@ -42,9 +44,9 @@ GoTouchGrass() {
         if pgrep mongod > /dev/null; then
             pkill mongod
         fi
-        mongod --logpath $HOME/mongodb.log &>/dev/null &
-        cd $HOME/Grasscutter
-        java -jar $HOME/Grasscutter/grasscutter.jar
+        mongod &>/dev/null &
+        cd $grasscutter_path
+        java -jar $wherethegrassss
         echo -n "Press enter for back to Main Menu!"
         read -r
         main_menu

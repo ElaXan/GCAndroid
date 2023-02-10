@@ -1,8 +1,7 @@
 Update_Grasscutter() {
     credit_hah
     echo "${GC}Updating Grasscutter${WC}"
-    # Check folder in $HOME/Grasscutter/.git if not exist then return
-    if [[ ! -d $HOME/Grasscutter/.git ]]; then
+    if [[ ! -d $grasscutter_path/.git ]]; then
         echo "${RC}.git folder not found, can't update Grasscutter${WC}"
         echo
         echo -n "Press enter for back to Menu"
@@ -15,7 +14,7 @@ Update_Grasscutter() {
     fi
     # Run git pull and get the output
     # if already up to date then return
-    git_pull_output=$(git -C $HOME/Grasscutter pull 2>&1)
+    git_pull_output=$(git -C $grasscutter_path pull 2>&1)
     if [[ $git_pull_output == *"Already up to date"* ]]; then
         echo "${GC}Grasscutter is already up to date${WC}"
         echo

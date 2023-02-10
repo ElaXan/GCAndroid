@@ -1,5 +1,5 @@
 edit_configjson_folderStructure() {
-    cd $HOME/Grasscutter || exit 1
+    cd $grasscutter_path || exit 1
     credit_hah
     Center_Text "Edit config.json [folderStructure]"
     getConfigJson "folderStructure"

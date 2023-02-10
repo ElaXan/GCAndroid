@@ -1,11 +1,11 @@
 getConfigJson() {
     getArguments=$1
     if [ $getArguments = "folderStructure" ]; then
-        folderStructure_resources=$(jq '.folderStructure.resources' config.json | sed "s/\"//g")
-        folderStructure_data=$(jq '.folderStructure.data' config.json | sed "s/\"//g")
-        folderStructure_packets=$(jq '.folderStructure.packets' config.json | sed "s/\"//g")
-        folderStructure_scripts=$(jq '.folderStructure.scripts' config.json | sed "s/\"//g")
-        folderStructure_plugins=$(jq '.folderStructure.plugins' config.json | sed "s/\"//g")
+        folderStructure_resources=$(jq -r '.folderStructure.resources' config.json)
+        folderStructure_data=$(jq -r '.folderStructure.data' config.json)
+        folderStructure_packets=$(jq -r '.folderStructure.packets' config.json)
+        folderStructure_scripts=$(jq -r '.folderStructure.scripts' config.json)
+        folderStructure_plugins=$(jq -r '.folderStructure.plugins' config.json)
     elif [ $getArguments = "Server" ]; then
         logCommands=$(jq '.server.logCommands' config.json 2>/dev/null)
         if [[ $logCommands = "true" ]]; then
@@ -26,11 +26,11 @@ getConfigJson() {
             runModeOut="${RC}Error${WC}"
         fi
     elif [ $getArguments = "Server.HTTP" ]; then
-        server_http_bindAddress=$(jq '.server.http.bindAddress' config.json 2>/dev/null | sed "s/\"//g")
+        server_http_bindAddress=$(jq -r '.server.http.bindAddress' config.json 2>/dev/null)
         if [[ $server_http_bindAddress == "" ]]; then
             server_http_bindAddress="${RC}Error${WC}"
         fi
-        server_http_accessAddress=$(jq '.server.http.accessAddress' config.json 2>/dev/null | sed "s/\"//g")
+        server_http_accessAddress=$(jq -r '.server.http.accessAddress' config.json 2>/dev/null)
         if [[ $server_http_accessAddress == "" ]]; then
             server_http_accessAddress="${RC}Error${WC}"
         fi
@@ -55,11 +55,11 @@ getConfigJson() {
         else
             server_http_encryption_useInRoutingOut="${RC}Error${WC}"
         fi
-        server_http_encryption_keystore=$(jq '.server.http.encryption.keystore' config.json 2>/dev/null | sed "s/\"//g")
+        server_http_encryption_keystore=$(jq -r '.server.http.encryption.keystore' config.json 2>/dev/null)
         if [[ $server_http_encryption_keystore == "" ]]; then
             server_http_encryption_keystore="${RC}Error${WC}"
         fi
-        server_http_encryption_keystorePassword=$(jq '.server.http.encryption.keystorePassword' config.json 2>/dev/null | sed "s/\"//g")
+        server_http_encryption_keystorePassword=$(jq -r '.server.http.encryption.keystorePassword' config.json 2>/dev/null)
         if [[ $server_http_encryption_keystorePassword == "" ]]; then
             server_http_encryption_keystorePassword="${RC}Error${WC}"
         fi
@@ -70,19 +70,19 @@ getConfigJson() {
         elif [[ $server_http_policies_cors_enabled == "true" ]]; then
             server_http_policies_cors_enabledOut="${GC}True${WC}"
         else
-            server_http_policies_cors_enabledOut="${RC}Errro${WC}"
+            server_http_policies_cors_enabledOut="${RC}Error${WC}"
         fi
     elif [ $getArguments = "server.http.files" ]; then
-        server_http_files_indexFile=$(jq '.server.http.files.indexFile' config.json 2>/dev/null | sed "s/\"//g")
+        server_http_files_indexFile=$(jq -r '.server.http.files.indexFile' config.json 2>/dev/null)
         if [[ $server_http_files_indexFile == "" ]]; then
             server_http_files_indexFile="${RC}Error${WC}"
         fi
-        server_http_files_errorFIle=$(jq '.server.http.files.errorFile' config.json 2>/dev/null | sed "s/\"//g")
+        server_http_files_errorFIle=$(jq -r '.server.http.files.errorFile' config.json 2>/dev/null)
         if [[ $server_http_files_errorFIle == "" ]]; then
             server_http_files_errorFIle="${RC}Error${WC}"
         fi
     elif [ $getArguments = "server.http.game" ]; then
-        server_game_bindAddress=$(jq '.server.game.bindAddress' config.json 2>/dev/null | sed "s/\"//g")
+        server_game_bindAddress=$(jq -r '.server.game.bindAddress' config.json 2>/dev/null)
         if [[ $server_game_bindAddress == "" ]]; then
             server_game_bindAddress="${RC}Error${WC}"
         fi
@@ -90,11 +90,11 @@ getConfigJson() {
         if [[ $server_game_bindPort == "" ]]; then
             server_game_bindPort="${RC}Error${WC}"
         fi
-        server_game_accessAddress=$(jq '.server.game.accessAddress' config.json 2>/dev/null | sed "s/\"//g")
+        server_game_accessAddress=$(jq -r '.server.game.accessAddress' config.json 2>/dev/null)
         if [[ $server_game_accessAddress == "" ]]; then
             server_game_accessAddress="${RC}Error${WC}"
         fi
-        server_game_accessPort=$(jq '.server.game.accessPort' config.json 2>/dev/null | sed "s/\"//g")
+        server_game_accessPort=$(jq -r '.server.game.accessPort' config.json 2>/dev/null)
         if [[ $server_game_accessPort == "" ]]; then
             server_game_accessPort="${RC}Error${WC}"
         fi
@@ -120,7 +120,7 @@ getConfigJson() {
         if [[ $server_game_kcpInterval == "" ]]; then
             server_game_kcpInterval="${RC}Error${WC}"
         fi
-        server_game_logPackets=$(jq '.server.game.logPackets' config.json 2>/dev/null | sed "s/\"//g")
+        server_game_logPackets=$(jq -r '.server.game.logPackets' config.json 2>/dev/null)
         if [[ $server_game_logPackets == "" ]]; then
             server_game_logPackets="${RC}Error${WC}"
         fi
@@ -246,33 +246,33 @@ getConfigJson() {
             server_game_gameOptions_rates_leyLines="${RC}Error${WC}"
         fi
     elif [ $getArguments == "databaseInfo.game" ]; then
-        databaseInfo_game_connectionUri=$(jq '.databaseInfo.game.connectionUri' config.json 2>/dev/null | sed 's/\"//g')
+        databaseInfo_game_connectionUri=$(jq -r '.databaseInfo.game.connectionUri' config.json 2>/dev/null)
         if [[ $databaseInfo_game_connectionUri == "" ]]; then
             databaseInfo_game_connectionUri="${RC}Error${WC}"
         fi
-        databaseInfo_game_collection=$(jq '.databaseInfo.game.collection' config.json 2>/dev/null | sed 's/\"//g')
+        databaseInfo_game_collection=$(jq -r '.databaseInfo.game.collection' config.json 2>/dev/null)
         if [[ $databaseInfo_game_collection == "" ]]; then
             databaseInfo_game_collection="${RC}Error${WC}"
         fi
     elif [ $getArguments == "databaseInfo.server" ]; then
-        databaseInfo_server_connectionUri=$(jq '.databaseInfo.server.connectionUri' config.json 2>/dev/null | sed 's/\"//g')
+        databaseInfo_server_connectionUri=$(jq -r '.databaseInfo.server.connectionUri' config.json 2>/dev/null)
         if [[ $databaseInfo_server_connectionUri == "" ]]; then
             databaseInfo_server_connectionUri="${RC}Error${WC}"
         fi
-        databaseInfo_server_collection=$(jq '.databaseInfo.server.collection' config.json 2>/dev/null | sed 's/\"//g')
+        databaseInfo_server_collection=$(jq -r '.databaseInfo.server.collection' config.json 2>/dev/null)
         if [[ $databaseInfo_server_collection == "" ]]; then
             databaseInfo_server_collection="${RC}Error${WC}"
         fi
     elif [ $getArguments == "language" ]; then
-        language_language=$(jq '.language.language' config.json 2>/dev/null | sed 's/\"//g')
+        language_language=$(jq -r '.language.language' config.json 2>/dev/null)
         if [[ $language_language == "" ]]; then
             language_language="${RC}Error${WC}"
         fi
-        language_fallback=$(jq '.language.fallback' config.json 2>/dev/null | sed 's/\"//g')
+        language_fallback=$(jq -r '.language.fallback' config.json 2>/dev/null)
         if [[ $language_fallback == "" ]]; then
             language_fallback="${RC}Error${WC}"
         fi
-        language_document=$(jq '.language.document' config.json 2>/dev/null | sed 's/\"//g')
+        language_document=$(jq -r '.language.document' config.json 2>/dev/null)
         if [[ $language_document == "" ]]; then
             language_document="${RC}Error${WC}"
         fi

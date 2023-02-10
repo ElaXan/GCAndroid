@@ -15,7 +15,6 @@ def download_file(url, path):
             progress_bar = tqdm(total=size, unit='iB', unit_scale=True)
             with open(path, 'wb') as f:
                 for data in r.iter_content(block_size):
-                    # progress_bar.update(len(data))
                     progress_bar.update(len(data))
                     f.write(data)
             exit(0)
