@@ -39,4 +39,4 @@ Download [Termux F-Droid](https://f-droid.org/repo/com.termux_118.apk)
 
 ## Install
 
-You can check our [Website](https://docs.elaxan.com/tutorial/GCAndroid/install)
+You can check our [Website](https://docs.elaxan.com/project/GCAndroid/install)
