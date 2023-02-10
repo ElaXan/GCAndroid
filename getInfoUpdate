@@ -1,7 +1,11 @@
-newVersionScript="3.5.2"
+newVersionScript="3.6"
 noteLatestVersion="${GC}This is latest Version (Ver : ${newVersionScript})${WC}"
 docker_zip_name="dockergs-f86738c.zip"
-if [[ $versionScript == "3.5" ]]; then
+if [[ $versionScript == "3.5.2" ]]; then
+    noteUpdate="1. Update for users who change Grasscutter repo links\n"
+    noteUpdate+="2. Add links docs for Error\n"
+    noteUpdate+="3. Improvement code"
+elif [[ $versionScript == "3.5" ]]; then
     noteUpdate="1. Fix bug\n"
 elif [[ $versionScript == "3.4" ]]; then
     noteUpdate="1. Add edit config,json with third-party app\n"

@@ -2,6 +2,12 @@
 
 Changelog for Grasscutter Android (GCAndroid)
 
+## 3.6
+
+1. Update for users who change Grasscutter repo links
+2. Add links docs for Error
+3. Improvement code
+
 ## 3.5.2
 
 1. Fix bug
