@@ -13,7 +13,7 @@ WC="$(printf '\033[0;37m')"
 GCAndroid=$HOME/.ElaXan/GCAndroid
 Path_Repojson=$GCAndroid/repo.json
 Path_Shell=$GCAndroid/gcandroid
-linksDocs="https://docs.elaxan.com/tutorial/GCAndroid"
+linksDocs="https://docs.elaxan.com/project/GCAndroid"
 line="====================================="
 
 isThisLinux=$(uname -o)
