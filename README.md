@@ -9,13 +9,9 @@ Join our [Discord](https://discord.gg/2TTSUZZ)
 
 # Note
 
-GCAndroid has finished updating and will not continue to program Shell Script, so I'm trying to switch to Python, because it's better than Shell Script. Too many files and I'm at a loss to fix bugs etc.
+Unfortunately, my phone has died again, and as a result, I have to stop working on this project. I do not plan to update it in the future, even though I have created new code using Python and optimized the existing code. It's worth remembering that GCAndroid is only a tool designed to install Grasscutter on your Android device.
 
-It will probably get an update 2 weeks later and start from 0 again, it will probably use arguments like `gcandroid --install grasscutter` or `gcandroid --run grasscutter`
-
-Unlike
-when you want to run Grasscutter
-Of course enter the command `gcandroid` and enter number `1`
+For those who are curious, I used a Poco X3 Pro for this project, which is an excellent phone. However, I recently had an issue with it, and I took it to the service center, but unfortunately, they were not able to fix it effectively. I had to pay over $50, but the problem still persists.
 
 ## About
 
