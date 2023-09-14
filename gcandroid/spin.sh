@@ -11,7 +11,7 @@ Loading() {
     index=0
     # :)
     echo
-
+    
     while kill -0 $pid 2> /dev/null; do
         if [ -f "$HOME/zerr.log" ]; then
             Loading_Text=$(tail -n 1 $HOME/zerr.log)
@@ -45,8 +45,8 @@ Loading() {
                     echo -e "\n${RC}Error Output${WC} : \n\n$errOutput${WC}"
                 fi
                 echo
-                echo "${GC}Exit Code${WC} : ${RC}$errCode${WC}"
-                echo "${GC}Exit Target${WC} : ${RC}$2${WC}"
+                echo "${GC}Output Code${WC} : ${RC}$errCode${WC}"
+                echo "${GC}Expected Output Code${WC} : ${RC}$2${WC}"
                 if [ $(cat $HOME/z.log) != $2 ]; then
                     echo -e "\n${YC}If this bug, please report it to Issues page${WC}"
                 fi
