@@ -1,16 +1,16 @@
 delete_avatars() {
-    mongod &> /dev/null &
+    mongod > /dev/null 2>&1 &
     credit_hah
     Center_Text "Delete Avatars"
     list_get=$(mongo --quiet grasscutter --eval "db.avatars.find()")
     echo "${YC}Enter b/B for back/cancel${CCB}"
     echo
     read -p "${CCB}Enter your UID : ${WC}" delete_mongodb_uid
-    if [[ $delete_mongodb_uid == "b" ]] || [[ $delete_mongodb_uid == "B" ]]; then
+    if [ "$delete_mongodb_uid" = "b" ] || [ "$delete_mongodb_uid" = "B" ]; then
         gcandroidTools
     fi
     read -p "${CCB}Enter Avatars ID : ${WC}" delete_mongodb_avatar_id
-    if [[ $delete_mongodb_avatar_id =~ [0-9] ]]; then
+    if [ "$delete_mongodb_avatar_id" =~ [0-9] ]; then
         Characters_Name=$(grep "$delete_mongodb_avatar_id" $Path_Shell/GM_Handbook/avatars.txt)
         delete_mongodb_avatar_id_results=$(echo -n "$Character_Name" | grep -i "$delete_mongodb_avatar_id" | awk -F ":" '{print $1}')
         if [ ${#delete_mongodb_avatar_id} -lt 8 ]; then
@@ -22,7 +22,7 @@ delete_avatars() {
             sleep 1s
             delete_avatars
         fi
-    elif [[ $delete_mongodb_avatar_id == "b" ]] || [[ $delete_mongodb_avatar_id == "B" ]]; then
+    elif [ $delete_mongodb_avatar_id = "b" ] || [ $delete_mongodb_avatar_id = "B" ]; then
         gcandroidTools
     fi
     echo

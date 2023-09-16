@@ -31,7 +31,6 @@ Install_Grasscutter_process() {
         fi
     fi
     Install_Grasscutter_process_grasscutter="compile"
-    Install_Grasscutter_Resources_Version="3.3"
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
         echo "${CCB}Backup Resources : ${GC}Yes${WC}"
@@ -69,6 +68,7 @@ Install_Grasscutter_process() {
         clear
         credit_hah
     fi
+    Run "pkg up" "Update package" "0" "Menu" "main_menu"
     Run "apt install openjdk-17 -y" "Install Java JDK 17" "0" "Menu" "main_menu"
     if [ -d "$grasscutter_path" ]; then
         Run "rm -rf $grasscutter_path" "Removing Folder $nameFolder" "0" "Menu" "main_menu"
@@ -100,6 +100,7 @@ Install_Grasscutter_process() {
     credit_hah
     if [[ $Install_Grasscutter_process_grasscutter = "compile" ]]; then
         chmod +x gradlew
+        export JAVA_HOME=/data/data/com.termux/files/usr/opt/openjdk
         Run "./gradlew jar" "Compiling grasscutter.jar" "0" "Menu" "main_menu"
         mv grasscutter*.jar grasscutter.jar
     fi
@@ -108,11 +109,11 @@ Install_Grasscutter_process() {
     clear
     credit_hah
     if [[ $Backup_Resources == "1" ]]; then
-        if [ -d $grasscutter_path/resources ]; then
-            rm -rf $grasscutter_path/resources
+        if [ -d "$grasscutter_path"/resources ]; then
+            rm -rf "$grasscutter_path"/resources
         fi
-        if test -f $HOME/resourcesBackupGCAndroid.zip && test -d $HOME/resourcesBackupGCAndroid ; then
-            mv $HOME/resourcesBackupGCAndroid.zip $grasscutter_path/resourcesGCAndroid.zip
+        if test -f "$HOME"/resourcesBackupGCAndroid.zip && test -d $HOME/resourcesBackupGCAndroid ; then
+            mv "$HOME"/resourcesBackupGCAndroid.zip $grasscutter_path/resourcesGCAndroid.zip
             Install_Grasscutter_process_grasscutter_extract="y"
             mv $HOME/resourcesBackupGCAndroid $grasscutter_path/resources
         else
@@ -182,13 +183,55 @@ Download_Resources() {
         echo "${GC}Success Download Resources${WC}"
         echo ""
         echo -n "Press enter for back to Menu!"
-        read
+        read -r
         main_menu
     else
         echo "${GC}Skip Download Resources${WC}"
         sleep 1s
         main_menu
     fi
+}
+
+Install_Grasscutter_Jar() {
+    credit_hah
+    Center_Text "Install Grasscutter Jar"
+    if [ ! -d  "$grasscutter_path" ]; then
+        echo "${RC}Error${WC}: Folder $grasscutter_path not found"
+        read -r
+        main_menu
+    fi
+    if [ -f "$wherethegrassss" ]; then
+        echo "${RC}Look like grasscutter.jar exist${WC}"
+        printf "Do you want to delete old Grasscutter and continue? (y/N) : "
+        read -r Install_Grasscutter_Jar_process
+        if [[ $Install_Grasscutter_Jar_process == "y" ]] || [[ $Install_Grasscutter_Jar_process == "Y" ]]; then
+            echo "${GC}Continue...${WC}"
+            rm -rf "$wherethegrassss"
+        else
+            echo "${RC}Cancel...${WC}"
+            sleep 1s
+            main_menu
+        fi
+    fi
+    cd "$grasscutter_path" || sleep 1s && main_menu
+    sleep 1s
+    Run "pkg up -y" "Update package" "0" "Menu" "main_menu"
+    Run "apt install openjdk-17 -y" "Install Java JDK 17" "0" "Menu" "main_menu"
+    linkDownloadJar=$(jq -r .JarDownload $Path_Repojson)
+    if [ -z "$linkDownloadJar" ]; then
+        echo "${RC}Error${WC}: linkDownloadJar is not set"
+        read
+        main_menu
+    fi
+    if ! command -v wget > /dev/null 2>&1; then
+        Run "pkg install wget -y" "Install wget command" "0" "Menu" "main_menu"
+    fi
+    echo "${GC}Download grasscutter.jar from ${linkDownloadJar}${WC}"
+    Run "wget $linkDownloadJar -O grasscutter.jar" "Download Grasscutter" "0" "Menu" "main_menu"
+    echo
+    printf "Press enter to go back to Menu"
+    read -r
+    main_menu
 }
 
 Download_Grasscutter() {

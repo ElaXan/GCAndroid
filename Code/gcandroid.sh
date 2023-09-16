@@ -102,12 +102,14 @@ echo $line
 if [ ! -f $Path_Repojson ]; then
     echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
+    \"JarDownload\": \"https://github.com/Grasscutters/Grasscutter/releases/download/v1.6.0/grasscutter.jar\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
 }" >$Path_Repojson
 else
     if [ ! -s $Path_Repojson ]; then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
+    \"JarDownload\": \"https://github.com/Grasscutters/Grasscutter/releases/download/v1.6.0/grasscutter.jar\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
 }" >$Path_Repojson
         echo "${RC}Error${WC} : repo.json is empty! We have fixed it for you!"
@@ -116,6 +118,7 @@ else
     if ! (jq . $Path_Repojson &>/dev/null); then
         echo "{
     \"Grasscutter\": \"https://github.com/Grasscutters/Grasscutter.git\",
+    \"JarDownload\": \"https://github.com/Grasscutters/Grasscutter/releases/download/v1.6.0/grasscutter.jar\",
     \"Resources\": \"https://gitlab.com/YuukiPS/GC-Resources/-/archive/3.4/GC-Resources-3.4.zip\"
 }" >$Path_Repojson
         echo "${RC}Error${WC} : repo.json is broken! We have fixed it for you to default!"
@@ -410,15 +413,17 @@ Docker() {
 Install_Grasscutter_Menu() {
     credit_hah
     Center_Text "Install $nameFolder"
-    echo "1. ${CCB}Compile from $namePemotongJembud${WC}"
-    echo "2. ${CCB}Download from Github (Docker)${WC}"
+    echo "1. ${CCB}Compile from $(jq -r .Grasscutter "$Path_Repojson")${WC}"
+    echo "2. ${CCB}Download .jar only${WC}"
+    echo "3. ${CCB}Download from GitHub (Docker)${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
     read Install_Grasscutter_Menu_input
     case $Install_Grasscutter_Menu_input in
     "1") Install_Grasscutter ;;
-    "2") Docker ;;
+    "2") Install_Grasscutter_Jar ;;
+    "3") Docker ;;
     "0") Grasscutter_Menu ;;
     *)
         echo "${RC}Wrong Input!${WC}"
@@ -646,7 +651,8 @@ settingsMenu() {
     Center_Text "Settings Menu"
     echo "1. ${CCB}Grasscutter Repo${WC}"
     echo "2. ${CCB}Resources Repo${WC}"
-    echo "3. ${YC}Reset settings.json${WC}"
+    echo "3. ${CCB}grasscutter.jar Download${WC}"
+    echo "4. ${YC}Reset settings.json${WC}"
     echo "0. ${RC}Back${WC}"
     echo
     echo -n "Enter input : "
@@ -654,7 +660,8 @@ settingsMenu() {
     case $about_us_input in
     "1") GrasscutterRepo ;;
     "2") ResourcesRepo ;;
-    "3") ResetSettingsJSON ;;
+    "3") JarDownload ;;
+    "4") ResetSettingsJSON ;;
     "0") main_menu ;;
     *)
         echo "Wrong input!${WC}"
@@ -748,7 +755,7 @@ elif [[ $versionScript < $newVersionScript ]]; then
         exit 1
         ;;
     esac
-elif [[ $versionScript = $newVersionScript ]]; then
+elif [ $versionScript = "$newVersionScript" ]; then
     note_credit="$noteLatestVersion"
 else
     note_credit="${RC}Unknown Version${WC}"
