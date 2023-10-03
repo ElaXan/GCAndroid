@@ -33,7 +33,6 @@ generateHandbook() {
         Grasscutter_Tools
     fi
     cd $grasscutter_path || exit 1
-    mongod &>/dev/null &
     local command_jar="java -jar grasscutter.jar"  
     Run "$command_jar -dump=avatars,EN" "Dump Avatars with language EN" "0" "Menu" "main_menu"
     Run "$command_jar -dump=items,EN" "Dump Items with language EN" "0" "Menu" "main_menu"
