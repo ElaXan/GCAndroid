@@ -1,0 +1,51 @@
+{
+  "name": "gcandroid",
+  "version": "3.7.0",
+  "description": "Run Grasscutter on your Android phone",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc && npm i -g ./"
+  },
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Score-Inc/GCAndroid"
+  },
+  "author": {
+    "name": "ElaXan",
+    "email": "zero@elaxan.com",
+    "url": "https://elaxan.com"
+  },
+  "license": "GPL-3.0",
+  "private": true,
+  "bin": {
+    "gcandroid": "dist/bin/gcandroid.js"
+  },
+  "keywords": [
+    "grasscutter",
+    "android"
+  ],
+  "contributors": [],
+  "bugs": {
+    "url": "https://github.com/Score-Inc/GCAndroid/issues"
+  },
+  "homepage": "https://github.com/Score-Inc/GCAndroid",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.7.0",
+    "@types/unzipper": "^0.10.7",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@listr2/prompt-adapter-enquirer": "^1.0.1",
+    "axios": "^1.5.1",
+    "commander": "^11.0.0",
+    "enquirer": "^2.4.1",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "iconv-lite": "^0.6.3",
+    "listr2": "^7.0.1",
+    "rimraf": "^5.0.5",
+    "unzipper": "^0.10.14"
+  }
+}

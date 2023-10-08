@@ -3,3 +3,11 @@ import.sh
 
 /.idea
 /.vscode
+/node_modules
+/package-lock.json
+/*.ts
+!/index.ts
+/dist/*.js
+!/dist/index.js
+/yarn-error.log
+/yarn.lock
