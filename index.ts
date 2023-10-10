@@ -1,10 +1,10 @@
 import { program } from 'commander';
-import install from './src/Install/grasscutter';
+import Install from './src/Grasscutters/install';
 import run from './src/run'
 import { handleUpdate } from './src/Utils'
 import axios from 'axios';
 
-export const gcandroidVersion = '3.7.0'
+export const polycutterVersion = '1.0.0'
 
 export interface APIResponse {
     version: string
@@ -12,21 +12,27 @@ export interface APIResponse {
     changelog: string[]
 }
 
-(async () => {
+export interface InstallGrasscutter {
+    repository?: string;
+    resources?: string;
+}
 
-})()
-
-program.version(gcandroidVersion);
+program.version(polycutterVersion);
 
 program.command('install')
+    .option('-r, --repository [url]', 'Set a custom clone repository (Default: https://github.com/Grasscutters/Grasscutter)')
+    .option('-res, --resources [url]', 'Set custom resources for Grasscutters (Default: https://gitlab.com/YuukiPS/GC-Resources/-/archive/4.0/GC-Resources-4.0.zip)')
     .description('Install Grasscutter')
-    .action(async () => {
-        await install()
+    .action(async (options: InstallGrasscutter) => {
+        const install = new Install(options)
+        await install.run();
     })
+    .addHelpCommand('-r', 'This option will clone the repository as you provided. Example: `polycutter install -r https://github.com/Grasscutters/Grasscutter` It will clone the repository from https://github.com/Grasscutters/Grasscutter.')
+    .addHelpCommand('-res', 'This option allows you to set custom resources for Grasscutters. Example: `polycutter install -res https://example.com/custom-resources.zip` It will use the specified resources for the installation (Default: https://gitlab.com/YuukiPS/GC-Resources/-/archive/4.0/GC-Resources-4.0.zip).');
 
 program.command('run')
-    .option('-p, --port <port>', 'Change/Custom port to run Grasscutter')
-    .option('--path <path>', 'Path to grasscutter.jar')
+    .option('-p, --port [port]', 'Change/Custom port to run Grasscutter')
+    .option('--path [path]', 'Path to grasscutter.jar')
     .description('Run Grasscutter')
     .action(async (str) => {
         const getPath = str.path;
@@ -35,14 +41,14 @@ program.command('run')
     })
 
 program.command('update')
-    .description('Update GCAndroid')
+    .description('Update Polycutter')
     .action(async () => {
         const checkUpdate = 'https://gcandroid.elaxan.com/api/version'
         const response: APIResponse[] = await axios.post(checkUpdate, {}, {
             timeout: 10000
         }).then((res) => res.data)
         const newVersion = response[0];
-        if (parseInt(newVersion.version) > parseInt(gcandroidVersion)) {
+        if (parseInt(newVersion.version) > parseInt(polycutterVersion)) {
             console.log('Update available')
         }
         await handleUpdate(newVersion);

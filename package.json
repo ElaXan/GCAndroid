@@ -1,15 +1,17 @@
 {
-  "name": "gcandroid",
-  "version": "3.7.0",
+  "name": "polycutter",
+  "version": "1.0.0",
   "description": "Run Grasscutter on your Android phone",
   "scripts": {
     "start": "ts-node index.ts",
-    "build": "tsc && npm i -g ./"
+    "compile": "tsc",
+    "prepack": "npm run compile",
+    "build": "npm pack && npm i -g ./polycutter*.tgz"
   },
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Score-Inc/GCAndroid"
+    "url": "git://github.com/Score-Inc/Polycutter.git"
   },
   "author": {
     "name": "ElaXan",
@@ -17,19 +19,28 @@
     "url": "https://elaxan.com"
   },
   "license": "GPL-3.0",
-  "private": true,
+  "private": false,
   "bin": {
-    "gcandroid": "dist/bin/gcandroid.js"
+    "polycutter": "dist/bin/polycutter.js"
   },
   "keywords": [
     "grasscutter",
-    "android"
+    "android",
+    "typescript"
   ],
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/Score-Inc/GCAndroid/issues"
+    "url": "https://github.com/Score-Inc/Polycutter/issues"
   },
-  "homepage": "https://github.com/Score-Inc/GCAndroid",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "dist/**/*.json",
+    "!*.ts",
+    "!*.d.ts",
+    "!tsconfig.json"
+  ],
+  "homepage": "https://github.com/Score-Inc/Polycutter",
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",
     "@types/node": "^20.7.0",
@@ -45,6 +56,7 @@
     "glob": "^10.3.10",
     "iconv-lite": "^0.6.3",
     "listr2": "^7.0.1",
+    "mongodb": "^6.1.0",
     "rimraf": "^5.0.5",
     "unzipper": "^0.10.14"
   }

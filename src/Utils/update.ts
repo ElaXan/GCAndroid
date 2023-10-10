@@ -19,18 +19,18 @@ export default async function handleUpdate(body: APIResponse) {
             title: 'Getting you on-board.',
             task: async (ctx, task) => {
                 ctx.update = await task.prompt(ListrEnquirerPromptAdapter).run({
-                    message: 'Do you want to update GCAndroid?',
+                    message: 'Do you want to update Polycutter?',
                     type: 'Confirm',
                     initial: true
                 })
             }
         },
         {
-            title: 'Updating GCAndroid',
+            title: 'Updating Polycutter',
             skip: (ctx) => !ctx.update,
             task: async (_, task) => {
                 return new Promise<void>((resolve, reject) => {
-                    shell('npm i -g https://github.com/Score-Inc/GCAndroid', 0, (data) => {
+                    shell('npm i -g https://github.com/Score-Inc/Polycutter', 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }

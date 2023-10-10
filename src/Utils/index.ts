@@ -4,3 +4,4 @@ export { default as Files } from './file';
 export { default as Config } from './config';
 export { default as JSONUtility } from './Json';
 export { default as handleUpdate } from './update';
+export { default as Database } from './db';

@@ -1,6 +1,7 @@
 test.sh
 import.sh
 
+/dist
 /.idea
 /.vscode
 /node_modules
@@ -11,3 +12,4 @@ import.sh
 !/dist/index.js
 /yarn-error.log
 /yarn.lock
+/*.tgz

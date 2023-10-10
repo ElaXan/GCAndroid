@@ -4,29 +4,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class Config {
     static tmpPath() {
         if (process.platform === 'win32') {
-            return `${process.env.TMP}/GCAndroid`;
+            return `${process.env.TMP}/Polycutter`;
         }
         else if (process.platform === 'android') {
-            return `${process.env.PREFIX}/tmp/GCAndroid`;
+            return `${process.env.PREFIX}/tmp/Polycutter`;
         }
         else {
-            return '/tmp/GCAndroid';
+            return '/tmp/Polycutter';
         }
     }
 }
 _a = Config;
 /**
- * Returns the path to the GCAndroid directory based on the current platform.
+ * Returns the path to the Polycutter directory based on the current platform.
  *
- * @return {string} The path to the GCAndroid directory.
+ * @return {string} The path to the Polycutter directory.
  */
-Config.gcandroidPath = process.platform === 'win32' ? `${process.env.LOCALAPPDATA}/GCAndroid` : `${process.env.HOME}/.GCAndroid`;
+Config.polycutterPath = process.platform === 'win32' ? `${process.env.LOCALAPPDATA}/Polycutter` : `${process.env.HOME}/.Polycutter`;
 /**
  * Returns the path to the config.json file.
  *
  * @return {string} The path to the config.json file.
  */
-Config.config = `${_a.gcandroidPath}/config.json`;
+Config.config = `${_a.polycutterPath}/config.json`;
 /**
  * Returns the path to the temporary directory for the installation process.
  *

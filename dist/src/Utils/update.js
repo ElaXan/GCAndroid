@@ -28,18 +28,18 @@ function handleUpdate(body) {
                 title: 'Getting you on-board.',
                 task: (ctx, task) => __awaiter(this, void 0, void 0, function* () {
                     ctx.update = yield task.prompt(prompt_adapter_enquirer_1.ListrEnquirerPromptAdapter).run({
-                        message: 'Do you want to update GCAndroid?',
+                        message: 'Do you want to update Polycutter?',
                         type: 'Confirm',
                         initial: true
                     });
                 })
             },
             {
-                title: 'Updating GCAndroid',
+                title: 'Updating Polycutter',
                 skip: (ctx) => !ctx.update,
                 task: (_, task) => __awaiter(this, void 0, void 0, function* () {
                     return new Promise((resolve, reject) => {
-                        (0, shell_1.shell)('npm i -g https://github.com/Score-Inc/GCAndroid', 0, (data) => {
+                        (0, shell_1.shell)('npm i -g https://github.com/Score-Inc/Polycutter', 0, (data) => {
                             if (data !== null) {
                                 task.output = `${data}`;
                             }
