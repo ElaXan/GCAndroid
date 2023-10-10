@@ -19,7 +19,9 @@ export default async function(pathExecuteJar?: string, port?: number) {
         throw new Error(`${pathJar} does not exist.`)
     }
 
-    if (!await isCommandAvailable('java')) {
+
+    const checkJavaCommand = await isCommandAvailable('java')
+    if (!checkJavaCommand) {
         throw new Error('Java command is not found. Is java installed?')
     }
 
