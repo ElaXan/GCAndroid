@@ -30,7 +30,7 @@ export default async function handleUpdate(body: APIResponse) {
             skip: (ctx) => !ctx.update,
             task: async (_, task) => {
                 return new Promise<void>((resolve, reject) => {
-                    shell('npm i -g https://github.com/Score-Inc/Polycutter', 0, (data) => {
+                    shell('npm i -g polycutter', 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }
