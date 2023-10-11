@@ -12,6 +12,8 @@ Join our [Discord](https://discord.gg/2TTSUZZ)
 
 ## About
 
+This is still under development, and may will return error while processing installing Grasscutter.
+
 ### What Can You Do with a Localhost Server?
 
 * The lowest Ping possible.
