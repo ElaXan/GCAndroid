@@ -45,7 +45,14 @@
     "@types/fs-extra": "^11.0.2",
     "@types/node": "^20.7.0",
     "@types/unzipper": "^0.10.7",
-    "typescript": "^5.2.2"
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^39.1.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "*"
   },
   "dependencies": {
     "@listr2/prompt-adapter-enquirer": "^1.0.1",
