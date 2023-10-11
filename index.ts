@@ -2,15 +2,8 @@ import { program } from 'commander';
 import Install from './src/Grasscutters/install';
 import run from './src/run'
 import { handleUpdate } from './src/Utils'
-import axios from 'axios';
 
-export const polycutterVersion = '1.0.0'
-
-export interface APIResponse {
-    version: string
-    description: string;
-    changelog: string[]
-}
+export const polycutterVersion = '1.0.1'
 
 export interface InstallGrasscutter {
     repository?: string;
@@ -43,15 +36,7 @@ program.command('run')
 program.command('update')
     .description('Update Polycutter')
     .action(async () => {
-        const checkUpdate = 'https://gcandroid.elaxan.com/api/version'
-        const response: APIResponse[] = await axios.post(checkUpdate, {}, {
-            timeout: 10000
-        }).then((res) => res.data)
-        const newVersion = response[0];
-        if (parseInt(newVersion.version) > parseInt(polycutterVersion)) {
-            console.log('Update available')
-        }
-        await handleUpdate(newVersion);
+        await handleUpdate();
     })
 
 program.parse(process.argv)

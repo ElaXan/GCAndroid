@@ -1,18 +1,145 @@
 import { Listr } from "listr2";
 import { ListrEnquirerPromptAdapter } from "@listr2/prompt-adapter-enquirer";
-import { APIResponse } from '../../'
+import { polycutterVersion } from '../../'
 import { shell } from "./shell";
+import axios from 'axios';
 
-export default async function handleUpdate(body: APIResponse) {
-    console.log('Update available')
-    console.log(`Description: ${body.description}`)
-    console.log(`Version: ${body.version}`)
-    if (body.changelog.length > 0) {
-        console.log('Changelog:')
-        body.changelog.forEach((item) => {
-            console.log('- ' + item)
-        })
+interface PolycutterRegistry {
+    _id: string;
+    _rev: string;
+    name: string;
+    "dist-tags": DistTags;
+    versions: { [key: string]: Version };
+    time: { [key: string]: string };
+    maintainers: Maintainer[];
+    description: string;
+    homepage: string;
+    keywords: string[];
+    repository: Repository;
+    contributors: any[];
+    author: Author;
+    bugs: Bugs;
+    license: string;
+    readme: string;
+    readmeFilename: string;
+}
+
+interface Author {
+    name: string;
+    email: string;
+    url: string;
+}
+
+interface Bugs {
+    url: string;
+}
+
+interface DistTags {
+    latest: string;
+}
+
+interface Maintainer {
+    name: string;
+    email: string;
+}
+
+interface Repository {
+    type: string;
+    url: string;
+}
+
+interface Version {
+    name: string;
+    version: string;
+    description: string;
+    scripts: Scripts;
+    main: string;
+    repository: Repository;
+    author: Author;
+    license: string;
+    private: boolean;
+    bin: Bin;
+    keywords: string[];
+    contributors: any[];
+    bugs: Bugs;
+    homepage: string;
+    devDependencies: DevDependencies;
+    dependencies: { [key: string]: string };
+    _id: string;
+    _integrity: string;
+    _resolved: string;
+    _from: string;
+    _nodeVersion: string;
+    _npmVersion: string;
+    dist: Dist;
+    _npmUser: Maintainer;
+    directories: Directories;
+    maintainers: Maintainer[];
+    _npmOperationalInternal: NpmOperationalInternal;
+    _hasShrinkwrap: boolean;
+}
+
+interface NpmOperationalInternal {
+    host: string;
+    tmp: string;
+}
+
+interface Bin {
+    polycutter: string;
+}
+
+interface DevDependencies {
+    "@types/fs-extra": string;
+    "@types/node": string;
+    "@types/unzipper": string;
+    typescript: string;
+}
+
+interface Directories {
+}
+
+interface Dist {
+    integrity: string;
+    shasum: string;
+    tarball: string;
+    fileCount: number;
+    unpackedSize: number;
+    signatures: Signature[];
+}
+
+interface Signature {
+    keyid: string;
+    sig: string;
+}
+
+interface Scripts {
+    start: string;
+    compile: string;
+    prepack: string;
+    build: string;
+}
+
+
+export default async function handleUpdate() {
+    console.log('Checking update')
+    const response: PolycutterRegistry = await axios.get('https://registry.npmjs.org/polycutter', {
+        timeout: 5000
+    }).then((res) => res.data).catch((err) => {
+        console.error(err)
+        throw err
+    })
+
+    const polycutterParts = polycutterVersion.split('.').map(Number);
+    const latestVersion = response["dist-tags"].latest.split('.').map(Number);
+
+    const isHigherOrEqual = polycutterParts.every((value, index) => value >= latestVersion[index])
+
+    if (isHigherOrEqual) {
+        console.log(`Looks like there is no update for Polycutter.\nCurrent Version: ${polycutterVersion}\nLatest version: ${response["dist-tags"].latest}`)
+        return
     }
+
+    console.log(`There is update to version ${response["dist-tags"].latest}`)
 
     new Listr([
         {
@@ -30,7 +157,7 @@ export default async function handleUpdate(body: APIResponse) {
             skip: (ctx) => !ctx.update,
             task: async (_, task) => {
                 return new Promise<void>((resolve, reject) => {
-                    shell('npm i -g polycutter', 0, (data) => {
+                    shell('npm update -g polycutter', 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }
