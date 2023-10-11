@@ -2,8 +2,8 @@ import {
     DeleteResult,
     Filter,
     MongoClient,
+    MongoClientOptions,
     OptionalId,
-    ServerApiVersion,
     UpdateFilter,
     UpdateResult,
     WithId,
@@ -14,44 +14,48 @@ class DatabaseConnection {
     private uri: string;
     private dbName: string;
 
-    constructor(options: { uri: string; dbName: string }) { 
+    constructor(options: { uri: string; dbName: string }) {
         this.uri = options.uri;
         this.dbName = options.dbName;
     }
 
     /**
-     * Connects to the database.
-     * @returns {Promise<{ client: MongoClient; db: Db }>} The client and database.
-     * @throws {Error} Failed connecting to the database.
-     * @memberof DatabaseConnection
-     * @async
-     * @inner
-     * @function connect
-     * @instance
-     * @private
+     * Establishes a connection to the MongoDB database.
+     * @param {MongoClientOptions} [options] - Optional configuration for the MongoDB client.
+     * @returns {Promise<{ client: MongoClient, db: Db }>} A promise that resolves to an object containing the MongoClient and the connected database (Db).
+     * @throws {Error} If the connection to the database fails.
+     *
      * @example
-     * const { client, db } = await connect();
-     * const collection = db.collection('collectionName');
-     * const result = await collection.insertOne({ name: 'John' });
-     * console.log(result);
+     * // Creating a new DatabaseConnection instance
+     * const database = new DatabaseConnection({
+     *   uri: 'mongodb://localhost:27017',
+     *   dbName: 'polycutter'
+     * });
+     *
+     * // Connecting to the database
+     * const { client, db } = await database.connect({
+     *   connectTimeoutMS: 1000
+     * });
+     *
+     * // Accessing a collection and performing database operations
+     * const collection = db.collection('nameCollection');
+     * const insertResult = await collection.insertOne({
+     *   name: 'ElaXan',
+     *   sex: 'male'
+     * });
      */
-    async connect() {
+    async connect(options?: MongoClientOptions) {
         try {
-            const configuration = new MongoClient(this.uri, {
-                serverApi: {
-                    version: ServerApiVersion.v1,
-                    strict: true,
-                    deprecationErrors: true,
-                },
-            });
+            const configuration = new MongoClient(this.uri, options);
             const client = await configuration.connect();
             const db = client.db(this.dbName);
 
             return { client, db };
         } catch (error) {
-            throw new Error(`Failed connecting to the database.\n${error}`);
+            throw new Error(`Failed to establish a database connection.\n${error}`);
         }
     }
+
 
     /**
      * @param collectionName Name of the collection to insert the document in
