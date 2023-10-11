@@ -26,11 +26,15 @@ program.command('install')
 program.command('run')
     .option('-p, --port [port]', 'Change/Custom port to run Grasscutter')
     .option('--path [path]', 'Path to grasscutter.jar')
+    .option('-d, --mongodb', 'Run mongodb')
+    .option('-sc, --skip-check', 'Skip check mongodb is running')
     .description('Run Grasscutter')
     .action(async (str) => {
         const getPath = str.path;
         const port = parseInt(str.port)
-        await run(getPath, port)
+        const mongodb: boolean = str.mongodb;
+        const skipCheck: boolean = str.skipCheck;
+        await run(getPath, port, mongodb, skipCheck)
     })
 
 program.command('update')
