@@ -1,7 +1,7 @@
 import { Listr, ListrTask, PRESET_TIMER } from "listr2";
 import { InstallGrasscutter } from '../..'
 import fs from 'fs';
-import { Config, Download, Files, JSONUtility, isCommandAvailable, shell } from "../Utils";
+import { Config, Download, Files, JSONUtility, Logger, isCommandAvailable, shell } from "../Utils";
 import { ListrEnquirerPromptAdapter } from "@listr2/prompt-adapter-enquirer";
 
 interface Platform {
@@ -68,6 +68,7 @@ export default class Install {
 
     private distributions(): Platform | undefined {
         try {
+            if (process.platform !== 'linux') return
             const osReleaseContents = fs.readFileSync('/etc/os-release', 'utf-8');
             const lines = osReleaseContents.split('\n');
 
@@ -113,7 +114,7 @@ export default class Install {
             title: 'Install packages',
             task: async (ctx, task) => {
                 const listPackages: string[] = []
-                let command = process.platform === 'android' ? 'pkg install' : 'sudo apt-get install'
+                const command = process.platform === 'android' ? 'pkg install' : 'sudo apt-get install'
                 if (process.platform === 'linux') {
                     listPackages.push(
                         'git',
@@ -130,7 +131,7 @@ export default class Install {
                     )
                 }
                 return new Promise<void>(async (resolve, reject) => {
-                    for (var i = 0; i < listPackages.length; i++) {
+                    for (let i = 0; i < listPackages.length; i++) {
                         if (!ctx.mongodb && listPackages[i] === 'tur-repo' || listPackages[i] === 'mongodb') continue
                         task.title = `Installing ${listPackages[i]}`
                         await shell(`${command} ${listPackages[i]} -y`, 0, (data) => {
@@ -148,7 +149,7 @@ export default class Install {
 
         const installMongodbLinux: ListrTask = {
             title: 'Installing MongoDB (Linux)',
-            skip: (ctx): boolean => process.platform !== 'linux' || ctx.mongodb === 'false',
+            skip: (ctx): boolean => ctx.mongodb === 'false',
             exitOnError: true,
             rendererOptions: {
                 persistentOutput: true
@@ -175,12 +176,10 @@ export default class Install {
                         title: 'Importing MongoDB Server 7.0 GPG Key for Secure Installation',
                         task: async (_, task) => {
                             return new Promise<void>((resolve, reject) => {
-                                let getData = ''
                                 shell(`curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
                                 sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
                                 --dearmor`, 0, (data) => {
                                     if (data !== null) {
-                                        getData += data
                                         task.output = `${data}`
                                     }
                                 }).then(() => {
@@ -296,6 +295,21 @@ export default class Install {
                                 })
                             })
                         }
+                    },
+                    {
+                        title: 'Create directory /data/db',
+                        exitOnError: false,
+                        task: (_, task) => {
+                            try {
+                                if (fs.existsSync('/data/db')) {
+                                    task.skip('/data/db already exists')
+                                    return
+                                }
+                                fs.promises.chmod('/data/db', 0o777)
+                            } catch (error) {
+                                Logger.error(error)
+                            }
+                        }
                     }
                 ], {
                     concurrent: false,
@@ -307,7 +321,7 @@ export default class Install {
             skip: (ctx): boolean => !ctx.mongodb,
             task: (_, task) => {
                 return new Promise<void>((resolve, reject) => {
-                    shell('sudo apt install mongodb -y',0, (data) => {
+                    shell('sudo apt install mongodb -y', 0, (data) => {
                         if (data) {
                             task.output = `${data}`
                         }
@@ -325,12 +339,15 @@ export default class Install {
             installPackage,
         ]
 
-        if (process.platform === 'linux' && this.distributions()?.ID === 'ubuntu' || this.distributions()?.ID === 'debian') {
-            addToTask.push(installMongodbLinux)
-        }
+        const platform = process.platform;
+        const distribution = this.distributions()?.ID;
 
-        if (process.platform === 'linux' && this.distributions()?.ID === 'kali') {
-            addToTask.push(installMongodbKali)
+        if (platform === 'linux') {
+            if (distribution === 'ubuntu' || distribution === 'debian') {
+                addToTask.push(installMongodbLinux);
+            } else if (distribution === 'kali') {
+                addToTask.push(installMongodbKali);
+            }
         }
 
         const main: ListrTask = {
@@ -568,37 +585,15 @@ export default class Install {
         task: async (_, task) =>
             task.newListr([
                 {
-                    title: 'Remove Resources.zip',
+                    title: 'Remove ' + Config.tmp,
                     task: async (_, task) => {
                         return new Promise<void>(async (resolve, reject) => {
                             try {
-                                const resourcesPath = Config.tmp + '/Resources.zip'
-                                if (!fs.existsSync(resourcesPath)) {
-                                    task.skip(`Remove Resources.zip: ${resourcesPath} not found, skip...`)
-                                    resolve()
-                                    return
+                                if (!fs.existsSync(Config.tmp)) {
+                                    task.skip('Folder ' + Config.tmp + ' does not exist')
+                                } else {
+                                    Files.remove(Config.tmp)
                                 }
-                                await Files.remove(resourcesPath)
-                                resolve()
-                            } catch (error) {
-                                reject(error)
-                            }
-                        })
-                    }
-                },
-                {
-                    title: 'Remove ExtractResources directory',
-                    task: async (_, task) => {
-                        return new Promise<void>(async (resolve, reject) => {
-                            try {
-                                const extractResourcesPath = Config.tmp + '/ExtractResources'
-                                if (!fs.existsSync(extractResourcesPath)) {
-                                    task.skip(`Remove ExtractResources directory: ${extractResourcesPath} not found. Skip`)
-                                    resolve()
-                                    return
-                                }
-                                task.output = 'Removing ExtractResources'
-                                await Files.remove(`${Config.tmp}/ExtractResources`)
                                 resolve()
                             } catch (error) {
                                 reject(error)
