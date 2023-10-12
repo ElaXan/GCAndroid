@@ -1,6 +1,6 @@
 import { program } from 'commander';
 import Install from './src/Grasscutters/install';
-import run from './src/run'
+import run from './src/Grasscutters/run'
 import { handleUpdate } from './src/Utils'
 
 export const polycutterVersion = '1.0.1'

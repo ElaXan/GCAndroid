@@ -1,10 +1,10 @@
 import { spawn } from "child_process";
-import { Config, isCommandAvailable, JSONUtility, shell } from './Utils'
+import { Config, isCommandAvailable, JSONUtility } from '../Utils'
 import fs from 'fs';
 import path from 'path'
-import { Database as MongoDB } from "./Utils";
+import { Database as MongoDB } from "../Utils";
 import { ServerApiVersion } from "mongodb";
-import { Logger } from "./Utils";
+import { Logger } from "../Utils";
 
 export default async function (pathExecuteJar?: string, port?: number, mongodb?: boolean, skipCheckMongodb?: boolean) {
     let pathJar
@@ -36,7 +36,23 @@ export default async function (pathExecuteJar?: string, port?: number, mongodb?:
             throw new Error('MongoDB command is not found. Is mongodb-server installed?.')
         }
         Logger.info('Running mongodb')
-        shell('mongod > /dev/null 2>&1 &', 0, () => {})
+        const command = process.platform === 'linux' ? 'sudo mongod' : 'mongod'
+        const child = spawn(command, {
+            detached: true,
+            stdio: 'ignore',
+            shell: true
+        })
+
+        child.on('exit', (code) => {
+            if (code !== 0) {
+                Logger.warn('Looks like mongodb is failed to start. Code returned:', code)
+            }
+        })
+
+        child.on('error', (err) => {
+            Logger.error(err)
+            process.exit(1)
+        })
     }
 
     Logger.info('Changing directory to', path.dirname(pathJar));
@@ -56,7 +72,7 @@ export default async function (pathExecuteJar?: string, port?: number, mongodb?:
             })
             Logger.info('Database is running')
         } catch (error) {
-            Logger.error('MongoDB is not running. Try `-d` to run mongodb')
+            Logger.error('MongoDB is not running. Try `-d` to run mongodb or `-sc` to skip check mongodb')
             throw error;
         }
     }
