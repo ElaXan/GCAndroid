@@ -2,8 +2,9 @@ import { program } from 'commander';
 import Install from './src/Grasscutters/install';
 import run from './src/Grasscutters/run'
 import { handleUpdate } from './src/Utils'
+import { version } from './package.json';
 
-export const polycutterVersion = '1.0.1'
+export const polycutterVersion = version
 
 export interface InstallGrasscutter {
     repository?: string;

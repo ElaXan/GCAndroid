@@ -1,6 +1,6 @@
 {
   "name": "polycutter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Run Grasscutter on your Android phone",
   "scripts": {
     "start": "ts-node index.ts",
