@@ -1,4 +1,5 @@
 import { spawn } from 'child_process'
+import Logger from './log';
 
 /**
 * Executes a shell command asynchronously.
@@ -42,14 +43,17 @@ export async function shell(command: string, errorCode: number, onDataCallback: 
 export async function isCommandAvailable(command: string): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
         const commandName = process.platform === 'win32' ? 'where' : 'command -v';
-        const childProcess = spawn(commandName, [command])
+        const childProcess = spawn(commandName, [command], {
+            shell: true
+        })
 
         childProcess.on('exit', (code) => {
             const isAvailable = code === 0;
             resolve(isAvailable)
         })
 
-        childProcess.on('error', () => {
+        childProcess.on('error', (err) => {
+            Logger.error(err)
             resolve(false)
         })
     })
