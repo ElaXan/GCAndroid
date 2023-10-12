@@ -157,7 +157,11 @@ export default async function handleUpdate() {
             skip: (ctx) => !ctx.update,
             task: async (_, task) => {
                 return new Promise<void>((resolve, reject) => {
-                    shell('npm update -g polycutter', 0, (data) => {
+                    const command = (): string => {
+                        const prefix = process.platform === 'linux' ? 'sudo ' : '';
+                        return `${prefix}npm i -g polycutter`;
+                    };
+                    shell(command(), 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }
