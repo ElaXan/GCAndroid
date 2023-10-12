@@ -8,7 +8,7 @@
     "prepack": "npm run compile",
     "build": "npm pack && npm i -g ./polycutter*.tgz"
   },
-  "main": "index.ts",
+  "main": "dist/bin/polycutter.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/Score-Inc/Polycutter.git"
