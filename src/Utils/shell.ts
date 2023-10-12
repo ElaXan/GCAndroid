@@ -35,7 +35,7 @@ export async function shell(command: string, errorCode: number, onDataCallback: 
 
 export async function isCommandAvailable(command: string): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-        const commandName = process.platform === 'win32' ? 'where' : 'whereis';
+        const commandName = process.platform === 'win32' ? 'where' : 'command -v';
         const childProcess = spawn(commandName, [command])
 
         childProcess.on('exit', (code) => {
