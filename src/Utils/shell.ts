@@ -33,6 +33,12 @@ export async function shell(command: string, errorCode: number, onDataCallback: 
     })
 }
 
+/**
+ * Checks if a command is available.
+ *
+ * @param {string} command - The command to check availability for.
+ * @return {Promise<boolean>} A promise that resolves to a boolean value indicating if the command is available.
+ */
 export async function isCommandAvailable(command: string): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
         const commandName = process.platform === 'win32' ? 'where' : 'command -v';
