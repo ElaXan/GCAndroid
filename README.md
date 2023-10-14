@@ -45,14 +45,18 @@ To use Polycutter on your Android device, follow these steps:
 
 ### Windows
 
+> :warning: Please note that `polycutter` has only been tested on Linux. Therefore, if you intend to use `polycutter` on Windows, you may encounter several errors. This is because some parts of the code rely on shell commands such as 'unzip.'
+
 If you are using Windows, follow these steps to set up Polycutter:
 
-1. **Install Node.js**: If you haven't already, you can download and install [Node.js](https://nodejs.org/en/download) for Windows.
+1. **Install Node.js**: If you haven't already, download and install [Node.js](https://nodejs.org/en/download) for Windows.
 
 2. **Install Polycutter**:
    ```bash
-   npm i -g polycutter
+   npm install -g polycutter
    ```
+   
+Please make sure to consider potential compatibility issues when using `polycutter` on Windows.
 
 ### Linux
 
