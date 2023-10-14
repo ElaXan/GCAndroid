@@ -1,7 +1,7 @@
 /**
  * Enum representing color codes.
  */
-enum ColorCode {
+export enum ColorCode {
     /**
      * Reset color code.
      */

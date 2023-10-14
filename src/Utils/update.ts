@@ -1,6 +1,5 @@
 import { Listr } from "listr2";
 import { ListrEnquirerPromptAdapter } from "@listr2/prompt-adapter-enquirer";
-import { polycutterVersion } from '../../'
 import { shell } from "./shell";
 import axios from 'axios';
 
@@ -120,7 +119,7 @@ interface Scripts {
 }
 
 
-export default async function handleUpdate() {
+export default async function handleUpdate(options: { polycutterVersion: string }) {
     console.log('Checking update')
     const response: PolycutterRegistry = await axios.get('https://registry.npmjs.org/polycutter', {
         timeout: 5000
@@ -129,13 +128,13 @@ export default async function handleUpdate() {
         throw err
     })
 
-    const polycutterParts = polycutterVersion.split('.').map(Number);
+    const polycutterParts = options.polycutterVersion.split('.').map(Number);
     const latestVersion = response["dist-tags"].latest.split('.').map(Number);
 
     const isHigherOrEqual = polycutterParts.every((value, index) => value >= latestVersion[index])
 
     if (isHigherOrEqual) {
-        console.log(`Looks like there is no update for Polycutter.\nCurrent Version: ${polycutterVersion}\nLatest version: ${response["dist-tags"].latest}`)
+        console.log(`Looks like there is no update for Polycutter.\nCurrent Version: ${options.polycutterVersion}\nLatest version: ${response["dist-tags"].latest}`)
         return
     }
 

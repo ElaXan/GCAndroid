@@ -97,8 +97,12 @@ export default class File {
                 throw new Error(`${path} is neither a file nor a directory.`)
             }
         } catch (error) {
-            console.error(`Error removing ${path}:`, error)
-            throw error
+            if ((error instanceof Error)) {
+                throw error;
+            } else {
+                throw new Error(`${path} is not found.`);
+            }
+            
         }
     }
 

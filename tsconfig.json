@@ -8,5 +8,10 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "./dist"
+  },
+  "ts-node": {
+    "moduleTypes": {
+      "jest.config.ts": "ts"
+    }
   }
 }

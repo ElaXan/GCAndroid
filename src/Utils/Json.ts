@@ -39,8 +39,11 @@ export default class JSONUtility {
 
             return current
         } catch (error) {
-            console.error('Error:', error)
-            throw error;
+            if ((error instanceof Error)) {
+                throw error
+            } else {
+                throw new Error(`no such file or directory, open '${this.path}'`)
+            }
         }
     }
 
@@ -55,21 +58,26 @@ export default class JSONUtility {
             const jsonData = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
 
             const keys = this.keyPath.split('.')
-
+            
             let current = jsonData;
-            for (let i = 0; i < keys.length - 1; i++) {
-                const key = keys[i]
+            keys.forEach((key, index) => {
+                const nextKey = keys[index + 1]
                 if (!current[key]) {
-                    throw new Error(`Invalid key path: ${this.keyPath}`)
+                    current[key] = {}
                 }
-                current = current[key];
-            }
-            const lastKey = keys[keys.length - 1];
-            current[lastKey] = newValue;
+                if (nextKey) {
+                    current = current[key]
+                } else {
+                    current[key] = newValue
+                }
+            })
             fs.writeFileSync(this.path, JSON.stringify(jsonData, null, 2))
         } catch (error) {
-            console.error('Error:', error)
-            throw error
+            if ((error instanceof Error)) {
+                throw error
+            } else {
+                throw new Error(`no such file or directory, open '${this.path}'`)
+            }
         }
     }
 }

@@ -6,8 +6,10 @@
     "start": "ts-node index.ts",
     "compile": "tsc",
     "prepack": "npm run compile",
-    "build": "npm pack && npm i -g ./polycutter*.tgz"
+    "build": "npm pack && npm i -g ./polycutter*.tgz",
+    "test": "jest"
   },
+  "type": "commonjs",
   "main": "dist/bin/polycutter.js",
   "repository": {
     "type": "git",
@@ -38,11 +40,13 @@
     "dist/**/*.json",
     "!*.ts",
     "!*.d.ts",
+    "!*.test.ts",
     "!tsconfig.json"
   ],
   "homepage": "https://github.com/Score-Inc/Polycutter",
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",
+    "@types/jest": "^29.5.5",
     "@types/node": "^20.7.0",
     "@types/unzipper": "^0.10.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
@@ -52,6 +56,8 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
     "typescript": "*"
   },
   "dependencies": {

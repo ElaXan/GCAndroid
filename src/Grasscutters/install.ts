@@ -1,5 +1,5 @@
 import { Listr, ListrTask, PRESET_TIMER } from "listr2";
-import { InstallGrasscutter } from '../..'
+import { InstallGrasscutter } from '../../bin/polycutter'
 import fs from 'fs';
 import { Config, Download, Files, JSONUtility, Logger, isCommandAvailable, shell } from "../Utils";
 import { ListrEnquirerPromptAdapter } from "@listr2/prompt-adapter-enquirer";
