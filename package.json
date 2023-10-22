@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Run Grasscutter on your Android phone",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start": "ts-node bin/polycutter",
     "compile": "tsc",
     "prepack": "npm run compile",
     "build": "npm pack && npm i -g ./polycutter*.tgz",
