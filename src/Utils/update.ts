@@ -122,7 +122,7 @@ interface Scripts {
 export default async function handleUpdate(options: { polycutterVersion: string }) {
     console.log('Checking update')
     const response: PolycutterRegistry = await axios.get('https://registry.npmjs.org/polycutter', {
-        timeout: 5000
+        timeout: 10000
     }).then((res) => res.data).catch((err) => {
         console.error(err)
         throw err

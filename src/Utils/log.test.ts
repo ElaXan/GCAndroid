@@ -25,7 +25,7 @@ describe("Logger", () => {
     describe('error', () => {
         it('should log an error message with the correct color code', () => {
             Logger.error('This is an error message');
-            const logOutput = (console.log as jest.Mock).mock.calls[1];
+            const logOutput = (console.log as jest.Mock).mock.calls[0];
             expect(logOutput[0]).toContain(`[${ColorCode.Red}ERROR${ColorCode.Reset}]:`)
             expect(logOutput[1]).toContain('This is an error message')
         })
@@ -34,7 +34,7 @@ describe("Logger", () => {
     describe('warn', () => {
         it('should log a warning message with the correct color code', () => {
             Logger.warn('This is an warning message');
-            const logOutput = (console.log as jest.Mock).mock.calls[2];
+            const logOutput = (console.log as jest.Mock).mock.calls[0];
             expect(logOutput[0]).toContain(`[${ColorCode.Yellow}WARN${ColorCode.Reset}]:`)
             expect(logOutput[1]).toContain('This is an warning message')
         })
