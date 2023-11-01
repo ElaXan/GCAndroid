@@ -68,12 +68,10 @@ class DatabaseConnection {
      */
     async insertOne(collectionName: string, body: OptionalId<any>) {
         try {
-            const result = this.connect().then(async (database) => {
+            return this.connect().then(async (database) => {
                 const collection = database.db.collection(collectionName);
-                const result = await collection.insertOne(body, {});
-                return result;
+                return await collection.insertOne(body, {});
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed inserting one document.\n${error}`);
         }
@@ -90,12 +88,10 @@ class DatabaseConnection {
      */
     async read(collectionName: string) {
         try {
-            const result = this.connect().then((database) => {
+            return this.connect().then((database) => {
                 const collection = database.db.collection(collectionName);
-                const result = collection.find({}).toArray();
-                return result;
+                return collection.find({}).toArray();
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed reading documents.\n${error}`);
         }
@@ -112,11 +108,9 @@ class DatabaseConnection {
      */
     async deleteOne(collection: string, body: object): Promise<DeleteResult> {
         try {
-            const result = await this.connect().then(async (database) => {
-                const result = await database.db.collection(collection).deleteOne(body);
-                return result;
+            return await this.connect().then(async (database) => {
+                return await database.db.collection(collection).deleteOne(body);
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed deleting documents.\n${error}`);
         }
@@ -133,12 +127,10 @@ class DatabaseConnection {
      */
     async dropCollection(collectionName: string): Promise<boolean> {
         try {
-            const result = await this.connect().then((database) => {
+            return await this.connect().then((database) => {
                 const collection = database.db.collection(collectionName);
-                const result = collection.drop();
-                return result;
+                return collection.drop();
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed dropping collection.\n${error}`);
         }
@@ -155,12 +147,10 @@ class DatabaseConnection {
      */
     async findOne(collectionName: string, body: Filter<any>): Promise<WithId<any> | null> {
         try {
-            const result = await this.connect().then(async (database) => {
+            return await this.connect().then(async (database) => {
                 const collection = database.db.collection(collectionName);
-                const result = await collection.findOne(body);
-                return result;
+                return await collection.findOne(body);
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed finding one document.\n${error}`);
         }
@@ -182,12 +172,10 @@ class DatabaseConnection {
         body: UpdateFilter<Document> | Partial<Document>,
     ): Promise<UpdateResult<any>> {
         try {
-            const result = await this.connect().then(async (database) => {
+            return await this.connect().then(async (database) => {
                 const collection = database.db.collection(collectionName);
-                const result = await collection.updateOne(filter, body);
-                return result;
+                return await collection.updateOne(filter, body);
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed updating one document.\n${error}`);
         }
@@ -207,12 +195,10 @@ class DatabaseConnection {
      */
     async newOne(collectionName: string, filter: Filter<any>, body: WithoutId<any>): Promise<WithId<any> | null> {
         try {
-            const result = this.connect().then(async (database) => {
+            return this.connect().then(async (database) => {
                 const collection = database.db.collection(collectionName);
-                const result = await collection.findOneAndReplace(filter, body);
-                return result;
+                return await collection.findOneAndReplace(filter, body);
             });
-            return result;
         } catch (error) {
             throw new Error(`Failed to creating new document.\n${error}`);
         }
@@ -223,11 +209,9 @@ class DatabaseConnection {
      */
     async ping() {
         try {
-            const result = this.connect().then((database) => {
-                const result = database.db.command({ ping: 1 });
-                return result;
+            return this.connect().then((database) => {
+                return database.db.command({ ping: 1 });
             });
-            return result;
         } catch (error) {
             throw new Error(`Something went wrong pinging database.\n${error}`);
         }
