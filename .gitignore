@@ -8,8 +8,10 @@ import.sh
 /package-lock.json
 /*.ts
 !/index.ts
+# Exclude jest config
+!/jest.config.ts
 /dist/*.js
-!/dist/index.js
 /yarn-error.log
 /yarn.lock
 /*.tgz
+/coverage
