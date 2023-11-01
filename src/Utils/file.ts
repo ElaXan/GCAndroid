@@ -122,9 +122,8 @@ export default class File {
                 .pipe(unzipper.Parse())
                 .on('entry', (entry) => {
                     entries.push(entry)
-                    const path = entry.path;
-                    const type = entry.type;
-                    const isUnicode = entry.props.flags.isUnicode;
+                    const { path, type } = entry;
+                    const { isUnicode } = entry.props.flags;
                     const pathExtract = destination ? `${destination}/${path}` : path;
                     const fileName = isUnicode ? pathExtract : il.decode(entry.props.pathBuffer, 'cp866')
                     if (type === 'Directory') {
