@@ -1,22 +1,25 @@
 import {
+    Db,
     DeleteResult,
     Filter,
     MongoClient,
     MongoClientOptions,
     OptionalId,
+    ServerApiVersion,
     UpdateFilter,
     UpdateResult,
     WithId,
-    WithoutId,
 } from 'mongodb';
 
 class DatabaseConnection {
     private uri: string;
     private dbName: string;
+    private database: Db | undefined = undefined;
 
     constructor(options: { uri: string; dbName: string }) {
         this.uri = options.uri;
         this.dbName = options.dbName;
+        this.connect()
     }
 
     /**
@@ -44,15 +47,36 @@ class DatabaseConnection {
      *   sex: 'male'
      * });
      */
-    async connect(options?: MongoClientOptions) {
+    public async connect(options?: MongoClientOptions) {
         try {
-            const configuration = new MongoClient(this.uri, options);
-            const client = await configuration.connect();
-            const db = client.db(this.dbName);
-
-            return { client, db };
+            if (this.database) {
+                return;
+            }
+            const configuration = new MongoClient(this.uri, {
+                serverApi: {
+                    version: ServerApiVersion.v1,
+                    strict: true,
+                    deprecationErrors: true
+                }
+            });
+            const connect = await configuration.connect();
+            this.database = connect.db(this.dbName);
         } catch (error) {
-            throw new Error(`Failed to establish a database connection.\n${error}`);
+            const maxRetries = 3;
+            let retryCount = 0;
+            while (retryCount < maxRetries) {
+                retryCount++;
+                console.log(`Failed to establish a database connection. Retrying (${retryCount}/${maxRetries})...`);
+                try {
+                    const configuration = new MongoClient(this.uri, options);
+                    const connect = await configuration.connect();
+                    this.database = connect.db(this.dbName);
+                    return;
+                } catch (error) {
+                    continue;
+                }
+            }
+            throw new Error(`Failed to establish a database connection after ${maxRetries} retries.\n${error}`);
         }
     }
 
@@ -68,10 +92,11 @@ class DatabaseConnection {
      */
     async insertOne(collectionName: string, body: OptionalId<any>) {
         try {
-            return this.connect().then(async (database) => {
-                const collection = database.db.collection(collectionName);
-                return await collection.insertOne(body, {});
-            });
+            if (!this.database) {
+                throw new Error('No database connection established');
+            }
+            const collection = this.database.collection(collectionName);
+            return await collection.insertOne(body, {});
         } catch (error) {
             throw new Error(`Failed inserting one document.\n${error}`);
         }
@@ -89,7 +114,10 @@ class DatabaseConnection {
     async read(collectionName: string) {
         try {
             return this.connect().then((database) => {
-                const collection = database.db.collection(collectionName);
+                if (!this.database) {
+                    throw new Error('No database connection established');
+                }
+                const collection = this.database.collection(collectionName);
                 return collection.find({}).toArray();
             });
         } catch (error) {
@@ -106,11 +134,12 @@ class DatabaseConnection {
      * const result = await insertMany('users', [{ name: 'John' }, { name: 'Jane' }]);
      * console.log(result);
      */
-    async deleteOne(collection: string, body: object): Promise<DeleteResult> {
+    async deleteOne(collection: string, body: Filter<any>): Promise<DeleteResult> {
         try {
-            return await this.connect().then(async (database) => {
-                return await database.db.collection(collection).deleteOne(body);
-            });
+            if (!this.database) {
+                throw new Error('No database connection established');
+            }
+            return await this.database.collection(collection).deleteOne(body);
         } catch (error) {
             throw new Error(`Failed deleting documents.\n${error}`);
         }
@@ -127,10 +156,11 @@ class DatabaseConnection {
      */
     async dropCollection(collectionName: string): Promise<boolean> {
         try {
-            return await this.connect().then((database) => {
-                const collection = database.db.collection(collectionName);
-                return collection.drop();
-            });
+            if (!this.database) {
+                throw new Error('No database connection established');
+            }
+            const collection = this.database.collection(collectionName);
+            return collection.drop();
         } catch (error) {
             throw new Error(`Failed dropping collection.\n${error}`);
         }
@@ -147,10 +177,11 @@ class DatabaseConnection {
      */
     async findOne(collectionName: string, body: Filter<any>): Promise<WithId<any> | null> {
         try {
-            return await this.connect().then(async (database) => {
-                const collection = database.db.collection(collectionName);
-                return await collection.findOne(body);
-            });
+            if (!this.database) {
+                throw new Error('No database connection established');
+            }
+            const collection = this.database.collection(collectionName);
+            return await collection.findOne(body);
         } catch (error) {
             throw new Error(`Failed finding one document.\n${error}`);
         }
@@ -172,46 +203,26 @@ class DatabaseConnection {
         body: UpdateFilter<Document> | Partial<Document>,
     ): Promise<UpdateResult<any>> {
         try {
-            return await this.connect().then(async (database) => {
-                const collection = database.db.collection(collectionName);
-                return await collection.updateOne(filter, body);
-            });
+            if (!this.database) {
+                throw new Error('No database connection established');
+            }
+            const collection = this.database.collection(collectionName);
+            return await collection.updateOne(filter, body);
         } catch (error) {
             throw new Error(`Failed updating one document.\n${error}`);
         }
     }
 
     /**
-     * @param collectionName Name of the collection to update
-     * @param filter Filter to find the document to update e.g. { _id: ObjectId('...') }
-     * @param body Body to update the document with e.g. { $set: { name: 'John' } }
-     * @returns Returns the result of the update
-     * @description Updates one document in the collection
-     * @example
-     * const result = await updateOne('users', { _id: ObjectId('...') }, { $set: { name: 'John' } });
-     * console.log(result);
-     * @deprecated Use updateOne instead
-     * @see updateOne
-     */
-    async newOne(collectionName: string, filter: Filter<any>, body: WithoutId<any>): Promise<WithId<any> | null> {
-        try {
-            return this.connect().then(async (database) => {
-                const collection = database.db.collection(collectionName);
-                return await collection.findOneAndReplace(filter, body);
-            });
-        } catch (error) {
-            throw new Error(`Failed to creating new document.\n${error}`);
-        }
-    }
-
-    /**
      * @description Pings the database
+     * @returns Returns the result of the ping
      */
     async ping() {
         try {
-            return this.connect().then((database) => {
-                return database.db.command({ ping: 1 });
-            });
+            if (!this.database) {
+                throw new Error('No database connection established');
+            }
+            return this.database.command({ ping: 1 });
         } catch (error) {
             throw new Error(`Something went wrong pinging database.\n${error}`);
         }
