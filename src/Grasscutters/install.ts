@@ -305,6 +305,7 @@ export default class Install {
                                     task.skip('/data/db already exists')
                                     return
                                 }
+                                fs.promises.mkdir('/data/db', { recursive: true })
                                 fs.promises.chmod('/data/db', 0o777)
                             } catch (error) {
                                 Logger.error(error)
@@ -610,34 +611,22 @@ export default class Install {
     }
 
     public async run() {
-        if (process.platform === 'win32') {
-            const checkBusybox = await isCommandAvailable('busybox')
-            if (!checkBusybox) {
-                throw new Error('busybox not found. Please install busybox and try again.')
-            }
+        if (process.platform === 'win32' && !(await isCommandAvailable('busybox'))) {
+            throw new Error('busybox not found. Please install busybox and try again.')
         }
-        if (!fs.existsSync(Config.tmp)) {
-            fs.mkdirSync(Config.tmp, { recursive: true })
-        }
-        // main
-        this.taskList.add(this.gettingYouOnBoard);
 
-        // check update and install MongoDB (Linux)
+        fs.mkdirSync(Config.tmp, { recursive: true })
+
+        this.taskList.add(this.gettingYouOnBoard)
         if (process.platform === 'linux' || process.platform === 'android') {
             this.taskList.add(this.checkInstallation())
         }
-
-        // begin installation Grasscutter, Download resources and extract resources
         this.taskList.add(this.installation())
-
-        // Compile grasscutter.jar
-        this.taskList.add(this.compileJar);
-
-        // Configuration after compiling grasscutter.jar
-        this.taskList.add(this.configuration());
-
+        this.taskList.add(this.compileJar)
+        this.taskList.add(this.configuration())
         this.taskList.add(this.cleanUp)
 
-        await this.taskList.run();
+        // Run list of tasks
+        await this.taskList.run()
     }
 }
