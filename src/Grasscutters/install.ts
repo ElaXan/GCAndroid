@@ -339,7 +339,7 @@ export default class Install {
             installPackage,
         ]
 
-        const platform = process.platform;
+        const { platform } = process;
         const distribution = this.distributions()?.ID;
 
         if (platform === 'linux') {
@@ -610,6 +610,12 @@ export default class Install {
     }
 
     public async run() {
+        if (process.platform === 'win32') {
+            const checkBusybox = await isCommandAvailable('busybox')
+            if (!checkBusybox) {
+                throw new Error('busybox not found. Please install busybox and try again.')
+            }
+        }
         if (!fs.existsSync(Config.tmp)) {
             fs.mkdirSync(Config.tmp, { recursive: true })
         }
