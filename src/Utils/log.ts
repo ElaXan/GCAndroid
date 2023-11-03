@@ -15,6 +15,10 @@ export enum ColorCode {
      */
     Red = '\x1b[31m',
     /**
+     * Blue color code.
+     */
+    Blue = '\x1b[34m',
+    /**
      * Yellow color code.
      */
     Yellow = '\x1b[33m'
@@ -30,7 +34,7 @@ export default class Logger {
      * @return {void}
      */
     private static log(level: string, colorCode: ColorCode, ...message: any[]): void {
-        const formattedMessage = `[${colorCode}${level}${ColorCode.Reset}]:`;
+        const formattedMessage = `[${ColorCode.Blue}Polycutter${ColorCode.Reset} -> ${colorCode}${level}${ColorCode.Reset}]:`;
         console.log(formattedMessage, ...message);
     }
 
