@@ -1,4 +1,4 @@
-import { shell, isCommandAvailable } from './shell'
+import Shell from './shell'
 
 describe('shell', () => {
     it('should execute a shell command asynchronously', async () => {
@@ -6,7 +6,7 @@ describe('shell', () => {
         const expectedOutput = 'Hello, World\n';
         const onDataCallback = jest.fn();
 
-        await shell(command, 0, onDataCallback);
+        await Shell.execute(command, 0, onDataCallback);
 
         expect(onDataCallback).toHaveBeenCalledWith(expectedOutput);
     })
@@ -16,7 +16,7 @@ describe('shell', () => {
         const onDataCallback = jest.fn();
 
         try {
-            await shell(command, 1, onDataCallback);
+            await Shell.execute(command, 1, onDataCallback);
         } catch (error) {
             expect(error).toContain('Program exited with code');
         }
@@ -26,13 +26,13 @@ describe('shell', () => {
 describe('isCommandAvailable', () => {
     it('should resolve to true if the command is available', async () => {
         const command = 'echo';
-        const isAvailable = await isCommandAvailable(command);
+        const isAvailable = await Shell.checkCommand(command);
         expect(isAvailable).toBeTruthy();
     })
 
     it('should resolve to false if the command is not available', async () => {
         const command = 'nonexistent-command';
-        const isAvailable = await isCommandAvailable(command);
+        const isAvailable = await Shell.checkCommand(command);
         expect(isAvailable).toBeFalsy();
     })
 })
