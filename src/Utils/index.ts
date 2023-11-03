@@ -1,4 +1,4 @@
-export { shell, isCommandAvailable } from './shell';
+export { default as Shell } from './shell';
 export { default as Download } from './download';
 export { default as Files } from './file';
 export { default as Config } from './config';

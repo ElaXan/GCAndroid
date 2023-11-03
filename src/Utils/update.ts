@@ -1,6 +1,6 @@
 import { Listr } from "listr2";
 import { ListrEnquirerPromptAdapter } from "@listr2/prompt-adapter-enquirer";
-import { shell } from "./shell";
+import { Shell } from "./";
 import axios from 'axios';
 
 interface PolycutterRegistry {
@@ -160,7 +160,7 @@ export default async function handleUpdate(options: { polycutterVersion: string 
                         const prefix = process.platform === 'linux' ? 'sudo ' : '';
                         return `${prefix}npm i -g polycutter`;
                     };
-                    shell(command(), 0, (data) => {
+                    Shell.execute(command(), 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }
