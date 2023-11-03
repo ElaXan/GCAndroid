@@ -1,5 +1,5 @@
 import { spawn } from "child_process";
-import { Config, isCommandAvailable, JSONUtility } from '../Utils'
+import { Config, Shell, JSONUtility } from '../Utils'
 import fs from 'fs';
 import path from 'path'
 import { Database as MongoDB } from "../Utils";
@@ -25,13 +25,13 @@ export default async function (pathExecuteJar?: string, port?: number, mongodb?:
     Logger.info('Path jar:', pathJar);
 
     Logger.info('Checking if java command is available')
-    const checkJavaCommand = await isCommandAvailable('java')
+    const checkJavaCommand = await Shell.checkCommand('java')
     if (!checkJavaCommand) {
         throw new Error('Java command is not found. Is java installed?')
     }
 
     if (mongodb) {
-        const checkMongoDBCommand = await isCommandAvailable('mongod')
+        const checkMongoDBCommand = await Shell.checkCommand('mongod')
         if (!checkMongoDBCommand) {
             throw new Error('MongoDB command is not found. Is mongodb-server installed?.')
         }

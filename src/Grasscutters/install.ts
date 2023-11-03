@@ -1,7 +1,7 @@
 import { Listr, ListrTask, PRESET_TIMER } from "listr2";
 import { InstallGrasscutter } from '../../bin/polycutter'
 import fs from 'fs';
-import { Config, Download, Files, JSONUtility, Logger, isCommandAvailable, shell } from "../Utils";
+import { Config, Download, Files, JSONUtility, Logger, Shell } from "../Utils";
 import { ListrEnquirerPromptAdapter } from "@listr2/prompt-adapter-enquirer";
 
 interface Platform {
@@ -32,7 +32,7 @@ export default class Install {
             timer: undefined
         },
         task: async (ctx, task) => {
-            const checkMongoDB = await isCommandAvailable('mongod')
+            const checkMongoDB = await Shell.checkCommand('mongod')
             if (!checkMongoDB && process.platform !== 'win32') {
                 ctx.mongodb = await task.prompt(ListrEnquirerPromptAdapter).run({
                     type: 'Toggle',
@@ -97,7 +97,7 @@ export default class Install {
             task: async (_, task) => {
                 return new Promise<void>(async (resolve, reject) => {
                     const command = process.platform === 'android' ? 'pkg up -y' : 'sudo apt-get update';
-                    await shell(command, 0, (data) => {
+                    await Shell.execute(command, 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }
@@ -134,7 +134,7 @@ export default class Install {
                     for (let i = 0; i < listPackages.length; i++) {
                         if (!ctx.mongodb && listPackages[i] === 'tur-repo' || listPackages[i] === 'mongodb') continue
                         task.title = `Installing ${listPackages[i]}`
-                        await shell(`${command} ${listPackages[i]} -y`, 0, (data) => {
+                        await Shell.execute(`${command} ${listPackages[i]} -y`, 0, (data) => {
                             if (data !== null) {
                                 task.output = `${data}`
                             }
@@ -160,7 +160,7 @@ export default class Install {
                         title: 'Installing Required Dependencies for MongoDB Server Installation',
                         task: async (_, task) => {
                             return new Promise<void>((resolve, reject) => {
-                                shell(`sudo apt-get install gnupg curl -y`, 0, (data) => {
+                                Shell.execute(`sudo apt-get install gnupg curl -y`, 0, (data) => {
                                     if (data !== null) {
                                         task.output = `${data}`
                                     }
@@ -176,7 +176,7 @@ export default class Install {
                         title: 'Importing MongoDB Server 7.0 GPG Key for Secure Installation',
                         task: async (_, task) => {
                             return new Promise<void>((resolve, reject) => {
-                                shell(`curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+                                Shell.execute(`curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
                                 sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
                                 --dearmor`, 0, (data) => {
                                     if (data !== null) {
@@ -228,7 +228,7 @@ export default class Install {
                                     throw new Error(`Not support platform ${platformLinux.ID || 'unknown'}`)
                                 }
                                 try {
-                                    shell(mongodbRepo, 0, (data) => {
+                                    Shell.execute(mongodbRepo, 0, (data) => {
                                         if (data !== null) {
                                             task.output = `${data}`
                                         }
@@ -247,7 +247,7 @@ export default class Install {
                         title: 'Refreshing Package Repositories for MongoDB Server Installation',
                         task: async (_, task) => {
                             return new Promise<void>((resolve, reject) => {
-                                shell('sudo apt-get update', 0, (data) => {
+                                Shell.execute('sudo apt-get update', 0, (data) => {
                                     if (data !== null) {
                                         task.output = `${data}`
                                     }
@@ -263,7 +263,7 @@ export default class Install {
                         title: 'Installing MongoDB Server 7.0',
                         task: async (_, task) => {
                             return new Promise<void>((resolve, reject) => {
-                                shell('sudo apt-get install -y mongodb-org', 0, (data) => {
+                                Shell.execute('sudo apt-get install -y mongodb-org', 0, (data) => {
                                     if (data !== null) {
                                         task.output = `${data}`
                                     }
@@ -279,7 +279,7 @@ export default class Install {
                         title: 'Setting MongoDB Server 7.0 Packages on Hold',
                         task: async (_, task) => {
                             return new Promise<void>((resolve, reject) => {
-                                shell(`echo "mongodb-org hold" | sudo dpkg --set-selections
+                                Shell.execute(`echo "mongodb-org hold" | sudo dpkg --set-selections
                                 echo "mongodb-org-database hold" | sudo dpkg --set-selections
                                 echo "mongodb-org-server hold" | sudo dpkg --set-selections
                                 echo "mongodb-mongosh hold" | sudo dpkg --set-selections
@@ -322,7 +322,7 @@ export default class Install {
             skip: (ctx): boolean => !ctx.mongodb,
             task: (_, task) => {
                 return new Promise<void>((resolve, reject) => {
-                    shell('sudo apt install mongodb -y', 0, (data) => {
+                    Shell.execute('sudo apt install mongodb -y', 0, (data) => {
                         if (data) {
                             task.output = `${data}`
                         }
@@ -377,7 +377,7 @@ export default class Install {
                     return
                 }
                 return new Promise<string>(async (resolve, reject) => {
-                    await shell(`git clone ${this.cloneURL} ${Config.defaultGrasscutterPath}`, 0, (data) => {
+                    await Shell.execute(`git clone ${this.cloneURL} ${Config.defaultGrasscutterPath}`, 0, (data) => {
                         if (data !== null) {
                             task.output = `${data}`
                         }
@@ -428,7 +428,7 @@ export default class Install {
                 let startTime = Date.now();
                 const updateInterval = 100;
                 return new Promise<void>(async (resolve, reject) => {
-                    await shell('unzip -o ./Resources.zip -d ./ExtractResources', 0, (data) => {
+                    await Shell.execute('unzip -o ./Resources.zip -d ./ExtractResources', 0, (data) => {
                         const currentTime = Date.now();
                         const elapsedTime = currentTime - startTime;
                         if (elapsedTime >= updateInterval) {
@@ -475,7 +475,7 @@ export default class Install {
         task: async (_, task) => {
             return new Promise<void>(async (resolve, reject) => {
                 process.chdir(`${Config.defaultGrasscutterPath}`)
-                await shell('./gradlew jar', 0, (data) => {
+                await Shell.execute('./gradlew jar', 0, (data) => {
                     if (data !== null) {
                         task.output = `${data}`
                     }
@@ -530,7 +530,7 @@ export default class Install {
                         task: () => {
                             process.chdir(Config.defaultGrasscutterPath)
                             return new Promise<void>((resolve, reject) => {
-                                shell('timeout --foreground 7s java -jar grasscutter.jar', 124, () => {
+                                Shell.execute('timeout --foreground 7s java -jar grasscutter.jar', 124, () => {
                                     // Do nothing
                                 }).then(() => {
                                     resolve()
@@ -611,7 +611,7 @@ export default class Install {
     }
 
     public async run() {
-        if (process.platform === 'win32' && !(await isCommandAvailable('busybox'))) {
+        if (process.platform === 'win32' && !(await Shell.checkCommand('busybox'))) {
             throw new Error('busybox not found. Please install busybox and try again.')
         }
 
